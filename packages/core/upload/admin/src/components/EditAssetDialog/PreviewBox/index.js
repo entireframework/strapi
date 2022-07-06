@@ -116,7 +116,7 @@ export const PreviewBox = ({
     setHasCropIntent(false);
   };
 
-  const isInCroppingMode = isCropping && !isLoading;
+  const isInCroppingMode = asset.isLocal ? true : isCropping && !isLoading;
 
   const handleDuplication = async () => {
     const nextAsset = { ...asset, width, height };
@@ -218,7 +218,7 @@ export const PreviewBox = ({
             name={asset.name}
             url={hasCropIntent ? assetUrl : thumbnailUrl}
             onLoad={() => {
-              if (hasCropIntent) {
+              if (asset.isLocal ? true : hasCropIntent) {
                 setIsCropImageReady(true);
               }
             }}
