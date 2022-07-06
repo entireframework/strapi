@@ -80,6 +80,13 @@ export const PreviewBox = ({
     }
   }, [replacementFile, asset]);
 
+  useEffect(() => {
+    if (!hasCropIntent) {
+      stopCropping();
+      onCropCancel();
+    }
+  }, [hasCropIntent, stopCropping, onCropCancel, onCropFinish]);
+
   const handleCropping = async () => {
     const nextAsset = { ...asset, width, height };
     const file = await produceFile(nextAsset.name, nextAsset.mime, nextAsset.updatedAt);
@@ -104,10 +111,9 @@ export const PreviewBox = ({
       trackUsage('didCropFile', { duplicatedFile: false, location: trackedLocation });
     }
 
-    stopCropping();
-    onCropCancel();
     setAssetUrl(optimizedCachingImage);
     setThumbnailUrl(optimizedCachingThumbnailImage);
+    setHasCropIntent(false);
   };
 
   const isInCroppingMode = isCropping && !isLoading;
@@ -120,15 +126,13 @@ export const PreviewBox = ({
 
     trackUsage('didCropFile', { duplicatedFile: true, location: trackedLocation });
 
-    stopCropping();
+    setHasCropIntent(false);
     onCropFinish();
   };
 
   const handleCropCancel = () => {
     setHasCropIntent(false);
     setIsCropImageReady(false);
-    stopCropping();
-    onCropCancel();
   };
 
   const handleCropStart = () => {
