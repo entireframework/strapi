@@ -181,113 +181,126 @@ const DraggedItem = ({
 
   const accordionTitle = toString(displayedValue);
   const accordionHasError = hasErrors ? 'error' : undefined;
+  const maxSize = fields.reduce(
+    (acc, fieldRow) =>
+      Math.max(
+        acc,
+        fieldRow.reduce((acc, { size }) => acc + size, 0)
+      ),
+    0
+  );
 
   return (
-    <Box ref={refs ? refs.dropRef : null}>
-      {isDragging && <Preview />}
-      {!isDragging && isDraggingSibling && (
-        <DraggingSibling displayedValue={accordionTitle} componentFieldName={componentFieldName} />
-      )}
-
-      {!isDragging && !isDraggingSibling && (
-        <Accordion
-          error={accordionHasError}
-          hasErrorMessage={hasErrorMessage}
-          expanded={isOpen}
-          onToggle={onClickToggle}
-          id={componentFieldName}
-          size="S"
-        >
-          <AccordionToggle
-            action={
-              isReadOnly ? null : (
-                <Stack horizontal spacing={0}>
-                  <CustomIconButton
-                    expanded={isOpen}
-                    noBorder
-                    onClick={() => {
-                      removeRepeatableField(componentFieldName);
-                      toggleCollapses();
-                    }}
-                    label={formatMessage({
-                      id: getTrad('containers.Edit.delete'),
-                      defaultMessage: 'Delete',
-                    })}
-                    icon={<Trash />}
-                  />
-                  {/* react-dnd is broken in firefox with our IconButton, maybe a ref issue */}
-                  <Tooltip
-                    description={formatMessage({
-                      id: getTrad('components.DragHandle-label'),
-                      defaultMessage: 'Drag',
-                    })}
-                  >
-                    <DragButton
-                      role="button"
-                      tabIndex={-1}
-                      ref={refs.dragRef}
-                      onClick={e => e.stopPropagation()}
-                    >
-                      <Drag />
-                    </DragButton>
-                  </Tooltip>
-                </Stack>
-              )
-            }
-            title={accordionTitle}
-            togglePosition="left"
+    <GridItem col={maxSize} s={12} xs={12}>
+      <Box ref={refs ? refs.dropRef : null}>
+        {isDragging && <Preview />}
+        {!isDragging && isDraggingSibling && (
+          <DraggingSibling
+            displayedValue={accordionTitle}
+            componentFieldName={componentFieldName}
           />
-          <AccordionContent>
-            <Stack background="neutral100" padding={6} spacing={6}>
-              {fields.map((fieldRow, key) => {
-                return (
-                  <Grid gap={4} key={key}>
-                    {fieldRow.map(({ name, fieldSchema, metadatas, queryInfos, size }) => {
-                      const isComponent = fieldSchema.type === 'component';
-                      const keys = `${componentFieldName}.${name}`;
+        )}
 
-                      if (isComponent) {
-                        const componentUid = fieldSchema.component;
+        {!isDragging && !isDraggingSibling && (
+          <Accordion
+            error={accordionHasError}
+            hasErrorMessage={hasErrorMessage}
+            expanded={isOpen}
+            onToggle={onClickToggle}
+            id={componentFieldName}
+            size="S"
+          >
+            <AccordionToggle
+              action={
+                isReadOnly ? null : (
+                  <Stack horizontal spacing={0}>
+                    <CustomIconButton
+                      expanded={isOpen}
+                      noBorder
+                      onClick={() => {
+                        removeRepeatableField(componentFieldName);
+                        toggleCollapses();
+                      }}
+                      label={formatMessage({
+                        id: getTrad('containers.Edit.delete'),
+                        defaultMessage: 'Delete',
+                      })}
+                      icon={<Trash />}
+                    />
+                    {/* react-dnd is broken in firefox with our IconButton, maybe a ref issue */}
+                    <Tooltip
+                      description={formatMessage({
+                        id: getTrad('components.DragHandle-label'),
+                        defaultMessage: 'Drag',
+                      })}
+                    >
+                      <DragButton
+                        role="button"
+                        tabIndex={-1}
+                        ref={refs.dragRef}
+                        onClick={e => e.stopPropagation()}
+                      >
+                        <Drag />
+                      </DragButton>
+                    </Tooltip>
+                  </Stack>
+                )
+              }
+              title={accordionTitle}
+              togglePosition="left"
+            />
+            <AccordionContent>
+              <Stack background="neutral100" padding={6} spacing={6}>
+                {fields.map((fieldRow, key) => {
+                  return (
+                    <Grid gap={4} key={key}>
+                      {fieldRow.map(({ name, fieldSchema, metadatas, queryInfos, size }) => {
+                        const isComponent = fieldSchema.type === 'component';
+                        const keys = `${componentFieldName}.${name}`;
+
+                        if (isComponent) {
+                          const componentUid = fieldSchema.component;
+
+                          return (
+                            <GridItem col={(size * 12) / maxSize} s={12} xs={12} key={name}>
+                              <FieldComponent
+                                componentUid={componentUid}
+                                intlLabel={{
+                                  id: metadatas.label,
+                                  defaultMessage: metadatas.label,
+                                }}
+                                isRepeatable={fieldSchema.repeatable}
+                                isNested
+                                name={keys}
+                                max={fieldSchema.max}
+                                min={fieldSchema.min}
+                                required={fieldSchema.required}
+                              />
+                            </GridItem>
+                          );
+                        }
 
                         return (
-                          <GridItem col={size} s={12} xs={12} key={name}>
-                            <FieldComponent
-                              componentUid={componentUid}
-                              intlLabel={{
-                                id: metadatas.label,
-                                defaultMessage: metadatas.label,
-                              }}
-                              isRepeatable={fieldSchema.repeatable}
-                              isNested
-                              name={keys}
-                              max={fieldSchema.max}
-                              min={fieldSchema.min}
-                              required={fieldSchema.required}
+                          <GridItem key={keys} col={(size * 12) / maxSize} s={12} xs={12}>
+                            <Inputs
+                              fieldSchema={fieldSchema}
+                              keys={keys}
+                              metadatas={metadatas}
+                              // onBlur={hasErrors ? checkFormErrors : null}
+                              queryInfos={queryInfos}
                             />
                           </GridItem>
                         );
-                      }
-
-                      return (
-                        <GridItem key={keys} col={size} s={12} xs={12}>
-                          <Inputs
-                            fieldSchema={fieldSchema}
-                            keys={keys}
-                            metadatas={metadatas}
-                            // onBlur={hasErrors ? checkFormErrors : null}
-                            queryInfos={queryInfos}
-                          />
-                        </GridItem>
-                      );
-                    })}
-                  </Grid>
-                );
-              })}
-            </Stack>
-          </AccordionContent>
-        </Accordion>
-      )}
-    </Box>
+                      })}
+                    </Grid>
+                  );
+                })}
+              </Stack>
+            </AccordionContent>
+          </Accordion>
+        )}
+      </Box>
+    </GridItem>
   );
 };
 
