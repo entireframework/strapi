@@ -42,6 +42,7 @@ const DynamicZone = ({
   const intlDescription = metadatas.description
     ? { id: metadatas.description, defaultMessage: metadatas.description }
     : null;
+  const [isDraggingSibling, setIsDraggingSibling] = useState(false);
 
   const [componentCollapses, setComponentsCollapses] = useState(
     createCollapses(dynamicDisplayedComponentsLength)
@@ -181,6 +182,10 @@ const DynamicZone = ({
     );
   }
 
+  const toggleCollapses = () => {
+    setComponentsCollapses(createCollapses(dynamicDisplayedComponentsLength));
+  };
+
   return (
     <Stack spacing={6}>
       {dynamicDisplayedComponentsLength > 0 && (
@@ -193,19 +198,22 @@ const DynamicZone = ({
             numberOfComponents={dynamicDisplayedComponentsLength}
             required={fieldSchema.required || false}
           />
-          {dynamicDisplayedComponents.map((componentUid, index) => {
+          {dynamicDisplayedComponents.map((data, index) => {
+            const key = data.__temp_key__;
             const showDownIcon =
               isFieldAllowed &&
               dynamicDisplayedComponentsLength > 0 &&
               index < dynamicDisplayedComponentsLength - 1;
             const showUpIcon = isFieldAllowed && dynamicDisplayedComponentsLength > 0 && index > 0;
             const isOpen = componentCollapses[index]?.isOpen || false;
+            const componentFieldName = `${name}.${index}`;
 
             return (
               <Component
-                componentUid={componentUid}
+                componentFieldName={componentFieldName}
+                componentUid={data.__component}
                 formErrors={formErrors}
-                key={index}
+                key={key}
                 index={index}
                 isOpen={isOpen}
                 isFieldAllowed={isFieldAllowed}
@@ -216,6 +224,9 @@ const DynamicZone = ({
                 removeComponentFromDynamicZone={handleRemoveComponent}
                 showDownIcon={showDownIcon}
                 showUpIcon={showUpIcon}
+                isDraggingSibling={isDraggingSibling}
+                setIsDraggingSibling={setIsDraggingSibling}
+                toggleCollapses={toggleCollapses}
               />
             );
           })}
