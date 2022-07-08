@@ -44,6 +44,16 @@ const makeApp = history => (
 );
 
 describe('<EditPage />', () => {
+  let originalDateNow = Date.now;
+
+  beforeEach(() => {
+    Date.now = jest.fn(() => new Date(Date.UTC(2021, 1, 30)).valueOf());
+  });
+
+  afterEach(() => {
+    Date.now = originalDateNow;
+  });
+
   it('renders and matches the snapshot', () => {
     const history = createMemoryHistory();
     const App = makeApp(history);
