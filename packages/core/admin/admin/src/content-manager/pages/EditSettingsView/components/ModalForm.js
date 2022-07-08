@@ -12,13 +12,14 @@ import getTrad from '../../../utils/getTrad';
 import GenericInput from './GenericInput';
 
 const FIELD_SIZES = [
+  [3, '25%'],
   [4, '33%'],
   [6, '50%'],
   [8, '66%'],
   [12, '100%'],
 ];
 
-const NON_RESIZABLE_FIELD_TYPES = ['dynamiczone', 'component', 'json', 'richtext'];
+const NON_RESIZABLE_FIELD_TYPES = [];
 
 const ModalForm = ({ onMetaChange, onSizeChange }) => {
   const { formatMessage } = useIntl();
