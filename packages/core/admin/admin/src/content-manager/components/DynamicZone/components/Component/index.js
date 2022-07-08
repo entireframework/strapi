@@ -1,4 +1,4 @@
-import React, { memo, useMemo } from 'react';
+import React, { memo, useMemo, useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import isEqual from 'react-fast-compare';
@@ -12,22 +12,52 @@ import { Stack } from '@strapi/design-system/Stack';
 import Trash from '@strapi/icons/Trash';
 import ArrowDown from '@strapi/icons/ArrowDown';
 import ArrowUp from '@strapi/icons/ArrowUp';
+import { Tooltip } from '@strapi/design-system/Tooltip';
+import Drag from '@strapi/icons/Drag';
+import { useDrag, useDrop } from 'react-dnd';
+import { getEmptyImage } from 'react-dnd-html5-backend';
+import toString from 'lodash/toString';
 import { useContentTypeLayout } from '../../../../hooks';
 import { getTrad } from '../../../../utils';
 import FieldComponent from '../../../FieldComponent';
 import Rectangle from './Rectangle';
+import Preview from '../../../RepeatableComponent/DraggedItem/Preview';
+import DraggingSibling from './DraggingSibling';
+import ItemTypes from '../../../../utils/ItemTypes';
+import connect from './utils/connect';
+import select from './utils/select';
 
-const ActionStack = styled(Stack)`
+const DragButton = styled.span`
+  display: flex;
+  align-items: center;
+  height: ${({ theme }) => theme.spaces[7]};
+
+  padding: 0 ${({ theme }) => theme.spaces[3]};
+  cursor: all-scroll;
+
+  svg {
+    width: ${12 / 16}rem;
+    height: ${12 / 16}rem;
+  }
+`;
+
+const IconButtonCustom = styled(IconButton)`
+  background-color: transparent;
+
   svg {
     path {
       fill: ${({ theme, expanded }) =>
         expanded ? theme.colors.primary600 : theme.colors.neutral600};
     }
   }
-`;
 
-const IconButtonCustom = styled(IconButton)`
-  background-color: transparent;
+  &:hover {
+    svg {
+      path {
+        fill: ${({ theme }) => theme.colors.primary600};
+      }
+    }
+  }
 `;
 
 const StyledBox = styled(Box)`
@@ -41,6 +71,7 @@ const AccordionContentRadius = styled(Box)`
 `;
 
 const Component = ({
+  componentFieldName,
   componentUid,
   formErrors,
   index,
@@ -53,16 +84,18 @@ const Component = ({
   removeComponentFromDynamicZone,
   showDownIcon,
   showUpIcon,
+  isDraggingSibling,
+  setIsDraggingSibling,
+  toggleCollapses,
+  moveComponentField,
+  triggerFormValidation,
 }) => {
   const { formatMessage } = useIntl();
   const { getComponentLayout } = useContentTypeLayout();
-  const { icon, friendlyName } = useMemo(() => {
-    const {
-      info: { icon, displayName },
-    } = getComponentLayout(componentUid);
-
-    return { friendlyName: displayName, icon };
+  const componentLayoutData = useMemo(() => {
+    return getComponentLayout(componentUid);
   }, [componentUid, getComponentLayout]);
+  const displayedValue = componentLayoutData.info.displayName;
 
   const handleMoveComponentDown = () => moveComponentDown(name, index);
 
@@ -83,7 +116,7 @@ const Component = ({
       id: getTrad('components.DynamicZone.delete-label'),
       defaultMessage: 'Delete {name}',
     },
-    { name: friendlyName }
+    { name: componentLayoutData.info.displayName }
   );
 
   const formErrorsKeys = Object.keys(formErrors);
@@ -107,63 +140,223 @@ const Component = ({
     });
   }
 
+  const dragRef = useRef(null);
+  const dropRef = useRef(null);
+  const [, forceRerenderAfterDnd] = useState(false);
+
+  const [, drop] = useDrop({
+    accept: ItemTypes.COMPONENT,
+    canDrop() {
+      return false;
+    },
+    hover(item, monitor) {
+      if (!dropRef.current) {
+        return;
+      }
+
+      const dragPath = item.originalPath;
+      const hoverPath = componentFieldName;
+      const fullPathToComponentArray = dragPath.split('.');
+      const dragIndexString = fullPathToComponentArray
+        .slice()
+        .splice(-1)
+        .join('');
+      const hoverIndexString = hoverPath
+        .split('.')
+        .splice(-1)
+        .join('');
+      const pathToComponentArray = fullPathToComponentArray.slice(
+        0,
+        fullPathToComponentArray.length - 1
+      );
+      const dragIndex = parseInt(dragIndexString, 10);
+      const hoverIndex = parseInt(hoverIndexString, 10);
+
+      // Don't replace items with themselves
+      if (dragIndex === hoverIndex) {
+        return;
+      }
+
+      // Determine rectangle on screen
+      const hoverBoundingRect = dropRef.current.getBoundingClientRect();
+      // Get vertical middle
+      const hoverMiddleY = (hoverBoundingRect.bottom - hoverBoundingRect.top) / 2;
+      // Determine mouse position
+      const clientOffset = monitor.getClientOffset();
+      // Get pixels to the top
+      const hoverClientY = clientOffset.y - hoverBoundingRect.top;
+
+      // Only perform the move when the mouse has crossed half of the items height
+      // When dragging downwards, only move when the cursor is below 50%
+      // When dragging upwards, only move when the cursor is above 50%
+      // Dragging downwards
+      if (dragIndex < hoverIndex && hoverClientY < hoverMiddleY) {
+        return;
+      }
+      // Dragging upwards
+      if (dragIndex > hoverIndex && hoverClientY > hoverMiddleY) {
+        return;
+      }
+      // If They are not in the same level, should not move
+      if (dragPath.split('.').length !== hoverPath.split('.').length) {
+        return;
+      }
+      // Time to actually perform the action in the data
+      moveComponentField(pathToComponentArray, dragIndex, hoverIndex);
+
+      item.originalPath = hoverPath;
+    },
+  });
+  const [{ isDragging }, drag, preview] = useDrag({
+    type: ItemTypes.COMPONENT,
+    item: () => {
+      // Close all collapses
+      toggleCollapses(-1);
+
+      return {
+        displayedValue,
+        originalPath: componentFieldName,
+      };
+    },
+    end: () => {
+      // Update the errors
+      triggerFormValidation();
+      setIsDraggingSibling(false);
+    },
+    collect: monitor => ({
+      isDragging: monitor.isDragging(),
+    }),
+  });
+
+  useEffect(() => {
+    preview(getEmptyImage(), { captureDraggingState: false });
+  }, [preview]);
+
+  useEffect(() => {
+    if (isDragging) {
+      setIsDraggingSibling(true);
+    }
+  }, [isDragging, setIsDraggingSibling]);
+
+  // Effect in order to force a rerender after reordering the components
+  // Since we are removing the Accordion when doing the DnD  we are losing the dragRef, therefore the replaced element cannot be dragged
+  // anymore, this hack forces a rerender in order to apply the dragRef
+  useEffect(() => {
+    if (!isDraggingSibling) {
+      forceRerenderAfterDnd(prev => !prev);
+    }
+  }, [isDraggingSibling]);
+
+  // Create the refs
+  // We need 1 for the drop target
+  // 1 for the drag target
+  const refs = {
+    dragRef: drag(dragRef),
+    dropRef: drop(dropRef),
+  };
+
+  const accordionTitle = toString(displayedValue);
+
   return (
-    <Box>
+    <Box ref={refs ? refs.dropRef : null}>
       <Rectangle />
-      <StyledBox hasRadius>
-        <Accordion expanded={isOpen} onToggle={() => onToggle(index)} size="S" error={errorMessage}>
-          <AccordionToggle
-            startIcon={<FontAwesomeIcon icon={icon} />}
-            action={
-              <ActionStack horizontal spacing={0} expanded={isOpen}>
-                {showDownIcon && (
-                  <IconButtonCustom
-                    noBorder
-                    label={downLabel}
-                    onClick={handleMoveComponentDown}
-                    icon={<ArrowDown />}
+      {isDragging && <Preview />}
+      {!isDragging && isDraggingSibling && (
+        <DraggingSibling
+          icon={componentLayoutData.info.icon}
+          displayedValue={accordionTitle}
+          componentFieldName={componentFieldName}
+          showDownIcon={showDownIcon}
+          showUpIcon={showUpIcon}
+          isFieldAllowed={isFieldAllowed}
+        />
+      )}
+      {!isDragging && !isDraggingSibling && (
+        <StyledBox hasRadius>
+          <Accordion
+            expanded={isOpen}
+            onToggle={() => onToggle(index)}
+            size="S"
+            error={errorMessage}
+          >
+            <AccordionToggle
+              startIcon={<FontAwesomeIcon icon={componentLayoutData.info.icon} />}
+              action={
+                <Stack horizontal spacing={0}>
+                  {showDownIcon && (
+                    <IconButtonCustom
+                      noBorder
+                      label={downLabel}
+                      onClick={handleMoveComponentDown}
+                      icon={<ArrowDown />}
+                      expanded={isOpen}
+                    />
+                  )}
+                  {showUpIcon && (
+                    <IconButtonCustom
+                      noBorder
+                      label={upLabel}
+                      onClick={handleMoveComponentUp}
+                      icon={<ArrowUp />}
+                      expanded={isOpen}
+                    />
+                  )}
+                  {isFieldAllowed && (
+                    <IconButtonCustom
+                      noBorder
+                      label={deleteLabel}
+                      onClick={handleRemove}
+                      icon={<Trash />}
+                      expanded={isOpen}
+                    />
+                  )}
+                  <Tooltip
+                    description={formatMessage({
+                      id: getTrad('components.DragHandle-label'),
+                      defaultMessage: 'Drag',
+                    })}
+                  >
+                    <DragButton
+                      role="button"
+                      tabIndex={-1}
+                      ref={refs.dragRef}
+                      onClick={e => e.stopPropagation()}
+                    >
+                      <Drag />
+                    </DragButton>
+                  </Tooltip>
+                </Stack>
+              }
+              title={componentLayoutData.info.displayName}
+              togglePosition="left"
+            />
+            <AccordionContent>
+              <AccordionContentRadius background="neutral0">
+                <FocusTrap onEscape={() => onToggle(index)}>
+                  <FieldComponent
+                    componentUid={componentUid}
+                    icon={componentLayoutData.info.icon}
+                    name={`${name}.${index}`}
+                    isFromDynamicZone
                   />
-                )}
-                {showUpIcon && (
-                  <IconButtonCustom
-                    noBorder
-                    label={upLabel}
-                    onClick={handleMoveComponentUp}
-                    icon={<ArrowUp />}
-                  />
-                )}
-                {isFieldAllowed && (
-                  <IconButtonCustom
-                    noBorder
-                    label={deleteLabel}
-                    onClick={handleRemove}
-                    icon={<Trash />}
-                  />
-                )}
-              </ActionStack>
-            }
-            title={friendlyName}
-            togglePosition="left"
-          />
-          <AccordionContent>
-            <AccordionContentRadius background="neutral0">
-              <FocusTrap onEscape={() => onToggle(index)}>
-                <FieldComponent
-                  componentUid={componentUid}
-                  icon={icon}
-                  name={`${name}.${index}`}
-                  isFromDynamicZone
-                />
-              </FocusTrap>
-            </AccordionContentRadius>
-          </AccordionContent>
-        </Accordion>
-      </StyledBox>
+                </FocusTrap>
+              </AccordionContentRadius>
+            </AccordionContent>
+          </Accordion>
+        </StyledBox>
+      )}
     </Box>
   );
 };
 
+Component.defaultProps = {
+  isDraggingSibling: false,
+  setIsDraggingSibling: () => {},
+  toggleCollapses: () => {},
+};
+
 Component.propTypes = {
+  componentFieldName: PropTypes.string.isRequired,
   componentUid: PropTypes.string.isRequired,
   formErrors: PropTypes.object.isRequired,
   index: PropTypes.number.isRequired,
@@ -176,6 +369,15 @@ Component.propTypes = {
   removeComponentFromDynamicZone: PropTypes.func.isRequired,
   showDownIcon: PropTypes.bool.isRequired,
   showUpIcon: PropTypes.bool.isRequired,
+  toggleCollapses: PropTypes.func,
+  isDraggingSibling: PropTypes.bool,
+  setIsDraggingSibling: PropTypes.func,
+  moveComponentField: PropTypes.func.isRequired,
+  triggerFormValidation: PropTypes.func.isRequired,
 };
 
-export default memo(Component, isEqual);
+const Memoized = memo(Component, isEqual);
+
+export default connect(Memoized, select);
+
+export { Component };

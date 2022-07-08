@@ -16,10 +16,10 @@ function useSelect(name) {
     updateActionAllowedFields,
   } = useCMEditViewDataManager();
 
-  const dynamicDisplayedComponents = useMemo(
-    () => get(modifiedData, [name], []).map(data => data.__component),
-    [modifiedData, name]
-  );
+  const dynamicDisplayedComponents = useMemo(() => get(modifiedData, [name], []), [
+    modifiedData,
+    name,
+  ]);
 
   const isFieldAllowed = useMemo(() => {
     const allowedFields = isCreatingEntry ? createActionAllowedFields : updateActionAllowedFields;
