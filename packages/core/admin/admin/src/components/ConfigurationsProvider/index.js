@@ -9,6 +9,7 @@ const ConfigurationsProvider = ({
   menuLogo: defaultMenuLogo,
   showReleaseNotification,
   showTutorials,
+  leftMenu,
 }) => {
   const [{ menuLogo }, dispatch] = useReducer(reducer, initialState);
 
@@ -26,6 +27,7 @@ const ConfigurationsProvider = ({
   return (
     <ConfigurationsContext.Provider
       value={{
+        leftMenu,
         logos: {
           menu: { custom: menuLogo, default: defaultMenuLogo },
           auth: { custom: null, default: authLogo },
@@ -46,6 +48,7 @@ ConfigurationsProvider.propTypes = {
   menuLogo: PropTypes.string.isRequired,
   showReleaseNotification: PropTypes.bool.isRequired,
   showTutorials: PropTypes.bool.isRequired,
+  leftMenu: PropTypes.object.isRequired,
 };
 
 export default ConfigurationsProvider;
