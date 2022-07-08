@@ -119,6 +119,7 @@
     "koa-static": "5.0.0",
     "lodash": "4.17.21",
     "mime-types": "2.1.35",
+    "module-alias": "2.2.2",
     "node-fetch": "2.6.7",
     "node-machine-id": "1.1.12",
     "node-schedule": "2.1.0",
@@ -138,5 +139,16 @@
   "engines": {
     "node": ">=14.19.1 <=16.x.x",
     "npm": ">=6.0.0"
+  },
+  "_moduleAliases": {
+    "@strapi/admin": "node_modules/@entireframework/admin",
+    "@strapi/helper-plugin": "node_modules/@entireframework/helper-plugin",
+    "@strapi/provider-upload-cdn": "node_modules/@entireframework/provider-upload-cdn",
+    "@strapi/strapi": "node_modules/@entireframework/strapi",
+    "@strapi/plugin-users-permissions": "node_modules/@entireframework/plugin-users-permissions",
+    "@strapi/plugin-content-manager": "node_modules/@entireframework/plugin-content-manager",
+    "@strapi/plugin-content-type-builder": "node_modules/@entireframework/plugin-content-type-builder",
+    "@strapi/plugin-email": "node_modules/@entireframework/plugin-email",
+    "@strapi/plugin-upload": "node_modules/@entireframework/plugin-upload"
   }
 }

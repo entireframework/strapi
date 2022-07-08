@@ -52,7 +52,7 @@
     "koa": "^2.13.4"
   },
   "peerDependencies": {
-    "@strapi/strapi": "^4.0.0"
+    "@entireframework/strapi": "^4.0.0"
   },
   "engines": {
     "node": ">=14.19.1 <=16.x.x",
