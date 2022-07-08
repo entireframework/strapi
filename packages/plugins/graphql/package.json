@@ -1,6 +1,6 @@
 {
   "name": "@entireframework/plugin-graphql",
-  "version":  "4.2.3",
+  "version": "4.2.3",
   "description": "Adds GraphQL endpoint with default API methods.",
   "repository": {
     "type": "git",
