@@ -1,5 +1,5 @@
 {
-  "name": "@strapi/admin",
+  "name": "@entireframework/admin",
   "version": "4.2.3",
   "description": "Strapi Admin",
   "repository": {
@@ -52,7 +52,7 @@
     "@pmmmwh/react-refresh-webpack-plugin": "0.5.7",
     "@strapi/babel-plugin-switch-ee-ce": "4.2.3",
     "@strapi/design-system": "1.2.0",
-    "@strapi/helper-plugin": "4.2.3",
+    "@entireframework/helper-plugin": "4.2.3",
     "@strapi/icons": "1.2.0",
     "@strapi/utils": "4.2.3",
     "axios": "0.24.0",

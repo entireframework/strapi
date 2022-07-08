@@ -3,6 +3,7 @@
 
 // FIXME
 /* eslint-disable import/extensions */
+require('module-alias/register');
 const _ = require('lodash');
 const resolveCwd = require('resolve-cwd');
 const { yellow } = require('chalk');
@@ -24,7 +25,7 @@ const checkCwdIsStrapiApp = name => {
 
   try {
     const pkgJSON = require(process.cwd() + '/package.json');
-    if (!_.has(pkgJSON, 'dependencies.@strapi/strapi')) {
+    if (!_.has(pkgJSON, 'dependencies.@entireframework/strapi')) {
       logErrorAndExit(name);
     }
   } catch (err) {
@@ -35,7 +36,7 @@ const checkCwdIsStrapiApp = name => {
 const getLocalScript = name => (...args) => {
   checkCwdIsStrapiApp(name);
 
-  const cmdPath = resolveCwd.silent(`@strapi/strapi/lib/commands/${name}`);
+  const cmdPath = resolveCwd.silent(`@entireframework/strapi/lib/commands/${name}`);
   if (!cmdPath) {
     console.log(
       `Error loading the local ${yellow(
