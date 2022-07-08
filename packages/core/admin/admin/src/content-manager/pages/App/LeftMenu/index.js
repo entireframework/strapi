@@ -20,6 +20,7 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import getTrad from '../../../utils/getTrad';
 import { makeSelectModelLinks } from '../selectors';
+import { useConfigurations } from '../../../../hooks';
 
 const matchByTitle = (links, search) =>
   links.filter(item => toLower(item.title).includes(toLower(search)));
@@ -41,27 +42,27 @@ const LeftMenu = () => {
       };
     });
 
-  const customLinks = strapi.config.get('leftMenu') || {};
+  const { leftMenu } = useConfigurations();
   const intlCollectionTypeLinks = toIntl(
     collectionTypeLinks.filter(
       l =>
-        !Object.keys(customLinks)
-          .reduce((acc, l) => acc.concat(l.items), [])
+        !Object.keys(leftMenu)
+          .reduce((acc, l) => acc.concat(leftMenu[l].items), [])
           .find(ll => ll.uid === l.uid)
     )
   );
   const intlSingleTypeLinks = toIntl(
     singleTypeLinks.filter(
       l =>
-        !Object.keys(customLinks)
-          .reduce((acc, l) => acc.concat(l.items), [])
+        !Object.keys(leftMenu)
+          .reduce((acc, l) => acc.concat(leftMenu[l].items), [])
           .find(ll => ll.uid === l.uid)
     )
   );
 
-  Object.keys(customLinks).forEach(key => {
-    customLinks[key].items = toIntl(
-      customLinks[key].items
+  Object.keys(leftMenu).forEach(key => {
+    leftMenu[key].items = toIntl(
+      leftMenu[key].items
         .filter(l => collectionTypeLinks.find(ll => ll.uid === l.uid))
         .map(l => {
           return {
@@ -73,15 +74,15 @@ const LeftMenu = () => {
   });
 
   const menu = [
-    ...Object.keys(customLinks).map(key => {
+    ...Object.keys(leftMenu).map(key => {
       return {
         id: key,
         title: {
           id: getTrad(`components.LeftMenu.${key}`),
-          defaultMessage: customLinks[key].defaultMessage,
+          defaultMessage: leftMenu[key].defaultMessage,
         },
         searchable: true,
-        links: matchByTitle(customLinks[key].items, search),
+        links: matchByTitle(leftMenu[key].items, search),
       };
     }),
     {
