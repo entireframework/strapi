@@ -41,6 +41,7 @@ const Providers = ({
   showTutorials,
   store,
   themes,
+  leftMenu,
 }) => {
   return (
     <ThemeToggleProvider themes={themes}>
@@ -53,6 +54,7 @@ const Providers = ({
                 menuLogo={menuLogo}
                 showReleaseNotification={showReleaseNotification}
                 showTutorials={showTutorials}
+                leftMenu={leftMenu}
               >
                 <StrapiAppProvider
                   getPlugin={getPlugin}
@@ -141,6 +143,7 @@ Providers.propTypes = {
     }).isRequired,
     custom: PropTypes.object,
   }).isRequired,
+  leftMenu: PropTypes.object.isRequired,
 };
 
 export default Providers;
