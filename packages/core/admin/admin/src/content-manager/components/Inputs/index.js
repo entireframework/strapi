@@ -35,6 +35,7 @@ function Inputs({
   shouldNotRunValidations,
   queryInfos,
   value,
+  modifiedData,
 }) {
   const { fields } = useLibrary();
   const { formatMessage } = useIntl();
@@ -239,7 +240,7 @@ function Inputs({
       multiple={fieldSchema.multiple || false}
       name={keys}
       onChange={onChange}
-      options={options}
+      options={inputType === 'select' ? options : { ...options, modifiedData }}
       placeholder={placeholder ? { id: placeholder, defaultMessage: placeholder } : null}
       required={fieldSchema.required || false}
       step={step}
@@ -256,6 +257,7 @@ Inputs.defaultProps = {
   labelAction: undefined,
   queryInfos: {},
   value: null,
+  modifiedData: null,
 };
 
 Inputs.propTypes = {
@@ -275,6 +277,7 @@ Inputs.propTypes = {
     endPoint: PropTypes.string,
   }),
   value: PropTypes.any,
+  modifiedData: PropTypes.any,
 };
 
 const Memoized = memo(Inputs, isEqual);
