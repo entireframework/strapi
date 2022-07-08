@@ -1,5 +1,5 @@
 {
-  "name": "@strapi/plugin-content-manager",
+  "name": "@entireframework/plugin-content-manager",
   "version": "4.3.0",
   "description": "A powerful UI to easily manage your data.",
   "repository": {

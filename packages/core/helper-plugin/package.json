@@ -1,5 +1,5 @@
 {
-  "name": "@strapi/helper-plugin",
+  "name": "@entireframework/helper-plugin",
   "version": "4.3.0",
   "description": "Helper for Strapi plugins development",
   "repository": {
