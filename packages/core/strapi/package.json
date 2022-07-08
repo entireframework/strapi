@@ -1,5 +1,5 @@
 {
-  "name": "@strapi/strapi",
+  "name": "@entireframework/strapi",
   "version": "4.2.2",
   "description": "An open source headless CMS solution to create and manage your own API. It provides a powerful dashboard and features to make your life easier. Databases supported: MySQL, MariaDB, PostgreSQL, SQLite",
   "keywords": [
@@ -80,15 +80,15 @@
   "dependencies": {
     "@koa/cors": "3.1.0",
     "@koa/router": "10.1.1",
-    "@strapi/admin": "4.2.2",
+    "@entireframework/admin": "4.2.2",
     "@strapi/database": "4.2.2",
     "@strapi/generate-new": "4.2.2",
     "@strapi/generators": "4.2.2",
     "@strapi/logger": "4.2.2",
-    "@strapi/plugin-content-manager": "4.2.2",
-    "@strapi/plugin-content-type-builder": "4.2.2",
-    "@strapi/plugin-email": "4.2.2",
-    "@strapi/plugin-upload": "4.2.2",
+    "@entireframework/plugin-content-manager": "4.2.2",
+    "@entireframework/plugin-content-type-builder": "4.2.2",
+    "@entireframework/plugin-email": "4.2.2",
+    "@entireframework/plugin-upload": "4.2.2",
     "@strapi/utils": "4.2.2",
     "bcryptjs": "2.4.3",
     "boxen": "5.1.2",
@@ -118,6 +118,7 @@
     "koa-static": "5.0.0",
     "lodash": "4.17.21",
     "mime-types": "2.1.35",
+    "module-alias": "2.2.2",
     "node-fetch": "2.6.7",
     "node-machine-id": "1.1.12",
     "node-schedule": "2.0.0",
@@ -136,5 +137,16 @@
   "engines": {
     "node": ">=14.19.1 <=16.x.x",
     "npm": ">=6.0.0"
+  },
+  "_moduleAliases": {
+    "@strapi/admin": "node_modules/@entireframework/admin",
+    "@strapi/helper-plugin": "node_modules/@entireframework/helper-plugin",
+    "@strapi/provider-upload-cdn": "node_modules/@entireframework/provider-upload-cdn",
+    "@strapi/strapi": "node_modules/@entireframework/strapi",
+    "@strapi/plugin-users-permissions": "node_modules/@entireframework/plugin-users-permissions",
+    "@strapi/plugin-content-manager": "node_modules/@entireframework/plugin-content-manager",
+    "@strapi/plugin-content-type-builder": "node_modules/@entireframework/plugin-content-type-builder",
+    "@strapi/plugin-email": "node_modules/@entireframework/plugin-email",
+    "@strapi/plugin-upload": "node_modules/@entireframework/plugin-upload"
   }
 }
