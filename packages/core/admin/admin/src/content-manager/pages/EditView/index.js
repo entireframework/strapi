@@ -139,14 +139,14 @@ const EditView = ({
                         if (isDynamicZone(row)) {
                           const {
                             0: {
-                              0: { name, fieldSchema, metadatas, labelAction },
+                              0: { name, fieldSchema, metadatas, labelAction, size },
                             },
                           } = row;
 
                           return (
                             <Box key={index}>
                               <Grid gap={4}>
-                                <GridItem col={12} s={12} xs={12}>
+                                <GridItem col={size} s={12} xs={12}>
                                   <DynamicZone
                                     name={name}
                                     fieldSchema={fieldSchema}
