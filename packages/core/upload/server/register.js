@@ -27,10 +27,14 @@ const createProvider = config => {
   try {
     modulePath = require.resolve(`@strapi/provider-upload-${providerName}`);
   } catch (error) {
-    if (error.code === 'MODULE_NOT_FOUND') {
-      modulePath = providerName;
-    } else {
-      throw error;
+    try {
+      modulePath = require.resolve(`@entireframework/provider-upload-${providerName}`);
+    } catch (error) {
+      if (error.code === 'MODULE_NOT_FOUND') {
+        modulePath = providerName;
+      } else {
+        throw error;
+      }
     }
   }
 
