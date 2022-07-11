@@ -45,7 +45,7 @@ const createStrapiInstance = async ({
 
   instance.log.level = logLevel;
 
-  await instance.server.listen();
+  instance.server.listen();
 
   const utils = createUtils(instance);
 
