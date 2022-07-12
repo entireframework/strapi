@@ -24,11 +24,6 @@ describe('metrics', () => {
       server: {
         use,
       },
-      dirs: {
-        app: {
-          root: process.cwd(),
-        },
-      },
     });
 
     metricsInstance.register();
@@ -55,13 +50,7 @@ describe('metrics', () => {
       server: {
         use,
       },
-      dirs: {
-        app: {
-          root: process.cwd(),
-        },
-      },
     });
-
     metricsInstance.register();
 
     expect(use).not.toHaveBeenCalled();
