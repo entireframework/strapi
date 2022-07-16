@@ -62,7 +62,7 @@ const reducer = (state, action) =>
 
         const defaultDataStructure = {
           ...state.componentsDataStructure[action.componentUid],
-          __temp_key__: getMaxTempKey(currentValue) + 1,
+          __temp_key__: getMaxTempKey(currentValue || []) + 1,
           __component: action.componentUid,
         };
 
