@@ -206,6 +206,7 @@ const DynamicZone = ({
   const toggleCollapses = () => {
     setComponentsCollapses(createCollapses(dynamicDisplayedComponentsLength));
   };
+  const { getComponentLayout } = useContentTypeLayout();
 
   return (
     <Stack spacing={6}>

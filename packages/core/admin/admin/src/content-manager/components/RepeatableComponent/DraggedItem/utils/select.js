@@ -31,7 +31,7 @@ function useSelect({ schema, componentFieldName, getComponentLayout }) {
     modifiedData,
     moveComponentField,
     removeRepeatableField,
-    triggerFormValidation,
+    triggerFormValidation
   } = useCMEditViewDataManager();
 
   const mainField = useMemo(() => get(schema, ['settings', 'mainField'], 'id'), [schema]);
