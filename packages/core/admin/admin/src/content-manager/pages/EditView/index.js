@@ -198,6 +198,14 @@ const EditView = ({
                                                   id: metadatas.label,
                                                   defaultMessage: metadatas.label,
                                                 }}
+                                                intlDescription={
+                                                  metadatas.description
+                                                    ? {
+                                                        id: metadatas.description,
+                                                        defaultMessage: metadatas.description,
+                                                      }
+                                                    : null
+                                                }
                                                 max={max}
                                                 min={min}
                                                 name={name}

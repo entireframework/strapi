@@ -1,4 +1,4 @@
-import React, { memo, useMemo, useEffect, useRef, useState } from 'react';
+import React, { memo, useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import isEqual from 'react-fast-compare';
@@ -89,7 +89,7 @@ const Component = ({
   toggleCollapses,
   moveComponentField,
   triggerFormValidation,
-  displayedValue
+  displayedValue,
 }) => {
   const { formatMessage } = useIntl();
   const componentName = schema.info.displayName;

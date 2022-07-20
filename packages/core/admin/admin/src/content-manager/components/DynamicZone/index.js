@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import { Stack } from '@strapi/design-system/Stack';
 import { Box } from '@strapi/design-system/Box';
 import { NotAllowedInput, useNotification } from '@strapi/helper-plugin';
+import { capitalize } from 'lodash/fp';
 import { getTrad } from '../../utils';
 import connect from './utils/connect';
 import select from './utils/select';
@@ -37,6 +38,7 @@ const DynamicZone = ({
   metadatas,
 }) => {
   const toggleNotification = useNotification();
+  const { getComponentLayout } = useContentTypeLayout();
   const [isOpen, setIsOpen] = useState(false);
   const [shouldOpenAddedComponent, setShouldOpenAddedComponent] = useState(false);
   const dynamicDisplayedComponentsLength = dynamicDisplayedComponents.length;
@@ -186,7 +188,6 @@ const DynamicZone = ({
   const toggleCollapses = () => {
     setComponentsCollapses(createCollapses(dynamicDisplayedComponentsLength));
   };
-  const { getComponentLayout } = useContentTypeLayout();
 
   return (
     <Stack spacing={6}>
@@ -194,7 +195,14 @@ const DynamicZone = ({
         <Box>
           <DzLabel
             intlDescription={intlDescription}
-            label={metadatas.label}
+            label={
+              metadatas.label && metadatas.label === name
+                ? metadatas.label
+                    .split(/[\s_]+/)
+                    .map(capitalize)
+                    .join(' ')
+                : metadatas.label
+            }
             labelAction={labelAction}
             name={name}
             numberOfComponents={dynamicDisplayedComponentsLength}
@@ -243,7 +251,14 @@ const DynamicZone = ({
         hasMaxError={hasMaxError}
         hasMinError={hasMinError}
         isDisabled={!isFieldAllowed}
-        label={metadatas.label}
+        label={
+          metadatas.label && metadatas.label === name
+            ? metadatas.label
+                .split(/[\s_]+/)
+                .map(capitalize)
+                .join(' ')
+            : metadatas.label
+        }
         missingComponentNumber={missingComponentNumber}
         isOpen={isOpen}
         name={name}
