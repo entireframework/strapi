@@ -60,15 +60,15 @@ const ModalForm = ({ onMetaChange, onSizeChange }) => {
     const formType = get(attributes, [selectedField, 'type']);
 
     if (
-      formType === 'dynamiczone' ||
-      (formType === 'component' && !['label', 'description'].includes(meta))
+      (formType === 'dynamiczone' || formType === 'component') &&
+      !['label', 'description'].includes(meta)
     ) {
       return null;
     }
 
-    if (formType === 'component' && meta !== 'label') {
-      return null;
-    }
+    // if (formType === 'component' && meta !== 'label') {
+    //   return null;
+    // }
 
     if (['media', 'json', 'boolean'].includes(formType) && meta === 'placeholder') {
       return null;
