@@ -17,7 +17,6 @@ import Drag from '@strapi/icons/Drag';
 import { useDrag, useDrop } from 'react-dnd';
 import { getEmptyImage } from 'react-dnd-html5-backend';
 import toString from 'lodash/toString';
-import { useContentTypeLayout } from '../../../../hooks';
 import { getTrad } from '../../../../utils';
 import FieldComponent from '../../../FieldComponent';
 import Rectangle from './Rectangle';
@@ -73,6 +72,7 @@ const AccordionContentRadius = styled(Box)`
 const Component = ({
   componentFieldName,
   componentUid,
+  schema,
   formErrors,
   index,
   isOpen,
@@ -89,13 +89,10 @@ const Component = ({
   toggleCollapses,
   moveComponentField,
   triggerFormValidation,
+  displayedValue
 }) => {
   const { formatMessage } = useIntl();
-  const { getComponentLayout } = useContentTypeLayout();
-  const componentLayoutData = useMemo(() => {
-    return getComponentLayout(componentUid);
-  }, [componentUid, getComponentLayout]);
-  const displayedValue = componentLayoutData.info.displayName;
+  const componentName = schema.info.displayName;
 
   const handleMoveComponentDown = () => moveComponentDown(name, index);
 
@@ -116,7 +113,7 @@ const Component = ({
       id: getTrad('components.DynamicZone.delete-label'),
       defaultMessage: 'Delete {name}',
     },
-    { name: componentLayoutData.info.displayName }
+    { name: schema.info.displayName }
   );
 
   const formErrorsKeys = Object.keys(formErrors);
@@ -214,7 +211,7 @@ const Component = ({
       toggleCollapses(-1);
 
       return {
-        displayedValue,
+        displayedValue: displayedValue || componentName,
         originalPath: componentFieldName,
       };
     },
@@ -255,7 +252,7 @@ const Component = ({
     dropRef: drop(dropRef),
   };
 
-  const accordionTitle = toString(displayedValue);
+  const accordionTitle = toString(displayedValue || componentName);
 
   return (
     <Box ref={refs ? refs.dropRef : null}>
@@ -263,7 +260,7 @@ const Component = ({
       {isDragging && <Preview />}
       {!isDragging && isDraggingSibling && (
         <DraggingSibling
-          icon={componentLayoutData.info.icon}
+          icon={schema.info.icon}
           displayedValue={accordionTitle}
           componentFieldName={componentFieldName}
           showDownIcon={showDownIcon}
@@ -280,7 +277,7 @@ const Component = ({
             error={errorMessage}
           >
             <AccordionToggle
-              startIcon={<FontAwesomeIcon icon={componentLayoutData.info.icon} />}
+              startIcon={<FontAwesomeIcon icon={schema.info.icon} />}
               action={
                 <Stack horizontal spacing={0}>
                   {showDownIcon && (
@@ -327,7 +324,7 @@ const Component = ({
                   </Tooltip>
                 </Stack>
               }
-              title={componentLayoutData.info.displayName}
+              title={accordionTitle}
               togglePosition="left"
             />
             <AccordionContent>
@@ -335,7 +332,7 @@ const Component = ({
                 <FocusTrap onEscape={() => onToggle(index)}>
                   <FieldComponent
                     componentUid={componentUid}
-                    icon={componentLayoutData.info.icon}
+                    icon={schema.info.icon}
                     name={`${name}.${index}`}
                     isFromDynamicZone
                   />
@@ -358,6 +355,7 @@ Component.defaultProps = {
 Component.propTypes = {
   componentFieldName: PropTypes.string.isRequired,
   componentUid: PropTypes.string.isRequired,
+  schema: PropTypes.object.isRequired,
   formErrors: PropTypes.object.isRequired,
   index: PropTypes.number.isRequired,
   isFieldAllowed: PropTypes.bool.isRequired,
@@ -374,6 +372,7 @@ Component.propTypes = {
   setIsDraggingSibling: PropTypes.func,
   moveComponentField: PropTypes.func.isRequired,
   triggerFormValidation: PropTypes.func.isRequired,
+  displayedValue: PropTypes.string.isRequired,
 };
 
 const Memoized = memo(Component, isEqual);

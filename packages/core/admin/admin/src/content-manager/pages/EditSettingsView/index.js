@@ -54,8 +54,8 @@ const EditSettingsView = ({ mainLayout, components, isContentTypeView, slug, upd
       ![
         'dynamiczone',
         'json',
-        'text',
-        'relation',
+        // 'text',
+        // 'relation',
         'component',
         'boolean',
         'media',

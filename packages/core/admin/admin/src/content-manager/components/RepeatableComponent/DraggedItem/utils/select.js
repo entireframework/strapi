@@ -8,12 +8,14 @@ function useSelect({ schema, componentFieldName }) {
     modifiedData,
     moveComponentField,
     removeRepeatableField,
-    triggerFormValidation,
+    triggerFormValidation
   } = useCMEditViewDataManager();
 
   const mainField = useMemo(() => get(schema, ['settings', 'mainField'], 'id'), [schema]);
+  const mainFieldRelation =  useMemo(() => get(schema, ['metadatas', mainField, 'list', 'mainField', 'name'], null), [schema, mainField]);
+
   const displayedValue = toString(
-    get(modifiedData, [...componentFieldName.split('.'), mainField], '')
+    get(modifiedData, [...componentFieldName.split('.'), mainField].concat(mainFieldRelation ? [mainFieldRelation] : []), '')
   );
 
   return {

@@ -11,6 +11,7 @@ import select from './utils/select';
 import AddComponentButton from './components/AddComponentButton';
 import DzLabel from './components/DzLabel';
 import Component from './components/Component';
+import { useContentTypeLayout } from '../../hooks';
 
 import ComponentPicker from './components/ComponentPicker';
 
@@ -185,6 +186,7 @@ const DynamicZone = ({
   const toggleCollapses = () => {
     setComponentsCollapses(createCollapses(dynamicDisplayedComponentsLength));
   };
+  const { getComponentLayout } = useContentTypeLayout();
 
   return (
     <Stack spacing={6}>
@@ -207,11 +209,14 @@ const DynamicZone = ({
             const showUpIcon = isFieldAllowed && dynamicDisplayedComponentsLength > 0 && index > 0;
             const isOpen = componentCollapses[index]?.isOpen || false;
             const componentFieldName = `${name}.${index}`;
+            const componentUid = data.__component;
+            const componentLayoutData = getComponentLayout(componentUid);
 
             return (
               <Component
                 componentFieldName={componentFieldName}
-                componentUid={data.__component}
+                schema={componentLayoutData}
+                componentUid={componentUid}
                 formErrors={formErrors}
                 key={key}
                 index={index}
