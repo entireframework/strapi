@@ -6,6 +6,7 @@ import omit from 'lodash/omit';
 import take from 'lodash/take';
 import isEqual from 'react-fast-compare';
 import { GenericInput, NotAllowedInput, useLibrary } from '@strapi/helper-plugin';
+import { capitalize } from 'lodash/fp';
 import { useContentTypeLayout } from '../../hooks';
 import { getFieldName } from '../../utils';
 import Wysiwyg from '../Wysiwyg';
@@ -222,7 +223,16 @@ function Inputs({
     <GenericInput
       attribute={fieldSchema}
       autoComplete="new-password"
-      intlLabel={{ id: label, defaultMessage: label }}
+      intlLabel={{
+        id: label,
+        defaultMessage:
+          label && label === keys
+            ? label
+                .split(/[\s_]+/)
+                .map(capitalize)
+                .join(' ')
+            : label,
+      }}
       // in case the default value of the boolean is null, attribute.default doesn't exist
       isNullable={inputType === 'bool' && [null, undefined].includes(fieldSchema.default)}
       description={description ? { id: description, defaultMessage: description } : null}

@@ -66,9 +66,9 @@ const ModalForm = ({ onMetaChange, onSizeChange }) => {
       return null;
     }
 
-    if (formType === 'component' && meta !== 'label') {
-      return null;
-    }
+    // if (formType === 'component' && meta !== 'label') {
+    //   return null;
+    // }
 
     if (['media', 'json', 'boolean'].includes(formType) && meta === 'placeholder') {
       return null;
