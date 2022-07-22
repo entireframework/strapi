@@ -9,6 +9,14 @@ const attributeOptions = {
       defaultMessage: 'Default value',
     },
   },
+  defaultJson: {
+    name: 'defaultJson',
+    type: 'json',
+    intlLabel: {
+      id: getTrad('form.attribute.settings.default'),
+      defaultMessage: 'Default value',
+    },
+  },
   max: {
     name: 'max',
     type: 'checkbox-with-number-field',

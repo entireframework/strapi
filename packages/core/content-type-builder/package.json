@@ -1,6 +1,6 @@
 {
-  "name": "@strapi/plugin-content-type-builder",
-  "version": "4.2.3",
+  "name": "@entireframework/plugin-content-type-builder",
+  "version": "4.2.4-beta.10",
   "description": "Strapi plugin to create content type",
   "repository": {
     "type": "git",

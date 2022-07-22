@@ -47,6 +47,7 @@ import SelectNumber from '../SelectNumber';
 import SingularName from '../SingularName';
 import TabForm from '../TabForm';
 import TextareaEnum from '../TextareaEnum';
+import InputJSON from '../InputJSON';
 import findAttribute from '../../utils/findAttribute';
 import { getTrad, isAllowedContentTypesForRelations } from '../../utils';
 import {
@@ -846,6 +847,7 @@ const FormModal = () => {
       'text-plural': PluralName,
       'text-singular': SingularName,
       'textarea-enum': TextareaEnum,
+      json: InputJSON,
       ...inputsFromPlugins,
     },
     componentToCreate,

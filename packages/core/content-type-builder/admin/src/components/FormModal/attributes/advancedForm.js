@@ -59,6 +59,8 @@ const advancedForm = {
     if (repeatable) {
       return {
         sections: [
+          { sectionTitle: null, items: [options.defaultJson] },
+
           {
             sectionTitle: {
               id: 'global.settings',
@@ -72,6 +74,8 @@ const advancedForm = {
 
     return {
       sections: [
+        { sectionTitle: null, items: [options.defaultJson] },
+
         {
           sectionTitle: {
             id: 'global.settings',
@@ -111,6 +115,8 @@ const advancedForm = {
   dynamiczone: () => {
     return {
       sections: [
+        { sectionTitle: null, items: [options.defaultJson] },
+
         {
           sectionTitle: {
             id: 'global.settings',
