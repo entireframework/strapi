@@ -49,7 +49,7 @@ const NonRepeatableComponent = ({ componentUid, isFromDynamicZone, isNested, nam
                           defaultMessage:
                             metadatas.label && metadatas.label === keys
                               ? metadatas.label
-                                  .split(/[\s_]+/)
+                                  .split(/[\s_-]+/)
                                   .map(capitalize)
                                   .join(' ')
                               : metadatas.label,

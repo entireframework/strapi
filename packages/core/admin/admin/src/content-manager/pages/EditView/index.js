@@ -200,7 +200,7 @@ const EditView = ({
                                                   defaultMessage:
                                                     metadatas.label && metadatas.label === name
                                                       ? metadatas.label
-                                                          .split(/[\s_]+/)
+                                                          .split(/[\s_-]+/)
                                                           .map(capitalize)
                                                           .join(' ')
                                                       : metadatas.label,
@@ -301,7 +301,7 @@ const EditView = ({
                                       defaultMessage:
                                         metadatas.label && metadatas.label === name
                                           ? metadatas.label
-                                              .split(/[\s_]+/)
+                                              .split(/[\s_-]+/)
                                               .map(capitalize)
                                               .join(' ')
                                           : metadatas.label,
