@@ -167,7 +167,16 @@ const DynamicZone = ({
     return (
       <NotAllowedInput
         description={intlDescription}
-        intlLabel={{ id: metadatas.label, defaultMessage: metadatas.label }}
+        intlLabel={{
+          id: metadatas.label,
+          defaultMessage:
+            metadatas.label && metadatas.label === name
+              ? metadatas.label
+                  .split(/[\s_]+/)
+                  .map(capitalize)
+                  .join(' ')
+              : metadatas.label,
+        }}
         labelAction={labelAction}
         name={name}
       />
@@ -178,7 +187,16 @@ const DynamicZone = ({
     return (
       <NotAllowedInput
         description={intlDescription}
-        intlLabel={{ id: metadatas.label, defaultMessage: metadatas.label }}
+        intlLabel={{
+          id: metadatas.label,
+          defaultMessage:
+            metadatas.label && metadatas.label === name
+              ? metadatas.label
+                  .split(/[\s_]+/)
+                  .map(capitalize)
+                  .join(' ')
+              : metadatas.label,
+        }}
         labelAction={labelAction}
         name={name}
       />
