@@ -172,7 +172,7 @@ const DynamicZone = ({
           defaultMessage:
             metadatas.label && metadatas.label === name
               ? metadatas.label
-                  .split(/[\s_]+/)
+                  .split(/[\s_-]+/)
                   .map(capitalize)
                   .join(' ')
               : metadatas.label,
@@ -192,7 +192,7 @@ const DynamicZone = ({
           defaultMessage:
             metadatas.label && metadatas.label === name
               ? metadatas.label
-                  .split(/[\s_]+/)
+                  .split(/[\s_-]+/)
                   .map(capitalize)
                   .join(' ')
               : metadatas.label,
@@ -216,7 +216,7 @@ const DynamicZone = ({
             label={
               metadatas.label && metadatas.label === name
                 ? metadatas.label
-                    .split(/[\s_]+/)
+                    .split(/[\s_-]+/)
                     .map(capitalize)
                     .join(' ')
                 : metadatas.label
@@ -272,7 +272,7 @@ const DynamicZone = ({
         label={
           metadatas.label && metadatas.label === name
             ? metadatas.label
-                .split(/[\s_]+/)
+                .split(/[\s_-]+/)
                 .map(capitalize)
                 .join(' ')
             : metadatas.label
