@@ -179,7 +179,7 @@ function Inputs({
           defaultMessage:
             label && label === keys
               ? label
-                  .split(/[\s_]+/)
+                  .split(/[\s_-]+/)
                   .map(capitalize)
                   .join(' ')
               : label,
@@ -210,7 +210,7 @@ function Inputs({
           defaultMessage:
             label && label === keys
               ? label
-                  .split(/[\s_]+/)
+                  .split(/[\s_-]+/)
                   .map(capitalize)
                   .join(' ')
               : label,
@@ -243,7 +243,7 @@ function Inputs({
         defaultMessage:
           label && label === keys
             ? label
-                .split(/[\s_]+/)
+                .split(/[\s_-]+/)
                 .map(capitalize)
                 .join(' ')
             : label,
