@@ -174,7 +174,16 @@ function Inputs({
     return (
       <NotAllowedInput
         description={description ? { id: description, defaultMessage: description } : null}
-        intlLabel={{ id: label, defaultMessage: label }}
+        intlLabel={{
+          id: label,
+          defaultMessage:
+            label && label === keys
+              ? label
+                  .split(/[\s_]+/)
+                  .map(capitalize)
+                  .join(' ')
+              : label,
+        }}
         labelAction={labelAction}
         error={error && formatMessage(error)}
         name={keys}
@@ -197,8 +206,14 @@ function Inputs({
             : undefined
         }
         intlLabel={{
-          id: metadatas.label,
-          defaultMessage: metadatas.label,
+          id: label,
+          defaultMessage:
+            label && label === keys
+              ? label
+                  .split(/[\s_]+/)
+                  .map(capitalize)
+                  .join(' ')
+              : label,
         }}
         labelAction={labelAction}
         isUserAllowedToEditField={isUserAllowedToEditField}

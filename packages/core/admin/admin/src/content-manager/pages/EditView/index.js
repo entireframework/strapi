@@ -12,6 +12,7 @@ import { Stack } from '@strapi/design-system/Stack';
 import { Typography } from '@strapi/design-system/Typography';
 import Layer from '@strapi/icons/Layer';
 import Pencil from '@strapi/icons/Pencil';
+import { capitalize } from 'lodash/fp';
 import { InjectionZone } from '../../../shared/components';
 import permissions from '../../../permissions';
 import DynamicZone from '../../components/DynamicZone';
@@ -196,7 +197,13 @@ const EditView = ({
                                                 isRepeatable={repeatable}
                                                 intlLabel={{
                                                   id: metadatas.label,
-                                                  defaultMessage: metadatas.label,
+                                                  defaultMessage:
+                                                    metadatas.label && metadatas.label === name
+                                                      ? metadatas.label
+                                                          .split(/[\s_]+/)
+                                                          .map(capitalize)
+                                                          .join(' ')
+                                                      : metadatas.label,
                                                 }}
                                                 intlDescription={
                                                   metadatas.description
@@ -291,7 +298,13 @@ const EditView = ({
                                     description={metadatas.description}
                                     intlLabel={{
                                       id: metadatas.label,
-                                      defaultMessage: metadatas.label,
+                                      defaultMessage:
+                                        metadatas.label && metadatas.label === name
+                                          ? metadatas.label
+                                              .split(/[\s_]+/)
+                                              .map(capitalize)
+                                              .join(' ')
+                                          : metadatas.label,
                                     }}
                                     labelAction={labelAction}
                                     name={name}
