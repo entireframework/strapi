@@ -13,7 +13,7 @@ import { Box } from '@strapi/design-system/Box';
 import { Tooltip } from '@strapi/design-system/Tooltip';
 import Trash from '@strapi/icons/Trash';
 import Drag from '@strapi/icons/Drag';
-import { capitalize } from 'lodash/fp';
+import { upperFirst } from 'lodash/fp';
 import ItemTypes from '../../../utils/ItemTypes';
 import getTrad from '../../../utils/getTrad';
 import Inputs from '../../Inputs';
@@ -272,7 +272,7 @@ const DraggedItem = ({
                                     metadatas.label && metadatas.label === keys
                                       ? metadatas.label
                                           .split(/[\s_-]+/)
-                                          .map(capitalize)
+                                          .map(upperFirst)
                                           .join(' ')
                                       : metadatas.label,
                                 }}

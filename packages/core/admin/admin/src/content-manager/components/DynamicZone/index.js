@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { Stack } from '@strapi/design-system/Stack';
 import { Box } from '@strapi/design-system/Box';
 import { NotAllowedInput, useNotification } from '@strapi/helper-plugin';
-import { capitalize } from 'lodash/fp';
+import { upperFirst } from 'lodash/fp';
 import { getTrad } from '../../utils';
 import connect from './utils/connect';
 import select from './utils/select';
@@ -173,7 +173,7 @@ const DynamicZone = ({
             metadatas.label && metadatas.label === name
               ? metadatas.label
                   .split(/[\s_-]+/)
-                  .map(capitalize)
+                  .map(upperFirst)
                   .join(' ')
               : metadatas.label,
         }}
@@ -193,7 +193,7 @@ const DynamicZone = ({
             metadatas.label && metadatas.label === name
               ? metadatas.label
                   .split(/[\s_-]+/)
-                  .map(capitalize)
+                  .map(upperFirst)
                   .join(' ')
               : metadatas.label,
         }}
@@ -217,7 +217,7 @@ const DynamicZone = ({
               metadatas.label && metadatas.label === name
                 ? metadatas.label
                     .split(/[\s_-]+/)
-                    .map(capitalize)
+                    .map(upperFirst)
                     .join(' ')
                 : metadatas.label
             }
@@ -273,7 +273,7 @@ const DynamicZone = ({
           metadatas.label && metadatas.label === name
             ? metadatas.label
                 .split(/[\s_-]+/)
-                .map(capitalize)
+                .map(upperFirst)
                 .join(' ')
             : metadatas.label
         }
