@@ -6,7 +6,7 @@ import omit from 'lodash/omit';
 import take from 'lodash/take';
 import isEqual from 'react-fast-compare';
 import { GenericInput, NotAllowedInput, useLibrary } from '@strapi/helper-plugin';
-import { capitalize } from 'lodash/fp';
+import { upperFirst } from 'lodash/fp';
 import { useContentTypeLayout } from '../../hooks';
 import { getFieldName } from '../../utils';
 import Wysiwyg from '../Wysiwyg';
@@ -180,7 +180,7 @@ function Inputs({
             label && label === keys
               ? label
                   .split(/[\s_-]+/)
-                  .map(capitalize)
+                  .map(upperFirst)
                   .join(' ')
               : label,
         }}
@@ -211,7 +211,7 @@ function Inputs({
             label && label === keys
               ? label
                   .split(/[\s_-]+/)
-                  .map(capitalize)
+                  .map(upperFirst)
                   .join(' ')
               : label,
         }}
@@ -244,7 +244,7 @@ function Inputs({
           label && label === keys
             ? label
                 .split(/[\s_-]+/)
-                .map(capitalize)
+                .map(upperFirst)
                 .join(' ')
             : label,
       }}
