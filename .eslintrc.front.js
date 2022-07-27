@@ -82,7 +82,6 @@ module.exports = {
     'newline-before-return': 2,
     'no-confusing-arrow': 0,
     'no-else-return': 1,
-    'no-nested-ternary': ['error'],
     'no-return-assign': 0,
     'no-param-reassign': 0,
     'no-plusplus': 0,
@@ -120,5 +119,6 @@ module.exports = {
     'react/static-property-placement': 0,
     'react/display-name': 0,
     'react/jsx-wrap-multilines': 0,
+    'no-nested-ternary': 0,
   },
 };
