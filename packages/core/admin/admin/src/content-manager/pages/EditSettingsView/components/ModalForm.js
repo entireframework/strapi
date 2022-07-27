@@ -61,7 +61,7 @@ const ModalForm = ({ onMetaChange, onSizeChange }) => {
     const formType = get(attributes, [selectedField, 'type']);
 
     if (
-      (formType === 'dynamiczone' || formType === 'component') &&
+      ['component', 'dynamiczone'].includes(formType) &&
       !['label', 'description'].includes(meta)
     ) {
       return null;

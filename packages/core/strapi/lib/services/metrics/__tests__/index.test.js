@@ -73,6 +73,11 @@ describe('metrics', () => {
       server: {
         use() {},
       },
+      dirs: {
+        app: {
+          root: process.cwd(),
+        },
+      },
     });
 
     send('someEvent');
@@ -106,6 +111,11 @@ describe('metrics', () => {
       },
       server: {
         use() {},
+      },
+      dirs: {
+        app: {
+          root: process.cwd(),
+        },
       },
     });
 
