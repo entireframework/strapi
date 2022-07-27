@@ -3,7 +3,7 @@
 const _ = require('lodash');
 
 module.exports = strapi => {
-  strapi.admin = require('@strapi/admin/strapi-server');
+  strapi.admin = require('@entireframework/admin/strapi-server');
 
   strapi.container.get('services').add(`admin::`, strapi.admin.services);
   strapi.container.get('controllers').add(`admin::`, strapi.admin.controllers);

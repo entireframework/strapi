@@ -1,6 +1,6 @@
 'use strict';
 
-const strapiAdmin = require('@strapi/admin');
+const strapiAdmin = require('@entireframework/admin');
 const { getConfigUrls, getAbsoluteServerUrl } = require('@strapi/utils');
 
 const getEnabledPlugins = require('../core/loaders/plugins/get-enabled-plugins');

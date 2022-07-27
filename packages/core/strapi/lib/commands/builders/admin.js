@@ -2,7 +2,7 @@
 
 const { green } = require('chalk');
 
-const strapiAdmin = require('@strapi/admin');
+const strapiAdmin = require('@entireframework/admin');
 const { getConfigUrls } = require('@strapi/utils');
 
 const ee = require('../../utils/ee');
