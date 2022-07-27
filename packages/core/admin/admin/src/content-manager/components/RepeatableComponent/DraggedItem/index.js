@@ -269,7 +269,9 @@ const DraggedItem = ({
                                 intlLabel={{
                                   id: metadatas.label,
                                   defaultMessage:
-                                    metadatas.label && metadatas.label === keys
+                                    metadatas.label &&
+                                    keys &&
+                                    metadatas.label === keys.split('.').slice(-1)[0]
                                       ? metadatas.label
                                           .split(/[\s_-]+/)
                                           .map(upperFirst)

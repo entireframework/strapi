@@ -170,7 +170,7 @@ const DynamicZone = ({
         intlLabel={{
           id: metadatas.label,
           defaultMessage:
-            metadatas.label && metadatas.label === name
+            metadatas.label && name && metadatas.label === name.split('.').slice(-1)[0]
               ? metadatas.label
                   .split(/[\s_-]+/)
                   .map(upperFirst)
@@ -190,7 +190,7 @@ const DynamicZone = ({
         intlLabel={{
           id: metadatas.label,
           defaultMessage:
-            metadatas.label && metadatas.label === name
+            metadatas.label && name && metadatas.label === name.split('.').slice(-1)[0]
               ? metadatas.label
                   .split(/[\s_-]+/)
                   .map(upperFirst)
@@ -214,7 +214,7 @@ const DynamicZone = ({
           <DzLabel
             intlDescription={intlDescription}
             label={
-              metadatas.label && metadatas.label === name
+              metadatas.label && name && metadatas.label === name.split('.').slice(-1)[0]
                 ? metadatas.label
                     .split(/[\s_-]+/)
                     .map(upperFirst)
@@ -242,6 +242,7 @@ const DynamicZone = ({
               <Component
                 componentFieldName={componentFieldName}
                 schema={componentLayoutData}
+                getComponentLayout={getComponentLayout}
                 componentUid={componentUid}
                 formErrors={formErrors}
                 key={key}
@@ -270,7 +271,7 @@ const DynamicZone = ({
         hasMinError={hasMinError}
         isDisabled={!isFieldAllowed}
         label={
-          metadatas.label && metadatas.label === name
+          metadatas.label && name && metadatas.label === name.split('.').slice(-1)[0]
             ? metadatas.label
                 .split(/[\s_-]+/)
                 .map(upperFirst)

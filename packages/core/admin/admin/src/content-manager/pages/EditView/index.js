@@ -198,7 +198,9 @@ const EditView = ({
                                                 intlLabel={{
                                                   id: metadatas.label,
                                                   defaultMessage:
-                                                    metadatas.label && metadatas.label === name
+                                                    metadatas.label &&
+                                                    name &&
+                                                    metadatas.label === name.split('.').slice(-1)[0]
                                                       ? metadatas.label
                                                           .split(/[\s_-]+/)
                                                           .map(upperFirst)
@@ -299,7 +301,9 @@ const EditView = ({
                                     intlLabel={{
                                       id: metadatas.label,
                                       defaultMessage:
-                                        metadatas.label && metadatas.label === name
+                                        metadatas.label &&
+                                        name &&
+                                        metadatas.label === name.split('.').slice(-1)[0]
                                           ? metadatas.label
                                               .split(/[\s_-]+/)
                                               .map(upperFirst)
