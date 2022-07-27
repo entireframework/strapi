@@ -89,6 +89,7 @@
     "@entireframework/plugin-content-type-builder": "4.3.0",
     "@entireframework/plugin-email": "4.3.0",
     "@entireframework/plugin-upload": "4.3.0",
+    "@strapi/typescript-utils": "4.3.0",
     "@strapi/utils": "4.3.0",
     "bcryptjs": "2.4.3",
     "boxen": "5.1.2",
