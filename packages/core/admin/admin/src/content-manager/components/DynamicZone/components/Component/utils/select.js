@@ -28,11 +28,12 @@ const getMainField = (getComponentLayout, schema, componentFieldName, isRepeatab
 function useSelect({ schema, componentFieldName, getComponentLayout }) {
   const { moveComponentField, triggerFormValidation, modifiedData } = useCMEditViewDataManager();
 
+  const mainField = useMemo(() => get(schema, ['settings', 'mainField'], 'id'), [schema]);
   const mainFieldFull = useMemo(
     () => getMainField(getComponentLayout, schema, componentFieldName),
     [getComponentLayout, schema, componentFieldName]
   );
-  const displayedValue = toString(get(modifiedData, mainFieldFull, ''));
+  const displayedValue = toString(mainField !== 'id' ? get(modifiedData, mainFieldFull, '') : '');
 
   return {
     moveComponentField,
