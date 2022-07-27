@@ -177,7 +177,7 @@ function Inputs({
         intlLabel={{
           id: label,
           defaultMessage:
-            label && label === keys
+            label && keys && label === keys.split('.').slice(-1)[0]
               ? label
                   .split(/[\s_-]+/)
                   .map(upperFirst)
@@ -208,7 +208,7 @@ function Inputs({
         intlLabel={{
           id: label,
           defaultMessage:
-            label && label === keys
+            label && keys && label === keys.split('.').slice(-1)[0]
               ? label
                   .split(/[\s_-]+/)
                   .map(upperFirst)
@@ -241,7 +241,7 @@ function Inputs({
       intlLabel={{
         id: label,
         defaultMessage:
-          label && label === keys
+          label && keys && label === keys.split('.').slice(-1)[0]
             ? label
                 .split(/[\s_-]+/)
                 .map(upperFirst)

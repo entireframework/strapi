@@ -52,16 +52,16 @@ const EditSettingsView = ({ mainLayout, components, isContentTypeView, slug, upd
 
     return (
       ![
-        'dynamiczone',
+        // 'dynamiczone',
         'json',
         // 'text',
         // 'relation',
-        'component',
+        // 'component',
         'boolean',
-        'media',
+        // 'media',
         'password',
         'richtext',
-        'timestamp',
+        // 'timestamp',
       ].includes(type) && !!type
     );
   });
