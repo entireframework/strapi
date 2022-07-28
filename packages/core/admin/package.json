@@ -1,5 +1,5 @@
 {
-  "name": "@entireframework/admin",
+  "name": "@strapi/admin",
   "version": "4.3.1-alpha.2",
   "description": "Strapi Admin",
   "repository": {
@@ -44,7 +44,7 @@
     "@babel/preset-react": "7.18.6",
     "@babel/runtime": "7.16.7",
     "@casl/ability": "^5.4.3",
-    "@entireframework/helper-plugin": "^4.3.1-alpha.2",
+    "@strapi/helper-plugin": "^4.3.1-alpha.2",
     "@fingerprintjs/fingerprintjs": "3.3.3",
     "@fortawesome/fontawesome-free": "^5.15.3",
     "@fortawesome/fontawesome-svg-core": "^1.2.35",

@@ -9,10 +9,10 @@ const getUserPluginsConfig = require('./get-user-plugins-config');
 
 const isStrapiPlugin = info => get('strapi.kind', info) === 'plugin';
 const INTERNAL_PLUGINS = [
-  '@entireframework/plugin-content-manager',
-  '@entireframework/plugin-content-type-builder',
-  '@entireframework/plugin-email',
-  '@entireframework/plugin-upload',
+  '@strapi/plugin-content-manager',
+  '@strapi/plugin-content-type-builder',
+  '@strapi/plugin-email',
+  '@strapi/plugin-upload',
 ];
 
 const validatePluginName = pluginName => {

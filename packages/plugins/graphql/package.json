@@ -1,5 +1,5 @@
 {
-  "name": "@entireframework/plugin-graphql",
+  "name": "@strapi/plugin-graphql",
   "version": "4.3.1-alpha.2",
   "description": "Adds GraphQL endpoint with default API methods.",
   "repository": {
@@ -52,7 +52,7 @@
     "koa": "^2.13.4"
   },
   "peerDependencies": {
-    "@entireframework/strapi": "^4.0.0"
+    "@strapi/strapi": "^4.0.0"
   },
   "engines": {
     "node": ">=14.19.1 <=16.x.x",

@@ -1,5 +1,5 @@
 {
-  "name": "@entireframework/strapi",
+  "name": "@strapi/strapi",
   "version": "4.3.1-alpha.2",
   "description": "An open source headless CMS solution to create and manage your own API. It provides a powerful dashboard and features to make your life easier. Databases supported: MySQL, MariaDB, PostgreSQL, SQLite",
   "keywords": [
@@ -78,11 +78,11 @@
     "test:unit": "jest --verbose"
   },
   "dependencies": {
-    "@entireframework/admin": "^4.3.1-alpha.2",
-    "@entireframework/plugin-content-manager": "^4.3.1-alpha.2",
-    "@entireframework/plugin-content-type-builder": "^4.3.1-alpha.2",
-    "@entireframework/plugin-email": "^4.3.1-alpha.2",
-    "@entireframework/plugin-upload": "^4.3.1-alpha.2",
+    "@strapi/admin": "^4.3.1-alpha.2",
+    "@strapi/plugin-content-manager": "^4.3.1-alpha.2",
+    "@strapi/plugin-content-type-builder": "^4.3.1-alpha.2",
+    "@strapi/plugin-email": "^4.3.1-alpha.2",
+    "@strapi/plugin-upload": "^4.3.1-alpha.2",
     "@koa/cors": "3.1.0",
     "@koa/router": "10.1.1",
     "@strapi/database": "^4.3.1-alpha.2",
@@ -140,14 +140,14 @@
     "npm": ">=6.0.0"
   },
   "_moduleAliases": {
-    "@strapi/admin": "node_modules/@entireframework/admin",
-    "@strapi/helper-plugin": "node_modules/@entireframework/helper-plugin",
-    "@strapi/provider-upload-cdn": "node_modules/@entireframework/provider-upload-cdn",
-    "@strapi/strapi": "node_modules/@entireframework/strapi",
-    "@strapi/plugin-users-permissions": "node_modules/@entireframework/plugin-users-permissions",
-    "@strapi/plugin-content-manager": "node_modules/@entireframework/plugin-content-manager",
-    "@strapi/plugin-content-type-builder": "node_modules/@entireframework/plugin-content-type-builder",
-    "@strapi/plugin-email": "node_modules/@entireframework/plugin-email",
-    "@strapi/plugin-upload": "node_modules/@entireframework/plugin-upload"
+    "@strapi/admin": "node_modules/@strapi/admin",
+    "@strapi/helper-plugin": "node_modules/@strapi/helper-plugin",
+    "@entireframework/provider-upload-cdn": "node_modules/@entireframework/provider-upload-cdn",
+    "@strapi/strapi": "node_modules/@strapi/strapi",
+    "@strapi/plugin-users-permissions": "node_modules/@strapi/plugin-users-permissions",
+    "@strapi/plugin-content-manager": "node_modules/@strapi/plugin-content-manager",
+    "@strapi/plugin-content-type-builder": "node_modules/@strapi/plugin-content-type-builder",
+    "@strapi/plugin-email": "node_modules/@strapi/plugin-email",
+    "@strapi/plugin-upload": "node_modules/@strapi/plugin-upload"
   }
 }

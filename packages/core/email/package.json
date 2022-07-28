@@ -1,5 +1,5 @@
 {
-  "name": "@entireframework/plugin-email",
+  "name": "@strapi/plugin-email",
   "version": "4.3.1-alpha.2",
   "description": "Easily configure your Strapi application to send emails.",
   "repository": {
@@ -31,7 +31,7 @@
     "lodash": "4.17.21"
   },
   "devDependencies": {
-    "@entireframework/helper-plugin": "^4.3.1-alpha.2"
+    "@strapi/helper-plugin": "^4.3.1-alpha.2"
   },
   "engines": {
     "node": ">=14.19.1 <=16.x.x",
