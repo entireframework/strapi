@@ -3,7 +3,6 @@
 
 // FIXME
 /* eslint-disable import/extensions */
-require('module-alias/register');
 const _ = require('lodash');
 const resolveCwd = require('resolve-cwd');
 const { yellow } = require('chalk');
