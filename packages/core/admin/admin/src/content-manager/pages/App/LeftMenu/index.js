@@ -63,10 +63,15 @@ const LeftMenu = () => {
   Object.keys(leftMenu).forEach(key => {
     leftMenu[key].items = toIntl(
       leftMenu[key].items
-        .filter(l => collectionTypeLinks.find(ll => ll.uid === l.uid))
+        .filter(
+          l =>
+            collectionTypeLinks.find(ll => ll.uid === l.uid) ||
+            singleTypeLinks.find(ll => ll.uid === l.uid)
+        )
         .map(l => {
           return {
-            ...collectionTypeLinks.find(ll => ll.uid === l.uid),
+            ...(collectionTypeLinks.find(ll => ll.uid === l.uid) ||
+              singleTypeLinks.find(ll => ll.uid === l.uid)),
             ...l,
           };
         })
