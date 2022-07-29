@@ -45,7 +45,7 @@ module.exports = {
 
     return {
       ...configuration.settings,
-      mainField: isSortable(schema, mainField) ? mainField : defaultField,
+      mainField,
       defaultSortBy: isSortable(schema, defaultSortBy) ? defaultSortBy : defaultField,
     };
   },
