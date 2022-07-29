@@ -1,5 +1,3 @@
-cd /home/runner/work/strapi/strapi
-
 # install global packages if set
 if [[ -n "$GLOBAL_PACKAGES" ]]; then
   yarn global add "$GLOBAL_PACKAGES"
