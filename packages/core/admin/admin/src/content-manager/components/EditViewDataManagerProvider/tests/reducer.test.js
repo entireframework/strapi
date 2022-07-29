@@ -193,7 +193,7 @@ describe('CONTENT MANAGER | COMPONENTS | EditViewDataManagerProvider | reducer',
         },
         modifiedData: {
           name: 'name',
-          dz: [{ ok: true, __component: 'default.test' }],
+          dz: [{ ok: true, __component: 'default.test', __temp_key__: 0 }],
         },
         modifiedDZName: 'dz',
       };
@@ -239,7 +239,7 @@ describe('CONTENT MANAGER | COMPONENTS | EditViewDataManagerProvider | reducer',
           name: 'name',
           dz: [
             { name: 'test', __component: 'blog.compo' },
-            { ok: true, __component: 'default.test' },
+            { ok: true, __component: 'default.test', __temp_key__: 0 },
           ],
         },
         modifiedDZName: 'dz',

@@ -46,7 +46,7 @@ const LeftMenu = () => {
   const intlCollectionTypeLinks = toIntl(
     collectionTypeLinks.filter(
       l =>
-        !Object.keys(leftMenu)
+        !Object.keys(leftMenu || {})
           .reduce((acc, l) => acc.concat(leftMenu[l].items), [])
           .find(ll => ll.uid === l.uid)
     )
@@ -54,13 +54,13 @@ const LeftMenu = () => {
   const intlSingleTypeLinks = toIntl(
     singleTypeLinks.filter(
       l =>
-        !Object.keys(leftMenu)
+        !Object.keys(leftMenu || {})
           .reduce((acc, l) => acc.concat(leftMenu[l].items), [])
           .find(ll => ll.uid === l.uid)
     )
   );
 
-  Object.keys(leftMenu).forEach(key => {
+  Object.keys(leftMenu || {}).forEach(key => {
     leftMenu[key].items = toIntl(
       leftMenu[key].items
         .filter(
@@ -79,7 +79,7 @@ const LeftMenu = () => {
   });
 
   const menu = [
-    ...Object.keys(leftMenu).map(key => {
+    ...Object.keys(leftMenu || {}).map(key => {
       return {
         id: key,
         title: {
