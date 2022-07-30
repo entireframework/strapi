@@ -53,7 +53,7 @@ module.exports = {
         : file.provider_metadata.id
         ? isVideo
           ? axios({
-              url: `http://video.bunnycdn.com/library/${file.provider_metadata.libraryId}/videos/${file.provider_metadata.id}`,
+              url: `https://video.bunnycdn.com/library/${file.provider_metadata.libraryId}/videos/${file.provider_metadata.id}`,
               method: 'delete',
               headers: {
                 AccessKey: apiKey,
@@ -92,7 +92,7 @@ module.exports = {
       return isVideo
         ? queuePush(uploadQueue, () =>
             axios({
-              url: `http://video.bunnycdn.com/library/${libraryId}/collections?search=${cloudFolder}`,
+              url: `https://video.bunnycdn.com/library/${libraryId}/collections?search=${cloudFolder}`,
               method: 'get',
               headers: {
                 AccessKey: apiKey,
@@ -107,7 +107,7 @@ module.exports = {
                     collectionId = res.data.items.find(item => item.name === cloudFolder).guid;
                   } else {
                     collectionId = await axios({
-                      url: `http://video.bunnycdn.com/library/${libraryId}/collections`,
+                      url: `https://video.bunnycdn.com/library/${libraryId}/collections`,
                       method: 'post',
                       headers: {
                         'Content-Type': 'application/*+json',
@@ -128,7 +128,7 @@ module.exports = {
 
                   if (collectionId) {
                     return axios({
-                      url: `http://video.bunnycdn.com/library/${libraryId}/videos?collection=${collectionId}&search=${fileName}`,
+                      url: `https://video.bunnycdn.com/library/${libraryId}/videos?collection=${collectionId}&search=${fileName}`,
                       method: 'get',
                       headers: {
                         AccessKey: apiKey,
@@ -145,7 +145,7 @@ module.exports = {
                           videoId = res.data.items.find(item => item.title === fileName).guid;
                         } else {
                           videoId = await axios({
-                            url: `http://video.bunnycdn.com/library/${libraryId}/videos`,
+                            url: `https://video.bunnycdn.com/library/${libraryId}/videos`,
                             method: 'post',
                             headers: {
                               'Content-Type': 'application/*+json',
@@ -167,7 +167,7 @@ module.exports = {
 
                         if (videoId) {
                           return axios({
-                            url: `http://video.bunnycdn.com/library/${libraryId}/videos/${videoId}`,
+                            url: `https://video.bunnycdn.com/library/${libraryId}/videos/${videoId}`,
                             method: 'put',
                             headers: {
                               AccessKey: apiKey,
