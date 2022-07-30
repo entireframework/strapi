@@ -41,9 +41,19 @@ const THUMBNAIL_RESIZE_OPTIONS = {
   fit: 'inside',
 };
 
-const resizeFileTo = async (file, options, { name, hash }) => {
+const resizeFileTo = async (file, options, { name, hash, format }) => {
   const filePath = join(file.tmpWorkingDirectory, hash);
-  await writeStreamToFile(file.getStream().pipe(sharp().resize(options)), filePath);
+  await writeStreamToFile(
+    file.getStream().pipe(
+      sharp()
+        .resize(options)
+        .toFormat(format || (await getFormat(file)) || 'jpeg', {
+          progressive: true,
+          quality: 90,
+        })
+    ),
+    filePath
+  );
 
   const newFile = {
     name,
@@ -124,30 +134,55 @@ const generateResponsiveFormats = async file => {
   if (!responsiveDimensions) return [];
 
   const originalDimensions = await getDimensions(file);
+  const format = await getFormat(file);
 
-  const breakpoints = getBreakpoints();
+  const breakpoints = {
+    ...getBreakpoints(),
+    original: originalDimensions,
+  };
+
   return Promise.all(
-    Object.keys(breakpoints).map(key => {
-      const breakpoint = breakpoints[key];
+    Object.keys(breakpoints)
+      .map(key => {
+        const breakpoint = breakpoints[key];
 
-      if (breakpointSmallerThan(breakpoint, originalDimensions)) {
-        return generateBreakpoint(key, { file, breakpoint, originalDimensions });
-      }
-    })
+        if (breakpointSmallerThan(breakpoint, originalDimensions)) {
+          return [
+            generateBreakpoint(key, {
+              file,
+              width: breakpoint.width || breakpoint,
+              height: breakpoint.height || breakpoint,
+              originalDimensions,
+              format: format !== 'webp' ? format : 'jpeg',
+            }),
+            generateBreakpoint(key + '-webp', {
+              file,
+              width: breakpoint.width || breakpoint,
+              height: breakpoint.height || breakpoint,
+              originalDimensions,
+              format: 'webp',
+            }),
+          ];
+        }
+
+        return [];
+      })
+      .reduce((acc, v) => acc.concat(v), [])
   );
 };
 
-const generateBreakpoint = async (key, { file, breakpoint }) => {
+const generateBreakpoint = async (key, { file, width, height, format }) => {
   const newFile = await resizeFileTo(
     file,
     {
-      width: breakpoint,
-      height: breakpoint,
+      width,
+      height,
       fit: 'inside',
     },
     {
       name: `${key}_${file.name}`,
       hash: `${key}_${file.hash}`,
+      format,
     }
   );
   return {
@@ -169,27 +204,25 @@ const isSupportedImage = (...args) => {
   return isOptimizableImage(...args);
 };
 
-const isOptimizableImage = async file => {
+const getFormat = async file => {
   let format;
   try {
     const metadata = await getMetadata(file);
     format = metadata.format;
   } catch (e) {
     // throw when the file is not a supported image
-    return false;
+    return null;
   }
+  return format;
+};
+
+const isOptimizableImage = async file => {
+  let format = await getFormat(file);
   return format && FORMATS_TO_OPTIMIZE.includes(format);
 };
 
 const isImage = async file => {
-  let format;
-  try {
-    const metadata = await getMetadata(file);
-    format = metadata.format;
-  } catch (e) {
-    // throw when the file is not a supported image
-    return false;
-  }
+  let format = await getFormat(file);
   return format && FORMATS_TO_PROCESS.includes(format);
 };
 
