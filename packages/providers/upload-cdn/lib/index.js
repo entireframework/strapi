@@ -29,7 +29,7 @@ module.exports = {
               const providerFile = {
                 ...file,
                 stream: fs.createReadStream(
-                  path.resolve(strapi.dirs.public, file.url.substring(1))
+                  path.resolve(strapi.dirs.static.public, file.url.substring(1))
                 ),
                 provider_metadata: file.provider_metadata[provider],
               };
