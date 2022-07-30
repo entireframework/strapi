@@ -169,6 +169,8 @@ module.exports = {
                           return axios({
                             url: `https://video.bunnycdn.com/library/${libraryId}/videos/${videoId}`,
                             method: 'put',
+                            maxContentLength: Infinity,
+                            maxBodyLength: Infinity,
                             headers: {
                               AccessKey: apiKey,
                               'Content-Type': 'application/json',
