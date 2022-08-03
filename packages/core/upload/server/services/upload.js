@@ -193,11 +193,12 @@ module.exports = ({ strapi }) => ({
         }
       }
 
-      const { width, height } = await getDimensions(fileData);
+      const { width, height, duration } = await getDimensions(fileData);
 
       _.assign(fileData, {
         width,
         height,
+        duration,
       });
     }
 
@@ -296,11 +297,12 @@ module.exports = ({ strapi }) => ({
           }
         }
 
-        const { width, height } = await getDimensions(fileData);
+        const { width, height, duration } = await getDimensions(fileData);
 
         _.assign(fileData, {
           width,
           height,
+          duration,
         });
       }
       _.set(fileData, 'provider', config.provider);

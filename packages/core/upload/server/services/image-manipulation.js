@@ -5,12 +5,15 @@
 const fs = require('fs');
 const { join } = require('path');
 const sharp = require('sharp');
+var ffmpeg = require('fluent-ffmpeg');
 
 const { getService } = require('../utils');
 const { bytesToKbytes } = require('../utils/file');
 
 const FORMATS_TO_PROCESS = ['jpeg', 'png', 'webp', 'tiff', 'svg', 'gif'];
 const FORMATS_TO_OPTIMIZE = ['jpeg', 'png', 'webp', 'tiff'];
+const VIDEO_FORMATS_TO_PROCESS = ['mp4', '3gp', 'mov', 'avi'];
+const VIDEO_FORMATS_TO_OPTIMIZE = ['mp4', '3gp', 'mov', 'avi'];
 
 const writeStreamToFile = (stream, path) =>
   new Promise((resolve, reject) => {
@@ -20,8 +23,62 @@ const writeStreamToFile = (stream, path) =>
     writeStream.on('error', reject);
   });
 
-const getMetadata = file =>
-  new Promise((resolve, reject) => {
+const getVideoMetadata = file => {
+  return new Promise((resolve, reject) => {
+    try {
+      ffmpeg.ffprobe(file.path, function(err, metadata) {
+        console.log('ffprobe', metadata);
+
+        if (err) {
+          console.log(err);
+        }
+
+        if (metadata && metadata.streams) {
+          const stream = metadata.streams.find(s => s.width && s.height);
+          console.log('stream', stream);
+
+          let width = metadata.width || stream.width;
+          let height = metadata.height || stream.height;
+
+          try {
+            if (stream.display_aspect_ratio) {
+              const wh = stream.display_aspect_ratio.split(':');
+
+              if (wh.length === 2) {
+                const newHeight = Math.floor((width / parseInt(wh[0])) * parseInt(wh[1]));
+                if (!isNaN(newHeight)) {
+                  height = newHeight;
+                }
+              }
+            }
+
+            if (stream.rotation && stream.rotation === '-90') {
+              const newHeight = width;
+              width = height;
+              height = newHeight;
+            }
+          } catch (e) {
+            console.log(e);
+          }
+
+          resolve({
+            ...metadata.format,
+            ...stream,
+            width,
+            height,
+          });
+        } else {
+          reject();
+        }
+      });
+    } catch (e) {
+      reject();
+    }
+  });
+};
+
+const getImageMetadata = file => {
+  return new Promise((resolve, reject) => {
     const pipeline = sharp();
     pipeline
       .metadata()
@@ -29,10 +86,19 @@ const getMetadata = file =>
       .catch(reject);
     file.getStream().pipe(pipeline);
   });
+};
+
+const getMetadata = file => {
+  return getImageMetadata(file).catch(() =>
+    getVideoMetadata(file).catch(() => {
+      return {};
+    })
+  );
+};
 
 const getDimensions = async file => {
-  const { width = null, height = null } = await getMetadata(file);
-  return { width, height };
+  const { width = null, height = null, duration = null } = await getMetadata(file);
+  return { width, height, duration };
 };
 
 const THUMBNAIL_RESIZE_OPTIONS = {
@@ -226,10 +292,22 @@ const isImage = async file => {
   return format && FORMATS_TO_PROCESS.includes(format);
 };
 
+const isOptimizableVideo = async file => {
+  let format = await getFormat(file);
+  return format && VIDEO_FORMATS_TO_OPTIMIZE.includes(format);
+};
+
+const isVideo = async file => {
+  let format = await getFormat(file);
+  return format && VIDEO_FORMATS_TO_PROCESS.includes(format);
+};
+
 module.exports = () => ({
   isSupportedImage,
   isOptimizableImage,
+  isOptimizableVideo,
   isImage,
+  isVideo,
   getDimensions,
   generateResponsiveFormats,
   generateThumbnail,
