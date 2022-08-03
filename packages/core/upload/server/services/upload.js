@@ -167,11 +167,12 @@ module.exports = ({ strapi }) => ({
       generateThumbnail,
       generateResponsiveFormats,
       isImage,
+      isVideo,
       isOptimizableImage,
     } = getService('image-manipulation');
     await getService('provider').upload(fileData);
 
-    if (await isImage(fileData)) {
+    if ((await isImage(fileData)) || (await isVideo(fileData))) {
       if (await isOptimizableImage(fileData)) {
         const thumbnailFile = await generateThumbnail(fileData);
         if (thumbnailFile) {
@@ -273,9 +274,9 @@ module.exports = ({ strapi }) => ({
       // clear old formats
       _.set(fileData, 'formats', {});
 
-      const { isImage, isOptimizableImage } = getService('image-manipulation');
+      const { isImage, isVideo, isOptimizableImage } = getService('image-manipulation');
 
-      if (await isImage(fileData)) {
+      if ((await isImage(fileData)) || (await isVideo(fileData))) {
         if (await isOptimizableImage(fileData)) {
           const thumbnailFile = await generateThumbnail(fileData);
           if (thumbnailFile) {

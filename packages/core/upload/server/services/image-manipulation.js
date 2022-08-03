@@ -26,7 +26,7 @@ const writeStreamToFile = (stream, path) =>
 const getVideoMetadata = file => {
   return new Promise((resolve, reject) => {
     try {
-      ffmpeg.ffprobe(file.path, function(err, metadata) {
+      ffmpeg.ffprobe(file.getStream(), function(err, metadata) {
         console.log('ffprobe', metadata);
 
         if (err) {
@@ -271,15 +271,12 @@ const isSupportedImage = (...args) => {
 };
 
 const getFormat = async file => {
-  let format;
   try {
-    const metadata = await getMetadata(file);
-    format = metadata.format;
+    return (await getMetadata(file)).format || file.ext.substring(1);
   } catch (e) {
     // throw when the file is not a supported image
     return null;
   }
-  return format;
 };
 
 const isOptimizableImage = async file => {
