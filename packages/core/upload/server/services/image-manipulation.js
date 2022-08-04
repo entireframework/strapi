@@ -189,9 +189,12 @@ const optimize = async file => {
 };
 
 const DEFAULT_BREAKPOINTS = {
-  large: 1000,
-  medium: 750,
-  small: 500,
+  huge: 2560,
+  large: 1920,
+  big: 1366,
+  medium: 1024,
+  small: 768,
+  tiny: 320,
 };
 
 const getBreakpoints = () => strapi.config.get('plugin.upload.breakpoints', DEFAULT_BREAKPOINTS);
