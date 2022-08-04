@@ -260,7 +260,7 @@ const generateBreakpoint = async (key, { file, width, height, format }) => {
 };
 
 const breakpointSmallerThan = (breakpoint, { width, height }) => {
-  return breakpoint < width || breakpoint < height;
+  return (breakpoint.width || breakpoint) <= width || (breakpoint.height || breakpoint) <= height;
 };
 
 // TODO V5: remove isSupportedImage
