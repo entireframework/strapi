@@ -195,6 +195,27 @@ export const SettingsPage = () => {
                         />
                       </GridItem>
                       <GridItem col={6} s={12}>
+                        <NumberInput
+                          aria-label="responsiveQuality"
+                          data-testid="responsiveQuality"
+                          value={modifiedData.responsiveQuality}
+                          hint={formatMessage({
+                            id: getTrad('settings.form.responsiveQuality.description'),
+                            defaultMessage: 'Quality of formats generated with the upload.',
+                          })}
+                          label={formatMessage({
+                            id: getTrad('settings.form.responsiveQuality.label'),
+                            defaultMessage: 'Responsive friendly quality',
+                          })}
+                          name="responsiveQuality"
+                          onValueChange={value => {
+                            handleChange({
+                              target: { name: 'responsiveQuality', value },
+                            });
+                          }}
+                        />
+                      </GridItem>
+                      <GridItem col={6} s={12}>
                         <ToggleInput
                           aria-label="sizeOptimization"
                           data-testid="sizeOptimization"
@@ -220,27 +241,6 @@ export const SettingsPage = () => {
                           onChange={e => {
                             handleChange({
                               target: { name: 'sizeOptimization', value: e.target.checked },
-                            });
-                          }}
-                        />
-                      </GridItem>
-                      <GridItem col={6} s={12}>
-                        <NumberInput
-                          aria-label="sizeOptimizationQuality"
-                          data-testid="sizeOptimizationQuality"
-                          value={modifiedData.sizeOptimizationQuality}
-                          hint={formatMessage({
-                            id: getTrad('settings.form.sizeOptimizationQuality.description'),
-                            defaultMessage: 'Quality of images with reduced size.',
-                          })}
-                          label={formatMessage({
-                            id: getTrad('settings.form.sizeOptimizationQuality.label'),
-                            defaultMessage: 'Size optimization quality',
-                          })}
-                          name="sizeOptimizationQuality"
-                          onValueChange={value => {
-                            handleChange({
-                              target: { name: 'sizeOptimizationQuality', value },
                             });
                           }}
                         />

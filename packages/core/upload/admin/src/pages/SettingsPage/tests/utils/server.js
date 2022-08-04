@@ -10,7 +10,7 @@ const handlers = [
           autoOrientation: true,
           responsiveDimensions: true,
           sizeOptimization: false,
-          sizeOptimizationQuality: 90,
+          responsiveQuality: 90,
         },
       })
     );

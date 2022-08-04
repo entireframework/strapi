@@ -7,14 +7,14 @@ const initialState = {
   initialData: {
     responsiveDimensions: true,
     sizeOptimization: true,
-    sizeOptimizationQuality: 90,
+    responsiveQuality: 90,
     autoOrientation: false,
     videoPreview: false,
   },
   modifiedData: {
     responsiveDimensions: true,
     sizeOptimization: true,
-    sizeOptimizationQuality: 90,
+    responsiveQuality: 90,
     autoOrientation: false,
     videoPreview: false,
   },

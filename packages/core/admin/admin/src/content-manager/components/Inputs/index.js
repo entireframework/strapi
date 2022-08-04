@@ -265,7 +265,8 @@ function Inputs({
       multiple={fieldSchema.multiple || false}
       name={keys}
       onChange={onChange}
-      options={inputType === 'select' ? options : { ...options, modifiedData }}
+      options={options}
+      modifiedData={modifiedData}
       placeholder={placeholder ? { id: placeholder, defaultMessage: placeholder } : null}
       required={fieldSchema.required || false}
       step={step}

@@ -4,7 +4,7 @@ const { yup, validateYupSchema } = require('@strapi/utils');
 
 const settingsSchema = yup.object({
   sizeOptimization: yup.boolean().required(),
-  sizeOptimizationQuality: yup
+  responsiveQuality: yup
     .number()
     .min(0)
     .max(100)
