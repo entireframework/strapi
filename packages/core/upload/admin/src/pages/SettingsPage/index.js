@@ -12,6 +12,7 @@ import Check from '@strapi/icons/Check';
 import { Box } from '@strapi/design-system/Box';
 import { Flex } from '@strapi/design-system/Flex';
 import { ToggleInput } from '@strapi/design-system/ToggleInput';
+import { NumberInput } from '@strapi/design-system/NumberInput';
 import { Typography } from '@strapi/design-system/Typography';
 import { Button } from '@strapi/design-system/Button';
 import { Main } from '@strapi/design-system/Main';
@@ -219,6 +220,27 @@ export const SettingsPage = () => {
                           onChange={e => {
                             handleChange({
                               target: { name: 'sizeOptimization', value: e.target.checked },
+                            });
+                          }}
+                        />
+                      </GridItem>
+                      <GridItem col={6} s={12}>
+                        <NumberInput
+                          aria-label="sizeOptimizationQuality"
+                          data-testid="sizeOptimizationQuality"
+                          value={modifiedData.sizeOptimizationQuality}
+                          hint={formatMessage({
+                            id: getTrad('settings.form.sizeOptimizationQuality.description'),
+                            defaultMessage: 'Quality of images with reduced size.',
+                          })}
+                          label={formatMessage({
+                            id: getTrad('settings.form.sizeOptimizationQuality.label'),
+                            defaultMessage: 'Size optimization quality',
+                          })}
+                          name="sizeOptimizationQuality"
+                          onValueChange={value => {
+                            handleChange({
+                              target: { name: 'sizeOptimizationQuality', value },
                             });
                           }}
                         />

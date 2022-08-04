@@ -108,6 +108,8 @@ const THUMBNAIL_RESIZE_OPTIONS = {
 };
 
 const resizeFileTo = async (file, options, { name, hash, format }) => {
+  const { sizeOptimizationQuality = 90 } = await getService('upload').getSettings();
+
   const filePath = join(file.tmpWorkingDirectory, hash);
   await writeStreamToFile(
     file.getStream().pipe(
@@ -115,7 +117,7 @@ const resizeFileTo = async (file, options, { name, hash, format }) => {
         .resize(options)
         .toFormat(format || (await getFormat(file)) || 'jpeg', {
           progressive: true,
-          quality: 90,
+          quality: sizeOptimizationQuality,
         })
     ),
     filePath

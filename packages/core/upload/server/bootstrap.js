@@ -13,6 +13,7 @@ module.exports = async ({ strapi }) => {
     await configurator.set({
       value: {
         sizeOptimization: true,
+        sizeOptimizationQuality: 90,
         responsiveDimensions: true,
         autoOrientation: false,
       },

@@ -6,7 +6,12 @@ const handlers = [
     return res(
       ctx.status(200),
       ctx.json({
-        data: { autoOrientation: true, responsiveDimensions: true, sizeOptimization: false },
+        data: {
+          autoOrientation: true,
+          responsiveDimensions: true,
+          sizeOptimization: false,
+          sizeOptimizationQuality: 90,
+        },
       })
     );
   }),
