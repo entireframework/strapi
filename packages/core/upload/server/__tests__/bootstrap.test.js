@@ -70,6 +70,7 @@ describe('Upload plugin bootstrap function', () => {
         autoOrientation: false,
         sizeOptimization: true,
         responsiveDimensions: true,
+        responsiveQuality: 90,
       },
     });
   });
