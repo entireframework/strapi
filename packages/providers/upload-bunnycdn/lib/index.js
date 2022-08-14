@@ -87,12 +87,13 @@ module.exports = {
 
       const isVideo = isVideoType(file);
       const fileName = file.name;
-      const bunnycdnId = `${cloudFolder}/${fileName}`;
+      const folder = cloudFolder + '/' + file.folder.name;
+      const bunnycdnId = `${folder}/${fileName}`;
 
       return isVideo
         ? queuePush(uploadQueue, () =>
             axios({
-              url: `https://video.bunnycdn.com/library/${libraryId}/collections?search=${cloudFolder}`,
+              url: `https://video.bunnycdn.com/library/${libraryId}/collections?search=${folder}`,
               method: 'get',
               headers: {
                 AccessKey: apiKey,
@@ -103,8 +104,8 @@ module.exports = {
                 if ((res.status === 200 || res.status === 201) && res.data) {
                   let collectionId;
 
-                  if (res.data.items && res.data.items.find(item => item.name === cloudFolder)) {
-                    collectionId = res.data.items.find(item => item.name === cloudFolder).guid;
+                  if (res.data.items && res.data.items.find(item => item.name === folder)) {
+                    collectionId = res.data.items.find(item => item.name === folder).guid;
                   } else {
                     collectionId = await axios({
                       url: `https://video.bunnycdn.com/library/${libraryId}/collections`,
@@ -115,7 +116,7 @@ module.exports = {
                         Accept: 'application/json',
                       },
                       data: {
-                        name: cloudFolder,
+                        name: folder,
                       },
                     }).then(res => {
                       if ((res.status === 200 || res.status === 201) && res.data) {
@@ -212,7 +213,7 @@ module.exports = {
               })
               .catch(error => console.error(error))
           )
-        : ftp.putFTPFile(ftpOptions, file.stream || file.buffer, cloudFolder, fileName).then(() => {
+        : ftp.putFTPFile(ftpOptions, file.stream || file.buffer, folder, fileName).then(() => {
             if (webp) {
               file.provider_metadata.webp_url = `${url}/${bunnycdnId}`;
               file.provider_metadata.webp_id = bunnycdnId;
