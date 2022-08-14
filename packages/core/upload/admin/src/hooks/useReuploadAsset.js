@@ -4,6 +4,8 @@ import { useMutation, useQueryClient } from 'react-query';
 import { useIntl } from 'react-intl';
 import { useNotification } from '@strapi/helper-plugin';
 
+import fs from 'fs';
+import path from 'path';
 import { axiosInstance, getTrad } from '../utils';
 import pluginId from '../pluginId';
 
@@ -11,7 +13,10 @@ const reuploadAssetRequest = (asset, cancelToken, onProgress) => {
   const endpoint = `/${pluginId}?id=${asset.id}`;
 
   const formData = new FormData();
-  formData.append('files', asset);
+  formData.append(
+    'files',
+    fs.readFileSync(path.resolve(strapi.dirs.static.public, asset.url.substring(1)))
+  );
 
   formData.append(
     'fileInfo',
@@ -62,7 +67,7 @@ export const useReuploadAsset = () => {
     }
   );
 
-  const reuploadAsset = (asset) => mutation.mutateAsync({ asset });
+  const reuploadAsset = asset => mutation.mutateAsync({ asset });
 
   const cancel = () =>
     tokenRef.current.cancel(
