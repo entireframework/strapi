@@ -18,7 +18,7 @@ const reuploadAssetRequest = (asset, cancelToken, onProgress) => {
     JSON.stringify({
       alternativeText: asset.alternativeText,
       caption: asset.caption,
-      folder: asset.folder,
+      folder: asset.folder.id || asset.folder,
       name: asset.name,
     })
   );
