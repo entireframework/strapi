@@ -4,8 +4,6 @@ import { useMutation, useQueryClient } from 'react-query';
 import { useIntl } from 'react-intl';
 import { useNotification } from '@strapi/helper-plugin';
 
-import fs from 'fs';
-import path from 'path';
 import { axiosInstance, getTrad } from '../utils';
 import pluginId from '../pluginId';
 
@@ -13,10 +11,7 @@ const reuploadAssetRequest = (asset, cancelToken, onProgress) => {
   const endpoint = `/${pluginId}?id=${asset.id}`;
 
   const formData = new FormData();
-  formData.append(
-    'files',
-    fs.readFileSync(path.resolve(strapi.dirs.static.public, asset.url.substring(1)))
-  );
+  const URL = strapi.backendURL + asset.url;
 
   formData.append(
     'fileInfo',
@@ -28,15 +23,29 @@ const reuploadAssetRequest = (asset, cancelToken, onProgress) => {
     })
   );
 
-  return axiosInstance({
-    method: 'post',
-    url: endpoint,
-    data: formData,
-    cancelToken: cancelToken.token,
-    onUploadProgress({ total, loaded }) {
-      onProgress((loaded / total) * 100);
-    },
-  }).then(res => res.data);
+  return new Promise((resolve, reject) => {
+    let request = new XMLHttpRequest();
+    request.responseType = 'blob';
+    request.onload = function() {
+      formData.append('files', request.response);
+
+      axiosInstance({
+        method: 'post',
+        url: endpoint,
+        data: formData,
+        cancelToken: cancelToken.token,
+        onUploadProgress({ total, loaded }) {
+          onProgress((loaded / total) * 100);
+        },
+      }).then(res => resolve(res.data));
+    };
+    request.onerror = function(e) {
+      console.error(e);
+      reject(e);
+    };
+    request.open('GET', URL);
+    request.send();
+  });
 };
 
 export const useReuploadAsset = () => {
