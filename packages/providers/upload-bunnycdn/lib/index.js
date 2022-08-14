@@ -86,14 +86,13 @@ module.exports = {
       }
 
       const isVideo = isVideoType(file);
-      const fileName = file.name;
-      const folder = cloudFolder + '/' + file.folder.name;
-      const bunnycdnId = `${folder}/${fileName}`;
+      const fileName = file.hash + file.ext;
+      const bunnycdnId = `${cloudFolder}/${fileName}`;
 
       return isVideo
         ? queuePush(uploadQueue, () =>
             axios({
-              url: `https://video.bunnycdn.com/library/${libraryId}/collections?search=${folder}`,
+              url: `https://video.bunnycdn.com/library/${libraryId}/collections?search=${cloudFolder}`,
               method: 'get',
               headers: {
                 AccessKey: apiKey,
@@ -104,8 +103,8 @@ module.exports = {
                 if ((res.status === 200 || res.status === 201) && res.data) {
                   let collectionId;
 
-                  if (res.data.items && res.data.items.find(item => item.name === folder)) {
-                    collectionId = res.data.items.find(item => item.name === folder).guid;
+                  if (res.data.items && res.data.items.find(item => item.name === cloudFolder)) {
+                    collectionId = res.data.items.find(item => item.name === cloudFolder).guid;
                   } else {
                     collectionId = await axios({
                       url: `https://video.bunnycdn.com/library/${libraryId}/collections`,
@@ -116,7 +115,7 @@ module.exports = {
                         Accept: 'application/json',
                       },
                       data: {
-                        name: folder,
+                        name: cloudFolder,
                       },
                     }).then(res => {
                       if ((res.status === 200 || res.status === 201) && res.data) {
@@ -213,7 +212,7 @@ module.exports = {
               })
               .catch(error => console.error(error))
           )
-        : ftp.putFTPFile(ftpOptions, file.stream || file.buffer, folder, fileName).then(() => {
+        : ftp.putFTPFile(ftpOptions, file.stream || file.buffer, cloudFolder, fileName).then(() => {
             if (webp) {
               file.provider_metadata.webp_url = `${url}/${bunnycdnId}`;
               file.provider_metadata.webp_id = bunnycdnId;
