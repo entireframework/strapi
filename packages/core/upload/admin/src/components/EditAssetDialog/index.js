@@ -35,9 +35,9 @@ import { ReplaceMediaButton } from './ReplaceMediaButton';
 import SelectTree from '../SelectTree';
 
 const LoadingBody = styled(Flex)`
-   /* 80px are coming from the Tabs component that is not included in the ModalBody */
-   min-height: ${() => `calc(60vh + ${pxToRem(80)})`};
- `;
+  /* 80px are coming from the Tabs component that is not included in the ModalBody */
+  min-height: ${() => `calc(60vh + ${pxToRem(80)})`};
+`;
 
 const fileInfoSchema = yup.object({
   name: yup.string().required(),
@@ -60,7 +60,7 @@ export const EditAssetDialog = ({
   const [isCropping, setIsCropping] = useState(false);
   const [replacementFile, setReplacementFile] = useState();
   const { editAsset, isLoading } = useEditAsset();
-  const { reuploadAsset } = useReuploadAsset();
+  const { reuploadAsset, isLoading: isReuploading } = useReuploadAsset();
 
   const { data: folderStructure, isLoading: folderStructureIsLoading } = useFolderStructure({
     enabled: true,
@@ -93,7 +93,7 @@ export const EditAssetDialog = ({
 
   const handleReupload = () => {
     return reuploadAsset(asset);
-  }
+  };
 
   const handleStartCropping = () => {
     setIsCropping(true);
@@ -330,7 +330,7 @@ export const EditAssetDialog = ({
 
                 <Button
                   onClick={() => submitButtonRef.current.click()}
-                  loading={isLoading}
+                  loading={isLoading || isReuploading}
                   disabled={formDisabled}
                 >
                   {formatMessage({ id: 'global.finish', defaultMessage: 'Finish' })}
