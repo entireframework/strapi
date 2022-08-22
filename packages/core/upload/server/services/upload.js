@@ -287,10 +287,15 @@ module.exports = ({ strapi }) => ({
 
       if ((await isImage(fileData)) || (await isVideo(fileData))) {
         if ((await isOptimizableImage(fileData)) || (await isOptimizableVideo(fileData))) {
+          const isVideoFile = await isOptimizableVideo(fileData);
           const thumbnailFile = await generateThumbnail(fileData);
           if (thumbnailFile) {
             await getService('provider').upload(thumbnailFile);
-            _.set(fileData, 'formats.thumbnail', thumbnailFile);
+            _.set(
+              fileData,
+              isVideoFile ? 'formats.thumbnail-poster' : 'formats.thumbnail',
+              thumbnailFile
+            );
           }
 
           const formats = await generateResponsiveFormats(fileData);
