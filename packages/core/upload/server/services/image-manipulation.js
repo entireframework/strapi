@@ -6,6 +6,7 @@ const fs = require('fs');
 const { join } = require('path');
 const sharp = require('sharp');
 var ffmpeg = require('fluent-ffmpeg');
+const queue = require('queue');
 
 const { getService } = require('../utils');
 const { bytesToKbytes } = require('../utils/file');
@@ -23,10 +24,10 @@ const writeStreamToFile = (stream, path) =>
     writeStream.on('error', reject);
   });
 
-const getVideoMetadata = file => {
+const getVideoMetadata = (file) => {
   return new Promise((resolve, reject) => {
     try {
-      ffmpeg.ffprobe(file.getStream(), function(err, metadata) {
+      ffmpeg.ffprobe(file.getStream(), function (err, metadata) {
         console.log('ffprobe', metadata);
 
         if (err) {
@@ -34,7 +35,7 @@ const getVideoMetadata = file => {
         }
 
         if (metadata && metadata.streams) {
-          const stream = metadata.streams.find(s => s.width && s.height);
+          const stream = metadata.streams.find((s) => s.width && s.height);
           console.log('stream', stream);
 
           let width = metadata.width || stream.width;
@@ -77,18 +78,15 @@ const getVideoMetadata = file => {
   });
 };
 
-const getImageMetadata = file => {
+const getImageMetadata = (file) => {
   return new Promise((resolve, reject) => {
     const pipeline = sharp();
-    pipeline
-      .metadata()
-      .then(resolve)
-      .catch(reject);
+    pipeline.metadata().then(resolve).catch(reject);
     file.getStream().pipe(pipeline);
   });
 };
 
-const getMetadata = file => {
+const getMetadata = (file) => {
   return getImageMetadata(file).catch(() =>
     getVideoMetadata(file).catch(() => {
       return {};
@@ -96,7 +94,7 @@ const getMetadata = file => {
   );
 };
 
-const getDimensions = async file => {
+const getDimensions = async (file) => {
   const { width = null, height = null, duration = null } = await getMetadata(file);
   return { width, height, duration };
 };
@@ -138,11 +136,15 @@ const resizeFileTo = async (file, options, { name, hash, format }) => {
   return newFile;
 };
 
-const generateThumbnail = async file => {
+const generateThumbnail = async (file) => {
   if (
     file.width > THUMBNAIL_RESIZE_OPTIONS.width ||
     file.height > THUMBNAIL_RESIZE_OPTIONS.height
   ) {
+    if (await isVideo(file)) {
+      file = await generatePoster(file);
+    }
+
     const newFile = await resizeFileTo(file, THUMBNAIL_RESIZE_OPTIONS, {
       name: `thumbnail_${file.name}`,
       hash: `thumbnail_${file.hash}`,
@@ -153,7 +155,7 @@ const generateThumbnail = async file => {
   return null;
 };
 
-const optimize = async file => {
+const optimize = async (file) => {
   const { sizeOptimization = false, autoOrientation = false } = await getService(
     'upload'
   ).getSettings();
@@ -199,10 +201,14 @@ const DEFAULT_BREAKPOINTS = {
 
 const getBreakpoints = () => strapi.config.get('plugin.upload.breakpoints', DEFAULT_BREAKPOINTS);
 
-const generateResponsiveFormats = async file => {
+const generateResponsiveFormats = async (file) => {
   const { responsiveDimensions = false } = await getService('upload').getSettings();
 
   if (!responsiveDimensions) return [];
+
+  if (await isVideo(file)) {
+    file = await generatePoster(file);
+  }
 
   const originalDimensions = await getDimensions(file);
   const format = await getFormat(file);
@@ -214,7 +220,7 @@ const generateResponsiveFormats = async file => {
 
   return Promise.all(
     Object.keys(breakpoints)
-      .map(key => {
+      .map((key) => {
         const breakpoint = breakpoints[key];
 
         if (breakpointSmallerThan(breakpoint, originalDimensions)) {
@@ -275,7 +281,7 @@ const isSupportedImage = (...args) => {
   return isOptimizableImage(...args);
 };
 
-const getFormat = async file => {
+const getFormat = async (file) => {
   try {
     return (await getMetadata(file)).format || file.ext.substring(1);
   } catch (e) {
@@ -284,24 +290,158 @@ const getFormat = async file => {
   }
 };
 
-const isOptimizableImage = async file => {
+const isOptimizableImage = async (file) => {
   let format = await getFormat(file);
   return format && FORMATS_TO_OPTIMIZE.includes(format);
 };
 
-const isImage = async file => {
+const isImage = async (file) => {
   let format = await getFormat(file);
   return format && FORMATS_TO_PROCESS.includes(format);
 };
 
-const isOptimizableVideo = async file => {
+const isOptimizableVideo = async (file) => {
   let format = await getFormat(file);
   return format && VIDEO_FORMATS_TO_OPTIMIZE.includes(format);
 };
 
-const isVideo = async file => {
+const isVideo = async (file) => {
   let format = await getFormat(file);
   return format && VIDEO_FORMATS_TO_PROCESS.includes(format);
+};
+
+const generatePoster = async (file) => {
+  console.log('generatePoster', file);
+
+  if (!(await isVideo(file))) {
+    return;
+  }
+
+  const filePath = join(file.tmpWorkingDirectory, file.hash);
+  await writeStreamToFile(file.getStream(), filePath);
+
+  const convertOptions = {
+    streamEncoding: true,
+    args: ['-ss', '00:00:00.000', '-vframes', '1', '-f', 'image2'],
+    ext: '.png',
+    name: 'png',
+  };
+  const newFileName = (file.name.split('.').slice(0, -1).join('.') || file.name) + '.png';
+  const newFilePath = join(file.tmpWorkingDirectory, `poster_${file.hash}`);
+  const newFileMime = 'image/' + convertOptions.name;
+  const newFileExt = convertOptions.name;
+
+  if (!file.width || !file.height || !file.size) {
+    const { width, height, size } = await getMetadata(file);
+    file.width = width;
+    file.height = height;
+    file.size = size;
+  }
+
+  return new Promise((resolve, reject) => {
+    console.log('generatePoster started', filePath, file.width + 'x' + file.height, newFilePath);
+    convertVideo(filePath, file.width + 'x' + file.height, newFilePath, convertOptions, (err) => {
+      console.log('generatePoster finished');
+
+      if (err) {
+        console.log('generatePoster error', err);
+
+        reject();
+      } else {
+        resolve();
+      }
+    });
+  })
+    .then(async () => {
+      let buffer = fs.readFileSync(newFilePath);
+      fs.writeFileSync(
+        newFilePath,
+        await sharp(buffer)
+          .withMetadata()
+          .resize({
+            width: file.width,
+            height: file.height,
+            fit: 'fill',
+          })
+          .toBuffer()
+      );
+      let newFile = {
+        name: `poster_${newFileName}`,
+        hash: `poster_${file.hash}`,
+        ext: newFileExt,
+        mime: newFileMime,
+        path: newFilePath,
+        getStream: () => fs.createReadStream(newFilePath),
+      };
+      let { width, height, size, format } = await getMetadata(newFile);
+      return optimize({ ...newFile, width, height, size, format });
+    })
+    .catch(() => {
+      return null;
+    });
+};
+
+const ffmpegQueue = queue({
+  concurrency: 1,
+  autostart: true,
+  timeout: null,
+  results: [],
+});
+
+async function queuePush(q, fn) {
+  return new Promise((resolveQ, rejectQ) => q.push(() => fn().then(resolveQ).catch(rejectQ)));
+}
+
+const scale = function (width) {
+  return `scale=${width}:-2`;
+};
+
+const convertVideo = function (input, size, output, options, callback) {
+  queuePush(ffmpegQueue, () => {
+    return new Promise((resolve) => {
+      var outputTmpFile = typeof output === 'string';
+
+      try {
+        var ffm = ffmpeg(input).outputOptions(options.args);
+        ffm.on('start', function (commandLine) {
+          console.log('Spawned Ffmpeg with command: ' + commandLine);
+        });
+        var match;
+        // eslint-disable-next-line no-cond-assign
+        if ((match = size.match(/(\d+)x(\d+)/))) {
+          ffm.addOutputOptions('-vf', scale(match[1]));
+        } else {
+          ffm.size(size);
+        }
+        ffm.output(output);
+      } catch (e) {
+        callback(e);
+        resolve();
+        return;
+      }
+
+      ffm.on('progress', function (progress) {
+        console.log('Processing: ' + progress.percent + '% done');
+      });
+      ffm.on('error', function (error, stdout, stderr) {
+        error.stderr = stderr;
+        callback(error);
+        resolve();
+      });
+
+      if (outputTmpFile) {
+        ffm.on('end', function () {
+          callback();
+          resolve();
+        });
+      }
+      ffm.run();
+      if (!outputTmpFile) {
+        callback();
+        resolve();
+      }
+    });
+  });
 };
 
 module.exports = () => ({
