@@ -179,7 +179,11 @@ module.exports = ({ strapi }) => ({
         const thumbnailFile = await generateThumbnail(fileData);
         if (thumbnailFile) {
           await getService('provider').upload(thumbnailFile);
-          _.set(fileData, 'formats.thumbnail', thumbnailFile);
+          _.set(
+            fileData,
+            (await isImage(fileData)) ? 'formats.thumbnail' : 'formats.thumbnail-poster',
+            thumbnailFile
+          );
         }
 
         const formats = await generateResponsiveFormats(fileData);

@@ -139,6 +139,13 @@ const resizeFileTo = async (file, options, { name, hash, format }) => {
 };
 
 const generateThumbnail = async file => {
+  if (!file.width || !file.height || !file.size) {
+    const { width, height, size } = await getMetadata(file);
+    file.width = width;
+    file.height = height;
+    file.size = size;
+  }
+
   if (
     file.width > THUMBNAIL_RESIZE_OPTIONS.width ||
     file.height > THUMBNAIL_RESIZE_OPTIONS.height
