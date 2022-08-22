@@ -1,6 +1,6 @@
 {
   "name": "admin-development",
-  "version": "4.3.3-alpha.18",
+  "version": "4.3.3-alpha.19",
   "main": "index.js",
   "license": "MIT",
   "private": true,
