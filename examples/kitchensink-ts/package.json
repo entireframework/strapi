@@ -1,7 +1,7 @@
 {
   "name": "kitchensink-ts",
   "private": true,
-  "version": "4.3.3-alpha.17",
+  "version": "4.3.3-alpha.18",
   "description": "A Strapi application",
   "scripts": {
     "develop": "strapi develop",
@@ -10,9 +10,9 @@
     "strapi": "strapi"
   },
   "dependencies": {
-    "@strapi/plugin-i18n": "^4.3.3-alpha.0",
-    "@strapi/plugin-users-permissions": "^4.3.3-alpha.5",
-    "@strapi/strapi": "^4.3.3-alpha.17",
+    "@strapi/plugin-i18n": "^4.3.3-alpha.18",
+    "@strapi/plugin-users-permissions": "^4.3.3-alpha.18",
+    "@strapi/strapi": "^4.3.3-alpha.18",
     "better-sqlite3": "7.6.2"
   },
   "author": {
