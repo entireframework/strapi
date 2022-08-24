@@ -67,7 +67,11 @@ const getPopulatedFields = (currentLayout, schema) => {
             }, [])
             .concat([''])
         : mainFieldType === 'relation'
-        ? getPopulatedFields(currentLayout, get(schema, ['layouts', 'edit', 0, 0], null), '')
+        ? getPopulatedFields(
+            currentLayout,
+            get(schema, ['layouts', 'edit', 0, 0], null),
+            ''
+          ).concat([''])
         : mainFieldType === 'media'
         ? ['']
         : [];

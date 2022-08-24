@@ -5,13 +5,21 @@ import { useCMEditViewDataManager } from '@strapi/helper-plugin';
 const getMainField = (currentLayout, schema, componentFieldName, isRepeatable = false) => {
   const mainField = get(
     schema,
-    ['settings', 'mainField'],
-    get(schema, ['metadatas', 'mainField', 'name'], 'id')
+    ['settings', 'coverField'],
+    get(
+      schema,
+      ['metadatas', 'coverField', 'name'],
+      get(schema, ['settings', 'mainField'], get(schema, ['metadatas', 'mainField', 'name'], 'id'))
+    )
   );
   const mainFieldType = get(
     schema,
     ['attributes', mainField, 'type'],
-    get(schema, ['metadatas', 'mainField', 'schema', 'type'], null)
+    get(
+      schema,
+      ['metadatas', 'coverField', 'schema', 'type'],
+      get(schema, ['metadatas', 'mainField', 'schema', 'type'], null)
+    )
   );
   const mainFieldRelation =
     mainFieldType === 'component'
@@ -34,7 +42,11 @@ const getMainField = (currentLayout, schema, componentFieldName, isRepeatable = 
         ).join('.')
       : mainFieldType === 'media'
       ? 'provider_metadata.bunnycdn.url'
-      : get(schema, ['metadatas', mainField, 'list', 'mainField', 'name'], null);
+      : get(
+          schema,
+          ['metadatas', mainField, 'list', 'coverField', 'name'],
+          get(schema, ['metadatas', mainField, 'list', 'mainField', 'name'], null)
+        );
 
   return [
     ...(componentFieldName ? componentFieldName.split('.') : []),
@@ -53,7 +65,10 @@ function useSelect({ schema, componentFieldName, currentLayout }) {
     triggerFormValidation,
   } = useCMEditViewDataManager();
 
-  const mainField = useMemo(() => get(schema, ['settings', 'mainField'], 'id'), [schema]);
+  const mainField = useMemo(
+    () => get(schema, ['settings', 'coverField'], get(schema, ['settings', 'mainField'], 'id')),
+    [schema]
+  );
   const mainFieldFull = useMemo(() => getMainField(currentLayout, schema, componentFieldName), [
     currentLayout,
     schema,
