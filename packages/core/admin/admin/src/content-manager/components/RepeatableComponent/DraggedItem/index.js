@@ -213,7 +213,7 @@ const DraggedItem = ({
         {!isDragging && isDraggingSibling && (
           <DraggingSibling
             displayedValue={
-              displayedValueIsMedia ? (
+              displayedValueIsMedia && accordionTitle ? (
                 <Img src={prefixFileUrlWithBackendUrl(accordionTitle)} aria-hidden alt="" />
               ) : (
                 accordionTitle
@@ -269,7 +269,7 @@ const DraggedItem = ({
                 )
               }
               title={
-                displayedValueIsMedia ? (
+                displayedValueIsMedia && accordionTitle ? (
                   <Img src={prefixFileUrlWithBackendUrl(accordionTitle)} aria-hidden alt="" />
                 ) : (
                   accordionTitle
