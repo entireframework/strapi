@@ -26,6 +26,58 @@ import selectCrudReducer from '../../sharedReducers/crudReducer/selectors';
 import { getRequestUrl } from './utils';
 import buildQueryString from '../../pages/ListView/utils/buildQueryString';
 
+const getPopulatedFields = (currentLayout, schema) => {
+  if (!schema.attributes) {
+    schema = {
+      ...schema,
+      attributes: {},
+    };
+    schema.attributes[get(schema, ['metadatas', 'mainField', 'name'], null)] = {
+      type: get(schema, ['metadatas', 'mainField', 'schema', 'type'], null),
+    };
+  }
+
+  return Object.keys(schema.attributes).reduce((acc, attribute) => {
+    const mainField = attribute;
+    const mainFieldType = schema.attributes[attribute].component
+      ? 'component'
+      : schema.attributes[attribute].type;
+
+    const mainFieldRelation =
+      mainFieldType === 'component'
+        ? getPopulatedFields(
+            currentLayout,
+            get(
+              currentLayout,
+              ['components', get(schema, ['attributes', mainField, 'component'], null)],
+              null
+            )
+          ).concat([''])
+        : mainFieldType === 'dynamiczone'
+        ? get(schema, ['attributes', mainField, 'components'], null)
+            .reduce((acc3, component) => {
+              console.log('component', currentLayout.components, component);
+
+              return acc3.concat(
+                getPopulatedFields(
+                  currentLayout,
+                  get(currentLayout, ['components', component], null)
+                )
+              );
+            }, [])
+            .concat([''])
+        : mainFieldType === 'relation'
+        ? getPopulatedFields(currentLayout, get(schema, ['layouts', 'edit', 0, 0], null), '')
+        : mainFieldType === 'media'
+        ? ['']
+        : [];
+
+    return mainFieldRelation.reduce((acc2, relation) => {
+      return acc2.concat([[mainField, ...(relation ? [relation] : [])].join('.')]);
+    }, acc);
+  }, []);
+};
+
 // This container is used to handle the CRUD
 const SingleTypeFormWrapper = ({ allLayoutData, children, slug }) => {
   const { trackUsage } = useTracking();
@@ -34,7 +86,11 @@ const SingleTypeFormWrapper = ({ allLayoutData, children, slug }) => {
   const trackUsageRef = useRef(trackUsage);
   const [isCreatingEntry, setIsCreatingEntry] = useState(true);
   const [{ query, rawQuery }] = useQueryParams();
-  const searchToSend = buildQueryString(query);
+  const searchToSend = buildQueryString({
+    ...query,
+    populate: getPopulatedFields(allLayoutData, allLayoutData.contentType),
+  });
+
   const toggleNotification = useNotification();
   const dispatch = useDispatch();
 
