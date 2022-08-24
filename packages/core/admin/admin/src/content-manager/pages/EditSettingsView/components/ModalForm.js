@@ -6,7 +6,11 @@ import { Select, Option } from '@strapi/design-system/Select';
 import { useSelector, shallowEqual } from 'react-redux';
 import { useIntl } from 'react-intl';
 import { useLayoutDnd } from '../../../hooks';
-import { createPossibleMainFieldsForModelsAndComponents, getInputProps } from '../utils';
+import {
+  createPossibleMainFieldsForModelsAndComponents,
+  createPossibleCoverFieldsForModelsAndComponents,
+  getInputProps,
+} from '../utils';
 import { makeSelectModelAndComponentSchemas } from '../../App/selectors';
 import getTrad from '../../../utils/getTrad';
 import GenericInput from './GenericInput';
@@ -42,8 +46,12 @@ const ModalForm = ({ onMetaChange, onSizeChange }) => {
     return createPossibleMainFieldsForModelsAndComponents(schemas);
   }, [schemas]);
 
+  const componentsAndModelsPossibleCoverFields = useMemo(() => {
+    return createPossibleCoverFieldsForModelsAndComponents(schemas);
+  }, [schemas]);
+
   const getSelectedItemSelectOptions = useCallback(
-    formType => {
+    (formType, meta) => {
       if (formType !== 'relation' && formType !== 'component') {
         return [];
       }
@@ -51,10 +59,21 @@ const ModalForm = ({ onMetaChange, onSizeChange }) => {
       const targetKey = formType === 'component' ? 'component' : 'targetModel';
       const key = get(modifiedData, ['attributes', selectedField, targetKey], '');
 
-      return get(componentsAndModelsPossibleMainFields, [key], []);
+      return get(
+        meta === 'coverField'
+          ? componentsAndModelsPossibleCoverFields
+          : componentsAndModelsPossibleMainFields,
+        [key],
+        []
+      );
     },
 
-    [selectedField, componentsAndModelsPossibleMainFields, modifiedData]
+    [
+      selectedField,
+      componentsAndModelsPossibleMainFields,
+      componentsAndModelsPossibleCoverFields,
+      modifiedData,
+    ]
   );
 
   const metaFields = formToDisplay.map(meta => {
@@ -92,7 +111,7 @@ const ModalForm = ({ onMetaChange, onSizeChange }) => {
           name={meta}
           onChange={onMetaChange}
           value={get(fieldForm, ['metadata', meta], '')}
-          options={getSelectedItemSelectOptions(formType)}
+          options={getSelectedItemSelectOptions(formType, meta)}
         />
       </GridItem>
     );
