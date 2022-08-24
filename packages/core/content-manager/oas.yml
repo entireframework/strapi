@@ -273,6 +273,9 @@ paths:
                     '[mainField]':
                       type: string
                       description: Value of the mainField of the entry
+                    '[coverField]':
+                      type: string
+                      description: Value of the coverField of the entry
                     publishedAt:
                       type: date
   # Collection type
@@ -646,6 +649,8 @@ components:
         pageSize:
           type: integer
         mainField:
+          type: string
+        coverField:
           type: string
         defaultSortBy:
           type: string

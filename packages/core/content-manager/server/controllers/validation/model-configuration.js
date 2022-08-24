@@ -45,6 +45,10 @@ const createSettingsSchema = schema => {
         .string()
         .oneOf(validAttributes.concat('id'))
         .default('id'),
+      coverField: yup
+        .string()
+        .oneOf(validAttributes.concat('id'))
+        .default('id'),
       // should be reset when the type changes
       defaultSortBy: yup
         .string()
@@ -73,6 +77,7 @@ const createMetadasSchema = schema => {
               editable: yup.boolean(),
               visible: yup.boolean(),
               mainField: yup.string(),
+              coverField: yup.string(),
             })
             .noUnknown()
             .required(),

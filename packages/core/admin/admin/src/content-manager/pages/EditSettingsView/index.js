@@ -327,6 +327,8 @@ const EditSettingsView = ({ mainLayout, components, isContentTypeView, slug, upd
                       ))}
                     </Select>
                   </GridItem>
+                </Grid>
+                <Grid>
                   <GridItem col={6} s={12}>
                     <Select
                       label={formatMessage({
