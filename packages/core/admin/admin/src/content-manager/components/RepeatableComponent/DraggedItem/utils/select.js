@@ -32,14 +32,14 @@ const getMainField = (currentLayout, schema, componentFieldName, isRepeatable = 
           ),
           '',
           get(schema, ['attributes', mainField, 'repeatable'], false)
-        ).join('.')
+        )
       : mainFieldType === 'relation'
       ? getMainField(
           currentLayout,
           get(schema, ['layouts', 'edit', 0, 0], null),
           '',
           get(schema, ['attributes', mainField, 'repeatable'], false)
-        ).join('.')
+        )
       : mainFieldType === 'media'
       ? 'provider_metadata.bunnycdn.url'
       : get(
@@ -48,12 +48,19 @@ const getMainField = (currentLayout, schema, componentFieldName, isRepeatable = 
           get(schema, ['metadatas', mainField, 'list', 'mainField', 'name'], null)
         );
 
-  return [
-    ...(componentFieldName ? componentFieldName.split('.') : []),
-    ...(isRepeatable ? ['0'] : []),
-    mainField,
-    ...(mainFieldRelation ? mainFieldRelation.split('.') : []),
-  ];
+  return {
+    name: [
+      ...(componentFieldName ? componentFieldName.split('.') : []),
+      ...(isRepeatable ? ['0'] : []),
+      mainField,
+      ...(mainFieldRelation
+        ? mainFieldRelation.name
+          ? mainFieldRelation.name.split('.')
+          : mainFieldRelation.split('.')
+        : []),
+    ].join('.'),
+    type: mainFieldRelation && mainFieldRelation.type ? mainFieldRelation.type : mainFieldType,
+  };
 };
 
 function useSelect({ schema, componentFieldName, currentLayout }) {
@@ -74,10 +81,12 @@ function useSelect({ schema, componentFieldName, currentLayout }) {
     schema,
     componentFieldName,
   ]);
-  const displayedValue = toString(get(modifiedData, mainFieldFull, ''));
+  const displayedValue = toString(get(modifiedData, mainFieldFull.name.split('.'), ''));
+  const displayedValueIsMedia = mainFieldFull.type === 'media';
 
   return {
     displayedValue,
+    displayedValueIsMedia,
     mainField,
     checkFormErrors,
     moveComponentField,

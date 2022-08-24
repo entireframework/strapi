@@ -14,6 +14,7 @@ import { Tooltip } from '@strapi/design-system/Tooltip';
 import Trash from '@strapi/icons/Trash';
 import Drag from '@strapi/icons/Drag';
 import { upperFirst } from 'lodash/fp';
+import { prefixFileUrlWithBackendUrl } from '@strapi/helper-plugin';
 import ItemTypes from '../../../utils/ItemTypes';
 import getTrad from '../../../utils/getTrad';
 import Inputs from '../../Inputs';
@@ -35,6 +36,11 @@ const DragButton = styled.span`
     width: ${12 / 16}rem;
     height: ${12 / 16}rem;
   }
+`;
+
+const Img = styled.img`
+  height: 36px;
+  padding-top: 4px;
 `;
 
 /* eslint-disable react/no-array-index-key */
@@ -61,6 +67,7 @@ const DraggedItem = ({
   triggerFormValidation,
   // checkFormErrors,
   displayedValue,
+  displayedValueIsMedia,
 }) => {
   const dragRef = useRef(null);
   const dropRef = useRef(null);
@@ -197,7 +204,13 @@ const DraggedItem = ({
         {isDragging && <Preview />}
         {!isDragging && isDraggingSibling && (
           <DraggingSibling
-            displayedValue={accordionTitle}
+            displayedValue={
+              displayedValueIsMedia ? (
+                <Img src={prefixFileUrlWithBackendUrl(accordionTitle)} aria-hidden alt="" />
+              ) : (
+                accordionTitle
+              )
+            }
             componentFieldName={componentFieldName}
           />
         )}
@@ -247,7 +260,13 @@ const DraggedItem = ({
                   </Stack>
                 )
               }
-              title={accordionTitle}
+              title={
+                displayedValueIsMedia ? (
+                  <Img src={prefixFileUrlWithBackendUrl(accordionTitle)} aria-hidden alt="" />
+                ) : (
+                  accordionTitle
+                )
+              }
               togglePosition="left"
             />
             <AccordionContent>
@@ -336,6 +355,7 @@ DraggedItem.propTypes = {
   triggerFormValidation: PropTypes.func.isRequired,
   // checkFormErrors: PropTypes.func.isRequired,
   displayedValue: PropTypes.string.isRequired,
+  displayedValueIsMedia: PropTypes.bool.isRequired,
 };
 
 const Memoized = memo(DraggedItem);

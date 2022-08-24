@@ -78,7 +78,7 @@ const createMetasSchema = (initialData, models) => {
 
         const coverFieldName = metadatas.edit.coverField;
         const coverField = {
-          name: mainFieldName,
+          name: coverFieldName,
           schema: get(relationModel, ['attributes', coverFieldName]),
         };
 
