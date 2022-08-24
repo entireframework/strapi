@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, createContext, useContext } from 'react';
 import PropTypes from 'prop-types';
 import DropdownIcon from '@strapi/icons/CarretDown';
 import styled from 'styled-components';
@@ -8,8 +8,10 @@ import { AccordionTypography } from '@strapi/design-system/Accordion';
 import { Flex } from '@strapi/design-system/Flex';
 import { Stack } from '@strapi/design-system/Stack';
 import { Icon } from '@strapi/design-system/Icon';
-import { useAccordion } from './AccordionContext';
 import { getBackground } from './utils';
+
+const AccordionContext = createContext();
+const useAccordion = () => useContext(AccordionContext);
 
 const ToggleButton = styled(TextButton)`
   text-align: left;
