@@ -4,12 +4,10 @@ import DropdownIcon from '@strapi/icons/CarretDown';
 import styled from 'styled-components';
 import { TextButton } from '@strapi/design-system/TextButton';
 import { Typography } from '@strapi/design-system/Typography';
-import { AccordionTypography } from '@strapi/design-system/Accordion/Accordion';
-import { useAccordion } from '@strapi/design-system/Accordion/AccordionContext';
+import { AccordionTypography, useAccordion, getBackground } from '@strapi/design-system/Accordion';
 import { Flex } from '@strapi/design-system/Flex';
 import { Stack } from '@strapi/design-system/Stack';
 import { Icon } from '@strapi/design-system/Icon';
-import { getBackground } from '@strapi/design-system/Accordion/utils';
 
 const ToggleButton = styled(TextButton)`
   text-align: left;

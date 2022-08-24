@@ -81,8 +81,10 @@ const buildAdmin = async () => {
             messages.errors.reduce((acc, error) => {
               if (isObject(error)) {
                 acc += error.message;
-              } else {
+              } else if (error.join) {
                 acc += error.join('\n\n');
+              } else {
+                acc += error;
               }
 
               return acc;
