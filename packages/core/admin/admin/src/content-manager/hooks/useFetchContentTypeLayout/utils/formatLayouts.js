@@ -1,6 +1,77 @@
 import { cloneDeep, get, set } from 'lodash';
 import { getRequestUrl, mergeMetasWithSchema } from '../../../utils';
 
+const getPopulatedFields = (currentLayout, schema) => {
+  if (!schema.attributes) {
+    const mainField = get(
+      schema,
+      ['metadatas', 'coverField', 'name'],
+      get(
+        schema,
+        ['settings', 'coverField'],
+        get(
+          schema,
+          ['metadatas', 'mainField', 'name'],
+          get(schema, ['settings', 'mainField'], 'id')
+        )
+      )
+    );
+    const mainFieldType = get(
+      schema,
+      ['attributes', mainField, 'type'],
+      get(
+        schema,
+        ['metadatas', 'coverField', 'schema', 'type'],
+        get(schema, ['metadatas', 'mainField', 'schema', 'type'], null)
+      )
+    );
+    schema = {
+      ...schema,
+      attributes: {},
+    };
+    schema.attributes[mainField] = {
+      type: mainFieldType,
+    };
+  }
+
+  return Object.keys(schema.attributes).reduce((acc, attribute) => {
+    const attributeType = schema.attributes[attribute].type;
+    console.log('attributeType', attributeType);
+
+    const attributeRelation =
+      attributeType === 'component'
+        ? getPopulatedFields(
+            currentLayout,
+            get(
+              currentLayout,
+              ['components', get(schema, ['attributes', attribute, 'component'], null)],
+              {}
+            )
+          ).concat([''])
+        : attributeType === 'dynamiczone'
+        ? get(schema, ['attributes', attribute, 'components'], null)
+            .reduce((acc3, component) => {
+              console.log('component', currentLayout.components, component);
+
+              return acc3.concat(
+                getPopulatedFields(currentLayout, get(currentLayout, ['components', component], {}))
+              );
+            }, [])
+            .concat([''])
+        : attributeType === 'relation'
+        ? getPopulatedFields(currentLayout, get(schema, ['layouts', 'edit', 0, 0], {}), '').concat([
+            '',
+          ])
+        : attributeType === 'media'
+        ? ['']
+        : [];
+
+    return attributeRelation.reduce((acc2, relation) => {
+      return acc2.concat([[attribute, ...(relation ? [relation] : [])].join('.')]);
+    }, acc);
+  }, []);
+};
+
 const getRelationModel = (targetModel, models) => models.find(model => model.uid === targetModel);
 
 // editRelations is an array of strings...
@@ -248,6 +319,10 @@ const generateRelationQueryInfosForComponents = (
     containsKey: `${mainField}`,
     defaultParams: {
       _component: contentTypeConfiguration.uid,
+      populate: getPopulatedFields(
+        contentTypeConfiguration,
+        models.find(({ uid }) => uid === targetModel) || contentTypeConfiguration
+      ),
     },
     shouldDisplayRelationLink,
   };

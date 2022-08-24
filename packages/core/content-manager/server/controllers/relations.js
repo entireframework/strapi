@@ -8,7 +8,7 @@ const { getService } = require('../utils');
 module.exports = {
   async find(ctx) {
     const { model, targetField } = ctx.params;
-    const { _component, ...query } = ctx.request.query;
+    const { _component, populate, ...query } = ctx.request.query;
     const { idsToOmit } = ctx.request.body;
 
     if (!targetField) {
@@ -46,7 +46,7 @@ module.exports = {
 
     const entityManager = getService('entity-manager');
 
-    const entities = await entityManager.find(query, target.uid, []);
+    const entities = await entityManager.find(query, target.uid, populate || []);
 
     if (!entities) {
       return ctx.notFound();
@@ -57,7 +57,8 @@ module.exports = {
       : await getService('content-types').findConfiguration(modelDef);
 
     const field = prop(`metadatas.${targetField}.edit.mainField`, modelConfig) || 'id';
-    const pickFields = [field, 'id', target.primaryKey, PUBLISHED_AT_ATTRIBUTE];
+    const coverField = prop(`metadatas.${targetField}.edit.coverField`, modelConfig) || 'id';
+    const pickFields = [field, coverField, 'id', target.primaryKey, PUBLISHED_AT_ATTRIBUTE];
 
     ctx.body = entities.map(pick(pickFields));
   },
