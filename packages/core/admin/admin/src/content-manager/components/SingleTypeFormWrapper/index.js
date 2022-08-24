@@ -32,29 +32,38 @@ const getPopulatedFields = (currentLayout, schema) => {
       ...schema,
       attributes: {},
     };
-    schema.attributes[get(schema, ['metadatas', 'mainField', 'name'], null)] = {
-      type: get(schema, ['metadatas', 'mainField', 'schema', 'type'], null),
+    schema.attributes[
+      get(
+        schema,
+        ['metadatas', 'coverField', 'name'],
+        get(schema, ['metadatas', 'mainField', 'name'], null)
+      )
+    ] = {
+      type: get(
+        schema,
+        ['metadatas', 'coverField', 'schema', 'type'],
+        get(schema, ['metadatas', 'mainField', 'schema', 'type'], null)
+      ),
     };
   }
 
   return Object.keys(schema.attributes).reduce((acc, attribute) => {
-    const mainField = attribute;
-    const mainFieldType = schema.attributes[attribute].component
+    const attributeType = schema.attributes[attribute].component
       ? 'component'
       : schema.attributes[attribute].type;
 
-    const mainFieldRelation =
-      mainFieldType === 'component'
+    const attributeRelation =
+      attributeType === 'component'
         ? getPopulatedFields(
             currentLayout,
             get(
               currentLayout,
-              ['components', get(schema, ['attributes', mainField, 'component'], null)],
+              ['components', get(schema, ['attributes', attribute, 'component'], null)],
               null
             )
           ).concat([''])
-        : mainFieldType === 'dynamiczone'
-        ? get(schema, ['attributes', mainField, 'components'], null)
+        : attributeType === 'dynamiczone'
+        ? get(schema, ['attributes', attribute, 'components'], null)
             .reduce((acc3, component) => {
               console.log('component', currentLayout.components, component);
 
@@ -66,18 +75,18 @@ const getPopulatedFields = (currentLayout, schema) => {
               );
             }, [])
             .concat([''])
-        : mainFieldType === 'relation'
+        : attributeType === 'relation'
         ? getPopulatedFields(
             currentLayout,
             get(schema, ['layouts', 'edit', 0, 0], null),
             ''
           ).concat([''])
-        : mainFieldType === 'media'
+        : attributeType === 'media'
         ? ['']
         : [];
 
-    return mainFieldRelation.reduce((acc2, relation) => {
-      return acc2.concat([[mainField, ...(relation ? [relation] : [])].join('.')]);
+    return attributeRelation.reduce((acc2, relation) => {
+      return acc2.concat([[attribute, ...(relation ? [relation] : [])].join('.')]);
     }, acc);
   }, []);
 };
