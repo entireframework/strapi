@@ -6,7 +6,7 @@ import { getEmptyImage } from 'react-dnd-html5-backend';
 import styled from 'styled-components';
 import { useIntl } from 'react-intl';
 import toString from 'lodash/toString';
-import { Accordion, AccordionContent } from '@strapi/design-system/Accordion';
+import { Accordion, AccordionToggle, AccordionContent } from '@strapi/design-system/Accordion';
 import { Grid, GridItem } from '@strapi/design-system/Grid';
 import { Stack } from '@strapi/design-system/Stack';
 import { Box } from '@strapi/design-system/Box';
@@ -22,7 +22,6 @@ import FieldComponent from '../../FieldComponent';
 import Preview from './Preview';
 import DraggingSibling from './DraggingSibling';
 import { CustomIconButton } from './IconButtonCustoms';
-import { AccordionToggle } from './AccordionToggle';
 import { connect, select } from './utils';
 
 const DragButton = styled.span`
@@ -42,8 +41,6 @@ const DragButton = styled.span`
 const Img = styled.img`
   height: 36px;
   padding-top: 4px;
-  width: 100%;
-  object-fit: contain;
 `;
 
 /* eslint-disable react/no-array-index-key */
