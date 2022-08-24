@@ -24,6 +24,12 @@ import DraggingSibling from './DraggingSibling';
 import { CustomIconButton } from './IconButtonCustoms';
 import { connect, select } from './utils';
 
+const AccordionToggleStyled = styled(AccordionToggle)`
+  span {
+    width: 100%;
+  }
+`;
+
 const DragButton = styled.span`
   display: flex;
   align-items: center;
@@ -41,6 +47,8 @@ const DragButton = styled.span`
 const Img = styled.img`
   height: 36px;
   padding-top: 4px;
+  width: 100%;
+  object-fit: contain;
 `;
 
 /* eslint-disable react/no-array-index-key */
@@ -224,7 +232,7 @@ const DraggedItem = ({
             id={componentFieldName}
             size="S"
           >
-            <AccordionToggle
+            <AccordionToggleStyled
               action={
                 isReadOnly ? null : (
                   <Stack horizontal spacing={0}>
