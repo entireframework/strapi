@@ -1,7 +1,7 @@
 {
   "name": "getstarted",
   "private": true,
-  "version": "4.3.3-alpha.32",
+  "version": "4.3.3-alpha.33",
   "description": "A Strapi application.",
   "scripts": {
     "develop": "strapi develop",
@@ -12,7 +12,7 @@
     "strapi": "strapi"
   },
   "dependencies": {
-    "@strapi/admin": "^4.3.3-alpha.32",
+    "@strapi/admin": "^4.3.3-alpha.33",
     "@strapi/plugin-documentation": "^4.3.3-alpha.25",
     "@strapi/plugin-graphql": "^4.3.3-alpha.19",
     "@strapi/plugin-i18n": "^4.3.3-alpha.19",
@@ -21,7 +21,7 @@
     "@strapi/provider-email-mailgun": "^4.3.3-alpha.19",
     "@strapi/provider-upload-aws-s3": "^4.3.3-alpha.19",
     "@strapi/provider-upload-cloudinary": "^4.3.3-alpha.19",
-    "@strapi/strapi": "^4.3.3-alpha.32",
+    "@strapi/strapi": "^4.3.3-alpha.33",
     "@strapi/utils": "^4.3.3-alpha.19",
     "@vscode/sqlite3": "5.0.8",
     "better-sqlite3": "7.4.6",
