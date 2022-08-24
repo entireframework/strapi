@@ -22,7 +22,7 @@ const formatLayoutToApi = ({ layouts, metadatas, ...rest }) => {
       ...acc,
       [current]: {
         edit: editMetadatas,
-        list: omit(currentMetadatas.list, ['mainField']),
+        list: omit(currentMetadatas.list, ['mainField', 'coverField']),
       },
     };
   }, {});

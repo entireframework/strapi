@@ -55,6 +55,7 @@ function createDefaultMetadata(schema, name) {
       'visible',
       'editable',
       'mainField',
+      'coverField',
     ])
   );
 

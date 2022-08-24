@@ -17,6 +17,7 @@ const settingsFields = [
   'bulkable',
   'pageSize',
   'mainField',
+  'coverField',
   'defaultSortBy',
   'defaultSortOrder',
 ];
