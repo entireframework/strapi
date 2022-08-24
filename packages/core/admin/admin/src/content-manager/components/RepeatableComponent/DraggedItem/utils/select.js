@@ -41,7 +41,7 @@ const getMainField = (currentLayout, schema, componentFieldName, isRepeatable = 
           get(schema, ['attributes', mainField, 'repeatable'], false)
         )
       : mainFieldType === 'media'
-      ? 'provider_metadata.bunnycdn.url'
+      ? 'url'
       : get(
           schema,
           ['metadatas', mainField, 'list', 'coverField', 'name'],
