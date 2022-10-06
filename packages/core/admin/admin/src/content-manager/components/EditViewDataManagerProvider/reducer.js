@@ -58,12 +58,14 @@ const reducer = (state, action) =>
           draftState.shouldCheckErrors = !state.shouldCheckErrors;
         }
 
+        const currentValue = get(state, ['modifiedData', ...action.keys], null);
+
         const defaultDataStructure = {
           ...state.componentsDataStructure[action.componentUid],
+          __temp_key__: getMaxTempKey(currentValue || []) + 1,
           __component: action.componentUid,
         };
 
-        const currentValue = get(state, ['modifiedData', ...action.keys], null);
         const updatedValue = currentValue
           ? [...currentValue, defaultDataStructure]
           : [defaultDataStructure];

@@ -5,12 +5,14 @@ import PropTypes from 'prop-types';
 import { Stack } from '@strapi/design-system/Stack';
 import { Box } from '@strapi/design-system/Box';
 import { NotAllowedInput, useNotification } from '@strapi/helper-plugin';
+import { upperFirst } from 'lodash/fp';
 import { getTrad } from '../../utils';
 import connect from './utils/connect';
 import select from './utils/select';
 import AddComponentButton from './components/AddComponentButton';
 import DzLabel from './components/DzLabel';
 import Component from './components/Component';
+import { useContentTypeLayout } from '../../hooks';
 
 import ComponentPicker from './components/ComponentPicker';
 
@@ -36,12 +38,14 @@ const DynamicZone = ({
   metadatas,
 }) => {
   const toggleNotification = useNotification();
+  const { getComponentLayout } = useContentTypeLayout();
   const [isOpen, setIsOpen] = useState(false);
   const [shouldOpenAddedComponent, setShouldOpenAddedComponent] = useState(false);
   const dynamicDisplayedComponentsLength = dynamicDisplayedComponents.length;
   const intlDescription = metadatas.description
     ? { id: metadatas.description, defaultMessage: metadatas.description }
     : null;
+  const [isDraggingSibling, setIsDraggingSibling] = useState(false);
 
   const [componentCollapses, setComponentsCollapses] = useState(
     createCollapses(dynamicDisplayedComponentsLength)
@@ -163,7 +167,16 @@ const DynamicZone = ({
     return (
       <NotAllowedInput
         description={intlDescription}
-        intlLabel={{ id: metadatas.label, defaultMessage: metadatas.label }}
+        intlLabel={{
+          id: metadatas.label,
+          defaultMessage:
+            metadatas.label && name && metadatas.label === name.split('.').slice(-1)[0]
+              ? metadatas.label
+                  .split(/[\s_-]+/)
+                  .map(upperFirst)
+                  .join(' ')
+              : metadatas.label,
+        }}
         labelAction={labelAction}
         name={name}
       />
@@ -174,12 +187,25 @@ const DynamicZone = ({
     return (
       <NotAllowedInput
         description={intlDescription}
-        intlLabel={{ id: metadatas.label, defaultMessage: metadatas.label }}
+        intlLabel={{
+          id: metadatas.label,
+          defaultMessage:
+            metadatas.label && name && metadatas.label === name.split('.').slice(-1)[0]
+              ? metadatas.label
+                  .split(/[\s_-]+/)
+                  .map(upperFirst)
+                  .join(' ')
+              : metadatas.label,
+        }}
         labelAction={labelAction}
         name={name}
       />
     );
   }
+
+  const toggleCollapses = () => {
+    setComponentsCollapses(createCollapses(dynamicDisplayedComponentsLength));
+  };
 
   return (
     <Stack spacing={6}>
@@ -187,25 +213,39 @@ const DynamicZone = ({
         <Box>
           <DzLabel
             intlDescription={intlDescription}
-            label={metadatas.label}
+            label={
+              metadatas.label && name && metadatas.label === name.split('.').slice(-1)[0]
+                ? metadatas.label
+                    .split(/[\s_-]+/)
+                    .map(upperFirst)
+                    .join(' ')
+                : metadatas.label
+            }
             labelAction={labelAction}
             name={name}
             numberOfComponents={dynamicDisplayedComponentsLength}
             required={fieldSchema.required || false}
           />
-          {dynamicDisplayedComponents.map((componentUid, index) => {
+          {dynamicDisplayedComponents.map((data, index) => {
+            const key = data.__temp_key__;
             const showDownIcon =
               isFieldAllowed &&
               dynamicDisplayedComponentsLength > 0 &&
               index < dynamicDisplayedComponentsLength - 1;
             const showUpIcon = isFieldAllowed && dynamicDisplayedComponentsLength > 0 && index > 0;
             const isOpen = componentCollapses[index]?.isOpen || false;
+            const componentFieldName = `${name}.${index}`;
+            const componentUid = data.__component;
+            const componentLayoutData = getComponentLayout(componentUid);
 
             return (
               <Component
+                componentFieldName={componentFieldName}
+                schema={componentLayoutData}
+                getComponentLayout={getComponentLayout}
                 componentUid={componentUid}
                 formErrors={formErrors}
-                key={index}
+                key={key}
                 index={index}
                 isOpen={isOpen}
                 isFieldAllowed={isFieldAllowed}
@@ -216,6 +256,9 @@ const DynamicZone = ({
                 removeComponentFromDynamicZone={handleRemoveComponent}
                 showDownIcon={showDownIcon}
                 showUpIcon={showUpIcon}
+                isDraggingSibling={isDraggingSibling}
+                setIsDraggingSibling={setIsDraggingSibling}
+                toggleCollapses={toggleCollapses}
               />
             );
           })}
@@ -227,7 +270,14 @@ const DynamicZone = ({
         hasMaxError={hasMaxError}
         hasMinError={hasMinError}
         isDisabled={!isFieldAllowed}
-        label={metadatas.label}
+        label={
+          metadatas.label && name && metadatas.label === name.split('.').slice(-1)[0]
+            ? metadatas.label
+                .split(/[\s_-]+/)
+                .map(upperFirst)
+                .join(' ')
+            : metadatas.label
+        }
         missingComponentNumber={missingComponentNumber}
         isOpen={isOpen}
         name={name}
