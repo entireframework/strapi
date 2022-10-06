@@ -38,14 +38,6 @@ const ListPage = () => {
   const { notifyStatus } = useNotifyAT();
   const queryName = ['users', search];
 
-  const headers = tableHeaders.map((header) => ({
-    ...header,
-    metadatas: {
-      ...header.metadatas,
-      label: formatMessage(header.metadatas.label),
-    },
-  }));
-
   const title = formatMessage({
     id: 'global.users',
     defaultMessage: 'Users',
@@ -151,14 +143,14 @@ const ListPage = () => {
               isLoading={isLoading}
               onConfirmDeleteAll={deleteAllMutation.mutateAsync}
               onConfirmDelete={(id) => deleteAllMutation.mutateAsync([id])}
-              headers={headers}
+              headers={tableHeaders}
               rows={data?.results}
               withBulkActions
               withMainAction={canDelete}
             >
               <TableRows
                 canDelete={canDelete}
-                headers={headers}
+                headers={tableHeaders}
                 rows={data?.results || []}
                 withBulkActions
                 withMainAction={canDelete}
