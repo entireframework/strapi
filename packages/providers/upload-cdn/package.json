@@ -15,7 +15,7 @@
     "@strapi/provider-upload-local": "^4.4.2-alpha.1"
   },
   "engines": {
-    "node": ">=14.19.1 <=16.x.x",
+    "node": ">=14.19.1 <=18.x.x",
     "npm": ">=6.0.0"
   }
 }
