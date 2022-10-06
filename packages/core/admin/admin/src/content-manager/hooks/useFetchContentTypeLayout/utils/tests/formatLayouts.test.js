@@ -20,6 +20,9 @@ const addressSchema = {
   metadatas: {
     categories: {
       edit: {
+        coverField: {
+          name: undefined,
+        },
         mainField: {
           name: 'name',
           type: 'string',
@@ -613,6 +616,7 @@ describe('Content Manager | hooks | useFetchContentTypeLayout | utils ', () => {
         containsKey: 'name',
         defaultParams: {
           _component: 'api::address.address',
+          populate: [],
         },
         shouldDisplayRelationLink: true,
       });

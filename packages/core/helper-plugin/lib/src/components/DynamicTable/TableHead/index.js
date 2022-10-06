@@ -45,9 +45,14 @@ const TableHead = ({
           const isSorted = sortBy === name;
           const isUp = sortOrder === 'ASC';
 
+          const intlLabel = formatMessage({
+            id: `global.table.header.${name}`,
+            defaultMessage: label,
+          });
+
           const sortLabel = formatMessage(
             { id: 'components.TableHeader.sort', defaultMessage: 'Sort on {label}' },
-            { label }
+            { label: intlLabel }
           );
 
           const handleClickSort = (shouldAllowClick = true) => {
@@ -75,15 +80,15 @@ const TableHead = ({
                 )
               }
             >
-              <Tooltip label={isSortable ? sortLabel : label}>
+              <Tooltip label={isSortable ? sortLabel : intlLabel}>
                 <Typography
                   textColor="neutral600"
                   as={!isSorted && isSortable ? 'button' : 'span'}
-                  label={label}
+                  label={intlLabel}
                   onClick={() => handleClickSort(!isSorted)}
                   variant="sigma"
                 >
-                  {label}
+                  {intlLabel}
                 </Typography>
               </Tooltip>
             </Th>

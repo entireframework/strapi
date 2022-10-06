@@ -7,7 +7,6 @@
 import React, { useMemo, useState } from 'react';
 import { useSelector, shallowEqual } from 'react-redux';
 import { useIntl } from 'react-intl';
-import matchSorter from 'match-sorter';
 import sortBy from 'lodash/sortBy';
 import toLower from 'lodash/toLower';
 import { NavLink } from 'react-router-dom';
@@ -18,11 +17,13 @@ import {
   SubNavSections,
   SubNavLink,
 } from '@strapi/design-system/v2/SubNav';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import getTrad from '../../../utils/getTrad';
 import { makeSelectModelLinks } from '../selectors';
+import { useConfigurations } from '../../../../hooks';
 
 const matchByTitle = (links, search) =>
-  matchSorter(links, toLower(search), { keys: [(item) => toLower(item.title)] });
+  links.filter((item) => toLower(item.title).includes(toLower(search)));
 
 const LeftMenu = () => {
   const [search, setSearch] = useState('');
@@ -41,10 +42,54 @@ const LeftMenu = () => {
       };
     });
 
-  const intlCollectionTypeLinks = toIntl(collectionTypeLinks);
-  const intlSingleTypeLinks = toIntl(singleTypeLinks);
+  const { leftMenu } = useConfigurations();
+  const intlCollectionTypeLinks = toIntl(
+    collectionTypeLinks.filter(
+      (l) =>
+        !Object.keys(leftMenu || {})
+          .reduce((acc, l) => acc.concat(leftMenu[l].items), [])
+          .find((ll) => ll.uid === l.uid)
+    )
+  );
+  const intlSingleTypeLinks = toIntl(
+    singleTypeLinks.filter(
+      (l) =>
+        !Object.keys(leftMenu || {})
+          .reduce((acc, l) => acc.concat(leftMenu[l].items), [])
+          .find((ll) => ll.uid === l.uid)
+    )
+  );
+
+  Object.keys(leftMenu || {}).forEach((key) => {
+    leftMenu[key].items = toIntl(
+      leftMenu[key].items
+        .filter(
+          (l) =>
+            collectionTypeLinks.find((ll) => ll.uid === l.uid) ||
+            singleTypeLinks.find((ll) => ll.uid === l.uid)
+        )
+        .map((l) => {
+          return {
+            ...(collectionTypeLinks.find((ll) => ll.uid === l.uid) ||
+              singleTypeLinks.find((ll) => ll.uid === l.uid)),
+            ...l,
+          };
+        })
+    );
+  });
 
   const menu = [
+    ...Object.keys(leftMenu || {}).map((key) => {
+      return {
+        id: key,
+        title: {
+          id: getTrad(`components.LeftMenu.${key}`),
+          defaultMessage: leftMenu[key].defaultMessage,
+        },
+        searchable: true,
+        links: matchByTitle(leftMenu[key].items, search),
+      };
+    }),
     {
       id: 'collectionTypes',
       title: {
@@ -112,7 +157,12 @@ const LeftMenu = () => {
                 const search = link.search ? `?${link.search}` : '';
 
                 return (
-                  <SubNavLink as={NavLink} key={link.uid} to={`${link.to}${search}`}>
+                  <SubNavLink
+                    as={NavLink}
+                    key={link.uid}
+                    to={`${link.to}${search}`}
+                    icon={link.icon && <FontAwesomeIcon icon={link.icon} size="sm" />}
+                  >
                     {link.title}
                   </SubNavLink>
                 );

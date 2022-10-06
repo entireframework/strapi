@@ -163,6 +163,7 @@ const RepeatableComponent = ({
               }}
               parentName={name}
               schema={componentLayoutData}
+              getComponentLayout={getComponentLayout}
               setIsDraggingSibling={setIsDraggingSibling}
               toggleCollapses={toggleCollapses}
             />
