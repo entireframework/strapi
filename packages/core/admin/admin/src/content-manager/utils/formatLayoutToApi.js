@@ -18,11 +18,15 @@ const formatLayoutToApi = ({ layouts, metadatas, ...rest }) => {
       editMetadatas = { ...editMetadatas, mainField: currentMetadatas.edit.mainField.name };
     }
 
+    if (editMetadatas.coverField) {
+      editMetadatas = { ...editMetadatas, coverField: currentMetadatas.edit.coverField.name };
+    }
+
     return {
       ...acc,
       [current]: {
         edit: editMetadatas,
-        list: omit(currentMetadatas.list, ['mainField']),
+        list: omit(currentMetadatas.list, ['mainField', 'coverField']),
       },
     };
   }, {});

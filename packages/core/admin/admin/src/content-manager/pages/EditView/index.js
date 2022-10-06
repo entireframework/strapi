@@ -1,5 +1,6 @@
 import React, { Suspense, memo, useCallback, useMemo } from 'react';
 import PropTypes from 'prop-types';
+import { upperFirst } from 'lodash/fp';
 import get from 'lodash/get';
 import {
   CheckPermissions,
@@ -199,8 +200,25 @@ const EditView = ({
                                                   isRepeatable={repeatable}
                                                   intlLabel={{
                                                     id: metadatas.label,
-                                                    defaultMessage: metadatas.label,
+                                                    defaultMessage:
+                                                      metadatas.label &&
+                                                      name &&
+                                                      metadatas.label ===
+                                                        name.split('.').slice(-1)[0]
+                                                        ? metadatas.label
+                                                            .split(/[\s_-]+/)
+                                                            .map(upperFirst)
+                                                            .join(' ')
+                                                        : metadatas.label,
                                                   }}
+                                                  intlDescription={
+                                                    metadatas.description
+                                                      ? {
+                                                          id: metadatas.description,
+                                                          defaultMessage: metadatas.description,
+                                                        }
+                                                      : null
+                                                  }
                                                   max={max}
                                                   min={min}
                                                   name={name}

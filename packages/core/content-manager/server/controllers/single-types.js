@@ -4,9 +4,9 @@ const { setCreatorFields, pipeAsync } = require('@strapi/utils');
 
 const { getService, pickWritableAttributes } = require('../utils');
 
-const findEntity = async (query, model) => {
+const findEntity = async (query, model, populate) => {
   const entityManager = getService('entity-manager');
-  const entity = await entityManager.find(query, model);
+  const entity = await entityManager.find(query, model, populate);
   return entityManager.assocCreatorRoles(entity);
 };
 
@@ -24,7 +24,7 @@ module.exports = {
 
     const permissionQuery = permissionChecker.buildReadQuery(query);
 
-    const entity = await findEntity(permissionQuery, model);
+    const entity = await findEntity(permissionQuery, model, permissionQuery.populate);
 
     // allow user with create permission to know a single type is not created
     if (!entity) {
