@@ -115,6 +115,10 @@ const DynamicZone = ({
     );
   }
 
+  const toggleCollapses = () => {
+    setComponentsCollapses(createCollapses(dynamicDisplayedComponentsLength));
+  };
+
   return (
     <Stack spacing={6}>
       {dynamicDisplayedComponentsLength > 0 && (
