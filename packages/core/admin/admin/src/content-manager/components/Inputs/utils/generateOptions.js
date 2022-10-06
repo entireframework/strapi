@@ -1,3 +1,5 @@
+import { upperFirst } from 'lodash/fp';
+
 const generateOptions = (options, isRequired = false) => {
   return [
     {
@@ -17,7 +19,10 @@ const generateOptions = (options, isRequired = false) => {
         metadatas: {
           intlLabel: {
             id: option,
-            defaultMessage: option,
+            defaultMessage: option
+              .split(/[\s_-]+/)
+              .map(upperFirst)
+              .join(' '),
           },
           hidden: false,
           disabled: false,

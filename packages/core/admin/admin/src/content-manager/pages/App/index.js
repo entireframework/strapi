@@ -114,7 +114,7 @@ const App = () => {
 
 export { App };
 
-export default function () {
+export default () => {
   const { formatMessage } = useIntl();
 
   return (
@@ -125,4 +125,4 @@ export default function () {
       <App />
     </>
   );
-}
+};
