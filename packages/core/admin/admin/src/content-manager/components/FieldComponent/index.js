@@ -25,6 +25,7 @@ const FieldComponent = ({
   // TODO add error state
   // formErrors,
   intlLabel,
+  intlDescription,
   isCreatingEntry,
   isFromDynamicZone,
   isRepeatable,
@@ -71,6 +72,7 @@ const FieldComponent = ({
         {intlLabel && (
           <Label
             intlLabel={intlLabel}
+            intlDescription={intlDescription}
             labelAction={labelAction}
             name={name}
             numberOfEntries={componentValueLength}
@@ -129,6 +131,7 @@ FieldComponent.defaultProps = {
   hasChildrenAllowedFields: false,
   hasChildrenReadableFields: false,
   intlLabel: undefined,
+  intlDescription: undefined,
   isFromDynamicZone: false,
   isReadOnly: false,
   isRepeatable: false,
@@ -151,6 +154,11 @@ FieldComponent.propTypes = {
   isRepeatable: PropTypes.bool,
   isNested: PropTypes.bool,
   intlLabel: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    defaultMessage: PropTypes.string.isRequired,
+    values: PropTypes.object,
+  }),
+  intlDescription: PropTypes.shape({
     id: PropTypes.string.isRequired,
     defaultMessage: PropTypes.string.isRequired,
     values: PropTypes.object,

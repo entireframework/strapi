@@ -675,6 +675,7 @@
   "content-manager.form.Input.bulkActions": "Enable bulk actions",
   "content-manager.form.Input.defaultSort": "Default sort attribute",
   "content-manager.form.Input.description": "Description",
+  "content-manager.form.Input.coverField": "Entry cover",
   "content-manager.form.Input.description.placeholder": "Display name in the profile",
   "content-manager.form.Input.editable": "Editable field",
   "content-manager.form.Input.filters": "Enable filters",

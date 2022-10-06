@@ -13,6 +13,7 @@ describe('STRAPI_HELPER_PLUGIN | utils | formatContentTypeData', () => {
           id: 7,
           name: 'name',
           password: 'password',
+          __temp_key__: 0,
         },
         {
           id: 4,
@@ -21,6 +22,7 @@ describe('STRAPI_HELPER_PLUGIN | utils | formatContentTypeData', () => {
           subcomponotrepeatable: null,
           subrepeatable: [],
           __component: 'compos.test-compo',
+          __temp_key__: 1,
         },
         {
           id: 5,
@@ -29,6 +31,7 @@ describe('STRAPI_HELPER_PLUGIN | utils | formatContentTypeData', () => {
           subcomponotrepeatable: { id: 9, name: 'name', password: 'password' },
           subrepeatable: [{ id: 8, name: 'name', password: 'password', __temp_key__: 0 }],
           __component: 'compos.test-compo',
+          __temp_key__: 2,
         },
         {
           id: 6,
@@ -37,6 +40,7 @@ describe('STRAPI_HELPER_PLUGIN | utils | formatContentTypeData', () => {
           subcomponotrepeatable: null,
           subrepeatable: [],
           __component: 'compos.test-compo',
+          __temp_key__: 3,
         },
       ],
       id: 1,
@@ -129,6 +133,7 @@ describe('STRAPI_HELPER_PLUGIN | utils | formatContentTypeData', () => {
       dz: [
         {
           __component: 'compos.sub-compo',
+          __temp_key__: 0,
           id: 7,
           name: 'name',
           password: 'password',

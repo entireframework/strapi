@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { Stack } from '@strapi/design-system/Stack';
 import { Box } from '@strapi/design-system/Box';
 import { NotAllowedInput, useNotification } from '@strapi/helper-plugin';
-
+import { upperFirst } from 'lodash/fp';
 import { getTrad } from '../../utils';
 
 import connect from './utils/connect';
@@ -43,6 +43,7 @@ const DynamicZone = ({
   const intlDescription = metadatas.description
     ? { id: metadatas.description, defaultMessage: metadatas.description }
     : null;
+  const [isDraggingSibling, setIsDraggingSibling] = useState(false);
 
   // We cannot use the default props here
   const { max = Infinity, min = -Infinity } = fieldSchema;
@@ -98,7 +99,16 @@ const DynamicZone = ({
     return (
       <NotAllowedInput
         description={intlDescription}
-        intlLabel={{ id: metadatas.label, defaultMessage: metadatas.label }}
+        intlLabel={{
+          id: metadatas.label,
+          defaultMessage:
+            metadatas.label && name && metadatas.label === name.split('.').slice(-1)[0]
+              ? metadatas.label
+                  .split(/[\s_-]+/)
+                  .map(upperFirst)
+                  .join(' ')
+              : metadatas.label,
+        }}
         labelAction={labelAction}
         name={name}
       />
@@ -111,7 +121,14 @@ const DynamicZone = ({
         <Box>
           <DynamicZoneLabel
             intlDescription={intlDescription}
-            label={metadatas.label}
+            label={
+              metadatas.label && name && metadatas.label === name.split('.').slice(-1)[0]
+                ? metadatas.label
+                    .split(/[\s_-]+/)
+                    .map(upperFirst)
+                    .join(' ')
+                : metadatas.label
+            }
             labelAction={labelAction}
             name={name}
             numberOfComponents={dynamicDisplayedComponentsLength}
@@ -120,9 +137,16 @@ const DynamicZone = ({
           {dynamicDisplayedComponents.map((componentUid, index) => {
             const showDownIcon = isFieldAllowed && index < dynamicDisplayedComponentsLength - 1;
             const showUpIcon = isFieldAllowed && index > 0;
+            // const key = data.__temp_key__;
+            // const componentFieldName = `${name}.${index}`;
+            // const componentUid = data.__component;
+            // const componentLayoutData = getComponentLayout(componentUid);
 
             return (
               <DynamicZoneComponent
+                // componentFieldName={componentFieldName}
+                // schema={componentLayoutData}
+                // getComponentLayout={getComponentLayout}
                 componentUid={componentUid}
                 formErrors={formErrors}
                 // eslint-disable-next-line react/no-array-index-key
@@ -135,6 +159,9 @@ const DynamicZone = ({
                 onRemoveComponentClick={handleRemoveComponent(name, index)}
                 showDownIcon={showDownIcon}
                 showUpIcon={showUpIcon}
+                isDraggingSibling={isDraggingSibling}
+                setIsDraggingSibling={setIsDraggingSibling}
+                toggleCollapses={toggleCollapses}
               />
             );
           })}
@@ -146,7 +173,14 @@ const DynamicZone = ({
         hasMaxError={hasMaxError}
         hasMinError={hasMinError}
         isDisabled={!isFieldAllowed}
-        label={metadatas.label}
+        label={
+          metadatas.label && name && metadatas.label === name.split('.').slice(-1)[0]
+            ? metadatas.label
+                .split(/[\s_-]+/)
+                .map(upperFirst)
+                .join(' ')
+            : metadatas.label
+        }
         missingComponentNumber={missingComponentNumber}
         isOpen={addComponentIsOpen}
         name={name}

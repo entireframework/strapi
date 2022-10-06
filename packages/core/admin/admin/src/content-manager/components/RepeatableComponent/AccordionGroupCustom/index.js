@@ -6,19 +6,22 @@ import { Box } from '@strapi/design-system/Box';
 import { Typography } from '@strapi/design-system/Typography';
 import { Flex } from '@strapi/design-system/Flex';
 import { KeyboardNavigable } from '@strapi/design-system/KeyboardNavigable';
+import { Grid } from '@strapi/design-system/Grid';
 
 const AccordionFooter = styled(Box)`
   overflow: hidden;
+  border-top: 1px solid ${({ theme }) => theme.colors.neutral200};
   border-bottom: 1px solid ${({ theme }) => theme.colors.neutral200};
   border-right: 1px solid ${({ theme }) => theme.colors.neutral200};
   border-left: 1px solid ${({ theme }) => theme.colors.neutral200};
   border-radius: 0 0 ${({ theme }) => theme.borderRadius} ${({ theme }) => theme.borderRadius};
 `;
 
-const EnhancedGroup = styled(Box)`
+const EnhancedGroup = styled(Grid)`
   > div {
     & > * {
       border-radius: unset;
+      border-top: 1px solid ${({ theme }) => theme.colors.neutral200};
       border-right: 1px solid ${({ theme }) => theme.colors.neutral200};
       border-left: 1px solid ${({ theme }) => theme.colors.neutral200};
       border-bottom: 1px solid ${({ theme }) => theme.colors.neutral200};

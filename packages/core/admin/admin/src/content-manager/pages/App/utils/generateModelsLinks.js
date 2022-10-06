@@ -1,5 +1,6 @@
 import { chain, get } from 'lodash';
 import { stringify } from 'qs';
+import pluralize from 'pluralize';
 
 const generateLinks = (links, type, configurations = []) => {
   return links
@@ -33,7 +34,8 @@ const generateLinks = (links, type, configurations = []) => {
         permissions,
         search,
         kind: link.kind,
-        title: link.info.displayName,
+        title:
+          link.kind === 'collectionType' ? pluralize(link.info.displayName) : link.info.displayName,
         to: `/content-manager/${link.kind}/${link.uid}`,
         uid: link.uid,
         // Used for the list item key in the helper plugin
