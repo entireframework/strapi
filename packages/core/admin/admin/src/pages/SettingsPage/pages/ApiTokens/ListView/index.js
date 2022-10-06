@@ -1,9 +1,5 @@
 import React, { useEffect, useRef } from 'react';
 import { useIntl } from 'react-intl';
-import { useQuery, useMutation, useQueryClient } from 'react-query';
-import { useHistory } from 'react-router-dom';
-import qs from 'qs';
-
 import {
   SettingsPageTitle,
   useFocusWhenNavigate,
@@ -20,7 +16,9 @@ import { HeaderLayout, ContentLayout } from '@strapi/design-system/Layout';
 import { Main } from '@strapi/design-system/Main';
 import { Button } from '@strapi/design-system/Button';
 import Plus from '@strapi/icons/Plus';
-
+import { useQuery, useMutation, useQueryClient } from 'react-query';
+import { useHistory } from 'react-router-dom';
+import qs from 'qs';
 import { axiosInstance } from '../../../../../core/utils';
 import adminPermissions from '../../../../../permissions';
 import tableHeaders from './utils/tableHeaders';
@@ -48,14 +46,6 @@ const ApiTokenListView = () => {
   useEffect(() => {
     push({ search: qs.stringify({ sort: 'name:ASC' }, { encode: false }) });
   }, [push]);
-
-  const headers = tableHeaders.map((header) => ({
-    ...header,
-    metadatas: {
-      ...header.metadatas,
-      label: formatMessage(header.metadatas.label),
-    },
-  }));
 
   const {
     data: apiTokens,
@@ -144,7 +134,7 @@ const ApiTokenListView = () => {
         {!canRead && <NoPermissions />}
         {shouldDisplayDynamicTable && (
           <DynamicTable
-            headers={headers}
+            headers={tableHeaders}
             contentType="api-tokens"
             rows={apiTokens}
             withBulkActions={canDelete || canUpdate || canRead}
