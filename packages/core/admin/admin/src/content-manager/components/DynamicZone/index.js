@@ -6,6 +6,7 @@ import { Box, Stack, VisuallyHidden } from '@strapi/design-system';
 import { NotAllowedInput, useNotification } from '@strapi/helper-plugin';
 import { useIntl } from 'react-intl';
 
+import { upperFirst } from 'lodash/fp';
 import { getTrad } from '../../utils';
 
 import connect from './utils/connect';
@@ -45,6 +46,7 @@ const DynamicZone = ({
   const intlDescription = metadatas.description
     ? { id: metadatas.description, defaultMessage: metadatas.description }
     : null;
+  const [isDraggingSibling, setIsDraggingSibling] = useState(false);
 
   // We cannot use the default props here
   const { max = Infinity, min = -Infinity } = fieldSchema;
@@ -164,7 +166,16 @@ const DynamicZone = ({
     return (
       <NotAllowedInput
         description={intlDescription}
-        intlLabel={{ id: metadatas.label, defaultMessage: metadatas.label }}
+        intlLabel={{
+          id: metadatas.label,
+          defaultMessage:
+            metadatas.label && name && metadatas.label === name.split('.').slice(-1)[0]
+              ? metadatas.label
+                  .split(/[\s_-]+/)
+                  .map(upperFirst)
+                  .join(' ')
+              : metadatas.label,
+        }}
         labelAction={labelAction}
         name={name}
       />
@@ -179,7 +190,14 @@ const DynamicZone = ({
         <Box>
           <DynamicZoneLabel
             intlDescription={intlDescription}
-            label={metadatas.label}
+            label={
+              metadatas.label && name && metadatas.label === name.split('.').slice(-1)[0]
+                ? metadatas.label
+                    .split(/[\s_-]+/)
+                    .map(upperFirst)
+                    .join(' ')
+                : metadatas.label
+            }
             labelAction={labelAction}
             name={name}
             numberOfComponents={dynamicDisplayedComponentsLength}
@@ -195,6 +213,9 @@ const DynamicZone = ({
           <ol aria-describedby={ariaDescriptionId}>
             {dynamicDisplayedComponents.map(({ componentUid, id }, index) => (
               <DynamicZoneComponent
+                // componentFieldName={componentFieldName}
+                // schema={componentLayoutData}
+                // getComponentLayout={getComponentLayout}
                 componentUid={componentUid}
                 formErrors={formErrors}
                 key={`${componentUid}-${id}`}
@@ -217,7 +238,14 @@ const DynamicZone = ({
         hasMaxError={hasMaxError}
         hasMinError={hasMinError}
         isDisabled={!isFieldAllowed}
-        label={metadatas.label}
+        label={
+          metadatas.label && name && metadatas.label === name.split('.').slice(-1)[0]
+            ? metadatas.label
+                .split(/[\s_-]+/)
+                .map(upperFirst)
+                .join(' ')
+            : metadatas.label
+        }
         missingComponentNumber={missingComponentNumber}
         isOpen={addComponentIsOpen}
         name={name}

@@ -25,11 +25,10 @@ const formatContentTypeData = (data, ct, composSchema) => {
       }
 
       if (type === 'dynamiczone') {
-        acc[current] = value.map((componentValue) => {
-          const formattedData = recursiveFormatData(
-            componentValue,
-            composSchema[componentValue.__component]
-          );
+        acc[current] = value.map((obj, i) => {
+          const newObj = { ...obj, __temp_key__: i };
+
+          const formattedData = recursiveFormatData(newObj, composSchema[obj.__component]);
 
           return formattedData;
         });

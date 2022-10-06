@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 import { Box } from '@strapi/design-system/Box';
 import { Grid, GridItem } from '@strapi/design-system/Grid';
 import { Stack } from '@strapi/design-system/Stack';
+import { upperFirst } from 'lodash/fp';
 import { useContentTypeLayout } from '../../hooks';
 import FieldComponent from '../FieldComponent';
 import Inputs from '../Inputs';
@@ -48,7 +49,15 @@ const NonRepeatableComponent = ({ componentUid, isFromDynamicZone, isNested, nam
                         componentUid={compoUid}
                         intlLabel={{
                           id: metadatas.label,
-                          defaultMessage: metadatas.label,
+                          defaultMessage:
+                            metadatas.label &&
+                            keys &&
+                            metadatas.label === keys.split('.').slice(-1)[0]
+                              ? metadatas.label
+                                  .split(/[\s_-]+/)
+                                  .map(upperFirst)
+                                  .join(' ')
+                              : metadatas.label,
                         }}
                         isNested
                         isRepeatable={fieldSchema.repeatable}

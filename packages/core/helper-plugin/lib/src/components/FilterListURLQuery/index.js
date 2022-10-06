@@ -86,6 +86,10 @@ FilterListURLQuery.propTypes = {
           name: PropTypes.string,
           type: PropTypes.string,
         }),
+        coverField: PropTypes.shape({
+          name: PropTypes.string,
+          type: PropTypes.string,
+        }),
       }),
     })
   ),

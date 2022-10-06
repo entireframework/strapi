@@ -40,6 +40,7 @@ const GenericInput = ({
   name,
   onChange,
   options,
+  modifiedData,
   placeholder,
   required,
   step,
@@ -111,6 +112,7 @@ const GenericInput = ({
         name={name}
         onChange={onChange}
         options={options}
+        modifiedData={modifiedData}
         required={required}
         placeholder={placeholder}
         type={type}
@@ -457,6 +459,7 @@ GenericInput.defaultProps = {
   placeholder: null,
   required: false,
   options: [],
+  modifiedData: null,
   step: 1,
   value: undefined,
   attribute: null,
@@ -502,6 +505,7 @@ GenericInput.propTypes = {
       value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
     }).isRequired
   ),
+  modifiedData: PropTypes.object,
   placeholder: PropTypes.shape({
     id: PropTypes.string.isRequired,
     defaultMessage: PropTypes.string.isRequired,

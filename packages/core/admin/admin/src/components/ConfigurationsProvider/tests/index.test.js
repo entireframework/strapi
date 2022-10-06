@@ -11,6 +11,7 @@ describe('ConfigurationsProvider', () => {
         menuLogo="strapi.jpg"
         showReleaseNotification={false}
         showTutorials={false}
+        leftMenu={[]}
       >
         <div>Test</div>
       </ConfigurationsProvider>
