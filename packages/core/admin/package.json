@@ -1,6 +1,6 @@
 {
   "name": "@strapi/admin",
-  "version": "4.4.3",
+  "version": "4.4.4-alpha.0",
   "description": "Strapi Admin",
   "repository": {
     "type": "git",
@@ -53,7 +53,7 @@
     "@pmmmwh/react-refresh-webpack-plugin": "0.5.7",
     "@strapi/babel-plugin-switch-ee-ce": "4.4.3",
     "@strapi/design-system": "1.2.5",
-    "@strapi/helper-plugin": "4.4.3",
+    "@strapi/helper-plugin": "^4.4.4-alpha.0",
     "@strapi/icons": "1.2.3",
     "@strapi/permissions": "4.4.3",
     "@strapi/typescript-utils": "4.4.3",
