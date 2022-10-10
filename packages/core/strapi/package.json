@@ -1,6 +1,6 @@
 {
   "name": "@strapi/strapi",
-  "version": "4.4.4-alpha.5",
+  "version": "4.4.4-alpha.6",
   "description": "An open source headless CMS solution to create and manage your own API. It provides a powerful dashboard and features to make your life easier. Databases supported: MySQL, MariaDB, PostgreSQL, SQLite",
   "keywords": [
     "strapi",
@@ -89,7 +89,7 @@
     "@strapi/plugin-content-manager": "^4.4.4-alpha.1",
     "@strapi/plugin-content-type-builder": "^4.4.4-alpha.1",
     "@strapi/plugin-email": "^4.4.4-alpha.1",
-    "@strapi/plugin-upload": "^4.4.4-alpha.5",
+    "@strapi/plugin-upload": "^4.4.4-alpha.6",
     "@strapi/typescript-utils": "^4.4.4-alpha.1",
     "@strapi/utils": "^4.4.4-alpha.1",
     "bcryptjs": "2.4.3",
