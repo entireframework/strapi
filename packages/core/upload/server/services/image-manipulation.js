@@ -157,10 +157,9 @@ const generateThumbnail = async (file) => {
       fileData = await generatePoster(file);
     }
 
-    const newFile = await resizeFileTo(file, THUMBNAIL_RESIZE_OPTIONS, {
+    const newFile = await resizeFileTo(fileData, THUMBNAIL_RESIZE_OPTIONS, {
       name: `thumbnail${isVideoFile ? '-poster' : ''}_${fileData.name}`,
       hash: `thumbnail${isVideoFile ? '-poster' : ''}_${fileData.hash}`,
-      format: isVideoFile ? 'png' : undefined,
     });
     return newFile;
   }
