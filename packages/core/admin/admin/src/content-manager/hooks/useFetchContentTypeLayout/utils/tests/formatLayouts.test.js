@@ -510,6 +510,9 @@ describe('Content Manager | hooks | useFetchContentTypeLayout | utils ', () => {
             mainField: {
               name: 'name',
             },
+            coverField: {
+              name: undefined,
+            },
           },
           fieldSchema: {
             type: 'component',
