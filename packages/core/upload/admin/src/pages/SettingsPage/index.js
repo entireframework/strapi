@@ -198,7 +198,7 @@ export const SettingsPage = () => {
                         <NumberInput
                           aria-label="responsiveQuality"
                           data-testid="responsiveQuality"
-                          checked={modifiedData.responsiveQuality}
+                          value={modifiedData.responsiveQuality}
                           hint={formatMessage({
                             id: getTrad('settings.form.responsiveQuality.description'),
                             defaultMessage: 'Responsive friendly quality',
