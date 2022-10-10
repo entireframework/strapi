@@ -12,6 +12,7 @@ import Check from '@strapi/icons/Check';
 import { Box } from '@strapi/design-system/Box';
 import { Flex } from '@strapi/design-system/Flex';
 import { ToggleInput } from '@strapi/design-system/ToggleInput';
+import { NumberInput } from '@strapi/design-system/NumberInput';
 import { Typography } from '@strapi/design-system/Typography';
 import { Button } from '@strapi/design-system/Button';
 import { Main } from '@strapi/design-system/Main';
@@ -189,6 +190,27 @@ export const SettingsPage = () => {
                           onChange={(e) => {
                             handleChange({
                               target: { name: 'responsiveDimensions', value: e.target.checked },
+                            });
+                          }}
+                        />
+                      </GridItem>
+                      <GridItem col={6} s={12}>
+                        <NumberInput
+                          aria-label="responsiveQuality"
+                          data-testid="responsiveQuality"
+                          checked={modifiedData.responsiveQuality}
+                          hint={formatMessage({
+                            id: getTrad('settings.form.responsiveQuality.description'),
+                            defaultMessage: 'Responsive friendly quality',
+                          })}
+                          label={formatMessage({
+                            id: getTrad('settings.form.responsiveQuality.label'),
+                            defaultMessage: 'Responsive friendly quality',
+                          })}
+                          name="responsiveQuality"
+                          onChangeValue={(value) => {
+                            handleChange({
+                              target: { name: 'responsiveQuality', value },
                             });
                           }}
                         />
