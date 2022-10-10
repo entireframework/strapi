@@ -1534,6 +1534,17 @@ exports[`<EditAssetDialog /> renders and matches the snapshot 1`] = `
                     Replace media
                   </span>
                 </button>
+                <button
+                  aria-disabled="false"
+                  class="c48 c52"
+                  type="button"
+                >
+                  <span
+                    class="c50 c51"
+                  >
+                    Reupload media to CDN
+                  </span>
+                </button>
                 <div
                   class="c44"
                 >
