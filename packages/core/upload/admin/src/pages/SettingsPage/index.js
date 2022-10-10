@@ -208,7 +208,7 @@ export const SettingsPage = () => {
                             defaultMessage: 'Responsive friendly quality',
                           })}
                           name="responsiveQuality"
-                          onChangeValue={(value) => {
+                          onValueChange={(value) => {
                             handleChange({
                               target: { name: 'responsiveQuality', value },
                             });
