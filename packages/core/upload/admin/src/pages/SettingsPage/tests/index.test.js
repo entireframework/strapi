@@ -49,7 +49,7 @@ describe('Upload | SettingsPage', () => {
     );
 
     expect(container).toMatchInlineSnapshot(`
-      .c42 {
+      .c55 {
         border: 0;
         -webkit-clip: rect(0 0 0 0);
         clip: rect(0 0 0 0);
@@ -223,6 +223,191 @@ describe('Upload | SettingsPage', () => {
         flex-direction: row;
       }
 
+      .c48 {
+        padding-right: 12px;
+        padding-left: 8px;
+      }
+
+      .c50 {
+        color: #8e8ea9;
+      }
+
+      .c41 {
+        -webkit-align-items: stretch;
+        -webkit-box-align: stretch;
+        -ms-flex-align: stretch;
+        align-items: stretch;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-flex-direction: column;
+        -ms-flex-direction: column;
+        flex-direction: column;
+      }
+
+      .c44 {
+        -webkit-align-items: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-flex-direction: row;
+        -ms-flex-direction: row;
+        flex-direction: row;
+      }
+
+      .c45 {
+        -webkit-align-items: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-flex-direction: row;
+        -ms-flex-direction: row;
+        flex-direction: row;
+        -webkit-box-pack: justify;
+        -webkit-justify-content: space-between;
+        -ms-flex-pack: justify;
+        justify-content: space-between;
+      }
+
+      .c43 {
+        font-weight: 600;
+        color: #32324d;
+        font-size: 0.75rem;
+        line-height: 1.33;
+      }
+
+      .c53 {
+        color: #666687;
+        font-size: 0.75rem;
+        line-height: 1.33;
+      }
+
+      .c47 {
+        border: none;
+        border-radius: 4px;
+        padding-bottom: 0.65625rem;
+        padding-left: 16px;
+        padding-right: 0;
+        padding-top: 0.65625rem;
+        color: #32324d;
+        font-weight: 400;
+        font-size: 0.875rem;
+        display: block;
+        width: 100%;
+        background: inherit;
+      }
+
+      .c47::-webkit-input-placeholder {
+        color: #8e8ea9;
+        opacity: 1;
+      }
+
+      .c47::-moz-placeholder {
+        color: #8e8ea9;
+        opacity: 1;
+      }
+
+      .c47:-ms-input-placeholder {
+        color: #8e8ea9;
+        opacity: 1;
+      }
+
+      .c47::placeholder {
+        color: #8e8ea9;
+        opacity: 1;
+      }
+
+      .c47[aria-disabled='true'] {
+        color: inherit;
+      }
+
+      .c47:focus {
+        outline: none;
+        box-shadow: none;
+      }
+
+      .c46 {
+        border: 1px solid #dcdce4;
+        border-radius: 4px;
+        background: #ffffff;
+        outline: none;
+        box-shadow: 0;
+        -webkit-transition-property: border-color,box-shadow,fill;
+        transition-property: border-color,box-shadow,fill;
+        -webkit-transition-duration: 0.2s;
+        transition-duration: 0.2s;
+      }
+
+      .c46:focus-within {
+        border: 1px solid #4945ff;
+        box-shadow: #4945ff 0px 0px 0px 2px;
+      }
+
+      .c42 > * {
+        margin-top: 0;
+        margin-bottom: 0;
+      }
+
+      .c42 > * + * {
+        margin-top: 4px;
+      }
+
+      .c51 path {
+        fill: #8e8ea9;
+      }
+
+      .c49 {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        height: 1rem;
+        -webkit-align-items: flex-end;
+        -webkit-box-align: flex-end;
+        -ms-flex-align: flex-end;
+        align-items: flex-end;
+        -webkit-transform: translateY(-2px);
+        -ms-transform: translateY(-2px);
+        transform: translateY(-2px);
+      }
+
+      .c49 svg {
+        display: block;
+        height: 0.25rem;
+        -webkit-transform: rotateX(180deg);
+        -ms-transform: rotateX(180deg);
+        transform: rotateX(180deg);
+      }
+
+      .c52 {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        height: 1rem;
+        -webkit-align-items: flex-start;
+        -webkit-box-align: flex-start;
+        -ms-flex-align: flex-start;
+        align-items: flex-start;
+        -webkit-transform: translateY(2px);
+        -ms-transform: translateY(2px);
+        transform: translateY(2px);
+      }
+
+      .c52 svg {
+        display: block;
+        height: 0.25rem;
+      }
+
       .c17 {
         -webkit-align-items: stretch;
         -webkit-box-align: stretch;
@@ -327,7 +512,7 @@ describe('Upload | SettingsPage', () => {
         line-height: 1.33;
       }
 
-      .c41 {
+      .c54 {
         font-weight: 600;
         color: #b72b1a;
         text-transform: uppercase;
@@ -704,6 +889,103 @@ describe('Upload | SettingsPage', () => {
                             <div
                               class=""
                             >
+                              <div>
+                                <div
+                                  class="c41 c42"
+                                  spacing="1"
+                                >
+                                  <label
+                                    class="c43"
+                                    for="numberinput-1"
+                                  >
+                                    <div
+                                      class="c44"
+                                    >
+                                      Responsive friendly quality
+                                    </div>
+                                  </label>
+                                  <div
+                                    class="c45 c46"
+                                  >
+                                    <input
+                                      aria-describedby="numberinput-1-hint"
+                                      aria-disabled="false"
+                                      aria-invalid="false"
+                                      aria-label="responsiveQuality"
+                                      class="c47"
+                                      data-testid="responsiveQuality"
+                                      id="numberinput-1"
+                                      name="responsiveQuality"
+                                      type="text"
+                                      value=""
+                                    />
+                                    <div
+                                      class="c48"
+                                    >
+                                      <button
+                                        aria-hidden="true"
+                                        class="c49"
+                                        data-testid="ArrowUp"
+                                        tabindex="-1"
+                                        type="button"
+                                      >
+                                        <svg
+                                          class="c50 c51"
+                                          fill="none"
+                                          height="1em"
+                                          viewBox="0 0 14 8"
+                                          width="1em"
+                                          xmlns="http://www.w3.org/2000/svg"
+                                        >
+                                          <path
+                                            clip-rule="evenodd"
+                                            d="M14 .889a.86.86 0 01-.26.625L7.615 7.736A.834.834 0 017 8a.834.834 0 01-.615-.264L.26 1.514A.861.861 0 010 .889c0-.24.087-.45.26-.625A.834.834 0 01.875 0h12.25c.237 0 .442.088.615.264a.86.86 0 01.26.625z"
+                                            fill="#32324D"
+                                            fill-rule="evenodd"
+                                          />
+                                        </svg>
+                                      </button>
+                                      <button
+                                        aria-hidden="true"
+                                        class="c52"
+                                        data-testid="ArrowDown"
+                                        tabindex="-1"
+                                        type="button"
+                                      >
+                                        <svg
+                                          class="c50 c51"
+                                          fill="none"
+                                          height="1em"
+                                          viewBox="0 0 14 8"
+                                          width="1em"
+                                          xmlns="http://www.w3.org/2000/svg"
+                                        >
+                                          <path
+                                            clip-rule="evenodd"
+                                            d="M14 .889a.86.86 0 01-.26.625L7.615 7.736A.834.834 0 017 8a.834.834 0 01-.615-.264L.26 1.514A.861.861 0 010 .889c0-.24.087-.45.26-.625A.834.834 0 01.875 0h12.25c.237 0 .442.088.615.264a.86.86 0 01.26.625z"
+                                            fill="#32324D"
+                                            fill-rule="evenodd"
+                                          />
+                                        </svg>
+                                      </button>
+                                    </div>
+                                  </div>
+                                  <p
+                                    class="c53"
+                                    id="numberinput-1-hint"
+                                  >
+                                    Responsive friendly quality
+                                  </p>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div
+                            class="c24"
+                          >
+                            <div
+                              class=""
+                            >
                               <div
                                 class="c25"
                               >
@@ -742,7 +1024,7 @@ describe('Upload | SettingsPage', () => {
                                         class="c34 c28 c37"
                                       >
                                         <span
-                                          class="c41"
+                                          class="c54"
                                         >
                                           Off
                                         </span>
@@ -869,7 +1151,7 @@ describe('Upload | SettingsPage', () => {
           </form>
         </main>
         <div
-          class="c42"
+          class="c55"
         >
           <p
             aria-live="polite"
