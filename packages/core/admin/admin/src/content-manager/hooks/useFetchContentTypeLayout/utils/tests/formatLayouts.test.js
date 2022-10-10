@@ -54,6 +54,9 @@ describe('Content Manager | hooks | useFetchContentTypeLayout | utils ', () => {
             targetModel: 'api::category.category',
           },
           metadatas: {
+            coverField: {
+              name: undefined,
+            },
             mainField: {
               name: 'name',
               type: 'string',
@@ -577,6 +580,9 @@ describe('Content Manager | hooks | useFetchContentTypeLayout | utils ', () => {
           metadatas: {
             mainField: {
               name: 'name',
+            },
+            coverField: {
+              name: undefined,
             },
           },
           fieldSchema: {
