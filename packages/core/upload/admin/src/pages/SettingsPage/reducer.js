@@ -6,12 +6,14 @@ const initialState = {
   isSubmiting: false,
   initialData: {
     responsiveDimensions: true,
+    responsiveQuality: 90,
     sizeOptimization: true,
     autoOrientation: false,
     videoPreview: false,
   },
   modifiedData: {
     responsiveDimensions: true,
+    responsiveQuality: 90,
     sizeOptimization: true,
     autoOrientation: false,
     videoPreview: false,

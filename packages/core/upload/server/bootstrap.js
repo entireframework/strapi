@@ -14,6 +14,7 @@ module.exports = async ({ strapi }) => {
       value: {
         sizeOptimization: true,
         responsiveDimensions: true,
+        responsiveQuality: 90,
         autoOrientation: false,
       },
     });
