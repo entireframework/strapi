@@ -14,8 +14,8 @@ const { bytesToKbytes, writableDiscardStream } = require('../utils/file');
 
 const FORMATS_TO_PROCESS = ['jpeg', 'png', 'webp', 'tiff', 'svg', 'gif'];
 const FORMATS_TO_OPTIMIZE = ['jpeg', 'png', 'webp', 'tiff'];
-const VIDEO_FORMATS_TO_PROCESS = ['mp4', '3gp', 'mov', 'avi'];
-const VIDEO_FORMATS_TO_OPTIMIZE = ['mp4', '3gp', 'mov', 'avi'];
+const VIDEO_FORMATS_TO_PROCESS = ['mp4', '3gp', 'mov', 'avi', 'm4v'];
+const VIDEO_FORMATS_TO_OPTIMIZE = ['mp4', '3gp', 'mov', 'avi', 'm4v'];
 
 const writeStreamToFile = (stream, path) =>
   new Promise((resolve, reject) => {
