@@ -1,6 +1,6 @@
 {
   "name": "@entireframework/provider-upload-bunnycdn",
-  "version": "4.4.4-alpha.1",
+  "version": "4.4.4-alpha.8",
   "description": "BunnyCDN provider for strapi upload",
   "keywords": [
     "upload",
