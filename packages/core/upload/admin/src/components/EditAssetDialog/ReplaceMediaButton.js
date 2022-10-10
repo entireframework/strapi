@@ -50,7 +50,7 @@ export const ReplaceMediaButton = ({
       <Button variant="secondary" onClick={handleClickReupload} {...props}>
         {formatMessage({
           id: getTrad('control-card.reupload-media'),
-          defaultMessage: 'Reupload media to cdn',
+          defaultMessage: 'Reupload media to CDN',
         })}
       </Button>
       <VisuallyHidden>
