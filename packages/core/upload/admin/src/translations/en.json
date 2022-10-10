@@ -95,6 +95,8 @@
   "settings.form.autoOrientation.label": "Auto orientation",
   "settings.form.responsiveDimensions.description": "Enabling this option will generate multiple formats (small, medium and large) of the uploaded asset.",
   "settings.form.responsiveDimensions.label": "Responsive friendly upload",
+  "settings.form.responsiveQuality.description": "Responsive friendly quality",
+  "settings.form.responsiveQuality.label": "Responsive friendly quality",
   "settings.form.sizeOptimization.description": "Enabling this option will reduce the image size and slightly reduce its quality.",
   "settings.form.sizeOptimization.label": "Size optimization",
   "settings.form.videoPreview.description": "It will generate a six-second preview of the video (GIF)",
