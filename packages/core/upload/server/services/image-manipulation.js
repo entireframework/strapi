@@ -85,7 +85,7 @@ const getImageMetadata = (file) => {
   return new Promise((resolve, reject) => {
     const pipeline = sharp();
     pipeline.metadata().then(resolve).catch(reject);
-    (file.path ? fs.createReadStream(file.path) : file.getStream()).pipe(pipeline);
+    file.getStream().pipe(pipeline);
   });
 };
 
