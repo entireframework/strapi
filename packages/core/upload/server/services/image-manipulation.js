@@ -8,14 +8,22 @@ const { join } = require('path');
 const sharp = require('sharp');
 const ffmpeg = require('fluent-ffmpeg');
 const queue = require('queue');
+const gifResize = require('@gumlet/gif-resize');
 
 const { getService } = require('../utils');
 const { bytesToKbytes, writableDiscardStream } = require('../utils/file');
 
 const FORMATS_TO_PROCESS = ['jpeg', 'png', 'webp', 'tiff', 'svg', 'gif'];
-const FORMATS_TO_OPTIMIZE = ['jpeg', 'png', 'webp', 'tiff'];
+const FORMATS_TO_OPTIMIZE = ['jpeg', 'png', 'webp', 'tiff', 'gif'];
 const VIDEO_FORMATS_TO_PROCESS = ['mp4', '3gp', 'mov', 'avi', 'm4v'];
 const VIDEO_FORMATS_TO_OPTIMIZE = ['mp4', '3gp', 'mov', 'avi', 'm4v'];
+
+const convertVideoOptionsWebp = {
+  streamEncoding: true,
+  args: ['-vcodec', 'webp', '-loop', '0', '-pix_fmt', 'yuv420p', '-q', '90'],
+  ext: '.webp',
+  name: 'webp',
+};
 
 const writeStreamToFile = (stream, path) =>
   new Promise((resolve, reject) => {
@@ -110,19 +118,52 @@ const THUMBNAIL_RESIZE_OPTIONS = {
 
 const resizeFileTo = async (file, options, { name, hash, format }) => {
   const { responsiveQuality = 90 } = await getService('upload').getSettings();
+  const currentFormat = await getFormat(file);
 
   const filePath = join(file.tmpWorkingDirectory, hash);
-  await writeStreamToFile(
-    file.getStream().pipe(
-      sharp()
-        .resize(options)
-        .toFormat(format || (await getFormat(file)) || 'jpeg', {
-          progressive: true,
-          quality: responsiveQuality,
-        })
-    ),
-    filePath
-  );
+
+  if (currentFormat === 'gif') {
+    await new Promise((resolve, reject) => {
+      console.log(
+        'resizeFileTo started',
+        file.path,
+        `${options.width}x${options.height}`,
+        filePath
+      );
+
+      convertVideo(
+        file.path,
+        `${options.width}x${options.height}`,
+        filePath,
+        convertVideoOptionsWebp,
+        (err) => {
+          console.log('resizeFileTo finished');
+
+          if (err) {
+            console.log('resizeFileTo error', err);
+
+            reject();
+          } else {
+            resolve();
+          }
+        }
+      );
+    });
+  } else {
+    await writeStreamToFile(
+      file.getStream().pipe(
+        currentFormat === 'gif'
+          ? gifResize(options)
+          : sharp()
+              .resize(options)
+              .toFormat(format || currentFormat || 'jpeg', {
+                progressive: true,
+                quality: responsiveQuality,
+              })
+      ),
+      filePath
+    );
+  }
 
   const newFile = {
     name,
