@@ -20,7 +20,7 @@ const VIDEO_FORMATS_TO_OPTIMIZE = ['mp4', '3gp', 'mov', 'avi', 'm4v'];
 
 const convertVideoOptionsWebp = {
   streamEncoding: true,
-  args: ['-vcodec', 'webp', '-loop', '0', '-pix_fmt', 'yuv420p', '-q', '90'],
+  args: ['-vcodec', 'webp', '-loop', '0', '-pix_fmt', 'yuv420p', '-q', '90', '-f', 'webp'],
   ext: '.webp',
   name: 'webp',
 };
@@ -121,47 +121,53 @@ const resizeFileTo = async (file, options, { name, hash, format }) => {
   const currentFormat = await getFormat(file);
 
   const filePath = join(file.tmpWorkingDirectory, hash);
+  const newFilePath = join(file.tmpWorkingDirectory, `output_${hash}`);
+  if (currentFormat === 'gif') {
+    await writeStreamToFile(file.getStream(), filePath);
+  }
 
   if (currentFormat === 'gif') {
-    await new Promise((resolve, reject) => {
-      console.log(
-        'resizeFileTo started',
-        file.path,
-        `${options.width}x${options.height}`,
-        filePath
-      );
+    if (format === 'webp') {
+      await new Promise((resolve, reject) => {
+        console.log(
+          'resizeFileTo started',
+          filePath,
+          `${options.width}x${options.height}`,
+          newFilePath
+        );
 
-      convertVideo(
-        file.path,
-        `${options.width}x${options.height}`,
-        filePath,
-        convertVideoOptionsWebp,
-        (err) => {
-          console.log('resizeFileTo finished');
+        convertVideo(
+          filePath,
+          `${options.width}x${options.height}`,
+          newFilePath,
+          convertVideoOptionsWebp,
+          (err) => {
+            console.log('resizeFileTo finished');
 
-          if (err) {
-            console.log('resizeFileTo error', err);
+            if (err) {
+              console.log('resizeFileTo error', err);
 
-            reject();
-          } else {
-            resolve();
+              reject();
+            } else {
+              resolve();
+            }
           }
-        }
-      );
-    });
+        );
+      });
+    } else {
+      fs.writeFileSync(newFilePath, await gifResize(options)(fs.readFileSync(filePath)));
+    }
   } else {
     await writeStreamToFile(
       file.getStream().pipe(
-        currentFormat === 'gif'
-          ? gifResize(options)
-          : sharp()
-              .resize(options)
-              .toFormat(format || currentFormat || 'jpeg', {
-                progressive: true,
-                quality: responsiveQuality,
-              })
+        sharp()
+          .resize(options)
+          .toFormat(format || currentFormat || 'jpeg', {
+            progressive: true,
+            quality: responsiveQuality,
+          })
       ),
-      filePath
+      newFilePath
     );
   }
 
@@ -171,7 +177,7 @@ const resizeFileTo = async (file, options, { name, hash, format }) => {
     ext: file.ext,
     mime: file.mime,
     path: file.path || null,
-    getStream: () => fs.createReadStream(filePath),
+    getStream: () => fs.createReadStream(newFilePath),
   };
 
   const { width, height, size } = await getMetadata(newFile);
