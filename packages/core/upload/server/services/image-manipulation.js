@@ -20,7 +20,7 @@ const VIDEO_FORMATS_TO_OPTIMIZE = ['mp4', '3gp', 'mov', 'avi', 'm4v'];
 
 const convertVideoOptionsWebp = {
   streamEncoding: true,
-  args: ['-vcodec', 'webp', '-loop', '0', '-pix_fmt', 'yuv420p', '-q', '90', '-f', 'webp'],
+  args: ['-vcodec', 'webp', '-loop', '0', '-pix_fmt', 'yuv420p', '-q', '90'],
   ext: '.webp',
   name: 'webp',
 };
@@ -121,7 +121,10 @@ const resizeFileTo = async (file, options, { name, hash, format }) => {
   const currentFormat = await getFormat(file);
 
   const filePath = join(file.tmpWorkingDirectory, hash);
-  const newFilePath = join(file.tmpWorkingDirectory, `output_${hash}`);
+  const newFilePath = join(
+    file.tmpWorkingDirectory,
+    `output_${hash}${convertVideoOptionsWebp.ext}`
+  );
   if (currentFormat === 'gif') {
     await writeStreamToFile(file.getStream(), filePath);
   }
@@ -409,7 +412,7 @@ const generatePoster = async (file) => {
     name: 'png',
   };
   const newFileName = `${file.name.split('.').slice(0, -1).join('.') || file.name}.png`;
-  const newFilePath = join(file.tmpWorkingDirectory, `poster_${file.hash}`);
+  const newFilePath = join(file.tmpWorkingDirectory, `poster_${file.hash}${convertOptions.ext}`);
   const newFileMime = `image/${convertOptions.name}`;
   const newFileExt = convertOptions.ext;
 
