@@ -229,7 +229,7 @@ const optimize = async (file) => {
 
   const { width, height, size, format } = await getMetadata(newFile);
 
-  if (sizeOptimization || autoOrientation) {
+  if ((sizeOptimization || autoOrientation) && format !== 'gif') {
     const transformer = sharp();
     // reduce image quality
     transformer[format]({ quality: sizeOptimization ? 80 : 100 });
