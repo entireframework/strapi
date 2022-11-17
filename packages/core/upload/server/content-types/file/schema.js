@@ -41,6 +41,10 @@ module.exports = {
       type: 'integer',
       configurable: false,
     },
+    duration: {
+      type: 'integer',
+      configurable: false,
+    },
     formats: {
       type: 'json',
       configurable: false,
