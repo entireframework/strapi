@@ -42,7 +42,7 @@ module.exports = {
       configurable: false,
     },
     duration: {
-      type: 'integer',
+      type: 'decimal',
       configurable: false,
     },
     formats: {
