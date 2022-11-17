@@ -42,13 +42,12 @@ module.exports = {
       configurable: false,
     },
     duration: {
-      type: 'decimal',
+      type: 'integer',
       configurable: false,
     },
     formats: {
       type: 'json',
       configurable: false,
-      private: true,
     },
     hash: {
       type: 'string',
