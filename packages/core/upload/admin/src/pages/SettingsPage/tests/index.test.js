@@ -61,6 +61,18 @@ describe('Upload | SettingsPage', () => {
         width: 1px;
       }
 
+      .c28 {
+        border: 0;
+        -webkit-clip: rect(0 0 0 0);
+        clip: rect(0 0 0 0);
+        height: 1px;
+        margin: -1px;
+        overflow: hidden;
+        padding: 0;
+        position: absolute;
+        width: 1px;
+      }
+
       .c2 {
         background: #f6f6f9;
         padding-top: 40px;
@@ -115,6 +127,70 @@ describe('Upload | SettingsPage', () => {
 
       .c43 {
         color: #8e8ea9;
+      }
+
+      .c3 {
+        -webkit-align-items: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-flex-direction: row;
+        -ms-flex-direction: row;
+        flex-direction: row;
+        -webkit-box-pack: justify;
+        -webkit-justify-content: space-between;
+        -ms-flex-pack: justify;
+        justify-content: space-between;
+      }
+
+      .c4 {
+        -webkit-align-items: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-flex-direction: row;
+        -ms-flex-direction: row;
+        flex-direction: row;
+      }
+
+      .c17 {
+        -webkit-align-items: stretch;
+        -webkit-box-align: stretch;
+        -ms-flex-align: stretch;
+        align-items: stretch;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-flex-direction: column;
+        -ms-flex-direction: column;
+        flex-direction: column;
+      }
+
+      .c32 {
+        -webkit-align-items: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-flex-direction: row;
+        -ms-flex-direction: row;
+        flex-direction: row;
+        -webkit-box-pack: center;
+        -webkit-justify-content: center;
+        -ms-flex-pack: center;
+        justify-content: center;
       }
 
       .c6 {
@@ -180,6 +256,29 @@ describe('Upload | SettingsPage', () => {
         font-weight: 600;
         color: #b72b1a;
         text-transform: uppercase;
+      }
+
+      .c18 > * {
+        margin-top: 0;
+        margin-bottom: 0;
+      }
+
+      .c20 > * {
+        margin-top: 0;
+        margin-bottom: 0;
+      }
+
+      .c20 > * + * {
+        margin-top: 16px;
+      }
+
+      .c25 > * {
+        margin-top: 0;
+        margin-bottom: 0;
+      }
+
+      .c25 > * + * {
+        margin-top: 4px;
       }
 
       .c7 {
@@ -314,93 +413,6 @@ describe('Upload | SettingsPage', () => {
         fill: #ffffff;
       }
 
-      .c3 {
-        -webkit-align-items: center;
-        -webkit-box-align: center;
-        -ms-flex-align: center;
-        align-items: center;
-        display: -webkit-box;
-        display: -webkit-flex;
-        display: -ms-flexbox;
-        display: flex;
-        -webkit-flex-direction: row;
-        -ms-flex-direction: row;
-        flex-direction: row;
-        -webkit-box-pack: justify;
-        -webkit-justify-content: space-between;
-        -ms-flex-pack: justify;
-        justify-content: space-between;
-      }
-
-      .c4 {
-        -webkit-align-items: center;
-        -webkit-box-align: center;
-        -ms-flex-align: center;
-        align-items: center;
-        display: -webkit-box;
-        display: -webkit-flex;
-        display: -ms-flexbox;
-        display: flex;
-        -webkit-flex-direction: row;
-        -ms-flex-direction: row;
-        flex-direction: row;
-      }
-
-      .c17 {
-        -webkit-align-items: stretch;
-        -webkit-box-align: stretch;
-        -ms-flex-align: stretch;
-        align-items: stretch;
-        display: -webkit-box;
-        display: -webkit-flex;
-        display: -ms-flexbox;
-        display: flex;
-        -webkit-flex-direction: column;
-        -ms-flex-direction: column;
-        flex-direction: column;
-      }
-
-      .c32 {
-        -webkit-align-items: center;
-        -webkit-box-align: center;
-        -ms-flex-align: center;
-        align-items: center;
-        display: -webkit-box;
-        display: -webkit-flex;
-        display: -ms-flexbox;
-        display: flex;
-        -webkit-flex-direction: row;
-        -ms-flex-direction: row;
-        flex-direction: row;
-        -webkit-box-pack: center;
-        -webkit-justify-content: center;
-        -ms-flex-pack: center;
-        justify-content: center;
-      }
-
-      .c18 > * {
-        margin-top: 0;
-        margin-bottom: 0;
-      }
-
-      .c20 > * {
-        margin-top: 0;
-        margin-bottom: 0;
-      }
-
-      .c20 > * + * {
-        margin-top: 16px;
-      }
-
-      .c25 > * {
-        margin-top: 0;
-        margin-bottom: 0;
-      }
-
-      .c25 > * + * {
-        margin-top: 4px;
-      }
-
       .c40 {
         border: none;
         border-radius: 4px;
@@ -460,18 +472,6 @@ describe('Upload | SettingsPage', () => {
       .c39:focus-within {
         border: 1px solid #4945ff;
         box-shadow: #4945ff 0px 0px 0px 2px;
-      }
-
-      .c28 {
-        border: 0;
-        -webkit-clip: rect(0 0 0 0);
-        clip: rect(0 0 0 0);
-        height: 1px;
-        margin: -1px;
-        overflow: hidden;
-        padding: 0;
-        position: absolute;
-        width: 1px;
       }
 
       .c44 path {

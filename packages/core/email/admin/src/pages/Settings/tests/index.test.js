@@ -82,6 +82,52 @@ describe('Email | Pages | Settings', () => {
         padding-right: 8px;
       }
 
+      .c3 {
+        -webkit-align-items: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-flex-direction: row;
+        -ms-flex-direction: row;
+        flex-direction: row;
+        -webkit-box-pack: justify;
+        -webkit-justify-content: space-between;
+        -ms-flex-pack: justify;
+        justify-content: space-between;
+      }
+
+      .c4 {
+        -webkit-align-items: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-flex-direction: row;
+        -ms-flex-direction: row;
+        flex-direction: row;
+      }
+
+      .c9 {
+        -webkit-align-items: stretch;
+        -webkit-box-align: stretch;
+        -ms-flex-align: stretch;
+        align-items: stretch;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-flex-direction: column;
+        -ms-flex-direction: column;
+        flex-direction: column;
+      }
+
       .c6 {
         font-weight: 600;
         font-size: 2rem;
@@ -131,6 +177,33 @@ describe('Email | Pages | Settings', () => {
         font-weight: 600;
         line-height: 1.14;
         color: #32324d;
+      }
+
+      .c10 > * {
+        margin-top: 0;
+        margin-bottom: 0;
+      }
+
+      .c10 > * + * {
+        margin-top: 32px;
+      }
+
+      .c12 > * {
+        margin-top: 0;
+        margin-bottom: 0;
+      }
+
+      .c12 > * + * {
+        margin-top: 16px;
+      }
+
+      .c13 > * {
+        margin-top: 0;
+        margin-bottom: 0;
+      }
+
+      .c13 > * + * {
+        margin-top: 4px;
       }
 
       .c33 {
@@ -263,79 +336,6 @@ describe('Email | Pages | Settings', () => {
       .c34 svg > g,
       .c34 svg path {
         fill: #ffffff;
-      }
-
-      .c3 {
-        -webkit-align-items: center;
-        -webkit-box-align: center;
-        -ms-flex-align: center;
-        align-items: center;
-        display: -webkit-box;
-        display: -webkit-flex;
-        display: -ms-flexbox;
-        display: flex;
-        -webkit-flex-direction: row;
-        -ms-flex-direction: row;
-        flex-direction: row;
-        -webkit-box-pack: justify;
-        -webkit-justify-content: space-between;
-        -ms-flex-pack: justify;
-        justify-content: space-between;
-      }
-
-      .c4 {
-        -webkit-align-items: center;
-        -webkit-box-align: center;
-        -ms-flex-align: center;
-        align-items: center;
-        display: -webkit-box;
-        display: -webkit-flex;
-        display: -ms-flexbox;
-        display: flex;
-        -webkit-flex-direction: row;
-        -ms-flex-direction: row;
-        flex-direction: row;
-      }
-
-      .c9 {
-        -webkit-align-items: stretch;
-        -webkit-box-align: stretch;
-        -ms-flex-align: stretch;
-        align-items: stretch;
-        display: -webkit-box;
-        display: -webkit-flex;
-        display: -ms-flexbox;
-        display: flex;
-        -webkit-flex-direction: column;
-        -ms-flex-direction: column;
-        flex-direction: column;
-      }
-
-      .c10 > * {
-        margin-top: 0;
-        margin-bottom: 0;
-      }
-
-      .c10 > * + * {
-        margin-top: 32px;
-      }
-
-      .c12 > * {
-        margin-top: 0;
-        margin-bottom: 0;
-      }
-
-      .c12 > * + * {
-        margin-top: 16px;
-      }
-
-      .c13 > * {
-        margin-top: 0;
-        margin-bottom: 0;
-      }
-
-      .c13 > * + * {
-        margin-top: 4px;
       }
 
       .c21 {

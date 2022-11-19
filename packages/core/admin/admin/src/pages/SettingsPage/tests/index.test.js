@@ -98,13 +98,6 @@ describe('ADMIN | pages | SettingsPage', () => {
         padding-bottom: 56px;
       }
 
-      .c4 {
-        font-weight: 600;
-        font-size: 1.125rem;
-        line-height: 1.22;
-        color: #32324d;
-      }
-
       .c3 {
         -webkit-align-items: flex-start;
         -webkit-box-align: flex-start;
@@ -135,6 +128,13 @@ describe('ADMIN | pages | SettingsPage', () => {
         -webkit-flex-direction: column;
         -ms-flex-direction: column;
         flex-direction: column;
+      }
+
+      .c4 {
+        font-weight: 600;
+        font-size: 1.125rem;
+        line-height: 1.22;
+        color: #32324d;
       }
 
       .c11 > * {
