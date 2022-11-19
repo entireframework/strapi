@@ -139,7 +139,7 @@ const DynamicZone = ({
             const showUpIcon = isFieldAllowed && index > 0;
             const key = data.__temp_key__ != null ? data.__temp_key__ : index;
             // const componentFieldName = `${name}.${index}`;
-            const componentUid = data.__component;
+            const componentUid = data.__component || data;
             // const componentLayoutData = getComponentLayout(componentUid);
 
             return (
