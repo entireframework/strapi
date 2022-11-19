@@ -43,7 +43,7 @@ const DynamicZone = ({
   const intlDescription = metadatas.description
     ? { id: metadatas.description, defaultMessage: metadatas.description }
     : null;
-  const [isDraggingSibling, setIsDraggingSibling] = useState(false);
+  // const [isDraggingSibling, setIsDraggingSibling] = useState(false);
 
   // We cannot use the default props here
   const { max = Infinity, min = -Infinity } = fieldSchema;
@@ -159,8 +159,8 @@ const DynamicZone = ({
                 onRemoveComponentClick={handleRemoveComponent(name, index)}
                 showDownIcon={showDownIcon}
                 showUpIcon={showUpIcon}
-                isDraggingSibling={isDraggingSibling}
-                setIsDraggingSibling={setIsDraggingSibling}
+                // isDraggingSibling={isDraggingSibling}
+                // setIsDraggingSibling={setIsDraggingSibling}
                 // toggleCollapses={toggleCollapses}
               />
             );
