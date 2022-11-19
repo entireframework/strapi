@@ -48,6 +48,7 @@ module.exports = {
     formats: {
       type: 'json',
       configurable: false,
+      private: true,
     },
     hash: {
       type: 'string',
