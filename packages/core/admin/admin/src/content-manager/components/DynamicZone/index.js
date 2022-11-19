@@ -115,10 +115,6 @@ const DynamicZone = ({
     );
   }
 
-  const toggleCollapses = () => {
-    setComponentsCollapses(createCollapses(dynamicDisplayedComponentsLength));
-  };
-
   return (
     <Stack spacing={6}>
       {dynamicDisplayedComponentsLength > 0 && (
@@ -165,7 +161,7 @@ const DynamicZone = ({
                 showUpIcon={showUpIcon}
                 isDraggingSibling={isDraggingSibling}
                 setIsDraggingSibling={setIsDraggingSibling}
-                toggleCollapses={toggleCollapses}
+                // toggleCollapses={toggleCollapses}
               />
             );
           })}
