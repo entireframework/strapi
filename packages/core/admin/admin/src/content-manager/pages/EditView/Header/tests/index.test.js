@@ -69,6 +69,38 @@ describe('CONTENT MANAGER | EditView | Header', () => {
         padding-right: 8px;
       }
 
+      .c8 {
+        -webkit-align-items: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-flex-direction: row;
+        -ms-flex-direction: row;
+        flex-direction: row;
+        -webkit-box-pack: justify;
+        -webkit-justify-content: space-between;
+        -ms-flex-pack: justify;
+        justify-content: space-between;
+      }
+
+      .c9 {
+        -webkit-align-items: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-flex-direction: row;
+        -ms-flex-direction: row;
+        flex-direction: row;
+      }
+
       .c7 {
         font-size: 0.875rem;
         line-height: 1.43;
@@ -93,6 +125,15 @@ describe('CONTENT MANAGER | EditView | Header', () => {
         font-size: 1rem;
         line-height: 1.5;
         color: #666687;
+      }
+
+      .c11 > * {
+        margin-left: 0;
+        margin-right: 0;
+      }
+
+      .c11 > * + * {
+        margin-left: 8px;
       }
 
       .c12 {
@@ -219,47 +260,6 @@ describe('CONTENT MANAGER | EditView | Header', () => {
       .c13 svg > g,
       .c13 svg path {
         fill: #ffffff;
-      }
-
-      .c8 {
-        -webkit-align-items: center;
-        -webkit-box-align: center;
-        -ms-flex-align: center;
-        align-items: center;
-        display: -webkit-box;
-        display: -webkit-flex;
-        display: -ms-flexbox;
-        display: flex;
-        -webkit-flex-direction: row;
-        -ms-flex-direction: row;
-        flex-direction: row;
-        -webkit-box-pack: justify;
-        -webkit-justify-content: space-between;
-        -ms-flex-pack: justify;
-        justify-content: space-between;
-      }
-
-      .c9 {
-        -webkit-align-items: center;
-        -webkit-box-align: center;
-        -ms-flex-align: center;
-        align-items: center;
-        display: -webkit-box;
-        display: -webkit-flex;
-        display: -ms-flexbox;
-        display: flex;
-        -webkit-flex-direction: row;
-        -ms-flex-direction: row;
-        flex-direction: row;
-      }
-
-      .c11 > * {
-        margin-left: 0;
-        margin-right: 0;
-      }
-
-      .c11 > * + * {
-        margin-left: 8px;
       }
 
       .c3 {
