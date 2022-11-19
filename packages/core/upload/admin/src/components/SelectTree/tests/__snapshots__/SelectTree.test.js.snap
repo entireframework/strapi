@@ -64,7 +64,7 @@ exports[`SelectTree renders 1`] = `
           class="css-1f43avz-a11yText-A11yText"
         />
         <div
-          class=" css-1e1stxh-control"
+          class=" css-1sb7bue-control"
         >
           <div
             class=" css-do2euy-ValueContainer"
@@ -89,9 +89,9 @@ exports[`SelectTree renders 1`] = `
           <div
             class=" css-1hb7zxy-IndicatorsContainer"
           >
-            <div
-              aria-hidden="true"
+            <button
               class="c0 c1 c2"
+              type="button"
             >
               <svg
                 fill="none"
@@ -107,7 +107,7 @@ exports[`SelectTree renders 1`] = `
                   fill-rule="evenodd"
                 />
               </svg>
-            </div>
+            </button>
           </div>
         </div>
       </div>
@@ -135,52 +135,7 @@ exports[`SelectTree renders 1`] = `
       </div>
     </div>
   </body>,
-  "container": .c3 {
-  border: 0;
-  -webkit-clip: rect(0 0 0 0);
-  clip: rect(0 0 0 0);
-  height: 1px;
-  margin: -1px;
-  overflow: hidden;
-  padding: 0;
-  position: absolute;
-  width: 1px;
-}
-
-.c0 {
-  padding-right: 12px;
-}
-
-.c1 {
-  background: transparent;
-  border: none;
-  position: relative;
-  z-index: 1;
-}
-
-.c1 svg {
-  height: 0.6875rem;
-  width: 0.6875rem;
-}
-
-.c1 svg path {
-  fill: #666687;
-}
-
-.c2 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  background: none;
-  border: none;
-}
-
-.c2 svg {
-  width: 0.5625rem;
-}
-
-<div>
+  "container": <div>
     <div
       class=" css-1iyvlxg-container"
     >
@@ -195,7 +150,7 @@ exports[`SelectTree renders 1`] = `
         class="css-1f43avz-a11yText-A11yText"
       />
       <div
-        class=" css-1e1stxh-control"
+        class=" css-1sb7bue-control"
       >
         <div
           class=" css-do2euy-ValueContainer"
@@ -220,9 +175,9 @@ exports[`SelectTree renders 1`] = `
         <div
           class=" css-1hb7zxy-IndicatorsContainer"
         >
-          <div
-            aria-hidden="true"
-            class="c0 c1 c2"
+          <button
+            class="sc-eBTqsU sc-hrJsxi sc-bZSZLb elEUJG hZwTtz eAfeLi"
+            type="button"
           >
             <svg
               fill="none"
@@ -238,12 +193,12 @@ exports[`SelectTree renders 1`] = `
                 fill-rule="evenodd"
               />
             </svg>
-          </div>
+          </button>
         </div>
       </div>
     </div>
     <div
-      class="c3"
+      class="sc-llYSUQ PCyKi"
     >
       <p
         aria-live="polite"

@@ -42,52 +42,6 @@ exports[`RemoveAssetDialog snapshots the component 1`] = `
   padding-right: 8px;
 }
 
-.c6 {
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-}
-
-.c13 {
-  -webkit-align-items: stretch;
-  -webkit-box-align: stretch;
-  -ms-flex-align: stretch;
-  align-items: stretch;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-}
-
-.c18 {
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-}
-
 .c9 {
   font-weight: 600;
   font-size: 1.125rem;
@@ -106,68 +60,6 @@ exports[`RemoveAssetDialog snapshots the component 1`] = `
   line-height: 1.33;
   font-weight: 600;
   color: #32324d;
-}
-
-.c1 {
-  position: fixed;
-  z-index: 4;
-  inset: 0;
-  background: #32324d33;
-  padding: 0 40px;
-}
-
-.c4 {
-  max-width: 25.75rem;
-  margin: 0 auto;
-  overflow: hidden;
-  margin-top: 10%;
-}
-
-.c7 {
-  border-bottom: 1px solid #eaeaef;
-}
-
-.c12 svg {
-  width: 24px;
-  height: 24px;
-}
-
-.c12 svg path {
-  fill: #d02b20;
-}
-
-.c14 > * {
-  margin-top: 0;
-  margin-bottom: 0;
-}
-
-.c14 > * + * {
-  margin-top: 8px;
-}
-
-.c19 > * {
-  margin-left: 0;
-  margin-right: 0;
-}
-
-.c19 > * + * {
-  margin-left: 8px;
-}
-
-.c17 {
-  border-top: 1px solid #eaeaef;
-}
-
-.c17 button {
-  width: 100%;
-  display: -webkit-inline-box;
-  display: -webkit-inline-flex;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
 }
 
 .c20 {
@@ -384,6 +276,114 @@ exports[`RemoveAssetDialog snapshots the component 1`] = `
 .c23 svg > g,
 .c23 svg path {
   fill: #b72b1a;
+}
+
+.c6 {
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+
+.c13 {
+  -webkit-align-items: stretch;
+  -webkit-box-align: stretch;
+  -ms-flex-align: stretch;
+  align-items: stretch;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.c18 {
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+}
+
+.c14 > * {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.c14 > * + * {
+  margin-top: 8px;
+}
+
+.c19 > * {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.c19 > * + * {
+  margin-left: 8px;
+}
+
+.c1 {
+  position: fixed;
+  z-index: 4;
+  inset: 0;
+  background: #32324d33;
+  padding: 0 40px;
+}
+
+.c4 {
+  max-width: 25.75rem;
+  margin: 0 auto;
+  overflow: hidden;
+  margin-top: 10%;
+}
+
+.c7 {
+  border-bottom: 1px solid #eaeaef;
+}
+
+.c12 svg {
+  width: 24px;
+  height: 24px;
+}
+
+.c12 svg path {
+  fill: #d02b20;
+}
+
+.c17 {
+  border-top: 1px solid #eaeaef;
+}
+
+.c17 button {
+  width: 100%;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
 }
 
 <body

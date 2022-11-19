@@ -124,34 +124,6 @@ describe('Homepage', () => {
         padding-right: 8px;
       }
 
-      .c10 {
-        -webkit-align-items: stretch;
-        -webkit-box-align: stretch;
-        -ms-flex-align: stretch;
-        align-items: stretch;
-        display: -webkit-box;
-        display: -webkit-flex;
-        display: -ms-flexbox;
-        display: flex;
-        -webkit-flex-direction: column;
-        -ms-flex-direction: column;
-        flex-direction: column;
-      }
-
-      .c24 {
-        -webkit-align-items: center;
-        -webkit-box-align: center;
-        -ms-flex-align: center;
-        align-items: center;
-        display: -webkit-box;
-        display: -webkit-flex;
-        display: -ms-flexbox;
-        display: flex;
-        -webkit-flex-direction: row;
-        -ms-flex-direction: row;
-        flex-direction: row;
-      }
-
       .c14 {
         font-weight: 600;
         font-size: 2rem;
@@ -169,6 +141,7 @@ describe('Homepage', () => {
         font-size: 0.875rem;
         line-height: 1.43;
         font-weight: 600;
+        line-height: 1.14;
         color: #32324d;
       }
 
@@ -198,31 +171,11 @@ describe('Homepage', () => {
         color: #4945ff;
       }
 
-      .c11 > * {
-        margin-top: 0;
-        margin-bottom: 0;
-      }
-
-      .c11 > * + * {
-        margin-top: 20px;
-      }
-
-      .c27 > * {
-        margin-top: 0;
-        margin-bottom: 0;
-      }
-
-      .c27 > * + * {
-        margin-top: 4px;
-      }
-
-      .c37 > * {
-        margin-top: 0;
-        margin-bottom: 0;
-      }
-
-      .c37 > * + * {
-        margin-top: 12px;
+      .c48 {
+        font-size: 0.875rem;
+        line-height: 1.43;
+        font-weight: 600;
+        color: #32324d;
       }
 
       .c17 {
@@ -319,7 +272,8 @@ describe('Homepage', () => {
         color: #666687;
       }
 
-      .c18[aria-disabled='true'] svg > g,.c18[aria-disabled='true'] svg path {
+      .c18[aria-disabled='true'] svg > g,
+      .c18[aria-disabled='true'] svg path {
         fill: #666687;
       }
 
@@ -332,7 +286,8 @@ describe('Homepage', () => {
         color: #666687;
       }
 
-      .c18[aria-disabled='true']:active svg > g,.c18[aria-disabled='true']:active svg path {
+      .c18[aria-disabled='true']:active svg > g,
+      .c18[aria-disabled='true']:active svg path {
         fill: #666687;
       }
 
@@ -349,6 +304,61 @@ describe('Homepage', () => {
       .c18 svg > g,
       .c18 svg path {
         fill: #ffffff;
+      }
+
+      .c10 {
+        -webkit-align-items: stretch;
+        -webkit-box-align: stretch;
+        -ms-flex-align: stretch;
+        align-items: stretch;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-flex-direction: column;
+        -ms-flex-direction: column;
+        flex-direction: column;
+      }
+
+      .c24 {
+        -webkit-align-items: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-flex-direction: row;
+        -ms-flex-direction: row;
+        flex-direction: row;
+      }
+
+      .c11 > * {
+        margin-top: 0;
+        margin-bottom: 0;
+      }
+
+      .c11 > * + * {
+        margin-top: 20px;
+      }
+
+      .c27 > * {
+        margin-top: 0;
+        margin-bottom: 0;
+      }
+
+      .c27 > * + * {
+        margin-top: 4px;
+      }
+
+      .c37 > * {
+        margin-top: 0;
+        margin-bottom: 0;
+      }
+
+      .c37 > * + * {
+        margin-top: 12px;
       }
 
       .c39 {
@@ -454,7 +464,8 @@ describe('Homepage', () => {
         color: #666687;
       }
 
-      .c45[aria-disabled='true'] svg > g,.c45[aria-disabled='true'] svg path {
+      .c45[aria-disabled='true'] svg > g,
+      .c45[aria-disabled='true'] svg path {
         fill: #666687;
       }
 
@@ -467,7 +478,8 @@ describe('Homepage', () => {
         color: #666687;
       }
 
-      .c45[aria-disabled='true']:active svg > g,.c45[aria-disabled='true']:active svg path {
+      .c45[aria-disabled='true']:active svg > g,
+      .c45[aria-disabled='true']:active svg path {
         fill: #666687;
       }
 
@@ -513,6 +525,7 @@ describe('Homepage', () => {
       .c7 {
         display: grid;
         grid-template-columns: repeat(12,1fr);
+        gap: 0px;
       }
 
       .c21 {
@@ -540,51 +553,51 @@ describe('Homepage', () => {
         outline: none;
       }
 
-      .c48 path {
+      .c49 path {
         fill: #7289da !important;
       }
 
-      .c49 > path:first-child {
+      .c50 > path:first-child {
         fill: #ff4500;
       }
 
-      .c52 > path:first-child {
-        fill: #4945ff;
+      .c53 > path:first-child {
+        fill: #8e75ff;
       }
 
-      .c52 > path:nth-child(2) {
-        fill: #fff;
+      .c53 > path:nth-child(2) {
+        fill: #8e75ff;
       }
 
-      .c52 > path:nth-child(4) {
-        fill: #9593ff;
+      .c53 > path:nth-child(3) {
+        fill: #8e75ff;
       }
 
-      .c50 path {
+      .c51 path {
         fill: #1da1f2 !important;
       }
 
-      .c51 > path:first-child {
+      .c52 > path:first-child {
         fill: #231f20;
       }
 
-      .c51 > path:nth-child(2) {
+      .c52 > path:nth-child(2) {
         fill: #fff9ae;
       }
 
-      .c51 > path:nth-child(3) {
+      .c52 > path:nth-child(3) {
         fill: #00aeef;
       }
 
-      .c51 > path:nth-child(4) {
+      .c52 > path:nth-child(4) {
         fill: #00a94f;
       }
 
-      .c51 > path:nth-child(5) {
+      .c52 > path:nth-child(5) {
         fill: #f15d22;
       }
 
-      .c51 > path:nth-child(6) {
+      .c52 > path:nth-child(6) {
         fill: #e31b23;
       }
 
@@ -1016,7 +1029,6 @@ describe('Homepage', () => {
                             </span>
                           </div>
                           <a
-                            aria-disabled="false"
                             class="c39 c40"
                             href="https://feedback.strapi.io/"
                             rel="noreferrer noopener"
@@ -1081,7 +1093,7 @@ describe('Homepage', () => {
                                 </svg>
                               </div>
                               <span
-                                class="c13 c19"
+                                class="c13 c48"
                               >
                                 Github
                               </span>
@@ -1106,7 +1118,7 @@ describe('Homepage', () => {
                                 class="c0 c47"
                               >
                                 <svg
-                                  class="c48"
+                                  class="c49"
                                   fill="none"
                                   height="1em"
                                   viewBox="0 0 24 24"
@@ -1120,7 +1132,7 @@ describe('Homepage', () => {
                                 </svg>
                               </div>
                               <span
-                                class="c13 c19"
+                                class="c13 c48"
                               >
                                 Discord
                               </span>
@@ -1145,7 +1157,7 @@ describe('Homepage', () => {
                                 class="c0 c47"
                               >
                                 <svg
-                                  class="c49"
+                                  class="c50"
                                   fill="none"
                                   height="1em"
                                   viewBox="0 0 24 24"
@@ -1161,7 +1173,7 @@ describe('Homepage', () => {
                                 </svg>
                               </div>
                               <span
-                                class="c13 c19"
+                                class="c13 c48"
                               >
                                 Reddit
                               </span>
@@ -1186,7 +1198,7 @@ describe('Homepage', () => {
                                 class="c0 c47"
                               >
                                 <svg
-                                  class="c50"
+                                  class="c51"
                                   fill="none"
                                   height="1em"
                                   viewBox="0 0 24 24"
@@ -1200,7 +1212,7 @@ describe('Homepage', () => {
                                 </svg>
                               </div>
                               <span
-                                class="c13 c19"
+                                class="c13 c48"
                               >
                                 Twitter
                               </span>
@@ -1225,7 +1237,7 @@ describe('Homepage', () => {
                                 class="c0 c47"
                               >
                                 <svg
-                                  class="c51"
+                                  class="c52"
                                   fill="none"
                                   height="1em"
                                   viewBox="0 0 24 24"
@@ -1259,7 +1271,7 @@ describe('Homepage', () => {
                                 </svg>
                               </div>
                               <span
-                                class="c13 c19"
+                                class="c13 c48"
                               >
                                 Forum
                               </span>
@@ -1284,7 +1296,7 @@ describe('Homepage', () => {
                                 class="c0 c47"
                               >
                                 <svg
-                                  class="c52"
+                                  class="c53"
                                   fill="none"
                                   height="1em"
                                   viewBox="0 0 80 80"
@@ -1312,7 +1324,7 @@ describe('Homepage', () => {
                                 </svg>
                               </div>
                               <span
-                                class="c13 c19"
+                                class="c13 c48"
                               >
                                 Blog
                               </span>
@@ -1337,7 +1349,7 @@ describe('Homepage', () => {
                                 class="c0 c47"
                               >
                                 <svg
-                                  class="c52"
+                                  class="c53"
                                   fill="none"
                                   height="1em"
                                   viewBox="0 0 80 80"
@@ -1365,7 +1377,7 @@ describe('Homepage', () => {
                                 </svg>
                               </div>
                               <span
-                                class="c13 c19"
+                                class="c13 c48"
                               >
                                 We are hiring!
                               </span>

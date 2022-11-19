@@ -53,18 +53,6 @@ describe('Admin | containers | ListView', () => {
     });
 
     expect(firstChild).toMatchInlineSnapshot(`
-      .c30 {
-        border: 0;
-        -webkit-clip: rect(0 0 0 0);
-        clip: rect(0 0 0 0);
-        height: 1px;
-        margin: -1px;
-        overflow: hidden;
-        padding: 0;
-        position: absolute;
-        width: 1px;
-      }
-
       .c2 {
         padding-bottom: 56px;
       }
@@ -132,36 +120,72 @@ describe('Admin | containers | ListView', () => {
         padding-left: 12px;
       }
 
-      .c6 {
-        -webkit-align-items: center;
-        -webkit-box-align: center;
-        -ms-flex-align: center;
-        align-items: center;
-        display: -webkit-box;
-        display: -webkit-flex;
-        display: -ms-flexbox;
-        display: flex;
-        -webkit-flex-direction: row;
-        -ms-flex-direction: row;
-        flex-direction: row;
-        -webkit-box-pack: justify;
-        -webkit-justify-content: space-between;
-        -ms-flex-pack: justify;
-        justify-content: space-between;
+      .c25 {
+        margin: 0;
+        height: 18px;
+        min-width: 18px;
+        border-radius: 4px;
+        border: 1px solid #c0c0cf;
+        -webkit-appearance: none;
+        background-color: #ffffff;
+        cursor: pointer;
       }
 
-      .c7 {
-        -webkit-align-items: center;
-        -webkit-box-align: center;
-        -ms-flex-align: center;
-        align-items: center;
-        display: -webkit-box;
-        display: -webkit-flex;
-        display: -ms-flexbox;
-        display: flex;
-        -webkit-flex-direction: row;
-        -ms-flex-direction: row;
-        flex-direction: row;
+      .c25:checked {
+        background-color: #4945ff;
+        border: 1px solid #4945ff;
+      }
+
+      .c25:checked:after {
+        content: '';
+        display: block;
+        position: relative;
+        background: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAiIGhlaWdodD0iOCIgdmlld0JveD0iMCAwIDEwIDgiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgPHBhdGgKICAgIGQ9Ik04LjU1MzIzIDAuMzk2OTczQzguNjMxMzUgMC4zMTYzNTUgOC43NjA1MSAwLjMxNTgxMSA4LjgzOTMxIDAuMzk1NzY4TDkuODYyNTYgMS40MzQwN0M5LjkzODkzIDEuNTExNTcgOS45MzkzNSAxLjYzNTkgOS44NjM0OSAxLjcxMzlMNC4wNjQwMSA3LjY3NzI0QzMuOTg1OSA3Ljc1NzU1IDMuODU3MDcgNy43NTgwNSAzLjc3ODM0IDcuNjc4MzRMMC4xMzg2NiAzLjk5MzMzQzAuMDYxNzc5OCAzLjkxNTQ5IDAuMDYxNzEwMiAzLjc5MDMyIDAuMTM4NTA0IDMuNzEyNEwxLjE2MjEzIDIuNjczNzJDMS4yNDAzOCAyLjU5NDMyIDEuMzY4NDMgMi41OTQyMiAxLjQ0NjggMi42NzM0OEwzLjkyMTc0IDUuMTc2NDdMOC41NTMyMyAwLjM5Njk3M1oiCiAgICBmaWxsPSJ3aGl0ZSIKICAvPgo8L3N2Zz4=) no-repeat no-repeat center center;
+        width: 10px;
+        height: 10px;
+        left: 50%;
+        top: 50%;
+        -webkit-transform: translateX(-50%) translateY(-50%);
+        -ms-transform: translateX(-50%) translateY(-50%);
+        transform: translateX(-50%) translateY(-50%);
+      }
+
+      .c25:checked:disabled:after {
+        background: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAiIGhlaWdodD0iOCIgdmlld0JveD0iMCAwIDEwIDgiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgPHBhdGgKICAgIGQ9Ik04LjU1MzIzIDAuMzk2OTczQzguNjMxMzUgMC4zMTYzNTUgOC43NjA1MSAwLjMxNTgxMSA4LjgzOTMxIDAuMzk1NzY4TDkuODYyNTYgMS40MzQwN0M5LjkzODkzIDEuNTExNTcgOS45MzkzNSAxLjYzNTkgOS44NjM0OSAxLjcxMzlMNC4wNjQwMSA3LjY3NzI0QzMuOTg1OSA3Ljc1NzU1IDMuODU3MDcgNy43NTgwNSAzLjc3ODM0IDcuNjc4MzRMMC4xMzg2NiAzLjk5MzMzQzAuMDYxNzc5OCAzLjkxNTQ5IDAuMDYxNzEwMiAzLjc5MDMyIDAuMTM4NTA0IDMuNzEyNEwxLjE2MjEzIDIuNjczNzJDMS4yNDAzOCAyLjU5NDMyIDEuMzY4NDMgMi41OTQyMiAxLjQ0NjggMi42NzM0OEwzLjkyMTc0IDUuMTc2NDdMOC41NTMyMyAwLjM5Njk3M1oiCiAgICBmaWxsPSIjOEU4RUE5IgogIC8+Cjwvc3ZnPg==) no-repeat no-repeat center center;
+      }
+
+      .c25:disabled {
+        background-color: #dcdce4;
+        border: 1px solid #c0c0cf;
+      }
+
+      .c25:indeterminate {
+        background-color: #4945ff;
+        border: 1px solid #4945ff;
+      }
+
+      .c25:indeterminate:after {
+        content: '';
+        display: block;
+        position: relative;
+        color: white;
+        height: 2px;
+        width: 10px;
+        background-color: #ffffff;
+        left: 50%;
+        top: 50%;
+        -webkit-transform: translateX(-50%) translateY(-50%);
+        -ms-transform: translateX(-50%) translateY(-50%);
+        transform: translateX(-50%) translateY(-50%);
+      }
+
+      .c25:indeterminate:disabled {
+        background-color: #dcdce4;
+        border: 1px solid #c0c0cf;
+      }
+
+      .c25:indeterminate:disabled:after {
+        background-color: #8e8ea9;
       }
 
       .c9 {
@@ -210,15 +234,6 @@ describe('Admin | containers | ListView', () => {
         line-height: 1.33;
         font-weight: 600;
         color: #4945ff;
-      }
-
-      .c38 > * {
-        margin-left: 0;
-        margin-right: 0;
-      }
-
-      .c38 > * + * {
-        margin-left: 4px;
       }
 
       .c10 {
@@ -277,6 +292,100 @@ describe('Admin | containers | ListView', () => {
         left: -5px;
         right: -5px;
         border: 2px solid #4945ff;
+      }
+
+      .c6 {
+        -webkit-align-items: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-flex-direction: row;
+        -ms-flex-direction: row;
+        flex-direction: row;
+        -webkit-box-pack: justify;
+        -webkit-justify-content: space-between;
+        -ms-flex-pack: justify;
+        justify-content: space-between;
+      }
+
+      .c7 {
+        -webkit-align-items: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-flex-direction: row;
+        -ms-flex-direction: row;
+        flex-direction: row;
+      }
+
+      .c38 > * {
+        margin-left: 0;
+        margin-right: 0;
+      }
+
+      .c38 > * + * {
+        margin-left: 4px;
+      }
+
+      .c30 {
+        border: 0;
+        -webkit-clip: rect(0 0 0 0);
+        clip: rect(0 0 0 0);
+        height: 1px;
+        margin: -1px;
+        overflow: hidden;
+        padding: 0;
+        position: absolute;
+        width: 1px;
+      }
+
+      .c39 {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-align-items: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        -webkit-box-pack: center;
+        -webkit-justify-content: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+        height: 2rem;
+        width: 2rem;
+        border: none;
+      }
+
+      .c39 svg > g,
+      .c39 svg path {
+        fill: #8e8ea9;
+      }
+
+      .c39:hover svg > g,
+      .c39:hover svg path {
+        fill: #666687;
+      }
+
+      .c39:active svg > g,
+      .c39:active svg path {
+        fill: #a5a5ba;
+      }
+
+      .c39[aria-disabled='true'] {
+        background-color: #eaeaef;
+      }
+
+      .c39[aria-disabled='true'] svg path {
+        fill: #666687;
       }
 
       .c17 {
@@ -364,9 +473,6 @@ describe('Admin | containers | ListView', () => {
       .c42 {
         height: 1px;
         border: none;
-        -webkit-flex-shrink: 0;
-        -ms-flex-negative: 0;
-        flex-shrink: 0;
         margin: 0;
       }
 
@@ -402,115 +508,6 @@ describe('Admin | containers | ListView', () => {
         display: block;
         width: 100%;
         border: none;
-      }
-
-      .c25 {
-        height: 18px;
-        min-width: 18px;
-        margin: 0;
-        border-radius: 4px;
-        border: 1px solid #c0c0cf;
-        -webkit-appearance: none;
-        background-color: #ffffff;
-        cursor: pointer;
-      }
-
-      .c25:checked {
-        background-color: #4945ff;
-        border: 1px solid #4945ff;
-      }
-
-      .c25:checked:after {
-        content: '';
-        display: block;
-        position: relative;
-        background: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAiIGhlaWdodD0iOCIgdmlld0JveD0iMCAwIDEwIDgiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgPHBhdGgKICAgIGQ9Ik04LjU1MzIzIDAuMzk2OTczQzguNjMxMzUgMC4zMTYzNTUgOC43NjA1MSAwLjMxNTgxMSA4LjgzOTMxIDAuMzk1NzY4TDkuODYyNTYgMS40MzQwN0M5LjkzODkzIDEuNTExNTcgOS45MzkzNSAxLjYzNTkgOS44NjM0OSAxLjcxMzlMNC4wNjQwMSA3LjY3NzI0QzMuOTg1OSA3Ljc1NzU1IDMuODU3MDcgNy43NTgwNSAzLjc3ODM0IDcuNjc4MzRMMC4xMzg2NiAzLjk5MzMzQzAuMDYxNzc5OCAzLjkxNTQ5IDAuMDYxNzEwMiAzLjc5MDMyIDAuMTM4NTA0IDMuNzEyNEwxLjE2MjEzIDIuNjczNzJDMS4yNDAzOCAyLjU5NDMyIDEuMzY4NDMgMi41OTQyMiAxLjQ0NjggMi42NzM0OEwzLjkyMTc0IDUuMTc2NDdMOC41NTMyMyAwLjM5Njk3M1oiCiAgICBmaWxsPSJ3aGl0ZSIKICAvPgo8L3N2Zz4=) no-repeat no-repeat center center;
-        width: 10px;
-        height: 10px;
-        left: 50%;
-        top: 50%;
-        -webkit-transform: translateX(-50%) translateY(-50%);
-        -ms-transform: translateX(-50%) translateY(-50%);
-        transform: translateX(-50%) translateY(-50%);
-      }
-
-      .c25:checked:disabled:after {
-        background: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAiIGhlaWdodD0iOCIgdmlld0JveD0iMCAwIDEwIDgiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgPHBhdGgKICAgIGQ9Ik04LjU1MzIzIDAuMzk2OTczQzguNjMxMzUgMC4zMTYzNTUgOC43NjA1MSAwLjMxNTgxMSA4LjgzOTMxIDAuMzk1NzY4TDkuODYyNTYgMS40MzQwN0M5LjkzODkzIDEuNTExNTcgOS45MzkzNSAxLjYzNTkgOS44NjM0OSAxLjcxMzlMNC4wNjQwMSA3LjY3NzI0QzMuOTg1OSA3Ljc1NzU1IDMuODU3MDcgNy43NTgwNSAzLjc3ODM0IDcuNjc4MzRMMC4xMzg2NiAzLjk5MzMzQzAuMDYxNzc5OCAzLjkxNTQ5IDAuMDYxNzEwMiAzLjc5MDMyIDAuMTM4NTA0IDMuNzEyNEwxLjE2MjEzIDIuNjczNzJDMS4yNDAzOCAyLjU5NDMyIDEuMzY4NDMgMi41OTQyMiAxLjQ0NjggMi42NzM0OEwzLjkyMTc0IDUuMTc2NDdMOC41NTMyMyAwLjM5Njk3M1oiCiAgICBmaWxsPSIjOEU4RUE5IgogIC8+Cjwvc3ZnPg==) no-repeat no-repeat center center;
-      }
-
-      .c25:disabled {
-        background-color: #dcdce4;
-        border: 1px solid #c0c0cf;
-      }
-
-      .c25:indeterminate {
-        background-color: #4945ff;
-        border: 1px solid #4945ff;
-      }
-
-      .c25:indeterminate:after {
-        content: '';
-        display: block;
-        position: relative;
-        color: white;
-        height: 2px;
-        width: 10px;
-        background-color: #ffffff;
-        left: 50%;
-        top: 50%;
-        -webkit-transform: translateX(-50%) translateY(-50%);
-        -ms-transform: translateX(-50%) translateY(-50%);
-        transform: translateX(-50%) translateY(-50%);
-      }
-
-      .c25:indeterminate:disabled {
-        background-color: #dcdce4;
-        border: 1px solid #c0c0cf;
-      }
-
-      .c25:indeterminate:disabled:after {
-        background-color: #8e8ea9;
-      }
-
-      .c39 {
-        display: -webkit-box;
-        display: -webkit-flex;
-        display: -ms-flexbox;
-        display: flex;
-        -webkit-align-items: center;
-        -webkit-box-align: center;
-        -ms-flex-align: center;
-        align-items: center;
-        -webkit-box-pack: center;
-        -webkit-justify-content: center;
-        -ms-flex-pack: center;
-        justify-content: center;
-        height: 2rem;
-        width: 2rem;
-        border: none;
-      }
-
-      .c39 svg > g,
-      .c39 svg path {
-        fill: #8e8ea9;
-      }
-
-      .c39:hover svg > g,
-      .c39:hover svg path {
-        fill: #666687;
-      }
-
-      .c39:active svg > g,
-      .c39:active svg path {
-        fill: #a5a5ba;
-      }
-
-      .c39[aria-disabled='true'] {
-        background-color: #eaeaef;
-      }
-
-      .c39[aria-disabled='true'] svg path {
-        fill: #666687;
       }
 
       .c11 {
@@ -550,7 +547,8 @@ describe('Admin | containers | ListView', () => {
         color: #666687;
       }
 
-      .c11[aria-disabled='true'] svg > g,.c11[aria-disabled='true'] svg path {
+      .c11[aria-disabled='true'] svg > g,
+      .c11[aria-disabled='true'] svg path {
         fill: #666687;
       }
 
@@ -563,7 +561,8 @@ describe('Admin | containers | ListView', () => {
         color: #666687;
       }
 
-      .c11[aria-disabled='true']:active svg > g,.c11[aria-disabled='true']:active svg path {
+      .c11[aria-disabled='true']:active svg > g,
+      .c11[aria-disabled='true']:active svg path {
         fill: #666687;
       }
 
@@ -729,7 +728,6 @@ describe('Admin | containers | ListView', () => {
                       aria-colcount="5"
                       aria-rowcount="3"
                       class="c21"
-                      role="grid"
                     >
                       <thead
                         class="c22"
@@ -741,7 +739,6 @@ describe('Admin | containers | ListView', () => {
                           <th
                             aria-colindex="1"
                             class="c0 c24"
-                            role="gridcell"
                           >
                             <div
                               class="c0 c7"
@@ -764,7 +761,6 @@ describe('Admin | containers | ListView', () => {
                           <th
                             aria-colindex="2"
                             class="c0 c27 c24"
-                            role="gridcell"
                             tabindex="-1"
                             width="20%"
                           >
@@ -784,7 +780,6 @@ describe('Admin | containers | ListView', () => {
                           <th
                             aria-colindex="3"
                             class="c0 c29 c24"
-                            role="gridcell"
                             tabindex="-1"
                             width="60%"
                           >
@@ -804,7 +799,6 @@ describe('Admin | containers | ListView', () => {
                           <th
                             aria-colindex="4"
                             class="c0 c27 c24"
-                            role="gridcell"
                             tabindex="-1"
                             width="20%"
                           >
@@ -824,7 +818,6 @@ describe('Admin | containers | ListView', () => {
                           <th
                             aria-colindex="5"
                             class="c0 c24"
-                            role="gridcell"
                             tabindex="-1"
                           >
                             <div
@@ -872,7 +865,6 @@ describe('Admin | containers | ListView', () => {
                           <td
                             aria-colindex="2"
                             class="c0 c24"
-                            role="gridcell"
                             tabindex="-1"
                           >
                             <span
@@ -884,7 +876,6 @@ describe('Admin | containers | ListView', () => {
                           <td
                             aria-colindex="3"
                             class="c0 c24"
-                            role="gridcell"
                             tabindex="-1"
                           >
                             <span
@@ -896,7 +887,6 @@ describe('Admin | containers | ListView', () => {
                           <td
                             aria-colindex="4"
                             class="c0 c24"
-                            role="gridcell"
                           >
                             <div
                               aria-hidden="true"
@@ -937,7 +927,6 @@ describe('Admin | containers | ListView', () => {
                           <td
                             aria-colindex="5"
                             class="c0 c24"
-                            role="gridcell"
                           >
                             <div
                               aria-hidden="true"
@@ -1036,7 +1025,6 @@ describe('Admin | containers | ListView', () => {
                           <td
                             aria-colindex="2"
                             class="c0 c24"
-                            role="gridcell"
                             tabindex="-1"
                           >
                             <span
@@ -1048,7 +1036,6 @@ describe('Admin | containers | ListView', () => {
                           <td
                             aria-colindex="3"
                             class="c0 c24"
-                            role="gridcell"
                             tabindex="-1"
                           >
                             <span
@@ -1060,7 +1047,6 @@ describe('Admin | containers | ListView', () => {
                           <td
                             aria-colindex="4"
                             class="c0 c24"
-                            role="gridcell"
                           >
                             <div
                               aria-hidden="true"
@@ -1101,7 +1087,6 @@ describe('Admin | containers | ListView', () => {
                           <td
                             aria-colindex="5"
                             class="c0 c24"
-                            role="gridcell"
                           >
                             <div
                               aria-hidden="true"

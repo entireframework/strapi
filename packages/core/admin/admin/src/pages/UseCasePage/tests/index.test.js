@@ -45,7 +45,7 @@ describe('Admin | UseCasePage', () => {
     const { container: firstChild } = render(App);
 
     expect(firstChild).toMatchInlineSnapshot(`
-      .c38 {
+      .c39 {
         border: 0;
         -webkit-clip: rect(0 0 0 0);
         clip: rect(0 0 0 0);
@@ -91,119 +91,24 @@ describe('Admin | UseCasePage', () => {
         width: 15.625rem;
       }
 
-      .c27 {
+      .c28 {
         padding-right: 16px;
         padding-left: 16px;
       }
 
-      .c29 {
+      .c30 {
         padding-left: 12px;
       }
 
-      .c35 {
+      .c36 {
         padding-top: 16px;
-      }
-
-      .c1 {
-        -webkit-align-items: center;
-        -webkit-box-align: center;
-        -ms-flex-align: center;
-        align-items: center;
-        display: -webkit-box;
-        display: -webkit-flex;
-        display: -ms-flexbox;
-        display: flex;
-        -webkit-flex-direction: row;
-        -ms-flex-direction: row;
-        flex-direction: row;
-        -webkit-box-pack: end;
-        -webkit-justify-content: flex-end;
-        -ms-flex-pack: end;
-        justify-content: flex-end;
-      }
-
-      .c14 {
-        -webkit-align-items: center;
-        -webkit-box-align: center;
-        -ms-flex-align: center;
-        align-items: center;
-        display: -webkit-box;
-        display: -webkit-flex;
-        display: -ms-flexbox;
-        display: flex;
-        -webkit-flex-direction: column;
-        -ms-flex-direction: column;
-        flex-direction: column;
-      }
-
-      .c19 {
-        -webkit-align-items: stretch;
-        -webkit-box-align: stretch;
-        -ms-flex-align: stretch;
-        align-items: stretch;
-        display: -webkit-box;
-        display: -webkit-flex;
-        display: -ms-flexbox;
-        display: flex;
-        -webkit-flex-direction: column;
-        -ms-flex-direction: column;
-        flex-direction: column;
-      }
-
-      .c22 {
-        -webkit-align-items: center;
-        -webkit-box-align: center;
-        -ms-flex-align: center;
-        align-items: center;
-        display: -webkit-box;
-        display: -webkit-flex;
-        display: -ms-flexbox;
-        display: flex;
-        -webkit-flex-direction: row;
-        -ms-flex-direction: row;
-        flex-direction: row;
-      }
-
-      .c25 {
-        -webkit-align-items: center;
-        -webkit-box-align: center;
-        -ms-flex-align: center;
-        align-items: center;
-        display: -webkit-box;
-        display: -webkit-flex;
-        display: -ms-flexbox;
-        display: flex;
-        -webkit-flex-direction: row;
-        -ms-flex-direction: row;
-        flex-direction: row;
-        -webkit-box-pack: justify;
-        -webkit-justify-content: space-between;
-        -ms-flex-pack: justify;
-        justify-content: space-between;
-      }
-
-      .c34 {
-        -webkit-align-items: center;
-        -webkit-box-align: center;
-        -ms-flex-align: center;
-        align-items: center;
-        display: -webkit-box;
-        display: -webkit-flex;
-        display: -ms-flexbox;
-        display: flex;
-        -webkit-flex-direction: row;
-        -ms-flex-direction: row;
-        flex-direction: row;
-        -webkit-box-pack: center;
-        -webkit-justify-content: center;
-        -ms-flex-pack: center;
-        justify-content: center;
       }
 
       .c6 {
         font-size: 0.75rem;
         line-height: 1.33;
         font-weight: 600;
+        line-height: 1.14;
         color: #32324d;
       }
 
@@ -214,7 +119,14 @@ describe('Admin | UseCasePage', () => {
         color: #32324d;
       }
 
-      .c28 {
+      .c22 {
+        font-size: 0.75rem;
+        line-height: 1.33;
+        font-weight: 600;
+        color: #32324d;
+      }
+
+      .c29 {
         font-size: 0.875rem;
         line-height: 1.43;
         display: block;
@@ -224,35 +136,18 @@ describe('Admin | UseCasePage', () => {
         color: #666687;
       }
 
-      .c33 {
+      .c34 {
         font-size: 0.875rem;
         line-height: 1.43;
         font-weight: 600;
+        line-height: 1.14;
         color: #32324d;
       }
 
-      .c37 {
+      .c38 {
         font-size: 0.75rem;
         line-height: 1.33;
         color: #4945ff;
-      }
-
-      .c20 > * {
-        margin-top: 0;
-        margin-bottom: 0;
-      }
-
-      .c20 > * + * {
-        margin-top: 24px;
-      }
-
-      .c21 > * {
-        margin-top: 0;
-        margin-bottom: 0;
-      }
-
-      .c21 > * + * {
-        margin-top: 4px;
       }
 
       .c3 {
@@ -351,7 +246,8 @@ describe('Admin | UseCasePage', () => {
         color: #666687;
       }
 
-      .c4[aria-disabled='true'] svg > g,.c4[aria-disabled='true'] svg path {
+      .c4[aria-disabled='true'] svg > g,
+      .c4[aria-disabled='true'] svg path {
         fill: #666687;
       }
 
@@ -364,7 +260,8 @@ describe('Admin | UseCasePage', () => {
         color: #666687;
       }
 
-      .c4[aria-disabled='true']:active svg > g,.c4[aria-disabled='true']:active svg path {
+      .c4[aria-disabled='true']:active svg > g,
+      .c4[aria-disabled='true']:active svg path {
         fill: #666687;
       }
 
@@ -386,7 +283,7 @@ describe('Admin | UseCasePage', () => {
         fill: #8e8ea9;
       }
 
-      .c32 {
+      .c33 {
         -webkit-align-items: center;
         -webkit-box-align: center;
         -ms-flex-align: center;
@@ -407,7 +304,7 @@ describe('Admin | UseCasePage', () => {
         width: 100%;
       }
 
-      .c32 .c0 {
+      .c33 .c0 {
         display: -webkit-box;
         display: -webkit-flex;
         display: -ms-flexbox;
@@ -418,187 +315,165 @@ describe('Admin | UseCasePage', () => {
         align-items: center;
       }
 
-      .c32 .c5 {
+      .c33 .c5 {
         color: #ffffff;
       }
 
-      .c32[aria-disabled='true'] {
+      .c33[aria-disabled='true'] {
         border: 1px solid #dcdce4;
         background: #eaeaef;
       }
 
-      .c32[aria-disabled='true'] .c5 {
+      .c33[aria-disabled='true'] .c5 {
         color: #666687;
       }
 
-      .c32[aria-disabled='true'] svg > g,.c32[aria-disabled='true'] svg path {
+      .c33[aria-disabled='true'] svg > g,
+      .c33[aria-disabled='true'] svg path {
         fill: #666687;
       }
 
-      .c32[aria-disabled='true']:active {
+      .c33[aria-disabled='true']:active {
         border: 1px solid #dcdce4;
         background: #eaeaef;
       }
 
-      .c32[aria-disabled='true']:active .c5 {
+      .c33[aria-disabled='true']:active .c5 {
         color: #666687;
       }
 
-      .c32[aria-disabled='true']:active svg > g,.c32[aria-disabled='true']:active svg path {
+      .c33[aria-disabled='true']:active svg > g,
+      .c33[aria-disabled='true']:active svg path {
         fill: #666687;
       }
 
-      .c32:hover {
+      .c33:hover {
         border: 1px solid #7b79ff;
         background: #7b79ff;
       }
 
-      .c32:active {
+      .c33:active {
         border: 1px solid #4945ff;
         background: #4945ff;
       }
 
-      .c32 svg > g,
-      .c32 svg path {
+      .c33 svg > g,
+      .c33 svg path {
         fill: #ffffff;
       }
 
-      .c24 {
-        position: absolute;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        top: 0;
-        width: 100%;
-        background: transparent;
-        border: none;
+      .c1 {
+        -webkit-align-items: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-flex-direction: row;
+        -ms-flex-direction: row;
+        flex-direction: row;
+        -webkit-box-pack: end;
+        -webkit-justify-content: flex-end;
+        -ms-flex-pack: end;
+        justify-content: flex-end;
       }
 
-      .c24:focus {
-        outline: none;
+      .c14 {
+        -webkit-align-items: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-flex-direction: column;
+        -ms-flex-direction: column;
+        flex-direction: column;
       }
 
-      .c24[aria-disabled='true'] {
-        cursor: not-allowed;
+      .c19 {
+        -webkit-align-items: stretch;
+        -webkit-box-align: stretch;
+        -ms-flex-align: stretch;
+        align-items: stretch;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-flex-direction: column;
+        -ms-flex-direction: column;
+        flex-direction: column;
       }
 
       .c23 {
-        position: relative;
-        border: 1px solid #dcdce4;
-        padding-right: 12px;
-        border-radius: 4px;
-        background: #ffffff;
-        overflow: hidden;
-        min-height: 2.5rem;
-        outline: none;
-        box-shadow: 0;
-        -webkit-transition-property: border-color,box-shadow,fill;
-        transition-property: border-color,box-shadow,fill;
-        -webkit-transition-duration: 0.2s;
-        transition-duration: 0.2s;
-      }
-
-      .c23:focus-within {
-        border: 1px solid #4945ff;
-        box-shadow: #4945ff 0px 0px 0px 2px;
-      }
-
-      .c30 {
-        background: transparent;
-        border: none;
-        position: relative;
-        z-index: 1;
-      }
-
-      .c30 svg {
-        height: 0.6875rem;
-        width: 0.6875rem;
-      }
-
-      .c30 svg path {
-        fill: #666687;
-      }
-
-      .c31 {
+        -webkit-align-items: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
         display: -webkit-box;
         display: -webkit-flex;
         display: -ms-flexbox;
         display: flex;
-        background: none;
-        border: none;
-      }
-
-      .c31 svg {
-        width: 0.375rem;
+        -webkit-flex-direction: row;
+        -ms-flex-direction: row;
+        flex-direction: row;
       }
 
       .c26 {
-        width: 100%;
-      }
-
-      .c10:focus-visible {
-        outline: none;
-      }
-
-      .c36 {
-        background: transparent;
-        border: none;
-        position: relative;
-        outline: none;
-      }
-
-      .c36[aria-disabled='true'] {
-        pointer-events: none;
-      }
-
-      .c36[aria-disabled='true'] svg path {
-        fill: #666687;
-      }
-
-      .c36 svg {
+        -webkit-align-items: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
         display: -webkit-box;
         display: -webkit-flex;
         display: -ms-flexbox;
         display: flex;
-        font-size: 0.625rem;
+        -webkit-flex-direction: row;
+        -ms-flex-direction: row;
+        flex-direction: row;
+        -webkit-box-pack: justify;
+        -webkit-justify-content: space-between;
+        -ms-flex-pack: justify;
+        justify-content: space-between;
       }
 
-      .c36 svg path {
-        fill: #4945ff;
+      .c35 {
+        -webkit-align-items: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-flex-direction: row;
+        -ms-flex-direction: row;
+        flex-direction: row;
+        -webkit-box-pack: center;
+        -webkit-justify-content: center;
+        -ms-flex-pack: center;
+        justify-content: center;
       }
 
-      .c36:after {
-        -webkit-transition-property: all;
-        transition-property: all;
-        -webkit-transition-duration: 0.2s;
-        transition-duration: 0.2s;
-        border-radius: 8px;
-        content: '';
-        position: absolute;
-        top: -4px;
-        bottom: -4px;
-        left: -4px;
-        right: -4px;
-        border: 2px solid transparent;
+      .c20 > * {
+        margin-top: 0;
+        margin-bottom: 0;
       }
 
-      .c36:focus-visible {
-        outline: none;
+      .c20 > * + * {
+        margin-top: 24px;
       }
 
-      .c36:focus-visible:after {
-        border-radius: 8px;
-        content: '';
-        position: absolute;
-        top: -5px;
-        bottom: -5px;
-        left: -5px;
-        right: -5px;
-        border: 2px solid #4945ff;
+      .c21 > * {
+        margin-top: 0;
+        margin-bottom: 0;
       }
 
-      .c15 {
-        height: 4.5rem;
+      .c21 > * + * {
+        margin-top: 4px;
       }
 
       .c8 {
@@ -615,6 +490,144 @@ describe('Admin | UseCasePage', () => {
       .c8 svg {
         height: 4px;
         width: 6px;
+      }
+
+      .c25 {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        top: 0;
+        width: 100%;
+        background: transparent;
+        border: none;
+      }
+
+      .c25:focus {
+        outline: none;
+      }
+
+      .c25[aria-disabled='true'] {
+        cursor: not-allowed;
+      }
+
+      .c24 {
+        position: relative;
+        border: 1px solid #dcdce4;
+        padding-right: 12px;
+        border-radius: 4px;
+        background: #ffffff;
+        overflow: hidden;
+        min-height: 2.5rem;
+        outline: none;
+        box-shadow: 0;
+        -webkit-transition-property: border-color,box-shadow,fill;
+        transition-property: border-color,box-shadow,fill;
+        -webkit-transition-duration: 0.2s;
+        transition-duration: 0.2s;
+      }
+
+      .c24:focus-within {
+        border: 1px solid #4945ff;
+        box-shadow: #4945ff 0px 0px 0px 2px;
+      }
+
+      .c31 {
+        background: transparent;
+        border: none;
+        position: relative;
+        z-index: 1;
+      }
+
+      .c31 svg {
+        height: 0.6875rem;
+        width: 0.6875rem;
+      }
+
+      .c31 svg path {
+        fill: #666687;
+      }
+
+      .c32 {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        background: none;
+        border: none;
+      }
+
+      .c32 svg {
+        width: 0.375rem;
+      }
+
+      .c27 {
+        width: 100%;
+      }
+
+      .c37 {
+        background: transparent;
+        border: none;
+        position: relative;
+        outline: none;
+      }
+
+      .c37[aria-disabled='true'] {
+        pointer-events: none;
+      }
+
+      .c37[aria-disabled='true'] svg path {
+        fill: #666687;
+      }
+
+      .c37 svg {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        font-size: 0.625rem;
+      }
+
+      .c37 svg path {
+        fill: #4945ff;
+      }
+
+      .c37:after {
+        -webkit-transition-property: all;
+        transition-property: all;
+        -webkit-transition-duration: 0.2s;
+        transition-duration: 0.2s;
+        border-radius: 8px;
+        content: '';
+        position: absolute;
+        top: -4px;
+        bottom: -4px;
+        left: -4px;
+        right: -4px;
+        border: 2px solid transparent;
+      }
+
+      .c37:focus-visible {
+        outline: none;
+      }
+
+      .c37:focus-visible:after {
+        border-radius: 8px;
+        content: '';
+        position: absolute;
+        top: -5px;
+        bottom: -5px;
+        left: -5px;
+        right: -5px;
+        border: 2px solid #4945ff;
+      }
+
+      .c10:focus-visible {
+        outline: none;
+      }
+
+      .c15 {
+        height: 4.5rem;
       }
 
       .c12 {
@@ -697,7 +710,7 @@ describe('Admin | UseCasePage', () => {
                       alt=""
                       aria-hidden="true"
                       class="c15"
-                      src="customAuthLogo.png"
+                      src="defaultAuthLogo.png"
                     />
                     <div
                       class="c0 c16"
@@ -720,40 +733,41 @@ describe('Admin | UseCasePage', () => {
                         class="c0 c19 c21"
                         spacing="1"
                       >
-                        <label
-                          class="c5 c6"
+                        <span
+                          class="c5 c22"
                           for="usecase"
+                          id="usecase-label"
                         >
                           <div
-                            class="c0 c22"
+                            class="c0 c23"
                           >
                             What type of work do you do?
                           </div>
-                        </label>
+                        </span>
                         <div
-                          class="c0 c22 c23"
+                          class="c0 c23 c24"
                         >
                           <button
                             aria-disabled="false"
                             aria-expanded="false"
                             aria-haspopup="listbox"
-                            aria-labelledby="usecase usecase-label usecase-content"
-                            class="c24"
+                            aria-labelledby="usecase-label usecase-content"
+                            class="c25"
                             data-testid="usecase"
                             id="usecase"
                             type="button"
                           />
                           <div
-                            class="c0 c25 c26"
+                            class="c0 c26 c27"
                           >
                             <div
-                              class="c0 c22"
+                              class="c0 c23"
                             >
                               <div
-                                class="c0 c27"
+                                class="c0 c28"
                               >
                                 <span
-                                  class="c5 c28"
+                                  class="c5 c29"
                                   id="usecase-content"
                                 >
                                   Select...
@@ -761,13 +775,12 @@ describe('Admin | UseCasePage', () => {
                               </div>
                             </div>
                             <div
-                              class="c0 c22"
+                              class="c0 c23"
                             >
                               <button
                                 aria-hidden="true"
-                                class="c0 c29 c30 c31"
+                                class="c0 c30 c31 c32"
                                 tabindex="-1"
-                                title="Carret Down Button"
                                 type="button"
                               >
                                 <svg
@@ -792,12 +805,12 @@ describe('Admin | UseCasePage', () => {
                     </div>
                     <button
                       aria-disabled="true"
-                      class="c3 c32"
+                      class="c3 c33"
                       disabled=""
                       type="submit"
                     >
                       <span
-                        class="c5 c33"
+                        class="c5 c34"
                       >
                         Finish
                       </span>
@@ -806,18 +819,18 @@ describe('Admin | UseCasePage', () => {
                 </form>
               </div>
               <div
-                class="c0 c34"
+                class="c0 c35"
               >
                 <div
-                  class="c0 c35"
+                  class="c0 c36"
                 >
                   <button
                     aria-disabled="false"
-                    class="c0 c22 c36"
+                    class="c0 c23 c37"
                     type="button"
                   >
                     <span
-                      class="c5 c37"
+                      class="c5 c38"
                     >
                       Skip this question
                     </span>
@@ -828,7 +841,7 @@ describe('Admin | UseCasePage', () => {
           </div>
         </div>
         <div
-          class="c38"
+          class="c39"
         >
           <p
             aria-live="polite"

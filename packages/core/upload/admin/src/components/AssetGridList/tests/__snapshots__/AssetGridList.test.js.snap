@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`MediaLibrary / AssetList snapshots the asset list 1`] = `
-.c36 {
+.c34 {
   border: 0;
   -webkit-clip: rect(0 0 0 0);
   clip: rect(0 0 0 0);
@@ -42,29 +42,21 @@ exports[`MediaLibrary / AssetList snapshots the asset list 1`] = `
   padding-top: 4px;
 }
 
-.c21 {
-  padding-top: 4px;
-  -webkit-box-flex: 1;
-  -webkit-flex-grow: 1;
-  -ms-flex-positive: 1;
-  flex-grow: 1;
-}
-
-.c23 {
-  background: #eaeaef;
-  padding-right: 8px;
-  padding-left: 8px;
+.c22 {
+  background: #f6f6f9;
+  padding: 4px;
+  border-radius: 4px;
   min-width: 20px;
 }
 
-.c30 {
+.c28 {
   background: #32324d;
   color: #ffffff;
   padding: 4px;
   border-radius: 4px;
 }
 
-.c33 {
+.c31 {
   width: 100%;
   height: 10.25rem;
 }
@@ -93,7 +85,7 @@ exports[`MediaLibrary / AssetList snapshots the asset list 1`] = `
   color: #666687;
 }
 
-.c27 {
+.c25 {
   font-weight: 600;
   font-size: 0.6875rem;
   line-height: 1.45;
@@ -101,101 +93,16 @@ exports[`MediaLibrary / AssetList snapshots the asset list 1`] = `
   color: #666687;
 }
 
-.c32 {
+.c30 {
   font-size: 0.75rem;
   line-height: 1.33;
   color: #ffffff;
 }
 
-.c29 {
-  border: 0;
-  -webkit-clip: rect(0 0 0 0);
-  clip: rect(0 0 0 0);
-  height: 1px;
-  margin: -1px;
-  overflow: hidden;
-  padding: 0;
-  position: absolute;
-  width: 1px;
-}
-
-.c5 {
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-}
-
-.c8 {
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-}
-
-.c15 {
-  -webkit-align-items: flex-start;
-  -webkit-box-align: flex-start;
-  -ms-flex-align: flex-start;
-  align-items: flex-start;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-}
-
-.c24 {
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  display: -webkit-inline-box;
-  display: -webkit-inline-flex;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-}
-
-.c9 > * {
-  margin-left: 0;
-  margin-right: 0;
-}
-
-.c9 > * + * {
-  margin-left: 8px;
-}
-
 .c11 {
+  margin: 0;
   height: 18px;
   min-width: 18px;
-  margin: 0;
   border-radius: 4px;
   border: 1px solid #c0c0cf;
   -webkit-appearance: none;
@@ -260,6 +167,91 @@ exports[`MediaLibrary / AssetList snapshots the asset list 1`] = `
   background-color: #8e8ea9;
 }
 
+.c5 {
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+
+.c8 {
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+}
+
+.c15 {
+  -webkit-align-items: flex-start;
+  -webkit-box-align: flex-start;
+  -ms-flex-align: flex-start;
+  align-items: flex-start;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+}
+
+.c23 {
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+
+.c9 > * {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.c9 > * + * {
+  margin-left: 8px;
+}
+
+.c27 {
+  border: 0;
+  -webkit-clip: rect(0 0 0 0);
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+
 .c10 {
   position: absolute;
   top: 12px;
@@ -290,19 +282,14 @@ exports[`MediaLibrary / AssetList snapshots the asset list 1`] = `
   border-top-right-radius: 4px;
 }
 
-.c25 {
-  border-radius: 4px;
-  height: 1.5rem;
-}
-
-.c22 {
+.c21 {
   margin-left: auto;
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
 }
 
-.c26 {
+.c24 {
   margin-left: 4px;
 }
 
@@ -315,7 +302,7 @@ exports[`MediaLibrary / AssetList snapshots the asset list 1`] = `
   border-bottom: 1px solid #eaeaef;
 }
 
-.c31 {
+.c29 {
   position: absolute;
   bottom: 4px;
   right: 4px;
@@ -329,19 +316,22 @@ exports[`MediaLibrary / AssetList snapshots the asset list 1`] = `
   cursor: pointer;
 }
 
-.c28 canvas,
-.c28 video {
+.c4:hover .sc-cOLXoO {
+  opacity: 1;
+}
+
+.c26 canvas,
+.c26 video {
   display: block;
-  pointer-events: none;
   max-width: 100%;
   max-height: 10.25rem;
 }
 
-.c35 svg {
+.c33 svg {
   font-size: 3rem;
 }
 
-.c34 {
+.c32 {
   border-radius: 4px 4px 0 0;
   background: linear-gradient(180deg,#ffffff 0%,#f6f6f9 121.48%);
 }
@@ -440,20 +430,16 @@ exports[`MediaLibrary / AssetList snapshots the asset list 1`] = `
                   </div>
                 </div>
                 <div
-                  class="c21 c8"
+                  class="c21"
                 >
                   <div
-                    class="c22"
+                    class="c22 c23 c24"
                   >
-                    <div
-                      class="c23 c24 c25 c26"
+                    <span
+                      class="c25"
                     >
-                      <span
-                        class="c27"
-                      >
-                        Image
-                      </span>
-                    </div>
+                      Image
+                    </span>
                   </div>
                 </div>
               </div>
@@ -501,7 +487,7 @@ exports[`MediaLibrary / AssetList snapshots the asset list 1`] = `
                   class="c8"
                 >
                   <div
-                    class="c28"
+                    class="c26"
                   >
                     <figure
                       class=""
@@ -515,7 +501,7 @@ exports[`MediaLibrary / AssetList snapshots the asset list 1`] = `
                         />
                       </video>
                       <figcaption
-                        class="c29"
+                        class="c27"
                       >
                         mov_bbb.mp4
                       </figcaption>
@@ -524,10 +510,10 @@ exports[`MediaLibrary / AssetList snapshots the asset list 1`] = `
                 </div>
               </div>
               <time
-                class="c30 c31"
+                class="c28 c29"
               >
                 <span
-                  class="c32"
+                  class="c30"
                 >
                   ...
                 </span>
@@ -564,20 +550,16 @@ exports[`MediaLibrary / AssetList snapshots the asset list 1`] = `
                   </div>
                 </div>
                 <div
-                  class="c21 c8"
+                  class="c21"
                 >
                   <div
-                    class="c22"
+                    class="c22 c23 c24"
                   >
-                    <div
-                      class="c23 c24 c25 c26"
+                    <span
+                      class="c25"
                     >
-                      <span
-                        class="c27"
-                      >
-                        Video
-                      </span>
-                    </div>
+                      Video
+                    </span>
                   </div>
                 </div>
               </div>
@@ -619,12 +601,12 @@ exports[`MediaLibrary / AssetList snapshots the asset list 1`] = `
                 </div>
               </div>
               <div
-                class="c33 c5 c34"
+                class="c31 c5 c32"
                 height="10.25rem"
                 width="100%"
               >
                 <span
-                  class="c35"
+                  class="c33"
                 >
                   <svg
                     aria-label="CARTE MARIAGE AVS - Printemps.pdf"
@@ -679,20 +661,16 @@ exports[`MediaLibrary / AssetList snapshots the asset list 1`] = `
                   </div>
                 </div>
                 <div
-                  class="c21 c8"
+                  class="c21"
                 >
                   <div
-                    class="c22"
+                    class="c22 c23 c24"
                   >
-                    <div
-                      class="c23 c24 c25 c26"
+                    <span
+                      class="c25"
                     >
-                      <span
-                        class="c27"
-                      >
-                        Doc
-                      </span>
-                    </div>
+                      Doc
+                    </span>
                   </div>
                 </div>
               </div>
@@ -703,7 +681,7 @@ exports[`MediaLibrary / AssetList snapshots the asset list 1`] = `
     </div>
   </div>
   <div
-    class="c36"
+    class="c34"
   >
     <p
       aria-live="polite"
