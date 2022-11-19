@@ -130,12 +130,6 @@ describe('Content manager | App | main', () => {
         width: 1px;
       }
 
-      .c35 {
-        -webkit-animation: gzYjWD 1s infinite linear;
-        animation: gzYjWD 1s infinite linear;
-        will-change: transform;
-      }
-
       .c2 {
         padding-top: 24px;
         padding-right: 16px;
@@ -198,6 +192,85 @@ describe('Content manager | App | main', () => {
 
       .c31 {
         padding-bottom: 56px;
+      }
+
+      .c5 {
+        font-weight: 600;
+        font-size: 1.125rem;
+        line-height: 1.22;
+        color: #32324d;
+      }
+
+      .c23 {
+        font-weight: 600;
+        font-size: 0.6875rem;
+        line-height: 1.45;
+        text-transform: uppercase;
+        color: #666687;
+      }
+
+      .c30 {
+        font-size: 0.875rem;
+        line-height: 1.43;
+        color: #32324d;
+      }
+
+      .c6 {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        cursor: pointer;
+        padding: 8px;
+        border-radius: 4px;
+        background: #ffffff;
+        border: 1px solid #dcdce4;
+        position: relative;
+        outline: none;
+      }
+
+      .c6 svg {
+        height: 12px;
+        width: 12px;
+      }
+
+      .c6 svg > g,
+      .c6 svg path {
+        fill: #ffffff;
+      }
+
+      .c6[aria-disabled='true'] {
+        pointer-events: none;
+      }
+
+      .c6:after {
+        -webkit-transition-property: all;
+        transition-property: all;
+        -webkit-transition-duration: 0.2s;
+        transition-duration: 0.2s;
+        border-radius: 8px;
+        content: '';
+        position: absolute;
+        top: -4px;
+        bottom: -4px;
+        left: -4px;
+        right: -4px;
+        border: 2px solid transparent;
+      }
+
+      .c6:focus-visible {
+        outline: none;
+      }
+
+      .c6:focus-visible:after {
+        border-radius: 8px;
+        content: '';
+        position: absolute;
+        top: -5px;
+        bottom: -5px;
+        left: -5px;
+        right: -5px;
+        border: 2px solid #4945ff;
       }
 
       .c3 {
@@ -282,27 +355,6 @@ describe('Content manager | App | main', () => {
         justify-content: space-around;
       }
 
-      .c5 {
-        font-weight: 600;
-        font-size: 1.125rem;
-        line-height: 1.22;
-        color: #32324d;
-      }
-
-      .c23 {
-        font-weight: 600;
-        font-size: 0.6875rem;
-        line-height: 1.45;
-        text-transform: uppercase;
-        color: #666687;
-      }
-
-      .c30 {
-        font-size: 0.875rem;
-        line-height: 1.43;
-        color: #32324d;
-      }
-
       .c15 > * {
         margin-top: 0;
         margin-bottom: 0;
@@ -319,70 +371,6 @@ describe('Content manager | App | main', () => {
 
       .c16 > * + * {
         margin-top: 4px;
-      }
-
-      .c6 {
-        display: -webkit-box;
-        display: -webkit-flex;
-        display: -ms-flexbox;
-        display: flex;
-        cursor: pointer;
-        padding: 8px;
-        border-radius: 4px;
-        background: #ffffff;
-        border: 1px solid #dcdce4;
-        position: relative;
-        outline: none;
-      }
-
-      .c6 svg {
-        height: 12px;
-        width: 12px;
-      }
-
-      .c6 svg > g,
-      .c6 svg path {
-        fill: #ffffff;
-      }
-
-      .c6[aria-disabled='true'] {
-        pointer-events: none;
-      }
-
-      .c6:after {
-        -webkit-transition-property: all;
-        transition-property: all;
-        -webkit-transition-duration: 0.2s;
-        transition-duration: 0.2s;
-        border-radius: 8px;
-        content: '';
-        position: absolute;
-        top: -4px;
-        bottom: -4px;
-        left: -4px;
-        right: -4px;
-        border: 2px solid transparent;
-      }
-
-      .c6:focus-visible {
-        outline: none;
-      }
-
-      .c6:focus-visible:after {
-        border-radius: 8px;
-        content: '';
-        position: absolute;
-        top: -5px;
-        bottom: -5px;
-        left: -5px;
-        right: -5px;
-        border: 2px solid #4945ff;
-      }
-
-      .c11 {
-        height: 1px;
-        border: none;
-        margin: 0;
       }
 
       .c7 {
@@ -423,6 +411,18 @@ describe('Content manager | App | main', () => {
 
       .c7[aria-disabled='true'] svg path {
         fill: #666687;
+      }
+
+      .c35 {
+        -webkit-animation: gzYjWD 1s infinite linear;
+        animation: gzYjWD 1s infinite linear;
+        will-change: transform;
+      }
+
+      .c11 {
+        height: 1px;
+        border: none;
+        margin: 0;
       }
 
       .c34 {
