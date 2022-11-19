@@ -91,6 +91,7 @@ describe('STRAPI_HELPER_PLUGIN | utils | formatContentTypeData', () => {
         dz: { type: 'dynamiczone', components: ['compos.sub-compo'] },
         jsonString: { type: 'json' },
         jsonObject: { type: 'json' },
+        jsonBool: { type: 'json' },
       },
     };
 
@@ -123,6 +124,7 @@ describe('STRAPI_HELPER_PLUGIN | utils | formatContentTypeData', () => {
       ],
       jsonString: 'hello',
       jsonObject: { hello: true },
+      jsonBool: false,
     };
 
     const expected = {
@@ -141,6 +143,7 @@ describe('STRAPI_HELPER_PLUGIN | utils | formatContentTypeData', () => {
       ],
       jsonString: '"hello"',
       jsonObject: '{\n  "hello": true\n}',
+      jsonBool: 'false',
     };
 
     expect(formatContentTypeData(data, contentType, components)).toEqual(expected);

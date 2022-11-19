@@ -59,6 +59,7 @@ const Img = styled.img`
 
 const DraggedItem = ({
   componentFieldName,
+  componentUid,
   // Errors are retrieved from the AccordionGroupCustom cloneElement
   hasErrorMessage,
   hasErrors,
@@ -313,11 +314,13 @@ const DraggedItem = ({
                         return (
                           <GridItem key={keys} col={(size * 12) / maxSize} s={12} xs={12}>
                             <Inputs
+                              componentUid={componentUid} // TODO: Check to remove or not
                               fieldSchema={fieldSchema}
                               keys={keys}
                               metadatas={metadatas}
                               // onBlur={hasErrors ? checkFormErrors : null}
                               queryInfos={queryInfos}
+                              size={size}
                             />
                           </GridItem>
                         );
@@ -335,6 +338,7 @@ const DraggedItem = ({
 };
 
 DraggedItem.defaultProps = {
+  componentUid: undefined,
   isDraggingSibling: false,
   isOpen: false,
   setIsDraggingSibling() {},
@@ -343,6 +347,7 @@ DraggedItem.defaultProps = {
 
 DraggedItem.propTypes = {
   componentFieldName: PropTypes.string.isRequired,
+  componentUid: PropTypes.string,
   hasErrorMessage: PropTypes.bool.isRequired,
   hasErrors: PropTypes.bool.isRequired,
   isDraggingSibling: PropTypes.bool,

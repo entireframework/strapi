@@ -1,133 +1,98 @@
 import { cloneDeep, get, set } from 'lodash';
-import { getRequestUrl, mergeMetasWithSchema } from '../../../utils';
+import { mergeMetasWithSchema } from '../../../utils';
 
-const getPopulatedFields = (currentLayout, schema) => {
-  if (!schema.attributes) {
-    const mainField = get(
-      schema,
-      ['metadatas', 'coverField', 'name'],
-      get(
-        schema,
-        ['settings', 'coverField'],
-        get(
-          schema,
-          ['metadatas', 'mainField', 'name'],
-          get(schema, ['settings', 'mainField'], 'id')
-        )
-      )
-    );
-    const mainFieldType = get(
-      schema,
-      ['attributes', mainField, 'type'],
-      get(
-        schema,
-        ['metadatas', 'coverField', 'schema', 'type'],
-        get(schema, ['metadatas', 'mainField', 'schema', 'type'], null)
-      )
-    );
-    schema = {
-      ...schema,
-      attributes: {},
-    };
-    schema.attributes[mainField] = {
-      type: mainFieldType,
-    };
-  }
+// const getPopulatedFields = (currentLayout, schema) => {
+//   if (!schema.attributes) {
+//     const mainField = get(
+//       schema,
+//       ['metadatas', 'coverField', 'name'],
+//       get(
+//         schema,
+//         ['settings', 'coverField'],
+//         get(
+//           schema,
+//           ['metadatas', 'mainField', 'name'],
+//           get(schema, ['settings', 'mainField'], 'id')
+//         )
+//       )
+//     );
+//     const mainFieldType = get(
+//       schema,
+//       ['attributes', mainField, 'type'],
+//       get(
+//         schema,
+//         ['metadatas', 'coverField', 'schema', 'type'],
+//         get(schema, ['metadatas', 'mainField', 'schema', 'type'], null)
+//       )
+//     );
+//     schema = {
+//       ...schema,
+//       attributes: {},
+//     };
+//     schema.attributes[mainField] = {
+//       type: mainFieldType,
+//     };
+//   }
 
-  return Object.keys(schema.attributes).reduce((acc, attribute) => {
-    const attributeType = schema.attributes[attribute].type;
-    console.log('attributeType', attributeType);
+//   return Object.keys(schema.attributes).reduce((acc, attribute) => {
+//     const attributeType = schema.attributes[attribute].type;
+//     console.log('attributeType', attributeType);
 
-    let attributeRelation = [];
+//     let attributeRelation = [];
 
-    if (attributeType === 'component') {
-      attributeRelation = getPopulatedFields(
-        currentLayout,
-        get(
-          currentLayout,
-          ['components', get(schema, ['attributes', attribute, 'component'], null)],
-          {}
-        )
-      ).concat(['']);
-    } else if (attributeType === 'dynamiczone') {
-      attributeRelation = get(schema, ['attributes', attribute, 'components'], null)
-        .reduce((acc3, component) => {
-          console.log('component', currentLayout.components, component);
+//     if (attributeType === 'component') {
+//       attributeRelation = getPopulatedFields(
+//         currentLayout,
+//         get(
+//           currentLayout,
+//           ['components', get(schema, ['attributes', attribute, 'component'], null)],
+//           {}
+//         )
+//       ).concat(['']);
+//     } else if (attributeType === 'dynamiczone') {
+//       attributeRelation = get(schema, ['attributes', attribute, 'components'], null)
+//         .reduce((acc3, component) => {
+//           console.log('component', currentLayout.components, component);
 
-          return acc3.concat(
-            getPopulatedFields(currentLayout, get(currentLayout, ['components', component], {}))
-          );
-        }, [])
-        .concat(['']);
-    } else if (attributeType === 'relation') {
-      attributeRelation = getPopulatedFields(
-        currentLayout,
-        get(schema, ['layouts', 'edit', 0, 0], {}),
-        ''
-      ).concat(['']);
-    } else if (attributeType === 'media') {
-      attributeRelation = [''];
-    }
+//           return acc3.concat(
+//             getPopulatedFields(currentLayout, get(currentLayout, ['components', component], {}))
+//           );
+//         }, [])
+//         .concat(['']);
+//     } else if (attributeType === 'relation') {
+//       attributeRelation = getPopulatedFields(
+//         currentLayout,
+//         get(schema, ['layouts', 'edit', 0, 0], {}),
+//         ''
+//       ).concat(['']);
+//     } else if (attributeType === 'media') {
+//       attributeRelation = [''];
+//     }
 
-    return attributeRelation.reduce((acc2, relation) => {
-      return acc2.concat([[attribute, ...(relation ? [relation] : [])].join('.')]);
-    }, acc);
-  }, []);
-};
+//     return attributeRelation.reduce((acc2, relation) => {
+//       return acc2.concat([[attribute, ...(relation ? [relation] : [])].join('.')]);
+//     }, acc);
+//   }, []);
+// };
 
 const getRelationModel = (targetModel, models) => models.find((model) => model.uid === targetModel);
-
-// editRelations is an array of strings...
-const formatEditRelationsLayoutWithMetas = (contentTypeConfiguration, models) => {
-  const formatted = contentTypeConfiguration.layouts.editRelations.reduce((acc, current) => {
-    const fieldSchema = get(contentTypeConfiguration, ['attributes', current], {});
-    const targetModelUID = get(
-      contentTypeConfiguration,
-      ['attributes', current, 'targetModel'],
-      null
-    );
-    const targetModelSchema = getRelationModel(targetModelUID, models);
-    const targetModelPluginOptions = targetModelSchema.pluginOptions || {};
-    const metadatas = get(contentTypeConfiguration, ['metadatas', current, 'edit'], {});
-    const size = 6;
-
-    const queryInfos = generateRelationQueryInfos(contentTypeConfiguration, current, models);
-
-    acc.push({
-      name: current,
-      size,
-      fieldSchema,
-      metadatas,
-      queryInfos,
-      targetModelPluginOptions,
-    });
-
-    return acc;
-  }, []);
-
-  return formatted;
-};
 
 const formatLayouts = (initialData, models) => {
   const data = createMetasSchema(initialData, models);
 
-  const formattedCTEditLayout = formatLayoutWithMetas(data.contentType, null, models);
-  const ctUid = data.contentType.uid;
-  const formattedEditRelationsLayout = formatEditRelationsLayoutWithMetas(data.contentType, models);
+  const formattedCTEditLayout = formatLayoutWithMetas(data.contentType, models);
   const formattedListLayout = formatListLayoutWithMetas(data.contentType, data.components);
 
   set(data, ['contentType', 'layouts', 'edit'], formattedCTEditLayout);
-  set(data, ['contentType', 'layouts', 'editRelations'], formattedEditRelationsLayout);
   set(data, ['contentType', 'layouts', 'list'], formattedListLayout);
 
-  Object.keys(data.components).forEach((compoUID) => {
-    const formattedCompoEditLayout = formatLayoutWithMetas(
-      data.components[compoUID],
-      ctUid,
+  Object.keys(data.components).forEach((componentUid) => {
+    const formattedComponentEditLayout = formatLayoutWithMetas(
+      data.components[componentUid],
       models
     );
 
-    set(data, ['components', compoUID, 'layouts', 'edit'], formattedCompoEditLayout);
+    set(data, ['components', componentUid, 'layouts', 'edit'], formattedComponentEditLayout);
   });
 
   return data;
@@ -188,8 +153,8 @@ const createMetasSchema = (initialData, models) => {
   return data;
 };
 
-const formatLayoutWithMetas = (contentTypeConfiguration, ctUid, models) => {
-  const formatted = contentTypeConfiguration.layouts.edit.reduce((acc, current) => {
+const formatLayoutWithMetas = (contentTypeConfiguration, models) =>
+  contentTypeConfiguration.layouts.edit.reduce((acc, current) => {
     const row = current.map((attribute) => {
       const fieldSchema = get(contentTypeConfiguration, ['attributes', attribute.name], {});
 
@@ -200,21 +165,17 @@ const formatLayoutWithMetas = (contentTypeConfiguration, ctUid, models) => {
       };
 
       if (fieldSchema.type === 'relation') {
-        const targetModelUID = fieldSchema.targetModel;
-        const targetModelSchema = getRelationModel(targetModelUID, models);
+        const targetModelSchema = getRelationModel(fieldSchema.targetModel, models);
         const targetModelPluginOptions = targetModelSchema.pluginOptions || {};
 
-        const queryInfos = ctUid
-          ? generateRelationQueryInfosForComponents(
-              contentTypeConfiguration,
-              attribute.name,
-              ctUid,
-              models
-            )
-          : generateRelationQueryInfos(contentTypeConfiguration, attribute.name, models);
-
         set(data, 'targetModelPluginOptions', targetModelPluginOptions);
-        set(data, 'queryInfos', queryInfos);
+        set(data, 'queryInfos', {
+          shouldDisplayRelationLink: shouldDisplayRelationLink(
+            contentTypeConfiguration,
+            attribute.name,
+            models
+          ),
+        });
       }
 
       return data;
@@ -225,9 +186,6 @@ const formatLayoutWithMetas = (contentTypeConfiguration, ctUid, models) => {
     return acc;
   }, []);
 
-  return formatted;
-};
-
 const formatListLayoutWithMetas = (contentTypeConfiguration, components) => {
   const formatted = contentTypeConfiguration.layouts.list.reduce((acc, current) => {
     const fieldSchema = get(contentTypeConfiguration, ['attributes', current], {});
@@ -236,12 +194,7 @@ const formatListLayoutWithMetas = (contentTypeConfiguration, components) => {
     const type = fieldSchema.type;
 
     if (type === 'relation') {
-      const queryInfos = {
-        endPoint: `collection-types/${contentTypeConfiguration.uid}`,
-        defaultParams: {},
-      };
-
-      acc.push({ key: `__${current}_key__`, name: current, fieldSchema, metadatas, queryInfos });
+      acc.push({ key: `__${current}_key__`, name: current, fieldSchema, metadatas });
 
       return acc;
     }
@@ -281,56 +234,10 @@ const formatListLayoutWithMetas = (contentTypeConfiguration, components) => {
   return formatted;
 };
 
-const generateRelationQueryInfos = (contentTypeConfiguration, fieldName, models) => {
-  const uid = contentTypeConfiguration.uid;
-  const endPoint = getRequestUrl(`relations/${uid}/${fieldName}`);
-  const mainField = get(
-    contentTypeConfiguration,
-    ['metadatas', fieldName, 'edit', 'mainField', 'name'],
-    ''
-  );
+const shouldDisplayRelationLink = (contentTypeConfiguration, fieldName, models) => {
   const targetModel = get(contentTypeConfiguration, ['attributes', fieldName, 'targetModel'], '');
-  const shouldDisplayRelationLink = getDisplayedModels(models).indexOf(targetModel) !== -1;
 
-  const queryInfos = {
-    endPoint,
-    containsKey: `${mainField}`,
-    defaultParams: {},
-    shouldDisplayRelationLink,
-  };
-
-  return queryInfos;
-};
-
-const generateRelationQueryInfosForComponents = (
-  contentTypeConfiguration,
-  fieldName,
-  ctUid,
-  models
-) => {
-  const endPoint = getRequestUrl(`relations/${ctUid}/${fieldName}`);
-  const mainField = get(
-    contentTypeConfiguration,
-    ['metadatas', fieldName, 'edit', 'mainField', 'name'],
-    ''
-  );
-  const targetModel = get(contentTypeConfiguration, ['attributes', fieldName, 'targetModel'], '');
-  const shouldDisplayRelationLink = getDisplayedModels(models).indexOf(targetModel) !== -1;
-
-  const queryInfos = {
-    endPoint,
-    containsKey: `${mainField}`,
-    defaultParams: {
-      _component: contentTypeConfiguration.uid,
-      populate: getPopulatedFields(
-        contentTypeConfiguration,
-        models.find(({ uid }) => uid === targetModel) || contentTypeConfiguration
-      ),
-    },
-    shouldDisplayRelationLink,
-  };
-
-  return queryInfos;
+  return getDisplayedModels(models).includes(targetModel);
 };
 
 const getDisplayedModels = (models) =>
@@ -338,10 +245,8 @@ const getDisplayedModels = (models) =>
 
 export default formatLayouts;
 export {
-  formatEditRelationsLayoutWithMetas,
   formatLayoutWithMetas,
   formatListLayoutWithMetas,
-  generateRelationQueryInfos,
-  generateRelationQueryInfosForComponents,
+  shouldDisplayRelationLink,
   getDisplayedModels,
 };

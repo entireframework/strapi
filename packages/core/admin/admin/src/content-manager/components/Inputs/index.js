@@ -12,7 +12,7 @@ import { getFieldName } from '../../utils';
 import Wysiwyg from '../Wysiwyg';
 import InputJSON from '../InputJSON';
 import InputUID from '../InputUID';
-import SelectWrapper from '../SelectWrapper';
+import { RelationInputDataManager } from '../RelationInputDataManager';
 
 import {
   connect,
@@ -25,6 +25,7 @@ import {
 
 function Inputs({
   allowedFields,
+  componentUid,
   fieldSchema,
   formErrors,
   isCreatingEntry,
@@ -36,6 +37,7 @@ function Inputs({
   shouldNotRunValidations,
   queryInfos,
   value,
+  size,
   modifiedData,
 }) {
   const { fields } = useLibrary();
@@ -235,9 +237,10 @@ function Inputs({
 
   if (type === 'relation') {
     return (
-      <SelectWrapper
+      <RelationInputDataManager
         {...metadatas}
         {...fieldSchema}
+        componentUid={componentUid}
         description={
           metadatas.description
             ? formatMessage({
@@ -269,6 +272,7 @@ function Inputs({
             : null
         }
         queryInfos={queryInfos}
+        size={size}
         value={value}
         error={error && formatMessage(error)}
       />
@@ -326,15 +330,18 @@ function Inputs({
 }
 
 Inputs.defaultProps = {
+  componentUid: undefined,
   formErrors: {},
   labelAction: undefined,
-  queryInfos: {},
+  size: undefined,
   value: null,
+  queryInfos: {},
   modifiedData: null,
 };
 
 Inputs.propTypes = {
   allowedFields: PropTypes.array.isRequired,
+  componentUid: PropTypes.string,
   fieldSchema: PropTypes.object.isRequired,
   formErrors: PropTypes.object,
   keys: PropTypes.string.isRequired,
@@ -343,13 +350,14 @@ Inputs.propTypes = {
   metadatas: PropTypes.object.isRequired,
   onChange: PropTypes.func.isRequired,
   readableFields: PropTypes.array.isRequired,
+  size: PropTypes.number,
   shouldNotRunValidations: PropTypes.bool.isRequired,
+  value: PropTypes.any,
   queryInfos: PropTypes.shape({
     containsKey: PropTypes.string,
     defaultParams: PropTypes.object,
     endPoint: PropTypes.string,
   }),
-  value: PropTypes.any,
   modifiedData: PropTypes.any,
 };
 

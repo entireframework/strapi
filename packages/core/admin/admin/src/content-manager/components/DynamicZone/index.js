@@ -1,4 +1,4 @@
-import React, { memo, useCallback, useMemo, useState, useEffect } from 'react';
+import React, { memo, useMemo, useState } from 'react';
 import get from 'lodash/get';
 import isEqual from 'react-fast-compare';
 import PropTypes from 'prop-types';
@@ -7,19 +7,16 @@ import { Box } from '@strapi/design-system/Box';
 import { NotAllowedInput, useNotification } from '@strapi/helper-plugin';
 import { upperFirst } from 'lodash/fp';
 import { getTrad } from '../../utils';
+
 import connect from './utils/connect';
 import select from './utils/select';
-import AddComponentButton from './components/AddComponentButton';
-import DzLabel from './components/DzLabel';
-import Component from './components/Component';
-import { useContentTypeLayout } from '../../hooks';
 
+import DynamicZoneComponent from './components/DynamicComponent';
+import AddComponentButton from './components/AddComponentButton';
+import DynamicZoneLabel from './components/DynamicZoneLabel';
 import ComponentPicker from './components/ComponentPicker';
 
-/* eslint-disable react/no-array-index-key */
-
-const createCollapses = (arrayLength) =>
-  Array.from({ length: arrayLength }).map(() => ({ isOpen: false }));
+import { useContentTypeLayout } from '../../hooks';
 
 const DynamicZone = ({
   name,
@@ -37,39 +34,16 @@ const DynamicZone = ({
   fieldSchema,
   metadatas,
 }) => {
+  const [addComponentIsOpen, setAddComponentIsOpen] = useState(false);
+
   const toggleNotification = useNotification();
-  const { getComponentLayout } = useContentTypeLayout();
-  const [isOpen, setIsOpen] = useState(false);
-  const [shouldOpenAddedComponent, setShouldOpenAddedComponent] = useState(false);
+  const { getComponentLayout, components } = useContentTypeLayout();
+
   const dynamicDisplayedComponentsLength = dynamicDisplayedComponents.length;
   const intlDescription = metadatas.description
     ? { id: metadatas.description, defaultMessage: metadatas.description }
     : null;
   const [isDraggingSibling, setIsDraggingSibling] = useState(false);
-
-  const [componentCollapses, setComponentsCollapses] = useState(
-    createCollapses(dynamicDisplayedComponentsLength)
-  );
-
-  useEffect(() => {
-    setComponentsCollapses(createCollapses(dynamicDisplayedComponentsLength));
-  }, [dynamicDisplayedComponentsLength]);
-
-  useEffect(() => {
-    if (shouldOpenAddedComponent) {
-      setComponentsCollapses((prev) =>
-        prev.map((collapse, index) => {
-          if (index === prev.length - 1) {
-            return { ...collapse, isOpen: true };
-          }
-
-          return collapse;
-        })
-      );
-
-      setShouldOpenAddedComponent(false);
-    }
-  }, [shouldOpenAddedComponent]);
 
   // We cannot use the default props here
   const { max = Infinity, min = -Infinity } = fieldSchema;
@@ -81,8 +55,6 @@ const DynamicZone = ({
       .map((key) => formErrors[key]);
   }, [formErrors, name]);
 
-  const dynamicZoneAvailableComponents = useMemo(() => fieldSchema.components || [], [fieldSchema]);
-
   const missingComponentNumber = min - dynamicDisplayedComponentsLength;
   const hasError = dynamicZoneErrors.length > 0;
 
@@ -92,19 +64,17 @@ const DynamicZone = ({
   const hasMaxError =
     hasError && get(dynamicZoneErrors, [0, 'id'], '') === 'components.Input.error.validation.max';
 
-  const handleAddComponent = useCallback(
-    (componentUid) => {
-      setIsOpen(false);
+  const handleAddComponent = (componentUid) => {
+    setAddComponentIsOpen(false);
 
-      addComponentToDynamicZone(name, componentUid, hasError);
-      setShouldOpenAddedComponent(true);
-    },
-    [addComponentToDynamicZone, hasError, name]
-  );
+    const componentLayoutData = getComponentLayout(componentUid);
+
+    addComponentToDynamicZone(name, componentLayoutData, components, hasError);
+  };
 
   const handleClickOpenPicker = () => {
     if (dynamicDisplayedComponentsLength < max) {
-      setIsOpen((prev) => !prev);
+      setAddComponentIsOpen((prev) => !prev);
     } else {
       toggleNotification({
         type: 'info',
@@ -113,77 +83,19 @@ const DynamicZone = ({
     }
   };
 
-  const handleToggleComponent = (indexToToggle) => {
-    setComponentsCollapses((prev) =>
-      prev.map(({ isOpen }, index) => {
-        if (index === indexToToggle) {
-          return { isOpen: !isOpen };
-        }
-
-        return { isOpen };
-      })
-    );
+  const handleMoveComponentDown = (name, componentIndex) => () => {
+    moveComponentDown(name, componentIndex);
   };
 
-  const handleMoveComponentDown = (name, currentIndex) => {
-    moveComponentDown(name, currentIndex);
-    setComponentsCollapses((prev) => {
-      return prev.map(({ isOpen }, index, refArray) => {
-        if (index === currentIndex + 1) {
-          return { isOpen: refArray[currentIndex].isOpen };
-        }
-
-        if (index === currentIndex) {
-          return { isOpen: refArray[index + 1].isOpen };
-        }
-
-        return { isOpen };
-      });
-    });
+  const handleMoveComponentUp = (name, componentIndex) => () => {
+    moveComponentUp(name, componentIndex);
   };
 
-  const handleMoveComponentUp = (name, currentIndex) => {
-    moveComponentUp(name, currentIndex);
-    setComponentsCollapses((prev) => {
-      return prev.map(({ isOpen }, index, refArray) => {
-        if (index === currentIndex - 1) {
-          return { isOpen: refArray[currentIndex].isOpen };
-        }
-
-        if (index === currentIndex) {
-          return { isOpen: refArray[index - 1].isOpen };
-        }
-
-        return { isOpen };
-      });
-    });
-  };
-
-  const handleRemoveComponent = (name, currentIndex) => {
+  const handleRemoveComponent = (name, currentIndex) => () => {
     removeComponentFromDynamicZone(name, currentIndex);
   };
 
-  if (!isFieldAllowed && isCreatingEntry) {
-    return (
-      <NotAllowedInput
-        description={intlDescription}
-        intlLabel={{
-          id: metadatas.label,
-          defaultMessage:
-            metadatas.label && name && metadatas.label === name.split('.').slice(-1)[0]
-              ? metadatas.label
-                  .split(/[\s_-]+/)
-                  .map(upperFirst)
-                  .join(' ')
-              : metadatas.label,
-        }}
-        labelAction={labelAction}
-        name={name}
-      />
-    );
-  }
-
-  if (!isFieldAllowed && !isFieldReadable && !isCreatingEntry) {
+  if (!isFieldAllowed && (isCreatingEntry || (!isFieldReadable && !isCreatingEntry))) {
     return (
       <NotAllowedInput
         description={intlDescription}
@@ -211,7 +123,7 @@ const DynamicZone = ({
     <Stack spacing={6}>
       {dynamicDisplayedComponentsLength > 0 && (
         <Box>
-          <DzLabel
+          <DynamicZoneLabel
             intlDescription={intlDescription}
             label={
               metadatas.label && name && metadatas.label === name.split('.').slice(-1)[0]
@@ -226,34 +138,29 @@ const DynamicZone = ({
             numberOfComponents={dynamicDisplayedComponentsLength}
             required={fieldSchema.required || false}
           />
-          {dynamicDisplayedComponents.map((data, index) => {
-            const key = data.__temp_key__;
-            const showDownIcon =
-              isFieldAllowed &&
-              dynamicDisplayedComponentsLength > 0 &&
-              index < dynamicDisplayedComponentsLength - 1;
-            const showUpIcon = isFieldAllowed && dynamicDisplayedComponentsLength > 0 && index > 0;
-            const isOpen = componentCollapses[index]?.isOpen || false;
-            const componentFieldName = `${name}.${index}`;
-            const componentUid = data.__component;
-            const componentLayoutData = getComponentLayout(componentUid);
+          {dynamicDisplayedComponents.map((componentUid, index) => {
+            const showDownIcon = isFieldAllowed && index < dynamicDisplayedComponentsLength - 1;
+            const showUpIcon = isFieldAllowed && index > 0;
+            // const key = data.__temp_key__;
+            // const componentFieldName = `${name}.${index}`;
+            // const componentUid = data.__component;
+            // const componentLayoutData = getComponentLayout(componentUid);
 
             return (
-              <Component
-                componentFieldName={componentFieldName}
-                schema={componentLayoutData}
-                getComponentLayout={getComponentLayout}
+              <DynamicZoneComponent
+                // componentFieldName={componentFieldName}
+                // schema={componentLayoutData}
+                // getComponentLayout={getComponentLayout}
                 componentUid={componentUid}
                 formErrors={formErrors}
-                key={key}
+                // eslint-disable-next-line react/no-array-index-key
+                key={index}
                 index={index}
-                isOpen={isOpen}
                 isFieldAllowed={isFieldAllowed}
-                moveComponentDown={handleMoveComponentDown}
-                moveComponentUp={handleMoveComponentUp}
-                onToggle={handleToggleComponent}
+                onMoveComponentDownClick={handleMoveComponentDown(name, index)}
+                onMoveComponentUpClick={handleMoveComponentUp(name, index)}
                 name={name}
-                removeComponentFromDynamicZone={handleRemoveComponent}
+                onRemoveComponentClick={handleRemoveComponent(name, index)}
                 showDownIcon={showDownIcon}
                 showUpIcon={showUpIcon}
                 isDraggingSibling={isDraggingSibling}
@@ -279,13 +186,13 @@ const DynamicZone = ({
             : metadatas.label
         }
         missingComponentNumber={missingComponentNumber}
-        isOpen={isOpen}
+        isOpen={addComponentIsOpen}
         name={name}
         onClick={handleClickOpenPicker}
       />
       <ComponentPicker
-        isOpen={isOpen}
-        components={dynamicZoneAvailableComponents}
+        isOpen={addComponentIsOpen}
+        components={fieldSchema.components ?? []}
         onClickAddComponent={handleAddComponent}
       />
     </Stack>
