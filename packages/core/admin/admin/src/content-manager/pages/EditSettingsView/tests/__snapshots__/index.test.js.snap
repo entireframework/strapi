@@ -89,6 +89,66 @@ exports[`EditSettingsView renders and matches the snapshot 1`] = `
   width: 100%;
 }
 
+.c9 {
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+
+.c10 {
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+}
+
+.c19 {
+  -webkit-align-items: stretch;
+  -webkit-box-align: stretch;
+  -ms-flex-align: stretch;
+  align-items: stretch;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.c46 {
+  -webkit-align-items: stretch;
+  -webkit-box-align: stretch;
+  -ms-flex-align: stretch;
+  align-items: stretch;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+}
+
 .c8 {
   font-size: 0.875rem;
   line-height: 1.43;
@@ -172,6 +232,33 @@ exports[`EditSettingsView renders and matches the snapshot 1`] = `
   text-overflow: ellipsis;
   font-weight: 500;
   color: #32324d;
+}
+
+.c20 > * {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.c20 > * + * {
+  margin-top: 16px;
+}
+
+.c24 > * {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.c24 > * + * {
+  margin-top: 4px;
+}
+
+.c42 > * {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.c42 > * + * {
+  margin-top: 8px;
 }
 
 .c12 {
@@ -399,91 +486,10 @@ exports[`EditSettingsView renders and matches the snapshot 1`] = `
   fill: #271fe0;
 }
 
-.c9 {
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
-}
-
-.c10 {
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-}
-
-.c19 {
-  -webkit-align-items: stretch;
-  -webkit-box-align: stretch;
-  -ms-flex-align: stretch;
-  align-items: stretch;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-}
-
-.c46 {
-  -webkit-align-items: stretch;
-  -webkit-box-align: stretch;
-  -ms-flex-align: stretch;
-  align-items: stretch;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-}
-
-.c20 > * {
-  margin-top: 0;
-  margin-bottom: 0;
-}
-
-.c20 > * + * {
-  margin-top: 16px;
-}
-
-.c24 > * {
-  margin-top: 0;
-  margin-bottom: 0;
-}
-
-.c24 > * + * {
-  margin-top: 4px;
-}
-
-.c42 > * {
-  margin-top: 0;
-  margin-bottom: 0;
-}
-
-.c42 > * + * {
-  margin-top: 8px;
+.c38 {
+  height: 1px;
+  border: none;
+  margin: 0;
 }
 
 .c53 {
@@ -598,12 +604,6 @@ exports[`EditSettingsView renders and matches the snapshot 1`] = `
 
 .c28 {
   width: 100%;
-}
-
-.c38 {
-  height: 1px;
-  border: none;
-  margin: 0;
 }
 
 .c4 {
@@ -1656,6 +1656,66 @@ exports[`EditSettingsView should add field 1`] = `
   width: 100%;
 }
 
+.c9 {
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+
+.c10 {
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+}
+
+.c19 {
+  -webkit-align-items: stretch;
+  -webkit-box-align: stretch;
+  -ms-flex-align: stretch;
+  align-items: stretch;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.c46 {
+  -webkit-align-items: stretch;
+  -webkit-box-align: stretch;
+  -ms-flex-align: stretch;
+  align-items: stretch;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+}
+
 .c8 {
   font-size: 0.875rem;
   line-height: 1.43;
@@ -1739,6 +1799,33 @@ exports[`EditSettingsView should add field 1`] = `
   text-overflow: ellipsis;
   font-weight: 500;
   color: #32324d;
+}
+
+.c20 > * {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.c20 > * + * {
+  margin-top: 16px;
+}
+
+.c24 > * {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.c24 > * + * {
+  margin-top: 4px;
+}
+
+.c42 > * {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.c42 > * + * {
+  margin-top: 8px;
 }
 
 .c12 {
@@ -1966,91 +2053,10 @@ exports[`EditSettingsView should add field 1`] = `
   fill: #271fe0;
 }
 
-.c9 {
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
-}
-
-.c10 {
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-}
-
-.c19 {
-  -webkit-align-items: stretch;
-  -webkit-box-align: stretch;
-  -ms-flex-align: stretch;
-  align-items: stretch;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-}
-
-.c46 {
-  -webkit-align-items: stretch;
-  -webkit-box-align: stretch;
-  -ms-flex-align: stretch;
-  align-items: stretch;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-}
-
-.c20 > * {
-  margin-top: 0;
-  margin-bottom: 0;
-}
-
-.c20 > * + * {
-  margin-top: 16px;
-}
-
-.c24 > * {
-  margin-top: 0;
-  margin-bottom: 0;
-}
-
-.c24 > * + * {
-  margin-top: 4px;
-}
-
-.c42 > * {
-  margin-top: 0;
-  margin-bottom: 0;
-}
-
-.c42 > * + * {
-  margin-top: 8px;
+.c38 {
+  height: 1px;
+  border: none;
+  margin: 0;
 }
 
 .c53 {
@@ -2165,12 +2171,6 @@ exports[`EditSettingsView should add field 1`] = `
 
 .c28 {
   width: 100%;
-}
-
-.c38 {
-  height: 1px;
-  border: none;
-  margin: 0;
 }
 
 .c4 {

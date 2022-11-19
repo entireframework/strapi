@@ -152,6 +152,73 @@ describe('Admin | containers | RoleEditPage', () => {
         padding-left: 32px;
       }
 
+      .c10 {
+        -webkit-align-items: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-flex-direction: row;
+        -ms-flex-direction: row;
+        flex-direction: row;
+        -webkit-box-pack: justify;
+        -webkit-justify-content: space-between;
+        -ms-flex-pack: justify;
+        justify-content: space-between;
+      }
+
+      .c11 {
+        -webkit-align-items: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-flex-direction: row;
+        -ms-flex-direction: row;
+        flex-direction: row;
+      }
+
+      .c19 {
+        -webkit-align-items: stretch;
+        -webkit-box-align: stretch;
+        -ms-flex-align: stretch;
+        align-items: stretch;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-flex-direction: column;
+        -ms-flex-direction: column;
+        flex-direction: column;
+      }
+
+      .c52 {
+        -webkit-align-items: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-flex-direction: row;
+        -ms-flex-direction: row;
+        flex-direction: row;
+        -webkit-flex-shrink: 0;
+        -ms-flex-negative: 0;
+        flex-shrink: 0;
+        -webkit-box-pack: center;
+        -webkit-justify-content: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+      }
+
       .c8 {
         font-size: 0.875rem;
         line-height: 1.43;
@@ -214,6 +281,60 @@ describe('Admin | containers | RoleEditPage', () => {
         overflow: hidden;
         text-overflow: ellipsis;
         color: #4a4a6a;
+      }
+
+      .c20 > * {
+        margin-top: 0;
+        margin-bottom: 0;
+      }
+
+      .c20 > * + * {
+        margin-top: 32px;
+      }
+
+      .c22 > * {
+        margin-top: 0;
+        margin-bottom: 0;
+      }
+
+      .c22 > * + * {
+        margin-top: 16px;
+      }
+
+      .c26 > * {
+        margin-top: 0;
+        margin-bottom: 0;
+      }
+
+      .c26 > * + * {
+        margin-top: 4px;
+      }
+
+      .c37 > * {
+        margin-top: 0;
+        margin-bottom: 0;
+      }
+
+      .c37 > * + * {
+        margin-top: 24px;
+      }
+
+      .c38 > * {
+        margin-top: 0;
+        margin-bottom: 0;
+      }
+
+      .c38 > * + * {
+        margin-top: 8px;
+      }
+
+      .c45 > * {
+        margin-left: 0;
+        margin-right: 0;
+      }
+
+      .c45 > * + * {
+        margin-left: 12px;
       }
 
       .c13 {
@@ -346,127 +467,6 @@ describe('Admin | containers | RoleEditPage', () => {
       .c14 svg > g,
       .c14 svg path {
         fill: #ffffff;
-      }
-
-      .c10 {
-        -webkit-align-items: center;
-        -webkit-box-align: center;
-        -ms-flex-align: center;
-        align-items: center;
-        display: -webkit-box;
-        display: -webkit-flex;
-        display: -ms-flexbox;
-        display: flex;
-        -webkit-flex-direction: row;
-        -ms-flex-direction: row;
-        flex-direction: row;
-        -webkit-box-pack: justify;
-        -webkit-justify-content: space-between;
-        -ms-flex-pack: justify;
-        justify-content: space-between;
-      }
-
-      .c11 {
-        -webkit-align-items: center;
-        -webkit-box-align: center;
-        -ms-flex-align: center;
-        align-items: center;
-        display: -webkit-box;
-        display: -webkit-flex;
-        display: -ms-flexbox;
-        display: flex;
-        -webkit-flex-direction: row;
-        -ms-flex-direction: row;
-        flex-direction: row;
-      }
-
-      .c19 {
-        -webkit-align-items: stretch;
-        -webkit-box-align: stretch;
-        -ms-flex-align: stretch;
-        align-items: stretch;
-        display: -webkit-box;
-        display: -webkit-flex;
-        display: -ms-flexbox;
-        display: flex;
-        -webkit-flex-direction: column;
-        -ms-flex-direction: column;
-        flex-direction: column;
-      }
-
-      .c52 {
-        -webkit-align-items: center;
-        -webkit-box-align: center;
-        -ms-flex-align: center;
-        align-items: center;
-        display: -webkit-box;
-        display: -webkit-flex;
-        display: -ms-flexbox;
-        display: flex;
-        -webkit-flex-direction: row;
-        -ms-flex-direction: row;
-        flex-direction: row;
-        -webkit-flex-shrink: 0;
-        -ms-flex-negative: 0;
-        flex-shrink: 0;
-        -webkit-box-pack: center;
-        -webkit-justify-content: center;
-        -ms-flex-pack: center;
-        justify-content: center;
-      }
-
-      .c20 > * {
-        margin-top: 0;
-        margin-bottom: 0;
-      }
-
-      .c20 > * + * {
-        margin-top: 32px;
-      }
-
-      .c22 > * {
-        margin-top: 0;
-        margin-bottom: 0;
-      }
-
-      .c22 > * + * {
-        margin-top: 16px;
-      }
-
-      .c26 > * {
-        margin-top: 0;
-        margin-bottom: 0;
-      }
-
-      .c26 > * + * {
-        margin-top: 4px;
-      }
-
-      .c37 > * {
-        margin-top: 0;
-        margin-bottom: 0;
-      }
-
-      .c37 > * + * {
-        margin-top: 24px;
-      }
-
-      .c38 > * {
-        margin-top: 0;
-        margin-bottom: 0;
-      }
-
-      .c38 > * + * {
-        margin-top: 8px;
-      }
-
-      .c45 > * {
-        margin-left: 0;
-        margin-right: 0;
-      }
-
-      .c45 > * + * {
-        margin-left: 12px;
       }
 
       .c29 {

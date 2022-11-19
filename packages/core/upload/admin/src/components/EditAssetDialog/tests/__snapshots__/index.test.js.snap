@@ -13,6 +13,18 @@ exports[`<EditAssetDialog /> renders and matches the snapshot 1`] = `
   width: 1px;
 }
 
+.c12 {
+  border: 0;
+  -webkit-clip: rect(0 0 0 0);
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+
 .c3 {
   background: #ffffff;
   border-radius: 4px;
@@ -67,6 +79,70 @@ exports[`<EditAssetDialog /> renders and matches the snapshot 1`] = `
   border-radius: 4px;
 }
 
+.c7 {
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+
+.c20 {
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: end;
+  -webkit-justify-content: flex-end;
+  -ms-flex-pack: end;
+  justify-content: flex-end;
+}
+
+.c22 {
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+}
+
+.c26 {
+  -webkit-align-items: stretch;
+  -webkit-box-align: stretch;
+  -ms-flex-align: stretch;
+  align-items: stretch;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
 .c9 {
   font-size: 0.875rem;
   line-height: 1.43;
@@ -114,6 +190,33 @@ exports[`<EditAssetDialog /> renders and matches the snapshot 1`] = `
   line-height: 1.33;
   font-weight: 600;
   color: #ffffff;
+}
+
+.c27 > * {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.c27 > * + * {
+  margin-top: 12px;
+}
+
+.c29 > * {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.c29 > * + * {
+  margin-top: 4px;
+}
+
+.c23 > * {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.c23 > * + * {
+  margin-left: 4px;
 }
 
 .c10 {
@@ -402,95 +505,50 @@ exports[`<EditAssetDialog /> renders and matches the snapshot 1`] = `
   fill: #ffffff;
 }
 
-.c7 {
+.c46 {
+  position: absolute;
+  z-index: 4;
+  display: none;
+}
+
+.c11 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  height: 2rem;
+  width: 2rem;
 }
 
-.c20 {
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-box-pack: end;
-  -webkit-justify-content: flex-end;
-  -ms-flex-pack: end;
-  justify-content: flex-end;
+.c11 svg > g,
+.c11 svg path {
+  fill: #8e8ea9;
 }
 
-.c22 {
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
+.c11:hover svg > g,
+.c11:hover svg path {
+  fill: #666687;
 }
 
-.c26 {
-  -webkit-align-items: stretch;
-  -webkit-box-align: stretch;
-  -ms-flex-align: stretch;
-  align-items: stretch;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
+.c11:active svg > g,
+.c11:active svg path {
+  fill: #a5a5ba;
 }
 
-.c27 > * {
-  margin-top: 0;
-  margin-bottom: 0;
+.c11[aria-disabled='true'] {
+  background-color: #eaeaef;
 }
 
-.c27 > * + * {
-  margin-top: 12px;
-}
-
-.c29 > * {
-  margin-top: 0;
-  margin-bottom: 0;
-}
-
-.c29 > * + * {
-  margin-top: 4px;
-}
-
-.c23 > * {
-  margin-left: 0;
-  margin-right: 0;
-}
-
-.c23 > * + * {
-  margin-left: 4px;
+.c11[aria-disabled='true'] svg path {
+  fill: #666687;
 }
 
 .c34 {
@@ -552,64 +610,6 @@ exports[`<EditAssetDialog /> renders and matches the snapshot 1`] = `
 .c33:focus-within {
   border: 1px solid #4945ff;
   box-shadow: #4945ff 0px 0px 0px 2px;
-}
-
-.c12 {
-  border: 0;
-  -webkit-clip: rect(0 0 0 0);
-  clip: rect(0 0 0 0);
-  height: 1px;
-  margin: -1px;
-  overflow: hidden;
-  padding: 0;
-  position: absolute;
-  width: 1px;
-}
-
-.c46 {
-  position: absolute;
-  z-index: 4;
-  display: none;
-}
-
-.c11 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  height: 2rem;
-  width: 2rem;
-}
-
-.c11 svg > g,
-.c11 svg path {
-  fill: #8e8ea9;
-}
-
-.c11:hover svg > g,
-.c11:hover svg path {
-  fill: #666687;
-}
-
-.c11:active svg > g,
-.c11:active svg path {
-  fill: #a5a5ba;
-}
-
-.c11[aria-disabled='true'] {
-  background-color: #eaeaef;
-}
-
-.c11[aria-disabled='true'] svg path {
-  fill: #666687;
 }
 
 .c37 {
@@ -1239,7 +1239,7 @@ exports[`<EditAssetDialog /> renders and matches the snapshot 1`] = `
                               class="css-1f43avz-a11yText-A11yText"
                             />
                             <div
-                              class=" css-1sb7bue-control"
+                              class=" css-1e1stxh-control"
                             >
                               <div
                                 class=" css-do2euy-ValueContainer"

@@ -98,6 +98,70 @@ exports[`<ListView /> renders and matches the snapshot 1`] = `
   padding: 20px;
 }
 
+.c8 {
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+
+.c9 {
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+}
+
+.c21 {
+  -webkit-align-items: stretch;
+  -webkit-box-align: stretch;
+  -ms-flex-align: stretch;
+  align-items: stretch;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.c23 {
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: end;
+  -webkit-justify-content: flex-end;
+  -ms-flex-pack: end;
+  justify-content: flex-end;
+}
+
 .c7 {
   font-size: 0.875rem;
   line-height: 1.43;
@@ -169,6 +233,51 @@ exports[`<ListView /> renders and matches the snapshot 1`] = `
   text-overflow: ellipsis;
   font-weight: 600;
   color: #32324d;
+}
+
+.c22 > * {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.c22 > * + * {
+  margin-top: 16px;
+}
+
+.c51 > * {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.c51 > * + * {
+  margin-top: 4px;
+}
+
+.c16 > * {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.c16 > * + * {
+  margin-left: 8px;
+}
+
+.c30 > * {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.c30 > * + * {
+  margin-left: 16px;
+}
+
+.c34 > * {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.c34 > * + * {
+  margin-left: 4px;
 }
 
 .c12 {
@@ -461,113 +570,44 @@ exports[`<ListView /> renders and matches the snapshot 1`] = `
   fill: #ffffff;
 }
 
-.c8 {
+.c69 {
+  height: 1px;
+  border: none;
+  margin: 0;
+}
+
+.c72 {
+  height: 1.5rem;
+  width: 1.5rem;
+  border-radius: 50%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
 }
 
-.c9 {
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
+.c72 svg {
+  height: 0.625rem;
+  width: 0.625rem;
 }
 
-.c21 {
-  -webkit-align-items: stretch;
-  -webkit-box-align: stretch;
-  -ms-flex-align: stretch;
-  align-items: stretch;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
+.c72 svg path {
+  fill: #4945ff;
 }
 
-.c23 {
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-box-pack: end;
-  -webkit-justify-content: flex-end;
-  -ms-flex-pack: end;
-  justify-content: flex-end;
-}
-
-.c22 > * {
-  margin-top: 0;
-  margin-bottom: 0;
-}
-
-.c22 > * + * {
-  margin-top: 16px;
-}
-
-.c51 > * {
-  margin-top: 0;
-  margin-bottom: 0;
-}
-
-.c51 > * + * {
-  margin-top: 4px;
-}
-
-.c16 > * {
-  margin-left: 0;
-  margin-right: 0;
-}
-
-.c16 > * + * {
-  margin-left: 8px;
-}
-
-.c30 > * {
-  margin-left: 0;
-  margin-right: 0;
-}
-
-.c30 > * + * {
-  margin-left: 16px;
-}
-
-.c34 > * {
-  margin-left: 0;
-  margin-right: 0;
-}
-
-.c34 > * + * {
-  margin-left: 4px;
+.c71 {
+  border-radius: 0 0 4px 4px;
+  display: block;
+  width: 100%;
+  border: none;
 }
 
 .c35 {
@@ -609,46 +649,6 @@ exports[`<ListView /> renders and matches the snapshot 1`] = `
 
 .c35[aria-disabled='true'] svg path {
   fill: #666687;
-}
-
-.c69 {
-  height: 1px;
-  border: none;
-  margin: 0;
-}
-
-.c72 {
-  height: 1.5rem;
-  width: 1.5rem;
-  border-radius: 50%;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-}
-
-.c72 svg {
-  height: 0.625rem;
-  width: 0.625rem;
-}
-
-.c72 svg path {
-  fill: #4945ff;
-}
-
-.c71 {
-  border-radius: 0 0 4px 4px;
-  display: block;
-  width: 100%;
-  border: none;
 }
 
 .c3 {
