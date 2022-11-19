@@ -52,6 +52,13 @@ describe('<InputUID />', () => {
         padding-left: 8px;
       }
 
+      .c2 {
+        font-size: 0.75rem;
+        line-height: 1.33;
+        font-weight: 600;
+        color: #32324d;
+      }
+
       .c0 {
         -webkit-align-items: stretch;
         -webkit-box-align: stretch;
@@ -96,13 +103,6 @@ describe('<InputUID />', () => {
         -webkit-justify-content: space-between;
         -ms-flex-pack: justify;
         justify-content: space-between;
-      }
-
-      .c2 {
-        font-size: 0.75rem;
-        line-height: 1.33;
-        font-weight: 600;
-        color: #32324d;
       }
 
       .c1 > * {

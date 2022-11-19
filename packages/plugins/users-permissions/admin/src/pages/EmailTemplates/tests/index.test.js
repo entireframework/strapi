@@ -65,18 +65,6 @@ describe('ADMIN | Pages | Settings | Email Templates', () => {
     });
 
     expect(container.firstChild).toMatchInlineSnapshot(`
-      .c16 {
-        border: 0;
-        -webkit-clip: rect(0 0 0 0);
-        clip: rect(0 0 0 0);
-        height: 1px;
-        margin: -1px;
-        overflow: hidden;
-        padding: 0;
-        position: absolute;
-        width: 1px;
-      }
-
       .c1 {
         background: #f6f6f9;
         padding-top: 40px;
@@ -107,38 +95,6 @@ describe('ADMIN | Pages | Settings | Email Templates', () => {
 
       .c20 {
         color: #666687;
-      }
-
-      .c2 {
-        -webkit-align-items: center;
-        -webkit-box-align: center;
-        -ms-flex-align: center;
-        align-items: center;
-        display: -webkit-box;
-        display: -webkit-flex;
-        display: -ms-flexbox;
-        display: flex;
-        -webkit-flex-direction: row;
-        -ms-flex-direction: row;
-        flex-direction: row;
-        -webkit-box-pack: justify;
-        -webkit-justify-content: space-between;
-        -ms-flex-pack: justify;
-        justify-content: space-between;
-      }
-
-      .c3 {
-        -webkit-align-items: center;
-        -webkit-box-align: center;
-        -ms-flex-align: center;
-        align-items: center;
-        display: -webkit-box;
-        display: -webkit-flex;
-        display: -ms-flexbox;
-        display: flex;
-        -webkit-flex-direction: row;
-        -ms-flex-direction: row;
-        flex-direction: row;
       }
 
       .c4 {
@@ -218,6 +174,95 @@ describe('ADMIN | Pages | Settings | Email Templates', () => {
         left: -5px;
         right: -5px;
         border: 2px solid #4945ff;
+      }
+
+      .c2 {
+        -webkit-align-items: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-flex-direction: row;
+        -ms-flex-direction: row;
+        flex-direction: row;
+        -webkit-box-pack: justify;
+        -webkit-justify-content: space-between;
+        -ms-flex-pack: justify;
+        justify-content: space-between;
+      }
+
+      .c3 {
+        -webkit-align-items: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-flex-direction: row;
+        -ms-flex-direction: row;
+        flex-direction: row;
+      }
+
+      .c16 {
+        border: 0;
+        -webkit-clip: rect(0 0 0 0);
+        clip: rect(0 0 0 0);
+        height: 1px;
+        margin: -1px;
+        overflow: hidden;
+        padding: 0;
+        position: absolute;
+        width: 1px;
+      }
+
+      .c21 path {
+        fill: #666687;
+      }
+
+      .c24 {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-align-items: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        -webkit-box-pack: center;
+        -webkit-justify-content: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+        height: 2rem;
+        width: 2rem;
+        border: none;
+      }
+
+      .c24 svg > g,
+      .c24 svg path {
+        fill: #8e8ea9;
+      }
+
+      .c24:hover svg > g,
+      .c24:hover svg path {
+        fill: #666687;
+      }
+
+      .c24:active svg > g,
+      .c24:active svg path {
+        fill: #a5a5ba;
+      }
+
+      .c24[aria-disabled='true'] {
+        background-color: #eaeaef;
+      }
+
+      .c24[aria-disabled='true'] svg path {
+        fill: #666687;
       }
 
       .c7 {
@@ -300,51 +345,6 @@ describe('ADMIN | Pages | Settings | Email Templates', () => {
 
       .c17 svg {
         height: 0.25rem;
-      }
-
-      .c24 {
-        display: -webkit-box;
-        display: -webkit-flex;
-        display: -ms-flexbox;
-        display: flex;
-        -webkit-align-items: center;
-        -webkit-box-align: center;
-        -ms-flex-align: center;
-        align-items: center;
-        -webkit-box-pack: center;
-        -webkit-justify-content: center;
-        -ms-flex-pack: center;
-        justify-content: center;
-        height: 2rem;
-        width: 2rem;
-        border: none;
-      }
-
-      .c24 svg > g,
-      .c24 svg path {
-        fill: #8e8ea9;
-      }
-
-      .c24:hover svg > g,
-      .c24:hover svg path {
-        fill: #666687;
-      }
-
-      .c24:active svg > g,
-      .c24:active svg path {
-        fill: #a5a5ba;
-      }
-
-      .c24[aria-disabled='true'] {
-        background-color: #eaeaef;
-      }
-
-      .c24[aria-disabled='true'] svg path {
-        fill: #666687;
-      }
-
-      .c21 path {
-        fill: #666687;
       }
 
       .c0:focus-visible {
