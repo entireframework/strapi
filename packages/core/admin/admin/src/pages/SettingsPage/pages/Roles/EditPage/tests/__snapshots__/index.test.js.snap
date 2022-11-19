@@ -13,12 +13,6 @@ exports[`<EditPage /> renders and matches the snapshot 1`] = `
   width: 1px;
 }
 
-.c38 {
-  -webkit-animation: gzYjWD 1s infinite linear;
-  animation: gzYjWD 1s infinite linear;
-  will-change: transform;
-}
-
 .c2 {
   background: #f6f6f9;
   padding-top: 24px;
@@ -45,70 +39,6 @@ exports[`<EditPage /> renders and matches the snapshot 1`] = `
   padding: 24px;
   border-radius: 4px;
   box-shadow: 0px 1px 4px rgba(33,33,52,0.1);
-}
-
-.c9 {
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
-}
-
-.c10 {
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-}
-
-.c18 {
-  -webkit-align-items: stretch;
-  -webkit-box-align: stretch;
-  -ms-flex-align: stretch;
-  align-items: stretch;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-}
-
-.c35 {
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-box-pack: space-around;
-  -webkit-justify-content: space-around;
-  -ms-flex-pack: space-around;
-  justify-content: space-around;
 }
 
 .c8 {
@@ -164,42 +94,6 @@ exports[`<EditPage /> renders and matches the snapshot 1`] = `
   line-height: 1.33;
   font-weight: 600;
   color: #32324d;
-}
-
-.c19 > * {
-  margin-top: 0;
-  margin-bottom: 0;
-}
-
-.c19 > * + * {
-  margin-top: 24px;
-}
-
-.c21 > * {
-  margin-top: 0;
-  margin-bottom: 0;
-}
-
-.c21 > * + * {
-  margin-top: 16px;
-}
-
-.c28 > * {
-  margin-top: 0;
-  margin-bottom: 0;
-}
-
-.c28 > * + * {
-  margin-top: 4px;
-}
-
-.c12 > * {
-  margin-left: 0;
-  margin-right: 0;
-}
-
-.c12 > * + * {
-  margin-left: 8px;
 }
 
 .c13 {
@@ -414,6 +308,106 @@ exports[`<EditPage /> renders and matches the snapshot 1`] = `
   fill: #271fe0;
 }
 
+.c9 {
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+
+.c10 {
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+}
+
+.c18 {
+  -webkit-align-items: stretch;
+  -webkit-box-align: stretch;
+  -ms-flex-align: stretch;
+  align-items: stretch;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.c35 {
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: space-around;
+  -webkit-justify-content: space-around;
+  -ms-flex-pack: space-around;
+  justify-content: space-around;
+}
+
+.c19 > * {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.c19 > * + * {
+  margin-top: 24px;
+}
+
+.c21 > * {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.c21 > * + * {
+  margin-top: 16px;
+}
+
+.c28 > * {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.c28 > * + * {
+  margin-top: 4px;
+}
+
+.c12 > * {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.c12 > * + * {
+  margin-left: 8px;
+}
+
 .c31 {
   border: none;
   border-radius: 4px;
@@ -473,6 +467,12 @@ exports[`<EditPage /> renders and matches the snapshot 1`] = `
 .c30:focus-within {
   border: 1px solid #4945ff;
   box-shadow: #4945ff 0px 0px 0px 2px;
+}
+
+.c38 {
+  -webkit-animation: gzYjWD 1s infinite linear;
+  animation: gzYjWD 1s infinite linear;
+  will-change: transform;
 }
 
 .c33 {
