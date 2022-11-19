@@ -22,6 +22,7 @@ import toString from 'lodash/toString';
 import { useContentTypeLayout } from '../../../../hooks';
 import { getTrad } from '../../../../utils';
 import FieldComponent from '../../../FieldComponent';
+// eslint-disable-next-line import/extensions
 import Rectangle from './Rectangle';
 import Preview from '../../../RepeatableComponent/DraggedItem/Preview';
 import DraggingSibling from './DraggingSibling';
