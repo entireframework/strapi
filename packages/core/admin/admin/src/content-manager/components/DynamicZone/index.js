@@ -43,7 +43,7 @@ const DynamicZone = ({
   const intlDescription = metadatas.description
     ? { id: metadatas.description, defaultMessage: metadatas.description }
     : null;
-  const [isDraggingSibling, setIsDraggingSibling] = useState(false);
+  // const [isDraggingSibling, setIsDraggingSibling] = useState(false);
 
   // We cannot use the default props here
   const { max = Infinity, min = -Infinity } = fieldSchema;
@@ -115,10 +115,6 @@ const DynamicZone = ({
     );
   }
 
-  const toggleCollapses = () => {
-    setComponentsCollapses(createCollapses(dynamicDisplayedComponentsLength));
-  };
-
   return (
     <Stack spacing={6}>
       {dynamicDisplayedComponentsLength > 0 && (
@@ -138,12 +134,12 @@ const DynamicZone = ({
             numberOfComponents={dynamicDisplayedComponentsLength}
             required={fieldSchema.required || false}
           />
-          {dynamicDisplayedComponents.map((componentUid, index) => {
+          {dynamicDisplayedComponents.map((data, index) => {
             const showDownIcon = isFieldAllowed && index < dynamicDisplayedComponentsLength - 1;
             const showUpIcon = isFieldAllowed && index > 0;
-            // const key = data.__temp_key__;
+            const key = data.__temp_key__ != null ? data.__temp_key__ : index;
             // const componentFieldName = `${name}.${index}`;
-            // const componentUid = data.__component;
+            const componentUid = data.__component || data;
             // const componentLayoutData = getComponentLayout(componentUid);
 
             return (
@@ -154,7 +150,7 @@ const DynamicZone = ({
                 componentUid={componentUid}
                 formErrors={formErrors}
                 // eslint-disable-next-line react/no-array-index-key
-                key={index}
+                key={key}
                 index={index}
                 isFieldAllowed={isFieldAllowed}
                 onMoveComponentDownClick={handleMoveComponentDown(name, index)}
@@ -163,9 +159,9 @@ const DynamicZone = ({
                 onRemoveComponentClick={handleRemoveComponent(name, index)}
                 showDownIcon={showDownIcon}
                 showUpIcon={showUpIcon}
-                isDraggingSibling={isDraggingSibling}
-                setIsDraggingSibling={setIsDraggingSibling}
-                toggleCollapses={toggleCollapses}
+                // isDraggingSibling={isDraggingSibling}
+                // setIsDraggingSibling={setIsDraggingSibling}
+                // toggleCollapses={toggleCollapses}
               />
             );
           })}
