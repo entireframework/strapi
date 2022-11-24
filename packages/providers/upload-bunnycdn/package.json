@@ -1,6 +1,6 @@
 {
   "name": "@entireframework/provider-upload-bunnycdn",
-  "version": "4.5.3-alpha.0",
+  "version": "4.5.3-alpha.1",
   "description": "BunnyCDN provider for strapi upload",
   "keywords": [
     "upload",
@@ -11,7 +11,7 @@
     "lib": "./lib"
   },
   "dependencies": {
-    "@strapi/utils": "^4.5.3-alpha.0",
+    "@strapi/utils": "^4.5.3-alpha.1",
     "axios": "^0.27.2",
     "ftp": "^0.3.10",
     "queue": "^6.0.2"
