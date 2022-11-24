@@ -1,10 +1,10 @@
 {
   "name": "create-strapi-app",
-  "version": "4.5.2-alpha.4",
+  "version": "4.5.3-alpha.0",
   "description": "Generate a new Strapi application.",
   "dependencies": {
-    "@strapi/generate-new": "^4.5.2-alpha.4",
-    "commander": "6.1.0",
+    "@strapi/generate-new": "^4.5.3-alpha.0",
+    "commander": "7.2.0",
     "inquirer": "8.2.4"
   },
   "keywords": [
