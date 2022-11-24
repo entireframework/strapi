@@ -2002,6 +2002,16 @@
   resolved "https://registry.yarnpkg.com/@emotion/weak-memoize/-/weak-memoize-0.3.0.tgz#ea89004119dc42db2e1dba0f97d553f7372f6fcb"
   integrity sha512-AHPmaAx+RYfZz0eYu6Gviiagpmiyw98ySSlQvCUhVGDRtDFe4DBS0x1bSjdF3gqUDYOczB+yYvBTtEylYSdRhg==
 
+"@entireframework/provider-upload-bunnycdn@^4.5.2-alpha.4":
+  version "4.5.2-alpha.4"
+  resolved "https://gitlab.com/api/v4/projects/37149880/packages/npm/@entireframework/provider-upload-bunnycdn/-/@entireframework/provider-upload-bunnycdn-4.5.2-alpha.4.tgz#e8135b6d02b1747c265671bdf97ae5daf116c5ee"
+  integrity sha1-6BNbbQKxdHwmVnG9+Xrl2vEWxe4=
+  dependencies:
+    "@strapi/utils" "^4.5.2-alpha.4"
+    axios "^1.1.2"
+    ftp "^0.3.10"
+    queue "^6.0.2"
+
 "@esbuild/android-arm@0.15.12":
   version "0.15.12"
   resolved "https://registry.yarnpkg.com/@esbuild/android-arm/-/android-arm-0.15.12.tgz#e548b10a5e55b9e10537a049ebf0bc72c453b769"
@@ -2213,7 +2223,7 @@
   dependencies:
     tslib "^2.4.0"
 
-"@graphql-tools/utils@^8.0.0", "@graphql-tools/utils@^8.12.0":
+"@graphql-tools/utils@^8.0.0":
   version "8.12.0"
   resolved "https://registry.yarnpkg.com/@graphql-tools/utils/-/utils-8.12.0.tgz#243bc4f5fc2edbc9e8fd1038189e57d837cbe31f"
   integrity sha512-TeO+MJWGXjUTS52qfK4R8HiPoF/R7X+qmgtOYd8DTH0l6b+5Y/tlg5aGeUJefqImRq7nvi93Ms40k/Uz4D5CWw==
@@ -8042,7 +8052,7 @@ axe-core@^4.4.3:
   resolved "https://registry.yarnpkg.com/axe-core/-/axe-core-4.4.3.tgz#11c74d23d5013c0fa5d183796729bc3482bd2f6f"
   integrity sha512-32+ub6kkdhhWick/UjvEwRchgoetXqTK14INLqbGm5U2TzBkBNF3nQtLYm8ovxSkQWArjEQvftCKryjZaATu3w==
 
-axios@0.27.2:
+axios@0.27.2, axios@^0.27.2:
   version "0.27.2"
   resolved "https://registry.yarnpkg.com/axios/-/axios-0.27.2.tgz#207658cc8621606e586c85db4b41a750e756d972"
   integrity sha512-t+yRIyySRTp/wua5xEr+z1q60QmLq8ABsS5O9Me1AsE5dfKqgnCFzwiCZZ/cGNd1lq4/7akDWMxdhVlucjmnOQ==
