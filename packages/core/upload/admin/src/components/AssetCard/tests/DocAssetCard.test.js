@@ -29,7 +29,7 @@ describe('DocAssetCard', () => {
     );
 
     expect(container).toMatchInlineSnapshot(`
-      .c31 {
+      .c32 {
         border: 0;
         -webkit-clip: rect(0 0 0 0);
         clip: rect(0 0 0 0);
@@ -75,7 +75,15 @@ describe('DocAssetCard', () => {
         padding-top: 4px;
       }
 
-      .c27 {
+      .c26 {
+        padding-top: 4px;
+        -webkit-box-flex: 1;
+        -webkit-flex-grow: 1;
+        -ms-flex-positive: 1;
+        flex-grow: 1;
+      }
+
+      .c28 {
         background: #f6f6f9;
         padding: 4px;
         border-radius: 4px;
@@ -128,7 +136,7 @@ describe('DocAssetCard', () => {
         flex-direction: row;
       }
 
-      .c28 {
+      .c29 {
         -webkit-align-items: center;
         -webkit-box-align: center;
         -ms-flex-align: center;
@@ -171,7 +179,7 @@ describe('DocAssetCard', () => {
         color: #666687;
       }
 
-      .c30 {
+      .c31 {
         font-weight: 600;
         font-size: 0.6875rem;
         line-height: 1.45;
@@ -314,6 +322,106 @@ describe('DocAssetCard', () => {
         background-color: #8e8ea9;
       }
 
+      .c23 {
+        font-size: 0.75rem;
+        line-height: 1.33;
+        font-weight: 600;
+        color: #32324d;
+      }
+
+      .c24 {
+        font-size: 0.75rem;
+        line-height: 1.33;
+        color: #666687;
+      }
+
+      .c30 {
+        font-weight: 600;
+        font-size: 0.6875rem;
+        line-height: 1.45;
+        text-transform: uppercase;
+        color: #666687;
+      }
+
+      .c13 {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        cursor: pointer;
+        padding: 8px;
+        border-radius: 4px;
+        background: #ffffff;
+        border: 1px solid #dcdce4;
+        position: relative;
+        outline: none;
+      }
+
+      .c13 svg {
+        height: 12px;
+        width: 12px;
+      }
+
+      .c13 svg > g,
+      .c13 svg path {
+        fill: #ffffff;
+      }
+
+      .c13[aria-disabled='true'] {
+        pointer-events: none;
+      }
+
+      .c13:after {
+        -webkit-transition-property: all;
+        transition-property: all;
+        -webkit-transition-duration: 0.2s;
+        transition-duration: 0.2s;
+        border-radius: 8px;
+        content: '';
+        position: absolute;
+        top: -4px;
+        bottom: -4px;
+        left: -4px;
+        right: -4px;
+        border: 2px solid transparent;
+      }
+
+      .c13:focus-visible {
+        outline: none;
+      }
+
+      .c13:focus-visible:after {
+        border-radius: 8px;
+        content: '';
+        position: absolute;
+        top: -5px;
+        bottom: -5px;
+        left: -5px;
+        right: -5px;
+        border: 2px solid #4945ff;
+      }
+
+      .c6 > * {
+        margin-left: 0;
+        margin-right: 0;
+      }
+
+      .c6 > * + * {
+        margin-left: 8px;
+      }
+
+      .c15 {
+        border: 0;
+        -webkit-clip: rect(0 0 0 0);
+        clip: rect(0 0 0 0);
+        height: 1px;
+        margin: -1px;
+        overflow: hidden;
+        padding: 0;
+        position: absolute;
+        width: 1px;
+      }
+
       .c14 {
         display: -webkit-box;
         display: -webkit-flex;
@@ -366,14 +474,14 @@ describe('DocAssetCard', () => {
         right: 12px;
       }
 
-      .c26 {
+      .c27 {
         margin-left: auto;
         -webkit-flex-shrink: 0;
         -ms-flex-negative: 0;
         flex-shrink: 0;
       }
 
-      .c29 {
+      .c30 {
         margin-left: 4px;
       }
 
@@ -535,23 +643,27 @@ describe('DocAssetCard', () => {
                 </div>
               </div>
               <div
-                class="c26"
+                class="c26 c5"
               >
                 <div
-                  class="c27 c28 c29"
+                  class="c27"
                 >
-                  <span
-                    class="c30"
+                  <div
+                    class="c28 c29 c30"
                   >
-                    Doc
-                  </span>
+                    <span
+                      class="c31"
+                    >
+                      Doc
+                    </span>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </article>
         <div
-          class="c31"
+          class="c32"
         >
           <p
             aria-live="polite"
