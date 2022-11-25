@@ -3,6 +3,8 @@
 const Client = require('ftp');
 const queue = require('queue');
 
+const connectTimeout = 60 * 1000;
+
 const ftpQueue = queue({
   concurrency: 1,
   autostart: true,
@@ -23,6 +25,10 @@ function putFTPFile(options, file, ftpFolder, ftpFileName) {
     console.log('connecting', options, ftpFolder, ftpFileName);
     ftp.on('ready', resolve);
     ftp.on('error', reject);
+    ftp.on('close', (hadErr) => {
+      if (hadErr) reject();
+    });
+    setTimeout(reject, connectTimeout);
 
     ftp.connect(options);
   }).then(() => {
@@ -49,6 +55,10 @@ function deleteFTPFile(options, fileName) {
     console.log('connecting', options, fileName);
     ftp.on('ready', resolve);
     ftp.on('error', reject);
+    ftp.on('close', (hadErr) => {
+      if (hadErr) reject();
+    });
+    setTimeout(reject, connectTimeout);
 
     ftp.connect(options);
   }).then(() => {
