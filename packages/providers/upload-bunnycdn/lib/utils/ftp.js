@@ -19,7 +19,13 @@ async function queuePush(q, fn) {
   });
 }
 
-function putFTPFile(options, file, ftpFolder, ftpFileName) {
+async function putFTPFile(options, file, ftpFolder, ftpFileName, retries = 3) {
+  return putFTPFileFn(options, file, ftpFolder, ftpFileName).catch(() => {
+    return retries > 0 ? putFTPFile(options, file, ftpFolder, ftpFileName, retries - 1) : null;
+  });
+}
+
+function putFTPFileFn(options, file, ftpFolder, ftpFileName) {
   const ftp = new Client();
 
   return new Promise((resolve, reject) => {
@@ -72,7 +78,13 @@ function putFTPFile(options, file, ftpFolder, ftpFileName) {
   });
 }
 
-function deleteFTPFile(options, fileName) {
+async function deleteFTPFile(options, fileName, retries = 3) {
+  return deleteFTPFileFn(options, fileName).catch(() => {
+    return retries > 0 ? deleteFTPFile(options, fileName, retries - 1) : null;
+  });
+}
+
+function deleteFTPFileFn(options, fileName) {
   const ftp = new Client();
 
   return new Promise((resolve, reject) => {
