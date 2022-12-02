@@ -189,7 +189,16 @@ const resizeFileTo = async (file, options, { name, hash, format }) => {
   return newFile;
 };
 
-const generateThumbnail = async (file) => {
+const generateThumbnails = async (file) => {
+  const format = await getFormat(file);
+
+  return Promise.all([
+    generateThumbnail(file, format !== 'webp' ? format : 'jpeg'),
+    generateThumbnail(file, 'webp'),
+  ]);
+};
+
+const generateThumbnail = async (file, format = undefined) => {
   if (!file.width || !file.height || !file.size) {
     const { width, height, size } = await getMetadata(file);
     file.width = width;
@@ -208,8 +217,13 @@ const generateThumbnail = async (file) => {
     }
 
     const newFile = await resizeFileTo(fileData, THUMBNAIL_RESIZE_OPTIONS, {
-      name: `thumbnail${isVideoFile ? '-poster' : ''}_${fileData.name}`,
-      hash: `thumbnail${isVideoFile ? '-poster' : ''}_${fileData.hash}`,
+      name: `thumbnail${isVideoFile ? '-poster' : ''}${format === 'webp' ? '-webp' : ''}_${
+        fileData.name
+      }`,
+      hash: `thumbnail${isVideoFile ? '-poster' : ''}${format === 'webp' ? '-webp' : ''}_${
+        fileData.hash
+      }`,
+      format,
     });
     return newFile;
   }
@@ -542,6 +556,6 @@ module.exports = () => ({
   isVideo,
   getDimensions,
   generateResponsiveFormats,
-  generateThumbnail,
+  generateThumbnails,
   optimize,
 });
