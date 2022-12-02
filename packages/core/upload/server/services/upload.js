@@ -191,7 +191,7 @@ module.exports = ({ strapi }) => ({
   async uploadImage(fileData) {
     const {
       getDimensions,
-      generateThumbnail,
+      generateThumbnails,
       generateResponsiveFormats,
       isOptimizableImage,
       isOptimizableVideo,
@@ -211,15 +211,6 @@ module.exports = ({ strapi }) => ({
     const isVideoFile = await isOptimizableVideo(fileData);
 
     // For performance reasons, all uploads are wrapped in a single Promise.all
-    const uploadThumbnail = async (thumbnailFile) => {
-      await getService('provider').upload(thumbnailFile);
-      _.set(
-        fileData,
-        isVideoFile ? 'formats.thumbnail-poster' : 'formats.thumbnail',
-        thumbnailFile
-      );
-    };
-
     const uploadResponsiveFormat = async (format) => {
       const { key, file } = format;
       await getService('provider').upload(file);
@@ -233,12 +224,9 @@ module.exports = ({ strapi }) => ({
 
     // Generate & Upload thumbnail and responsive formats
     if ((await isOptimizableImage(fileData)) || isVideoFile) {
-      const thumbnailFile = await generateThumbnail(fileData);
-      if (thumbnailFile) {
-        uploadPromises.push(uploadThumbnail(thumbnailFile));
-      }
-
-      const formats = await generateResponsiveFormats(fileData);
+      const formats = (await generateThumbnails(fileData)).concat(
+        await generateResponsiveFormats(fileData)
+      );
       if (Array.isArray(formats) && formats.length > 0) {
         for (const format of formats) {
           // eslint-disable-next-line no-continue
