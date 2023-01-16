@@ -318,7 +318,8 @@ const generateResponsiveFormats = async (file) => {
               width: breakpoint.width || breakpoint,
               height: breakpoint.height || breakpoint,
               originalDimensions,
-              format: format !== 'webp' ? format : 'jpeg',
+              // eslint-disable-next-line no-nested-ternary
+              format: format !== 'webp' ? (isVideoFile ? 'png' : format) : 'jpeg',
             }),
             generateBreakpoint(`${key + (isVideoFile ? '-poster' : '')}-webp`, {
               file: fileData,
@@ -426,7 +427,9 @@ const generatePoster = async (file) => {
     ext: '.png',
     name: 'png',
   };
-  const newFileName = `${file.name.split('.').slice(0, -1).join('.') || file.name}.png`;
+  const newFileName = `${file.name.split('.').slice(0, -1).join('.') || file.name}${
+    convertOptions.ext
+  }`;
   const newFilePath = join(file.tmpWorkingDirectory, `poster_${file.hash}${convertOptions.ext}`);
   const newFileMime = `image/${convertOptions.name}`;
   const newFileExt = convertOptions.ext;
