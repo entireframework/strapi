@@ -190,7 +190,8 @@ const resizeFileTo = async (file, options, { name, hash, format }) => {
 };
 
 const generateThumbnails = async (file) => {
-  const format = await getFormat(file);
+  const isVideoFile = await isVideo(file);
+  const format = isVideoFile ? 'png' : await getFormat(file);
 
   return Promise.all([
     generateThumbnail(file, format !== 'webp' ? format : 'jpeg'),
@@ -299,7 +300,7 @@ const generateResponsiveFormats = async (file) => {
   }
 
   const originalDimensions = await getDimensions(fileData);
-  const format = await getFormat(fileData);
+  const format = isVideoFile ? 'png' : await getFormat(fileData);
 
   const breakpoints = {
     ...getBreakpoints(),
@@ -318,8 +319,7 @@ const generateResponsiveFormats = async (file) => {
               width: breakpoint.width || breakpoint,
               height: breakpoint.height || breakpoint,
               originalDimensions,
-              // eslint-disable-next-line no-nested-ternary
-              format: format !== 'webp' ? (isVideoFile ? 'png' : format) : 'jpeg',
+              format: format !== 'webp' ? format : 'jpeg',
             }),
             generateBreakpoint(`${key + (isVideoFile ? '-poster' : '')}-webp`, {
               file: fileData,
