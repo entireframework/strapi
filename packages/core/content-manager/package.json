@@ -1,6 +1,6 @@
 {
   "name": "@strapi/plugin-content-manager",
-  "version": "4.5.3-alpha.2",
+  "version": "4.5.3-alpha.13",
   "description": "A powerful UI to easily manage your data.",
   "repository": {
     "type": "git",
