@@ -13,7 +13,7 @@ const createPossibleCoverFieldsForModelsAndComponents = (array) => {
         'password',
         // 'relation',
         // 'text',
-        'richtext',
+        // 'richtext',
       ].includes(get(attributes, [attr, 'type'], ''));
     });
 
