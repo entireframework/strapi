@@ -1,5 +1,5 @@
 {
-  "version": "4.5.3-alpha.11",
+  "version": "4.5.3-alpha.12",
   "packages": [
     "packages/*",
     "examples/*"
