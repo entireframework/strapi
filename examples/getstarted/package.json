@@ -1,7 +1,7 @@
 {
   "name": "getstarted",
   "private": true,
-  "version": "4.5.3-alpha.11",
+  "version": "4.5.3-alpha.12",
   "description": "A Strapi application.",
   "scripts": {
     "develop": "strapi develop",
@@ -21,7 +21,7 @@
     "@strapi/provider-email-mailgun": "^4.5.3-alpha.2",
     "@strapi/provider-upload-aws-s3": "^4.5.3-alpha.2",
     "@strapi/provider-upload-cloudinary": "^4.5.3-alpha.2",
-    "@strapi/strapi": "^4.5.3-alpha.11",
+    "@strapi/strapi": "^4.5.3-alpha.12",
     "@vscode/sqlite3": "5.0.8",
     "better-sqlite3": "7.4.6",
     "lodash": "4.17.21",
