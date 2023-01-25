@@ -59,7 +59,7 @@ const EditSettingsView = ({ mainLayout, components, isContentTypeView, slug, upd
         'boolean',
         // 'media',
         'password',
-        // 'richtext',
+        'richtext',
         // 'timestamp',
       ].includes(type) && !!type
     );
@@ -77,7 +77,7 @@ const EditSettingsView = ({ mainLayout, components, isContentTypeView, slug, upd
         'boolean',
         // 'media',
         'password',
-        'richtext',
+        // 'richtext',
         // 'timestamp',
       ].includes(type) && !!type
     );
