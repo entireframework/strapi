@@ -279,7 +279,6 @@ describe('ADMIN | Pages | USERS | ListPage', () => {
         font-size: 0.75rem;
         line-height: 1.33;
         font-weight: 600;
-        line-height: 1.14;
         color: #32324d;
       }
 
@@ -416,8 +415,7 @@ describe('ADMIN | Pages | USERS | ListPage', () => {
         color: #666687;
       }
 
-      .c8[aria-disabled='true'] svg > g,
-      .c8[aria-disabled='true'] svg path {
+      .c8[aria-disabled='true'] svg > g,.c8[aria-disabled='true'] svg path {
         fill: #666687;
       }
 
@@ -430,8 +428,7 @@ describe('ADMIN | Pages | USERS | ListPage', () => {
         color: #666687;
       }
 
-      .c8[aria-disabled='true']:active svg > g,
-      .c8[aria-disabled='true']:active svg path {
+      .c8[aria-disabled='true']:active svg > g,.c8[aria-disabled='true']:active svg path {
         fill: #666687;
       }
 
@@ -488,8 +485,7 @@ describe('ADMIN | Pages | USERS | ListPage', () => {
         color: #666687;
       }
 
-      .c23[aria-disabled='true'] svg > g,
-      .c23[aria-disabled='true'] svg path {
+      .c23[aria-disabled='true'] svg > g,.c23[aria-disabled='true'] svg path {
         fill: #666687;
       }
 
@@ -502,8 +498,7 @@ describe('ADMIN | Pages | USERS | ListPage', () => {
         color: #666687;
       }
 
-      .c23[aria-disabled='true']:active svg > g,
-      .c23[aria-disabled='true']:active svg path {
+      .c23[aria-disabled='true']:active svg > g,.c23[aria-disabled='true']:active svg path {
         fill: #666687;
       }
 
@@ -607,9 +602,9 @@ describe('ADMIN | Pages | USERS | ListPage', () => {
       }
 
       .c33 {
-        margin: 0;
         height: 18px;
         min-width: 18px;
+        margin: 0;
         border-radius: 4px;
         border: 1px solid #c0c0cf;
         -webkit-appearance: none;
@@ -755,10 +750,6 @@ describe('ADMIN | Pages | USERS | ListPage', () => {
         fill: #666687;
       }
 
-      .c21 path {
-        fill: #32324d;
-      }
-
       .c47 {
         position: absolute;
         left: 0;
@@ -830,6 +821,10 @@ describe('ADMIN | Pages | USERS | ListPage', () => {
 
       .c48 {
         width: 100%;
+      }
+
+      .c21 path {
+        fill: #32324d;
       }
 
       .c56 > * + * {
@@ -1090,6 +1085,7 @@ describe('ADMIN | Pages | USERS | ListPage', () => {
                   aria-colcount="8"
                   aria-rowcount="1"
                   class="c29"
+                  role="grid"
                 >
                   <thead
                     class="c30"
@@ -1101,6 +1097,7 @@ describe('ADMIN | Pages | USERS | ListPage', () => {
                       <th
                         aria-colindex="1"
                         class="c1 c32"
+                        role="gridcell"
                       >
                         <div
                           class="c1 c4"
@@ -1123,6 +1120,7 @@ describe('ADMIN | Pages | USERS | ListPage', () => {
                       <th
                         aria-colindex="2"
                         class="c1 c32"
+                        role="gridcell"
                         tabindex="-1"
                       >
                         <div
@@ -1179,6 +1177,7 @@ describe('ADMIN | Pages | USERS | ListPage', () => {
                       <th
                         aria-colindex="3"
                         class="c1 c32"
+                        role="gridcell"
                       >
                         <div
                           class="c1 c4"
@@ -1201,6 +1200,7 @@ describe('ADMIN | Pages | USERS | ListPage', () => {
                       <th
                         aria-colindex="4"
                         class="c1 c32"
+                        role="gridcell"
                       >
                         <div
                           class="c1 c4"
@@ -1223,6 +1223,7 @@ describe('ADMIN | Pages | USERS | ListPage', () => {
                       <th
                         aria-colindex="5"
                         class="c1 c32"
+                        role="gridcell"
                       >
                         <div
                           class="c1 c4"
@@ -1245,6 +1246,7 @@ describe('ADMIN | Pages | USERS | ListPage', () => {
                       <th
                         aria-colindex="6"
                         class="c1 c32"
+                        role="gridcell"
                       >
                         <div
                           class="c1 c4"
@@ -1267,6 +1269,7 @@ describe('ADMIN | Pages | USERS | ListPage', () => {
                       <th
                         aria-colindex="7"
                         class="c1 c32"
+                        role="gridcell"
                       >
                         <div
                           class="c1 c4"
@@ -1289,6 +1292,7 @@ describe('ADMIN | Pages | USERS | ListPage', () => {
                       <th
                         aria-colindex="8"
                         class="c1 c32"
+                        role="gridcell"
                         tabindex="-1"
                       >
                         <div
@@ -1317,6 +1321,7 @@ describe('ADMIN | Pages | USERS | ListPage', () => {
                         aria-colindex="1"
                         class="c1 c32"
                         colspan="8"
+                        role="gridcell"
                         tabindex="-1"
                       >
                         <div
@@ -1370,7 +1375,7 @@ describe('ADMIN | Pages | USERS | ListPage', () => {
                         aria-expanded="false"
                         aria-haspopup="listbox"
                         aria-label="Entries per page"
-                        aria-labelledby="select-19-label select-19-content"
+                        aria-labelledby="select-19 select-19-label select-19-content"
                         class="c47"
                         id="select-19"
                         type="button"
@@ -1399,6 +1404,7 @@ describe('ADMIN | Pages | USERS | ListPage', () => {
                             aria-hidden="true"
                             class="c1 c51 c52 c53"
                             tabindex="-1"
+                            title="Carret Down Button"
                             type="button"
                           >
                             <svg
@@ -1434,7 +1440,7 @@ describe('ADMIN | Pages | USERS | ListPage', () => {
               </div>
               <nav
                 aria-label="pagination"
-                class="sc-cZMNgc"
+                class=""
               >
                 <ul
                   class="c1 c4 c56"
