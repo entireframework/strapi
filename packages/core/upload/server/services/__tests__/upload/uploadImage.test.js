@@ -85,6 +85,6 @@ describe('Upload image', () => {
 
     await uploadService.uploadImage(fileData);
     // 1 for the original image, 1 for thumbnail, 2 for the responsive formats
-    expect(upload).toHaveBeenCalledTimes(8);
+    expect(upload).toHaveBeenCalledTimes(4);
   });
 });

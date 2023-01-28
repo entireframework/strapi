@@ -7,9 +7,9 @@
 import React, { useMemo, useState } from 'react';
 import { useSelector, shallowEqual } from 'react-redux';
 import { useIntl } from 'react-intl';
-import sortBy from 'lodash/sortBy';
 import toLower from 'lodash/toLower';
 import { NavLink } from 'react-router-dom';
+
 import {
   SubNav,
   SubNavHeader,
@@ -17,7 +17,7 @@ import {
   SubNavSections,
   SubNavLink,
 } from '@strapi/design-system/v2/SubNav';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import getTrad from '../../../utils/getTrad';
 import { makeSelectModelLinks } from '../selectors';
 import { useConfigurations } from '../../../../hooks';
@@ -97,9 +97,7 @@ const LeftMenu = () => {
         defaultMessage: 'Collection Types',
       },
       searchable: true,
-      links: sortBy(matchByTitle(intlCollectionTypeLinks, search), (object) =>
-        object.title.toLowerCase()
-      ),
+      links: matchByTitle(intlCollectionTypeLinks, search),
     },
     {
       id: 'singleTypes',
@@ -108,9 +106,7 @@ const LeftMenu = () => {
         defaultMessage: 'Single Types',
       },
       searchable: true,
-      links: sortBy(matchByTitle(intlSingleTypeLinks, search), (object) =>
-        object.title.toLowerCase()
-      ),
+      links: matchByTitle(intlSingleTypeLinks, search),
     },
   ];
 
@@ -161,7 +157,7 @@ const LeftMenu = () => {
                     as={NavLink}
                     key={link.uid}
                     to={`${link.to}${search}`}
-                    icon={link.icon && <FontAwesomeIcon icon={link.icon} size="sm" />}
+                    // icon={link.icon && <FontAwesomeIcon icon={link.icon} size="sm" />}
                   >
                     {link.title}
                   </SubNavLink>

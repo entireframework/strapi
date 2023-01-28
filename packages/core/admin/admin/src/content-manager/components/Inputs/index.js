@@ -5,7 +5,7 @@ import get from 'lodash/get';
 import omit from 'lodash/omit';
 import take from 'lodash/take';
 import isEqual from 'react-fast-compare';
-import { GenericInput, NotAllowedInput, useLibrary, useCustomFields } from '@strapi/helper-plugin';
+import { GenericInput, NotAllowedInput, useLibrary } from '@strapi/helper-plugin';
 import { upperFirst } from 'lodash/fp';
 import { useContentTypeLayout } from '../../hooks';
 import { getFieldName } from '../../utils';
@@ -38,12 +38,12 @@ function Inputs({
   queryInfos,
   value,
   size,
+  customFieldInputs,
   modifiedData,
 }) {
   const { fields } = useLibrary();
   const { formatMessage } = useIntl();
   const { contentType: currentContentTypeLayout } = useContentTypeLayout();
-  const customFieldsRegistry = useCustomFields();
 
   const disabled = useMemo(() => !get(metadatas, 'editable', true), [metadatas]);
   const { type, customField: customFieldUid } = fieldSchema;
@@ -196,19 +196,6 @@ function Inputs({
     return minutes % metadatas.step === 0 ? metadatas.step : step;
   }, [inputType, inputValue, metadatas.step, step]);
 
-  // Memoize the component to avoid remounting it and losing state
-  const CustomFieldInput = useMemo(() => {
-    if (customFieldUid) {
-      const customField = customFieldsRegistry.get(customFieldUid);
-      const CustomFieldInput = React.lazy(customField.components.Input);
-
-      return CustomFieldInput;
-    }
-
-    // Not a custom field, component won't be used
-    return null;
-  }, [customFieldUid, customFieldsRegistry]);
-
   if (visible === false) {
     return null;
   }
@@ -285,11 +272,8 @@ function Inputs({
     media: fields.media,
     wysiwyg: Wysiwyg,
     ...fields,
+    ...customFieldInputs,
   };
-
-  if (customFieldUid) {
-    customInputs[customFieldUid] = CustomFieldInput;
-  }
 
   return (
     <GenericInput
@@ -336,6 +320,7 @@ Inputs.defaultProps = {
   size: undefined,
   value: null,
   queryInfos: {},
+  customFieldInputs: {},
   modifiedData: null,
 };
 
@@ -358,6 +343,7 @@ Inputs.propTypes = {
     defaultParams: PropTypes.object,
     endPoint: PropTypes.string,
   }),
+  customFieldInputs: PropTypes.object,
   modifiedData: PropTypes.any,
 };
 

@@ -5,7 +5,7 @@ import { upperFirst } from 'lodash/fp';
 import Inputs from '../../../components/Inputs';
 import FieldComponent from '../../../components/FieldComponent';
 
-const GridRow = ({ columns }) => {
+const GridRow = ({ columns, customFieldInputs }) => {
   return (
     <Grid gap={4}>
       {columns.map(({ fieldSchema, labelAction, metadatas, name, size, queryInfos }) => {
@@ -56,6 +56,7 @@ const GridRow = ({ columns }) => {
               labelAction={labelAction}
               metadatas={metadatas}
               queryInfos={queryInfos}
+              customFieldInputs={customFieldInputs}
             />
           </GridItem>
         );
@@ -64,8 +65,13 @@ const GridRow = ({ columns }) => {
   );
 };
 
+GridRow.defaultProps = {
+  customFieldInputs: {},
+};
+
 GridRow.propTypes = {
   columns: PropTypes.array.isRequired,
+  customFieldInputs: PropTypes.object,
 };
 
 export default GridRow;

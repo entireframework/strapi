@@ -207,7 +207,7 @@ describe('<PageSizeURLQuery />', () => {
                 aria-expanded="false"
                 aria-haspopup="listbox"
                 aria-label="Entries per page"
-                aria-labelledby="select-1-label select-1-content"
+                aria-labelledby="select-1 select-1-label select-1-content"
                 class="c4"
                 id="select-1"
                 type="button"
@@ -236,6 +236,7 @@ describe('<PageSizeURLQuery />', () => {
                     aria-hidden="true"
                     class="c9 c10 c11"
                     tabindex="-1"
+                    title="Carret Down Button"
                     type="button"
                   >
                     <svg

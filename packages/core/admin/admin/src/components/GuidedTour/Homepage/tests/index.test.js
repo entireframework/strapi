@@ -226,14 +226,6 @@ describe('GuidedTour Homepage', () => {
         color: #666687;
       }
 
-      .c25 {
-        font-size: 0.75rem;
-        line-height: 1.33;
-        font-weight: 600;
-        line-height: 1.14;
-        color: #32324d;
-      }
-
       .c3 > * {
         margin-top: 0;
         margin-bottom: 0;
@@ -339,8 +331,7 @@ describe('GuidedTour Homepage', () => {
         color: #666687;
       }
 
-      .c24[aria-disabled='true'] svg > g,
-      .c24[aria-disabled='true'] svg path {
+      .c24[aria-disabled='true'] svg > g,.c24[aria-disabled='true'] svg path {
         fill: #666687;
       }
 
@@ -353,8 +344,7 @@ describe('GuidedTour Homepage', () => {
         color: #666687;
       }
 
-      .c24[aria-disabled='true']:active svg > g,
-      .c24[aria-disabled='true']:active svg path {
+      .c24[aria-disabled='true']:active svg > g,.c24[aria-disabled='true']:active svg path {
         fill: #666687;
       }
 
@@ -412,8 +402,7 @@ describe('GuidedTour Homepage', () => {
         color: #666687;
       }
 
-      .c17[aria-disabled='true'] svg > g,
-      .c17[aria-disabled='true'] svg path {
+      .c17[aria-disabled='true'] svg > g,.c17[aria-disabled='true'] svg path {
         fill: #666687;
       }
 
@@ -426,8 +415,7 @@ describe('GuidedTour Homepage', () => {
         color: #666687;
       }
 
-      .c17[aria-disabled='true']:active svg > g,
-      .c17[aria-disabled='true']:active svg path {
+      .c17[aria-disabled='true']:active svg > g,.c17[aria-disabled='true']:active svg path {
         fill: #666687;
       }
 
@@ -628,7 +616,7 @@ describe('GuidedTour Homepage', () => {
             type="button"
           >
             <span
-              class="c4 c25"
+              class="c4 c18"
             >
               Skip the tour
             </span>

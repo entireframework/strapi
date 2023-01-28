@@ -2,9 +2,10 @@ import React, { memo, useMemo, useState } from 'react';
 import get from 'lodash/get';
 import isEqual from 'react-fast-compare';
 import PropTypes from 'prop-types';
-import { Stack } from '@strapi/design-system/Stack';
-import { Box } from '@strapi/design-system/Box';
+import { Box, Stack, VisuallyHidden } from '@strapi/design-system';
 import { NotAllowedInput, useNotification } from '@strapi/helper-plugin';
+import { useIntl } from 'react-intl';
+
 import { upperFirst } from 'lodash/fp';
 import { getTrad } from '../../utils';
 
@@ -27,14 +28,16 @@ const DynamicZone = ({
   isFieldAllowed,
   isFieldReadable,
   labelAction,
-  moveComponentUp,
-  moveComponentDown,
+  moveComponentField,
   removeComponentFromDynamicZone,
   dynamicDisplayedComponents,
   fieldSchema,
   metadatas,
 }) => {
   const [addComponentIsOpen, setAddComponentIsOpen] = useState(false);
+  const [liveText, setLiveText] = useState('');
+
+  const { formatMessage } = useIntl();
 
   const toggleNotification = useNotification();
   const { getComponentLayout, components } = useContentTypeLayout();
@@ -43,7 +46,7 @@ const DynamicZone = ({
   const intlDescription = metadatas.description
     ? { id: metadatas.description, defaultMessage: metadatas.description }
     : null;
-  // const [isDraggingSibling, setIsDraggingSibling] = useState(false);
+  const [isDraggingSibling, setIsDraggingSibling] = useState(false);
 
   // We cannot use the default props here
   const { max = Infinity, min = -Infinity } = fieldSchema;
@@ -83,12 +86,76 @@ const DynamicZone = ({
     }
   };
 
-  const handleMoveComponentDown = (name, componentIndex) => () => {
-    moveComponentDown(name, componentIndex);
+  const handleMoveComponent = (newIndex, currentIndex) => {
+    setLiveText(
+      formatMessage(
+        {
+          id: getTrad('dnd.reorder'),
+          defaultMessage: '{item}, moved. New position in list: {position}.',
+        },
+        {
+          item: `${name}.${currentIndex}`,
+          position: getItemPos(newIndex),
+        }
+      )
+    );
+
+    moveComponentField({
+      name,
+      newIndex,
+      currentIndex,
+    });
   };
 
-  const handleMoveComponentUp = (name, componentIndex) => () => {
-    moveComponentUp(name, componentIndex);
+  /**
+   *
+   * @param {number} index
+   * @returns {string}
+   */
+  const getItemPos = (index) => `${index + 1} of ${dynamicDisplayedComponents.length}`;
+
+  const handleCancel = (index) => {
+    setLiveText(
+      formatMessage(
+        {
+          id: getTrad('dnd.cancel-item'),
+          defaultMessage: '{item}, dropped. Re-order cancelled.',
+        },
+        {
+          item: `${name}.${index}`,
+        }
+      )
+    );
+  };
+
+  const handleGrabItem = (index) => {
+    setLiveText(
+      formatMessage(
+        {
+          id: getTrad('dnd.grab-item'),
+          defaultMessage: `{item}, grabbed. Current position in list: {position}. Press up and down arrow to change position, Spacebar to drop, Escape to cancel.`,
+        },
+        {
+          item: `${name}.${index}`,
+          position: getItemPos(index),
+        }
+      )
+    );
+  };
+
+  const handleDropItem = (index) => {
+    setLiveText(
+      formatMessage(
+        {
+          id: getTrad('dnd.drop-item'),
+          defaultMessage: `{item}, dropped. Final position in list: {position}.`,
+        },
+        {
+          item: `${name}.${index}`,
+          position: getItemPos(index),
+        }
+      )
+    );
   };
 
   const handleRemoveComponent = (name, currentIndex) => () => {
@@ -115,6 +182,8 @@ const DynamicZone = ({
     );
   }
 
+  const ariaDescriptionId = `${name}-item-instructions`;
+
   return (
     <Stack spacing={6}>
       {dynamicDisplayedComponentsLength > 0 && (
@@ -134,37 +203,33 @@ const DynamicZone = ({
             numberOfComponents={dynamicDisplayedComponentsLength}
             required={fieldSchema.required || false}
           />
-          {dynamicDisplayedComponents.map((data, index) => {
-            const showDownIcon = isFieldAllowed && index < dynamicDisplayedComponentsLength - 1;
-            const showUpIcon = isFieldAllowed && index > 0;
-            const key = data.__temp_key__ != null ? data.__temp_key__ : index;
-            // const componentFieldName = `${name}.${index}`;
-            const componentUid = data.__component || data;
-            // const componentLayoutData = getComponentLayout(componentUid);
-
-            return (
+          <VisuallyHidden id={ariaDescriptionId}>
+            {formatMessage({
+              id: getTrad('dnd.instructions'),
+              defaultMessage: `Press spacebar to grab and re-order`,
+            })}
+          </VisuallyHidden>
+          <VisuallyHidden aria-live="assertive">{liveText}</VisuallyHidden>
+          <ol aria-describedby={ariaDescriptionId}>
+            {dynamicDisplayedComponents.map(({ componentUid, id }, index) => (
               <DynamicZoneComponent
                 // componentFieldName={componentFieldName}
                 // schema={componentLayoutData}
                 // getComponentLayout={getComponentLayout}
                 componentUid={componentUid}
                 formErrors={formErrors}
-                // eslint-disable-next-line react/no-array-index-key
-                key={key}
+                key={`${componentUid}-${id}`}
                 index={index}
                 isFieldAllowed={isFieldAllowed}
-                onMoveComponentDownClick={handleMoveComponentDown(name, index)}
-                onMoveComponentUpClick={handleMoveComponentUp(name, index)}
                 name={name}
+                onMoveComponent={handleMoveComponent}
                 onRemoveComponentClick={handleRemoveComponent(name, index)}
-                showDownIcon={showDownIcon}
-                showUpIcon={showUpIcon}
-                // isDraggingSibling={isDraggingSibling}
-                // setIsDraggingSibling={setIsDraggingSibling}
-                // toggleCollapses={toggleCollapses}
+                onCancel={handleCancel}
+                onDropItem={handleDropItem}
+                onGrabItem={handleGrabItem}
               />
-            );
-          })}
+            ))}
+          </ol>
         </Box>
       )}
 
@@ -206,7 +271,12 @@ DynamicZone.defaultProps = {
 
 DynamicZone.propTypes = {
   addComponentToDynamicZone: PropTypes.func.isRequired,
-  dynamicDisplayedComponents: PropTypes.array,
+  dynamicDisplayedComponents: PropTypes.arrayOf(
+    PropTypes.shape({
+      componentUid: PropTypes.string.isRequired,
+      id: PropTypes.number.isRequired,
+    })
+  ),
   fieldSchema: PropTypes.shape({
     components: PropTypes.array.isRequired,
     max: PropTypes.number,
@@ -222,8 +292,7 @@ DynamicZone.propTypes = {
     description: PropTypes.string,
     label: PropTypes.string,
   }).isRequired,
-  moveComponentUp: PropTypes.func.isRequired,
-  moveComponentDown: PropTypes.func.isRequired,
+  moveComponentField: PropTypes.func.isRequired,
   name: PropTypes.string.isRequired,
   removeComponentFromDynamicZone: PropTypes.func.isRequired,
 };

@@ -364,6 +364,9 @@ describe('Admin | containers | ListView', () => {
       .c42 {
         height: 1px;
         border: none;
+        -webkit-flex-shrink: 0;
+        -ms-flex-negative: 0;
+        flex-shrink: 0;
         margin: 0;
       }
 
@@ -402,9 +405,9 @@ describe('Admin | containers | ListView', () => {
       }
 
       .c25 {
-        margin: 0;
         height: 18px;
         min-width: 18px;
+        margin: 0;
         border-radius: 4px;
         border: 1px solid #c0c0cf;
         -webkit-appearance: none;
@@ -547,8 +550,7 @@ describe('Admin | containers | ListView', () => {
         color: #666687;
       }
 
-      .c11[aria-disabled='true'] svg > g,
-      .c11[aria-disabled='true'] svg path {
+      .c11[aria-disabled='true'] svg > g,.c11[aria-disabled='true'] svg path {
         fill: #666687;
       }
 
@@ -561,8 +563,7 @@ describe('Admin | containers | ListView', () => {
         color: #666687;
       }
 
-      .c11[aria-disabled='true']:active svg > g,
-      .c11[aria-disabled='true']:active svg path {
+      .c11[aria-disabled='true']:active svg > g,.c11[aria-disabled='true']:active svg path {
         fill: #666687;
       }
 
@@ -728,6 +729,7 @@ describe('Admin | containers | ListView', () => {
                       aria-colcount="5"
                       aria-rowcount="3"
                       class="c21"
+                      role="grid"
                     >
                       <thead
                         class="c22"
@@ -739,6 +741,7 @@ describe('Admin | containers | ListView', () => {
                           <th
                             aria-colindex="1"
                             class="c0 c24"
+                            role="gridcell"
                           >
                             <div
                               class="c0 c7"
@@ -761,6 +764,7 @@ describe('Admin | containers | ListView', () => {
                           <th
                             aria-colindex="2"
                             class="c0 c27 c24"
+                            role="gridcell"
                             tabindex="-1"
                             width="20%"
                           >
@@ -780,6 +784,7 @@ describe('Admin | containers | ListView', () => {
                           <th
                             aria-colindex="3"
                             class="c0 c29 c24"
+                            role="gridcell"
                             tabindex="-1"
                             width="60%"
                           >
@@ -799,6 +804,7 @@ describe('Admin | containers | ListView', () => {
                           <th
                             aria-colindex="4"
                             class="c0 c27 c24"
+                            role="gridcell"
                             tabindex="-1"
                             width="20%"
                           >
@@ -818,6 +824,7 @@ describe('Admin | containers | ListView', () => {
                           <th
                             aria-colindex="5"
                             class="c0 c24"
+                            role="gridcell"
                             tabindex="-1"
                           >
                             <div
@@ -865,6 +872,7 @@ describe('Admin | containers | ListView', () => {
                           <td
                             aria-colindex="2"
                             class="c0 c24"
+                            role="gridcell"
                             tabindex="-1"
                           >
                             <span
@@ -876,6 +884,7 @@ describe('Admin | containers | ListView', () => {
                           <td
                             aria-colindex="3"
                             class="c0 c24"
+                            role="gridcell"
                             tabindex="-1"
                           >
                             <span
@@ -887,6 +896,7 @@ describe('Admin | containers | ListView', () => {
                           <td
                             aria-colindex="4"
                             class="c0 c24"
+                            role="gridcell"
                           >
                             <div
                               aria-hidden="true"
@@ -927,6 +937,7 @@ describe('Admin | containers | ListView', () => {
                           <td
                             aria-colindex="5"
                             class="c0 c24"
+                            role="gridcell"
                           >
                             <div
                               aria-hidden="true"
@@ -1025,6 +1036,7 @@ describe('Admin | containers | ListView', () => {
                           <td
                             aria-colindex="2"
                             class="c0 c24"
+                            role="gridcell"
                             tabindex="-1"
                           >
                             <span
@@ -1036,6 +1048,7 @@ describe('Admin | containers | ListView', () => {
                           <td
                             aria-colindex="3"
                             class="c0 c24"
+                            role="gridcell"
                             tabindex="-1"
                           >
                             <span
@@ -1047,6 +1060,7 @@ describe('Admin | containers | ListView', () => {
                           <td
                             aria-colindex="4"
                             class="c0 c24"
+                            role="gridcell"
                           >
                             <div
                               aria-hidden="true"
@@ -1087,6 +1101,7 @@ describe('Admin | containers | ListView', () => {
                           <td
                             aria-colindex="5"
                             class="c0 c24"
+                            role="gridcell"
                           >
                             <div
                               aria-hidden="true"

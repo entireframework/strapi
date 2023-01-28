@@ -74,7 +74,6 @@ describe('<GuidedTourModal />', () => {
 
       .c11 {
         padding-right: 32px;
-        padding-bottom: 0px;
         padding-left: 32px;
       }
 
@@ -241,7 +240,6 @@ describe('<GuidedTourModal />', () => {
         font-size: 0.75rem;
         line-height: 1.33;
         font-weight: 600;
-        line-height: 1.14;
         color: #32324d;
       }
 
@@ -357,8 +355,7 @@ describe('<GuidedTourModal />', () => {
         color: #666687;
       }
 
-      .c26[aria-disabled='true'] svg > g,
-      .c26[aria-disabled='true'] svg path {
+      .c26[aria-disabled='true'] svg > g,.c26[aria-disabled='true'] svg path {
         fill: #666687;
       }
 
@@ -371,8 +368,7 @@ describe('<GuidedTourModal />', () => {
         color: #666687;
       }
 
-      .c26[aria-disabled='true']:active svg > g,
-      .c26[aria-disabled='true']:active svg path {
+      .c26[aria-disabled='true']:active svg > g,.c26[aria-disabled='true']:active svg path {
         fill: #666687;
       }
 
@@ -429,8 +425,7 @@ describe('<GuidedTourModal />', () => {
         color: #666687;
       }
 
-      .c29[aria-disabled='true'] svg > g,
-      .c29[aria-disabled='true'] svg path {
+      .c29[aria-disabled='true'] svg > g,.c29[aria-disabled='true'] svg path {
         fill: #666687;
       }
 
@@ -443,8 +438,7 @@ describe('<GuidedTourModal />', () => {
         color: #666687;
       }
 
-      .c29[aria-disabled='true']:active svg > g,
-      .c29[aria-disabled='true']:active svg path {
+      .c29[aria-disabled='true']:active svg > g,.c29[aria-disabled='true']:active svg path {
         fill: #666687;
       }
 

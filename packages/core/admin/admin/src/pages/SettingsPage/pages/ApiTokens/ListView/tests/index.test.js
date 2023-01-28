@@ -37,6 +37,23 @@ jest.spyOn(axiosInstance, 'get').mockResolvedValue({
 
 jest.spyOn(Date, 'now').mockImplementation(() => new Date('2015-10-01T08:00:00.000Z'));
 
+// TO BE REMOVED: we have added this mock to prevent errors in the snapshots caused by the Unicode space character
+// before AM/PM in the dates, after the introduction of node 18.13
+jest.mock('react-intl', () => {
+  const reactIntl = jest.requireActual('react-intl');
+  const intl = reactIntl.createIntl({
+    locale: 'en',
+  });
+
+  intl.formatDate = jest.fn(() => '11/15/2021');
+  intl.formatTime = jest.fn(() => '12:00 AM');
+
+  return {
+    ...reactIntl,
+    useIntl: () => intl,
+  };
+});
+
 const client = new QueryClient({
   defaultOptions: {
     queries: {
@@ -549,8 +566,7 @@ describe('ADMIN | Pages | API TOKENS | ListPage', () => {
         color: #666687;
       }
 
-      .c8[aria-disabled='true'] svg > g,
-      .c8[aria-disabled='true'] svg path {
+      .c8[aria-disabled='true'] svg > g,.c8[aria-disabled='true'] svg path {
         fill: #666687;
       }
 
@@ -563,8 +579,7 @@ describe('ADMIN | Pages | API TOKENS | ListPage', () => {
         color: #666687;
       }
 
-      .c8[aria-disabled='true']:active svg > g,
-      .c8[aria-disabled='true']:active svg path {
+      .c8[aria-disabled='true']:active svg > g,.c8[aria-disabled='true']:active svg path {
         fill: #666687;
       }
 
@@ -682,6 +697,7 @@ describe('ADMIN | Pages | API TOKENS | ListPage', () => {
                   aria-colcount="5"
                   aria-rowcount="2"
                   class="c18"
+                  role="grid"
                 >
                   <thead
                     class="c19"
@@ -693,6 +709,7 @@ describe('ADMIN | Pages | API TOKENS | ListPage', () => {
                       <th
                         aria-colindex="1"
                         class="c1 c21"
+                        role="gridcell"
                         tabindex="0"
                       >
                         <div
@@ -749,6 +766,7 @@ describe('ADMIN | Pages | API TOKENS | ListPage', () => {
                       <th
                         aria-colindex="2"
                         class="c1 c21"
+                        role="gridcell"
                       >
                         <div
                           class="c1 c4"
@@ -771,6 +789,7 @@ describe('ADMIN | Pages | API TOKENS | ListPage', () => {
                       <th
                         aria-colindex="3"
                         class="c1 c21"
+                        role="gridcell"
                       >
                         <div
                           class="c1 c4"
@@ -793,6 +812,7 @@ describe('ADMIN | Pages | API TOKENS | ListPage', () => {
                       <th
                         aria-colindex="4"
                         class="c1 c21"
+                        role="gridcell"
                       >
                         <div
                           class="c1 c4"
@@ -815,6 +835,7 @@ describe('ADMIN | Pages | API TOKENS | ListPage', () => {
                       <th
                         aria-colindex="5"
                         class="c1 c21"
+                        role="gridcell"
                         tabindex="-1"
                       >
                         <div
@@ -843,6 +864,7 @@ describe('ADMIN | Pages | API TOKENS | ListPage', () => {
                       <td
                         aria-colindex="1"
                         class="c1 c21"
+                        role="gridcell"
                         tabindex="-1"
                       >
                         <span
@@ -854,6 +876,7 @@ describe('ADMIN | Pages | API TOKENS | ListPage', () => {
                       <td
                         aria-colindex="2"
                         class="c1 c29 c21"
+                        role="gridcell"
                         tabindex="-1"
                       >
                         <span
@@ -865,6 +888,7 @@ describe('ADMIN | Pages | API TOKENS | ListPage', () => {
                       <td
                         aria-colindex="3"
                         class="c1 c21"
+                        role="gridcell"
                         tabindex="-1"
                       >
                         <span
@@ -881,11 +905,13 @@ describe('ADMIN | Pages | API TOKENS | ListPage', () => {
                       <td
                         aria-colindex="4"
                         class="c1 c21"
+                        role="gridcell"
                         tabindex="-1"
                       />
                       <td
                         aria-colindex="5"
                         class="c1 c21"
+                        role="gridcell"
                         tabindex="-1"
                       >
                         <div
