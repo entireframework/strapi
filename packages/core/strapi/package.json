@@ -71,7 +71,8 @@
   },
   "directories": {
     "lib": "./lib",
-    "bin": "./bin"
+    "bin": "./bin",
+    "ee": "./ee"
   },
   "scripts": {
     "postinstall": "node lib/utils/success.js",
@@ -81,6 +82,7 @@
     "@koa/cors": "3.4.3",
     "@koa/router": "10.1.1",
     "@strapi/admin": "^4.5.3-alpha.12",
+    "@strapi/data-transfer": "4.6.0",
     "@strapi/database": "^4.5.3-alpha.2",
     "@strapi/generate-new": "^4.5.3-alpha.2",
     "@strapi/generators": "^4.5.3-alpha.2",
@@ -98,9 +100,9 @@
     "chokidar": "3.5.2",
     "ci-info": "3.5.0",
     "cli-table3": "0.6.2",
-    "commander": "7.2.0",
+    "commander": "8.3.0",
     "configstore": "5.0.1",
-    "debug": "4.3.2",
+    "debug": "4.3.4",
     "delegates": "1.0.0",
     "dotenv": "10.0.0",
     "execa": "5.1.1",
@@ -126,7 +128,7 @@
     "open": "8.4.0",
     "ora": "5.4.1",
     "package-json": "7.0.0",
-    "qs": "6.10.1",
+    "qs": "6.11.0",
     "resolve-cwd": "3.0.0",
     "semver": "7.3.8",
     "statuses": "2.0.1",

@@ -23,12 +23,12 @@
     "@strapi/provider-upload-cloudinary": "^4.5.3-alpha.2",
     "@strapi/strapi": "^4.5.3-alpha.13",
     "@vscode/sqlite3": "5.0.8",
-    "better-sqlite3": "7.4.6",
+    "better-sqlite3": "8.0.1",
     "lodash": "4.17.21",
     "mysql": "2.18.1",
     "passport-google-oauth2": "0.2.0",
-    "pg": "8.6.0",
-    "sqlite3": "5.0.11"
+    "pg": "8.8.0",
+    "sqlite3": "5.1.2"
   },
   "strapi": {
     "uuid": "getstarted"
