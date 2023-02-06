@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkdocs=self.webpackChunkdocs||[]).push([[440],{204:e=>{e.exports=JSON.parse('{"label":"data","permalink":"/tags/data","allTagsPath":"/tags","count":1,"items":[{"id":"core/hooks/use-fetch-client","title":"useFetchClient","description":"API reference for the useFetchClient hook in Strapi","permalink":"/hooks/use-fetch-client"}]}')}}]);
