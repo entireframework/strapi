@@ -34,6 +34,7 @@ import { AssetDefinition } from '../../constants';
 import { getTrad, findRecursiveFolderByValue } from '../../utils';
 import formatBytes from '../../utils/formatBytes';
 import { useEditAsset } from '../../hooks/useEditAsset';
+import { useReuploadAsset } from '../../hooks/useReuploadAsset';
 import { useFolderStructure } from '../../hooks/useFolderStructure';
 import { ReplaceMediaButton } from './ReplaceMediaButton';
 import SelectTree from '../SelectTree';
@@ -64,6 +65,7 @@ export const EditAssetDialog = ({
   const [isCropping, setIsCropping] = useState(false);
   const [replacementFile, setReplacementFile] = useState();
   const { editAsset, isLoading } = useEditAsset();
+  const { reuploadAsset, isLoading: isReuploading } = useReuploadAsset();
 
   const { data: folderStructure, isLoading: folderStructureIsLoading } = useFolderStructure({
     enabled: true,
@@ -92,6 +94,10 @@ export const EditAssetDialog = ({
 
       onClose(editedAsset);
     }
+  };
+
+  const handleReupload = () => {
+    return reuploadAsset(asset);
   };
 
   const handleStartCropping = () => {
@@ -329,6 +335,7 @@ export const EditAssetDialog = ({
               <>
                 <ReplaceMediaButton
                   onSelectMedia={setReplacementFile}
+                  onReuploadMedia={handleReupload}
                   acceptedMime={asset.mime}
                   disabled={formDisabled}
                   trackedLocation={trackedLocation}
@@ -336,7 +343,7 @@ export const EditAssetDialog = ({
 
                 <Button
                   onClick={() => submitButtonRef.current.click()}
-                  loading={isLoading}
+                  loading={isLoading || isReuploading}
                   disabled={formDisabled}
                 >
                   {formatMessage({ id: 'global.finish', defaultMessage: 'Finish' })}

@@ -6,6 +6,7 @@ import { Box, Stack, VisuallyHidden } from '@strapi/design-system';
 import { NotAllowedInput, useNotification } from '@strapi/helper-plugin';
 import { useIntl } from 'react-intl';
 
+import { upperFirst } from 'lodash/fp';
 import { getTrad } from '../../utils';
 
 import connect from './utils/connect';
@@ -164,7 +165,16 @@ const DynamicZone = ({
     return (
       <NotAllowedInput
         description={intlDescription}
-        intlLabel={{ id: metadatas.label, defaultMessage: metadatas.label }}
+        intlLabel={{
+          id: metadatas.label,
+          defaultMessage:
+            metadatas.label && name && metadatas.label === name.split('.').slice(-1)[0]
+              ? metadatas.label
+                  .split(/[\s_-]+/)
+                  .map(upperFirst)
+                  .join(' ')
+              : metadatas.label,
+        }}
         labelAction={labelAction}
         name={name}
       />
@@ -179,7 +189,14 @@ const DynamicZone = ({
         <Box>
           <DynamicZoneLabel
             intlDescription={intlDescription}
-            label={metadatas.label}
+            label={
+              metadatas.label && name && metadatas.label === name.split('.').slice(-1)[0]
+                ? metadatas.label
+                    .split(/[\s_-]+/)
+                    .map(upperFirst)
+                    .join(' ')
+                : metadatas.label
+            }
             labelAction={labelAction}
             name={name}
             numberOfComponents={dynamicDisplayedComponentsLength}
@@ -217,7 +234,14 @@ const DynamicZone = ({
         hasMaxError={hasMaxError}
         hasMinError={hasMinError}
         isDisabled={!isFieldAllowed}
-        label={metadatas.label}
+        label={
+          metadatas.label && name && metadatas.label === name.split('.').slice(-1)[0]
+            ? metadatas.label
+                .split(/[\s_-]+/)
+                .map(upperFirst)
+                .join(' ')
+            : metadatas.label
+        }
         missingComponentNumber={missingComponentNumber}
         isOpen={addComponentIsOpen}
         name={name}

@@ -1,0 +1,21 @@
+{
+  "name": "@entireframework/provider-upload-cdn",
+  "version": "4.6.0-alpha.0",
+  "description": "CDN provider for strapi upload",
+  "keywords": [
+    "upload",
+    "strapi"
+  ],
+  "main": "./lib",
+  "directories": {
+    "lib": "./lib"
+  },
+  "dependencies": {
+    "@entireframework/provider-upload-bunnycdn": "4.6.0-alpha.0",
+    "@strapi/provider-upload-local": "4.6.0-alpha.0"
+  },
+  "engines": {
+    "node": ">=14.19.1 <=18.x.x",
+    "npm": ">=6.0.0"
+  }
+}

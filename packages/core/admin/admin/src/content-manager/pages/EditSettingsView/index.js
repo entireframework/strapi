@@ -55,16 +55,34 @@ const EditSettingsView = ({ mainLayout, components, isContentTypeView, slug, upd
 
     return (
       ![
-        'dynamiczone',
+        // 'dynamiczone',
         'json',
-        'text',
-        'relation',
-        'component',
+        // 'text',
+        // 'relation',
+        // 'component',
         'boolean',
-        'media',
+        // 'media',
         'password',
         'richtext',
-        'timestamp',
+        // 'timestamp',
+      ].includes(type) && !!type
+    );
+  });
+  const entryCoverOptions = Object.keys(attributes).filter((attr) => {
+    const type = get(attributes, [attr, 'type'], '');
+
+    return (
+      ![
+        // 'dynamiczone',
+        'json',
+        // 'text',
+        // 'relation',
+        // 'component',
+        'boolean',
+        // 'media',
+        'password',
+        // 'richtext',
+        // 'timestamp',
       ].includes(type) && !!type
     );
   });
@@ -293,6 +311,35 @@ const EditSettingsView = ({ mainLayout, components, isContentTypeView, slug, upd
                       value={modifiedData.settings.mainField}
                     >
                       {entryTitleOptions.map((attribute) => (
+                        <Option key={attribute} value={attribute}>
+                          {attribute}
+                        </Option>
+                      ))}
+                    </Select>
+                  </GridItem>
+                </Grid>
+                <Grid>
+                  <GridItem col={6} s={12}>
+                    <Select
+                      label={formatMessage({
+                        id: getTrad('containers.SettingPage.editSettings.entry.cover'),
+                        defaultMessage: 'Entry cover',
+                      })}
+                      hint={formatMessage({
+                        id: getTrad('containers.SettingPage.editSettings.entry.cover.description'),
+                        defaultMessage: 'Set the cover field of your entry',
+                      })}
+                      onChange={(value) => {
+                        handleChange({
+                          target: {
+                            name: 'settings.coverField',
+                            value: value === '' ? null : value,
+                          },
+                        });
+                      }}
+                      value={modifiedData.settings.coverField}
+                    >
+                      {entryCoverOptions.map((attribute) => (
                         <Option key={attribute} value={attribute}>
                           {attribute}
                         </Option>

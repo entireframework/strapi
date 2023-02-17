@@ -5,19 +5,25 @@ import { GridItem, Select, Option } from '@strapi/design-system';
 import { useSelector, shallowEqual } from 'react-redux';
 import { useIntl } from 'react-intl';
 import { useLayoutDnd } from '../../../hooks';
-import { createPossibleMainFieldsForModelsAndComponents, getInputProps } from '../utils';
+import {
+  createPossibleMainFieldsForModelsAndComponents,
+  createPossibleCoverFieldsForModelsAndComponents,
+  getInputProps,
+} from '../utils';
 import { makeSelectModelAndComponentSchemas } from '../../App/selectors';
 import getTrad from '../../../utils/getTrad';
 import GenericInput from './GenericInput';
 
 const FIELD_SIZES = [
+  [3, '25%'],
   [4, '33%'],
   [6, '50%'],
   [8, '66%'],
+  [9, '75%'],
   [12, '100%'],
 ];
 
-const NON_RESIZABLE_FIELD_TYPES = ['dynamiczone', 'component', 'json', 'richtext'];
+const NON_RESIZABLE_FIELD_TYPES = [];
 
 const TIME_FIELD_OPTIONS = [1, 5, 10, 15, 30, 60];
 
@@ -43,8 +49,12 @@ const ModalForm = ({ onMetaChange, onSizeChange }) => {
     return createPossibleMainFieldsForModelsAndComponents(schemas);
   }, [schemas]);
 
+  const componentsAndModelsPossibleCoverFields = useMemo(() => {
+    return createPossibleCoverFieldsForModelsAndComponents(schemas);
+  }, [schemas]);
+
   const getSelectedItemSelectOptions = useCallback(
-    (formType) => {
+    (formType, meta) => {
       if (formType !== 'relation' && formType !== 'component') {
         return [];
       }
@@ -52,10 +62,21 @@ const ModalForm = ({ onMetaChange, onSizeChange }) => {
       const targetKey = formType === 'component' ? 'component' : 'targetModel';
       const key = get(modifiedData, ['attributes', selectedField, targetKey], '');
 
-      return get(componentsAndModelsPossibleMainFields, [key], []);
+      return get(
+        meta === 'coverField'
+          ? componentsAndModelsPossibleCoverFields
+          : componentsAndModelsPossibleMainFields,
+        [key],
+        []
+      );
     },
 
-    [selectedField, componentsAndModelsPossibleMainFields, modifiedData]
+    [
+      selectedField,
+      componentsAndModelsPossibleMainFields,
+      componentsAndModelsPossibleCoverFields,
+      modifiedData,
+    ]
   );
 
   const metaFields = formToDisplay.map((meta) => {
@@ -68,9 +89,9 @@ const ModalForm = ({ onMetaChange, onSizeChange }) => {
       return null;
     }
 
-    if (formType === 'component' && meta !== 'label') {
-      return null;
-    }
+    // if (formType === 'component' && meta !== 'label') {
+    //   return null;
+    // }
 
     if (['media', 'json', 'boolean'].includes(formType) && meta === 'placeholder') {
       return null;
@@ -97,7 +118,7 @@ const ModalForm = ({ onMetaChange, onSizeChange }) => {
           name={meta}
           onChange={onMetaChange}
           value={get(fieldForm, ['metadata', meta], '')}
-          options={getSelectedItemSelectOptions(formType)}
+          options={getSelectedItemSelectOptions(formType, meta)}
         />
       </GridItem>
     );

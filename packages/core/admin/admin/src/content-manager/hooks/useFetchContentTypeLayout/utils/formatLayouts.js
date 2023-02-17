@@ -41,14 +41,22 @@ const createMetasSchema = (initialData, models) => {
           schema: get(relationModel, ['attributes', mainFieldName]),
         };
 
+        const coverFieldName = metadatas.edit.coverField;
+        const coverField = {
+          name: coverFieldName,
+          schema: get(relationModel, ['attributes', coverFieldName]),
+        };
+
         metadatas = {
           list: {
             ...metadatas.list,
             mainField,
+            coverField,
           },
           edit: {
             ...metadatas.edit,
             mainField,
+            coverField,
           },
         };
       }
@@ -121,6 +129,8 @@ const formatListLayoutWithMetas = (contentTypeConfiguration, components) => {
       const component = components[fieldSchema.component];
       const mainFieldName = component.settings.mainField;
       const mainFieldAttribute = component.attributes[mainFieldName];
+      const coverFieldName = component.settings.coverField;
+      const coverFieldAttribute = component.attributes[coverFieldName];
 
       acc.push({
         key: `__${current}_key__`,
@@ -131,6 +141,10 @@ const formatListLayoutWithMetas = (contentTypeConfiguration, components) => {
           mainField: {
             ...mainFieldAttribute,
             name: mainFieldName,
+          },
+          coverField: {
+            ...coverFieldAttribute,
+            name: coverFieldName,
           },
         },
       });

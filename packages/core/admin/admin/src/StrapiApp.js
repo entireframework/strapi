@@ -32,6 +32,7 @@ class StrapiApp {
       head: { favicon },
       locales: ['en'],
       menuLogo: Logo,
+      leftMenu: {},
       notifications: { releases: true },
       themes: { light: lightTheme, dark: darkTheme },
       translations: {},
@@ -211,6 +212,10 @@ class StrapiApp {
         'en',
         ...(this.customConfigurations.locales?.filter((loc) => loc !== 'en') || []),
       ];
+    }
+
+    if (this.customConfigurations?.leftMenu) {
+      this.configurations.leftMenu = this.customConfigurations.leftMenu;
     }
 
     if (this.customConfigurations?.auth?.logo) {
@@ -438,6 +443,7 @@ class StrapiApp {
         getAdminInjectedComponents={this.getAdminInjectedComponents}
         getPlugin={this.getPlugin}
         messages={this.configurations.translations}
+        leftMenu={this.configurations.leftMenu}
         menu={this.menu}
         menuLogo={this.configurations.menuLogo}
         plugins={this.plugins}

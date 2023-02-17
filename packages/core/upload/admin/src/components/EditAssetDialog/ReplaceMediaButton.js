@@ -5,7 +5,13 @@ import { useTracking } from '@strapi/helper-plugin';
 import { Button, VisuallyHidden } from '@strapi/design-system';
 import { getTrad } from '../../utils';
 
-export const ReplaceMediaButton = ({ onSelectMedia, acceptedMime, trackedLocation, ...props }) => {
+export const ReplaceMediaButton = ({
+  onSelectMedia,
+  onReuploadMedia,
+  acceptedMime,
+  trackedLocation,
+  ...props
+}) => {
   const { formatMessage } = useIntl();
   const inputRef = useRef(null);
   const { trackUsage } = useTracking();
@@ -20,6 +26,12 @@ export const ReplaceMediaButton = ({ onSelectMedia, acceptedMime, trackedLocatio
     inputRef.current.click();
   };
 
+  const handleClickReupload = (e) => {
+    e.preventDefault();
+
+    onReuploadMedia();
+  };
+
   const handleChange = () => {
     const file = inputRef.current.files[0];
 
@@ -32,6 +44,12 @@ export const ReplaceMediaButton = ({ onSelectMedia, acceptedMime, trackedLocatio
         {formatMessage({
           id: getTrad('control-card.replace-media'),
           defaultMessage: 'Replace media',
+        })}
+      </Button>
+      <Button variant="secondary" onClick={handleClickReupload} {...props}>
+        {formatMessage({
+          id: getTrad('control-card.reupload-media'),
+          defaultMessage: 'Reupload media to CDN',
         })}
       </Button>
       <VisuallyHidden>
@@ -56,5 +74,6 @@ ReplaceMediaButton.defaultProps = {
 ReplaceMediaButton.propTypes = {
   acceptedMime: PropTypes.string.isRequired,
   onSelectMedia: PropTypes.func.isRequired,
+  onReuploadMedia: PropTypes.func.isRequired,
   trackedLocation: PropTypes.string,
 };

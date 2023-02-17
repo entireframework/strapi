@@ -1,10 +1,15 @@
 {
-  "version": "4.6.1",
+  "version": "4.6.0-alpha.0",
   "packages": [
     "packages/*",
     "examples/*"
   ],
   "npmClient": "yarn",
   "useWorkspaces": true,
-  "useNx": true
+  "useNx": true,
+  "command": {
+    "publish": {
+      "registry": "https://gitlab.com/api/v4/projects/37149880/packages/npm/"
+    }
+  }
 }

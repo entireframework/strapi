@@ -17,6 +17,7 @@ const settingsFields = [
   'bulkable',
   'pageSize',
   'mainField',
+  'coverField',
   'defaultSortBy',
   'defaultSortOrder',
 ];
@@ -30,6 +31,7 @@ module.exports = {
     return {
       ...DEFAULT_SETTINGS,
       mainField: defaultField,
+      coverField: defaultField,
       defaultSortBy: defaultField,
       defaultSortOrder: 'ASC',
       ...getModelSettings(schema),
@@ -41,11 +43,16 @@ module.exports = {
 
     const defaultField = getDefaultMainField(schema);
 
-    const { mainField = defaultField, defaultSortBy = defaultField } = configuration.settings || {};
+    const {
+      mainField = defaultField,
+      coverField = defaultField,
+      defaultSortBy = defaultField,
+    } = configuration.settings || {};
 
     return {
       ...configuration.settings,
-      mainField: isSortable(schema, mainField) ? mainField : defaultField,
+      mainField,
+      coverField,
       defaultSortBy: isSortable(schema, defaultSortBy) ? defaultSortBy : defaultField,
     };
   },

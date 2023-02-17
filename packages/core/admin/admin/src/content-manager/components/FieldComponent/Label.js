@@ -12,6 +12,7 @@ const LabelAction = styled(Box)`
 
 const Label = ({
   intlLabel,
+  intlDescription,
   id,
   labelAction,
   name,
@@ -21,6 +22,7 @@ const Label = ({
 }) => {
   const { formatMessage } = useIntl();
   const label = intlLabel?.id ? formatMessage(intlLabel) : name;
+  const description = intlDescription?.id ? formatMessage(intlDescription) : undefined;
 
   return (
     <Box paddingBottom={1}>
@@ -38,6 +40,13 @@ const Label = ({
         </Typography>
         {labelAction && <LabelAction paddingLeft={1}>{labelAction}</LabelAction>}
       </Flex>
+      {description && (
+        <Box marginTop={1} marginBottom={1}>
+          <Typography variant="pi" textColor="neutral600">
+            {description}
+          </Typography>
+        </Box>
+      )}
     </Box>
   );
 };
@@ -45,6 +54,7 @@ const Label = ({
 Label.defaultProps = {
   id: undefined,
   labelAction: undefined,
+  intlDescription: undefined,
   numberOfEntries: 0,
   required: false,
   showNumberOfEntries: false,
@@ -57,6 +67,11 @@ Label.propTypes = {
     defaultMessage: PropTypes.string.isRequired,
     values: PropTypes.object,
   }).isRequired,
+  intlDescription: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    defaultMessage: PropTypes.string.isRequired,
+    values: PropTypes.object,
+  }),
   labelAction: PropTypes.element,
   name: PropTypes.string.isRequired,
   numberOfEntries: PropTypes.number,

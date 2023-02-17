@@ -14,6 +14,7 @@ import {
   Box,
   Flex,
   ToggleInput,
+  NumberInput,
   Typography,
   Button,
   Main,
@@ -196,6 +197,27 @@ export const SettingsPage = () => {
                           onChange={(e) => {
                             handleChange({
                               target: { name: 'responsiveDimensions', value: e.target.checked },
+                            });
+                          }}
+                        />
+                      </GridItem>
+                      <GridItem col={6} s={12}>
+                        <NumberInput
+                          aria-label="responsiveQuality"
+                          data-testid="responsiveQuality"
+                          value={modifiedData.responsiveQuality}
+                          hint={formatMessage({
+                            id: getTrad('settings.form.responsiveQuality.description'),
+                            defaultMessage: 'Responsive friendly quality',
+                          })}
+                          label={formatMessage({
+                            id: getTrad('settings.form.responsiveQuality.label'),
+                            defaultMessage: 'Responsive friendly quality',
+                          })}
+                          name="responsiveQuality"
+                          onValueChange={(value) => {
+                            handleChange({
+                              target: { name: 'responsiveQuality', value },
                             });
                           }}
                         />
