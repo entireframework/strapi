@@ -1,11 +1,11 @@
 import get from 'lodash/get';
 
 const getMainField = (currentLayout, schema) => {
-  if (!schema.mainField) {
+  if (!schema._mainField) {
     schema = {
       ...schema,
     };
-    schema.mainField = get(
+    schema._mainField = get(
       schema,
       ['metadatas', 'coverField', 'name'],
       get(
@@ -20,7 +20,7 @@ const getMainField = (currentLayout, schema) => {
     );
   }
 
-  const attributeType = get(schema, ['attributes', schema.mainField, 'type'], null);
+  const attributeType = get(schema, ['attributes', schema._mainField, 'type'], null);
 
   let attributeRelation;
 
@@ -29,7 +29,7 @@ const getMainField = (currentLayout, schema) => {
       currentLayout,
       get(
         currentLayout,
-        ['components', get(schema, ['attributes', schema.mainField, 'component'], null)],
+        ['components', get(schema, ['attributes', schema._mainField, 'component'], null)],
         {}
       )
     );
@@ -38,7 +38,7 @@ const getMainField = (currentLayout, schema) => {
       currentLayout,
       get(
         currentLayout,
-        ['components', get(schema, ['attributes', schema.mainField, 'components'], null)[0]],
+        ['components', get(schema, ['attributes', schema._mainField, 'components'], null)[0]],
         {}
       )
     );
@@ -52,7 +52,7 @@ const getMainField = (currentLayout, schema) => {
     attributeRelation = '';
   }
 
-  return [schema.mainField, ...(attributeRelation ? [attributeRelation] : [])].join('.');
+  return [schema._mainField, ...(attributeRelation ? [attributeRelation] : [])].join('.');
 };
 
 export default getMainField;

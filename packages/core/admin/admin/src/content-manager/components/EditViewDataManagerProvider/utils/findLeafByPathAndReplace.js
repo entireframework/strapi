@@ -4,7 +4,7 @@ import set from 'lodash/set';
  * @param {string} endpath – the final path that you're looking to replace
  * @returns {function} findLeafReducer – a function that will be used in the reduce
  */
-export const findLeafByPathAndReplace = (endpath, replaceWith) => {
+export const findLeafByPathAndReplace = (endpath, replaceWithFn) => {
   /**
    * @param {object} acc – the data tree
    * @param {*} curr – string, this _could_ be used to index the accumulator
@@ -24,7 +24,7 @@ export const findLeafByPathAndReplace = (endpath, replaceWith) => {
      * then we assume it's a leaf and we can replace it.
      */
     if (ind === currentArr.length - 1 && endpath === curr) {
-      set(acc, curr, acc[curr] && replaceWith?.length === 0 ? [acc[curr]] : replaceWith);
+      set(acc, curr, replaceWithFn(acc[curr]));
 
       return acc;
     }

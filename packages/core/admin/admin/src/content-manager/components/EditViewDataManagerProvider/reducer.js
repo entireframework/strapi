@@ -321,7 +321,9 @@ const reducer = (state, action) =>
                * ["repeatable_single_component_relation","categories"] and then reduce this
                * recursively
                */
-              const findleaf = findLeafByPathAndReplace(currentPaths.slice(-1)[0], []);
+              const findleaf = findLeafByPathAndReplace(currentPaths.slice(-1)[0], (value) => {
+                return value ? [value] : [];
+              });
               currentPaths.reduce(findleaf, acc);
             } else {
               set(acc, currentPaths, []);

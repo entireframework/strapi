@@ -89,8 +89,7 @@ const DraggedItem = ({
   onDropItem,
   onCancel,
 }) => {
-  const { initialData, modifiedData, removeRepeatableField, triggerFormValidation } =
-    useCMEditViewDataManager();
+  const { modifiedData, removeRepeatableField, triggerFormValidation } = useCMEditViewDataManager();
 
   const displayedValue = toString(
     get(modifiedData, [...componentFieldName.split('.'), ...mainField.split('.')], '')
