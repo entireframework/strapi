@@ -358,13 +358,12 @@ export const RelationInputDataManager = ({
           'isLoading',
           'isSuccess'
         ),
-        data: normalizeRelation(
-          pick({ ...relations, data: relationsFromModifiedData }, 'data').data,
-          {
+        data: pick({ ...relations, data: relationsFromModifiedData }, 'data').data.map((data) =>
+          normalizeRelation(data, {
             mainFieldName: mainField.name,
             shouldAddLink: shouldDisplayRelationLink,
             targetModel,
-          }
+          })
         ),
       }}
       required={required}
