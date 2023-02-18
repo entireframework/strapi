@@ -17,6 +17,7 @@ import Component from './components/Component';
 import * as Accordion from './components/Accordion';
 
 import getComponentErrorKeys from './utils/getComponentErrorKeys';
+import getMainField from './utils/getMainField';
 
 const TextButtonCustom = styled(TextButton)`
   height: 100%;
@@ -45,7 +46,8 @@ const RepeatableComponent = ({
   const { formatMessage } = useIntl();
   const [collapseToOpen, setCollapseToOpen] = useState('');
   const [liveText, setLiveText] = useState('');
-  const { getComponentLayout, components } = useContentTypeLayout();
+  const { getComponentLayout, ...currentLayout } = useContentTypeLayout();
+  const { components } = currentLayout;
   const componentLayoutData = useMemo(
     () => getComponentLayout(componentUid),
     [componentUid, getComponentLayout]
@@ -101,7 +103,9 @@ const RepeatableComponent = ({
     });
   };
 
-  const mainField = get(componentLayoutData, ['settings', 'mainField'], 'id');
+  const mainField =
+    getMainField(currentLayout, componentLayoutData) ||
+    get(componentLayoutData, ['settings', 'mainField'], 'id');
 
   const handleToggle = (key) => () => {
     if (collapseToOpen === key) {

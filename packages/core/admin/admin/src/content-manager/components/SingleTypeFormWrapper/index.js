@@ -167,7 +167,7 @@ const SingleTypeFormWrapper = ({ allLayoutData, children, slug }) => {
       try {
         trackUsageRef.current('willDeleteEntry', trackerProperty);
 
-        const { data } = await del(getRequestUrl(`${slug}${searchToSend}`));
+        const { data } = await del(getRequestUrl(`${slug}`));
 
         toggleNotification({
           type: 'success',
@@ -185,7 +185,7 @@ const SingleTypeFormWrapper = ({ allLayoutData, children, slug }) => {
         return Promise.reject(err);
       }
     },
-    [del, slug, displayErrors, toggleNotification, searchToSend]
+    [del, slug, displayErrors, toggleNotification]
   );
 
   const onDeleteSucceeded = useCallback(() => {

@@ -40,8 +40,6 @@ const getPopulatedFields = (currentLayout, schema) => {
     } else if (attributeType === 'dynamiczone') {
       attributeRelation = get(schema, ['attributes', attribute, 'components'], null)
         .reduce((acc3, component) => {
-          console.log('component', currentLayout.components, component);
-
           return acc3.concat(
             getPopulatedFields(currentLayout, get(currentLayout, ['components', component], {}))
           );
