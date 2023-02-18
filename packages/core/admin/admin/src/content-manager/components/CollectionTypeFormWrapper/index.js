@@ -33,6 +33,8 @@ import {
   submitSucceeded,
 } from '../../sharedReducers/crudReducer/actions';
 import selectCrudReducer from '../../sharedReducers/crudReducer/selectors';
+import { getPopulatedFields } from '../SingleTypeFormWrapper/utils';
+import { buildQueryString } from '../../pages/ListView/utils';
 
 // This container is used to handle the CRUD
 const CollectionTypeFormWrapper = ({ allLayoutData, children, slug, id, origin }) => {
@@ -41,7 +43,11 @@ const CollectionTypeFormWrapper = ({ allLayoutData, children, slug, id, origin }
   const { setCurrentStep } = useGuidedTour();
   const { trackUsage } = useTracking();
   const { push, replace } = useHistory();
-  const [{ rawQuery }] = useQueryParams();
+  const [{ query, rawQuery }] = useQueryParams();
+  const searchToSend = buildQueryString({
+    ...query,
+    populate: getPopulatedFields(allLayoutData, allLayoutData.contentType),
+  });
   const dispatch = useDispatch();
   const { componentsDataStructure, contentTypeDataStructure, data, isLoading, status } =
     useSelector(selectCrudReducer);
@@ -63,8 +69,8 @@ const CollectionTypeFormWrapper = ({ allLayoutData, children, slug, id, origin }
       return null;
     }
 
-    return getRequestUrl(`collection-types/${slug}/${origin || id}`);
-  }, [slug, id, isCreatingEntry, origin]);
+    return getRequestUrl(`collection-types/${slug}/${origin || id}${searchToSend}`);
+  }, [slug, id, isCreatingEntry, origin, searchToSend]);
 
   const cleanClonedData = useCallback(
     (data) => {
