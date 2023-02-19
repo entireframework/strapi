@@ -18,7 +18,7 @@ import {
   SubNavLink,
 } from '@strapi/design-system/v2';
 
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import getTrad from '../../../utils/getTrad';
 import { makeSelectModelLinks } from '../selectors';
 import { useConfigurations } from '../../../../hooks';
@@ -158,7 +158,7 @@ const LeftMenu = () => {
                     as={NavLink}
                     key={link.uid}
                     to={`${link.to}${search}`}
-                    // icon={link.icon && <FontAwesomeIcon icon={link.icon} size="sm" />}
+                    icon={link.icon && <FontAwesomeIcon icon={link.icon} size="sm" />}
                   >
                     {link.title}
                   </SubNavLink>
