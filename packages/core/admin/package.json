@@ -1,6 +1,6 @@
 {
   "name": "@strapi/admin",
-  "version": "4.6.2-alpha.5",
+  "version": "4.6.2-alpha.6",
   "description": "Strapi Admin",
   "repository": {
     "type": "git",
@@ -52,7 +52,7 @@
     "@fortawesome/react-fontawesome": "^0.2.0",
     "@pmmmwh/react-refresh-webpack-plugin": "0.5.10",
     "@strapi/babel-plugin-switch-ee-ce": "^4.6.2-alpha.0",
-    "@strapi/data-transfer": "^4.6.2-alpha.5",
+    "@strapi/data-transfer": "^4.6.2-alpha.6",
     "@strapi/design-system": "1.6.3",
     "@strapi/helper-plugin": "^4.6.2-alpha.0",
     "@strapi/icons": "1.6.3",
