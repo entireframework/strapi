@@ -118,11 +118,13 @@ export const RelationInputDataManager = ({
     /**
      * Any relation being added to the store should be normalized so it has it's link.
      */
-    const normalizedRelation = normalizeRelation(relation, {
-      mainFieldName: mainField.name,
-      shouldAddLink: shouldDisplayRelationLink,
-      targetModel,
-    });
+    const normalizedRelation = relation.mainField
+      ? relation
+      : normalizeRelation(relation, {
+          mainFieldName: mainField.name,
+          shouldAddLink: shouldDisplayRelationLink,
+          targetModel,
+        });
 
     relationConnect({ name, value: normalizedRelation, toOneRelation });
   };
