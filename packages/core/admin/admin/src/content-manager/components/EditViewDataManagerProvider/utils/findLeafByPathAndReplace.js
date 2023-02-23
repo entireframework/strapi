@@ -24,7 +24,11 @@ export const findLeafByPathAndReplace = (endpath, replaceWithFn) => {
      * then we assume it's a leaf and we can replace it.
      */
     if (ind === currentArr.length - 1 && endpath === curr) {
-      set(acc, curr, replaceWithFn(acc[curr]));
+      set(
+        acc,
+        curr,
+        typeof replaceWithFn === 'function' ? replaceWithFn(acc[curr]) : replaceWithFn
+      );
 
       return acc;
     }
