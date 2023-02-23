@@ -1320,7 +1320,11 @@ describe('CONTENT MANAGER | COMPONENTS | EditViewDataManagerProvider | reducer',
             "initialData": {
               "component": {
                 "__temp_key__": 1,
-                "relation": [],
+                "relation": [
+                  {
+                    "count": 10,
+                  },
+                ],
               },
               "ok": true,
               "relation": [],
@@ -1329,7 +1333,11 @@ describe('CONTENT MANAGER | COMPONENTS | EditViewDataManagerProvider | reducer',
             "modifiedData": {
               "component": {
                 "__temp_key__": 1,
-                "relation": [],
+                "relation": [
+                  {
+                    "count": 10,
+                  },
+                ],
               },
               "ok": true,
               "relation": [],
@@ -1379,7 +1387,11 @@ describe('CONTENT MANAGER | COMPONENTS | EditViewDataManagerProvider | reducer',
               "component": {
                 "__temp_key__": 1,
                 "field1": {
-                  "field2": [],
+                  "field2": [
+                    {
+                      "count": 10,
+                    },
+                  ],
                 },
               },
               "ok": true,
@@ -1390,7 +1402,11 @@ describe('CONTENT MANAGER | COMPONENTS | EditViewDataManagerProvider | reducer',
               "component": {
                 "__temp_key__": 1,
                 "field1": {
-                  "field2": [],
+                  "field2": [
+                    {
+                      "count": 10,
+                    },
+                  ],
                 },
               },
               "ok": true,
@@ -1448,7 +1464,11 @@ describe('CONTENT MANAGER | COMPONENTS | EditViewDataManagerProvider | reducer',
               "repeatable_single_component_relation": [
                 {
                   "__temp_key__": 0,
-                  "categories": [],
+                  "categories": [
+                    {
+                      "count": 2,
+                    },
+                  ],
                   "id": 15,
                   "my_name": null,
                 },
@@ -1460,7 +1480,11 @@ describe('CONTENT MANAGER | COMPONENTS | EditViewDataManagerProvider | reducer',
               "repeatable_single_component_relation": [
                 {
                   "__temp_key__": 0,
-                  "categories": [],
+                  "categories": [
+                    {
+                      "count": 2,
+                    },
+                  ],
                   "id": 15,
                   "my_name": null,
                 },
@@ -1521,7 +1545,11 @@ describe('CONTENT MANAGER | COMPONENTS | EditViewDataManagerProvider | reducer',
                   "__temp_key__": 0,
                   "id": 2,
                   "simple": {
-                    "categories": [],
+                    "categories": [
+                      {
+                        "count": 1,
+                      },
+                    ],
                     "id": 16,
                     "my_name": null,
                   },
@@ -1536,7 +1564,11 @@ describe('CONTENT MANAGER | COMPONENTS | EditViewDataManagerProvider | reducer',
                   "__temp_key__": 0,
                   "id": 2,
                   "simple": {
-                    "categories": [],
+                    "categories": [
+                      {
+                        "count": 1,
+                      },
+                    ],
                     "id": 16,
                     "my_name": null,
                   },
@@ -1605,7 +1637,11 @@ describe('CONTENT MANAGER | COMPONENTS | EditViewDataManagerProvider | reducer',
                   "repeatable_simple": [
                     {
                       "__temp_key__": 0,
-                      "categories": [],
+                      "categories": [
+                        {
+                          "count": 2,
+                        },
+                      ],
                       "id": 17,
                       "my_name": null,
                     },
@@ -1623,7 +1659,11 @@ describe('CONTENT MANAGER | COMPONENTS | EditViewDataManagerProvider | reducer',
                   "repeatable_simple": [
                     {
                       "__temp_key__": 0,
-                      "categories": [],
+                      "categories": [
+                        {
+                          "count": 2,
+                        },
+                      ],
                       "id": 17,
                       "my_name": null,
                     },
@@ -1689,7 +1729,11 @@ describe('CONTENT MANAGER | COMPONENTS | EditViewDataManagerProvider | reducer',
                 "repeatable_simple": [
                   {
                     "__temp_key__": 0,
-                    "categories": [],
+                    "categories": [
+                      {
+                        "count": 2,
+                      },
+                    ],
                     "id": 18,
                     "my_name": null,
                   },
@@ -1705,7 +1749,11 @@ describe('CONTENT MANAGER | COMPONENTS | EditViewDataManagerProvider | reducer',
                 "repeatable_simple": [
                   {
                     "__temp_key__": 0,
-                    "categories": [],
+                    "categories": [
+                      {
+                        "count": 2,
+                      },
+                    ],
                     "id": 18,
                     "my_name": null,
                   },
@@ -1762,7 +1810,11 @@ describe('CONTENT MANAGER | COMPONENTS | EditViewDataManagerProvider | reducer',
                 {
                   "__component": "basic.simple",
                   "__temp_key__": 1,
-                  "categories": [],
+                  "categories": [
+                    {
+                      "count": 1,
+                    },
+                  ],
                   "id": 36,
                   "my_name": null,
                 },
@@ -1775,7 +1827,11 @@ describe('CONTENT MANAGER | COMPONENTS | EditViewDataManagerProvider | reducer',
                 {
                   "__component": "basic.simple",
                   "__temp_key__": 1,
-                  "categories": [],
+                  "categories": [
+                    {
+                      "count": 1,
+                    },
+                  ],
                   "id": 36,
                   "my_name": null,
                 },
@@ -1834,7 +1890,11 @@ describe('CONTENT MANAGER | COMPONENTS | EditViewDataManagerProvider | reducer',
                   "__temp_key__": 1,
                   "id": 7,
                   "simple": {
-                    "categories": [],
+                    "categories": [
+                      {
+                        "count": 1,
+                      },
+                    ],
                     "id": 47,
                     "my_name": null,
                   },
@@ -1850,7 +1910,11 @@ describe('CONTENT MANAGER | COMPONENTS | EditViewDataManagerProvider | reducer',
                   "__temp_key__": 1,
                   "id": 7,
                   "simple": {
-                    "categories": [],
+                    "categories": [
+                      {
+                        "count": 1,
+                      },
+                    ],
                     "id": 47,
                     "my_name": null,
                   },
@@ -1925,13 +1989,21 @@ describe('CONTENT MANAGER | COMPONENTS | EditViewDataManagerProvider | reducer',
                   "repeatable_simple": [
                     {
                       "__temp_key__": 0,
-                      "categories": [],
+                      "categories": [
+                        {
+                          "count": 1,
+                        },
+                      ],
                       "id": 48,
                       "my_name": null,
                     },
                     {
                       "__temp_key__": 1,
-                      "categories": [],
+                      "categories": [
+                        {
+                          "count": 1,
+                        },
+                      ],
                       "id": 49,
                       "my_name": null,
                     },
@@ -1950,13 +2022,21 @@ describe('CONTENT MANAGER | COMPONENTS | EditViewDataManagerProvider | reducer',
                   "repeatable_simple": [
                     {
                       "__temp_key__": 0,
-                      "categories": [],
+                      "categories": [
+                        {
+                          "count": 1,
+                        },
+                      ],
                       "id": 48,
                       "my_name": null,
                     },
                     {
                       "__temp_key__": 1,
-                      "categories": [],
+                      "categories": [
+                        {
+                          "count": 1,
+                        },
+                      ],
                       "id": 49,
                       "my_name": null,
                     },
