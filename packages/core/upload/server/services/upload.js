@@ -194,7 +194,6 @@ module.exports = ({ strapi }) => ({
       generateResponsiveFormats,
       isOptimizableImage,
       isOptimizableVideo,
-      isResizableImage,
     } = getService('image-manipulation');
 
     // Store width and height of the original image
@@ -223,13 +222,10 @@ module.exports = ({ strapi }) => ({
     uploadPromises.push(getService('provider').upload(fileData));
 
     // Generate & Upload thumbnail and responsive formats
-    if ((await isResizableImage(fileData)) || isVideoFile) {
-      const thumbnailFile = await generateThumbnail(fileData);
-      if (thumbnailFile) {
-        uploadPromises.push(uploadThumbnail(thumbnailFile));
-      }
-
-      const formats = await generateResponsiveFormats(fileData);
+    if ((await isOptimizableImage(fileData)) || isVideoFile) {
+      const formats = (await generateThumbnails(fileData)).concat(
+        await generateResponsiveFormats(fileData)
+      );
       if (Array.isArray(formats) && formats.length > 0) {
         for (const format of formats) {
           // eslint-disable-next-line no-continue
