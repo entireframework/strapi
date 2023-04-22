@@ -5,6 +5,10 @@ const { expectExit } = require('./shared/transfer.test.utils');
 describe('Export', () => {
   const defaultFileName = 'defaultFilename';
 
+  jest.mock('fs-extra', () => ({
+    pathExists: jest.fn(() => Promise.resolve(true)),
+  }));
+
   const mockDataTransfer = {
     file: {
       providers: {
@@ -17,9 +21,19 @@ describe('Export', () => {
       },
     },
     engine: {
+      errors: {},
       createTransferEngine() {
         return {
-          transfer: jest.fn().mockReturnValue(Promise.resolve({})),
+          transfer: jest.fn(() => {
+            return {
+              engine: {},
+              destination: {
+                file: {
+                  path: 'path',
+                },
+              },
+            };
+          }),
           progress: {
             on: jest.fn(),
             stream: {
@@ -37,12 +51,12 @@ describe('Export', () => {
     },
   };
 
-  jest.mock('@strapi/data-transfer/lib/engine', () => mockDataTransfer.engine, { virtual: true });
-  jest.mock('@strapi/data-transfer/lib/strapi', () => mockDataTransfer.strapi, { virtual: true });
-  jest.mock('@strapi/data-transfer/lib/file', () => mockDataTransfer.file, { virtual: true });
+  jest.mock('@strapi/data-transfer', () => mockDataTransfer);
 
   // mock utils
   const mockUtils = {
+    getTransferTelemetryPayload: jest.fn().mockReturnValue({}),
+    loadersFactory: jest.fn().mockReturnValue({ updateLoader: jest.fn() }),
     formatDiagnostic: jest.fn(),
     createStrapiInstance() {
       return {
@@ -52,6 +66,14 @@ describe('Export', () => {
       };
     },
     getDefaultExportName: jest.fn(() => defaultFileName),
+    buildTransferTable: jest.fn(() => {
+      return {
+        toString() {
+          return 'table';
+        },
+      };
+    }),
+    exitMessageText: jest.fn(),
   };
   jest.mock(
     '../../transfer/utils',
@@ -61,7 +83,7 @@ describe('Export', () => {
     { virtual: true }
   );
 
-  // other spies
+  // console spies
   jest.spyOn(console, 'log').mockImplementation(() => {});
   jest.spyOn(console, 'warn').mockImplementation(() => {});
   jest.spyOn(console, 'info').mockImplementation(() => {});
@@ -77,10 +99,11 @@ describe('Export', () => {
   it('uses path provided by user', async () => {
     const filename = 'test';
 
-    await expectExit(1, async () => {
+    await expectExit(0, async () => {
       await exportCommand({ file: filename });
     });
 
+    expect(console.error).not.toHaveBeenCalled();
     expect(mockDataTransfer.file.providers.createLocalFileDestinationProvider).toHaveBeenCalledWith(
       expect.objectContaining({
         file: { path: filename },
@@ -90,7 +113,7 @@ describe('Export', () => {
   });
 
   it('uses default path if not provided by user', async () => {
-    await expectExit(1, async () => {
+    await expectExit(0, async () => {
       await exportCommand({});
     });
 
@@ -104,7 +127,7 @@ describe('Export', () => {
 
   it('encrypts the output file if specified', async () => {
     const encrypt = true;
-    await expectExit(1, async () => {
+    await expectExit(0, async () => {
       await exportCommand({ encrypt });
     });
 
@@ -118,7 +141,7 @@ describe('Export', () => {
   it('encrypts the output file with the given key', async () => {
     const key = 'secret-key';
     const encrypt = true;
-    await expectExit(1, async () => {
+    await expectExit(0, async () => {
       await exportCommand({ encrypt, key });
     });
 
@@ -130,7 +153,7 @@ describe('Export', () => {
   });
 
   it('uses compress option', async () => {
-    await expectExit(1, async () => {
+    await expectExit(0, async () => {
       await exportCommand({ compress: false });
     });
 
@@ -139,7 +162,7 @@ describe('Export', () => {
         compression: { enabled: false },
       })
     );
-    await expectExit(1, async () => {
+    await expectExit(0, async () => {
       await exportCommand({ compress: true });
     });
     expect(mockDataTransfer.file.providers.createLocalFileDestinationProvider).toHaveBeenCalledWith(

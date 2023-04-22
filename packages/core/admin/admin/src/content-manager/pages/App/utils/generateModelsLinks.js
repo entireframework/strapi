@@ -54,12 +54,12 @@ const generateModelsLinks = (models, modelsConfigurations) => {
   const [collectionTypes, singleTypes] = sortBy(groupedModels, 'name');
 
   return {
-    collectionTypesSectionLinks: generateLinks(
+    collectionTypeSectionLinks: generateLinks(
       collectionTypes?.links || [],
       'collectionTypes',
       modelsConfigurations
     ),
-    singleTypesSectionLinks: generateLinks(singleTypes?.links ?? [], 'singleTypes'),
+    singleTypeSectionLinks: generateLinks(singleTypes?.links ?? [], 'singleTypes'),
   };
 };
 

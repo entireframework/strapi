@@ -10,7 +10,7 @@ import {
   createPossibleCoverFieldsForModelsAndComponents,
   getInputProps,
 } from '../utils';
-import { makeSelectModelAndComponentSchemas } from '../../App/selectors';
+import { makeSelectModelAndComponentSchemas, selectFieldSizes } from '../../App/selectors';
 import getTrad from '../../../utils/getTrad';
 import GenericInput from './GenericInput';
 
@@ -23,8 +23,6 @@ const FIELD_SIZES = [
   [12, '100%'],
 ];
 
-const NON_RESIZABLE_FIELD_TYPES = [];
-
 const TIME_FIELD_OPTIONS = [1, 5, 10, 15, 30, 60];
 
 const TIME_FIELD_TYPES = ['datetime', 'time'];
@@ -34,6 +32,7 @@ const ModalForm = ({ onMetaChange, onSizeChange }) => {
   const { modifiedData, selectedField, attributes, fieldForm } = useLayoutDnd();
   const schemasSelector = useMemo(makeSelectModelAndComponentSchemas, []);
   const { schemas } = useSelector((state) => schemasSelector(state), shallowEqual);
+  const fieldSizes = useSelector(selectFieldSizes);
 
   const formToDisplay = useMemo(() => {
     if (!selectedField) {
@@ -124,7 +123,9 @@ const ModalForm = ({ onMetaChange, onSizeChange }) => {
     );
   });
 
-  const canResize = !NON_RESIZABLE_FIELD_TYPES.includes(attributes[selectedField].type);
+  // Check for a custom input provided by a custom field, or use the default one for that type
+  const { type, customField } = attributes[selectedField];
+  const { isResizable } = fieldSizes[customField] ?? fieldSizes[type];
 
   const sizeField = (
     <GridItem col={6} key="size">
@@ -173,7 +174,7 @@ const ModalForm = ({ onMetaChange, onSizeChange }) => {
   return (
     <>
       {metaFields}
-      {canResize && sizeField}
+      {isResizable && sizeField}
       {hasTimePicker && timeStepField}
     </>
   );

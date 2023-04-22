@@ -176,6 +176,9 @@ const SingleTypeFormWrapper = ({ allLayoutData, children, slug }) => {
 
         trackUsageRef.current('didDeleteEntry', trackerProperty);
 
+        setIsCreatingEntry(true);
+        dispatch(initForm(rawQuery, true));
+
         return Promise.resolve(data);
       } catch (err) {
         trackUsageRef.current('didNotDeleteEntry', { error: err, ...trackerProperty });
@@ -185,14 +188,8 @@ const SingleTypeFormWrapper = ({ allLayoutData, children, slug }) => {
         return Promise.reject(err);
       }
     },
-    [del, slug, displayErrors, toggleNotification]
+    [del, slug, displayErrors, toggleNotification, searchToSend, dispatch, rawQuery]
   );
-
-  const onDeleteSucceeded = useCallback(() => {
-    setIsCreatingEntry(true);
-
-    dispatch(initForm(rawQuery, true));
-  }, [dispatch, rawQuery]);
 
   const onPost = useCallback(
     async (body, trackerProperty) => {
@@ -374,7 +371,6 @@ const SingleTypeFormWrapper = ({ allLayoutData, children, slug }) => {
     isCreatingEntry,
     isLoadingForData: isLoading,
     onDelete,
-    onDeleteSucceeded,
     onPost,
     onDraftRelationCheck,
     onPublish,

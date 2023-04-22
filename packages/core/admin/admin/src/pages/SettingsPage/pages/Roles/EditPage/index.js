@@ -1,6 +1,6 @@
 import React, { useRef, useState } from 'react';
 import {
-  request,
+  useFetchClient,
   useNotification,
   useOverlayBlocker,
   useTracking,
@@ -8,7 +8,7 @@ import {
   SettingsPageTitle,
   Link,
 } from '@strapi/helper-plugin';
-import { Box, Button, ContentLayout, HeaderLayout, Main, Stack } from '@strapi/design-system';
+import { Box, Button, ContentLayout, HeaderLayout, Main, Flex } from '@strapi/design-system';
 import { Formik } from 'formik';
 import { ArrowLeft } from '@strapi/icons';
 import get from 'lodash/get';
@@ -37,6 +37,8 @@ const EditPage = () => {
     onSubmitSucceeded,
   } = useFetchRole(id);
 
+  const { put } = useFetchClient();
+
   const handleEditRoleSubmit = async (data) => {
     try {
       lockApp();
@@ -44,17 +46,11 @@ const EditPage = () => {
 
       const { permissionsToSend, didUpdateConditions } = permissionsRef.current.getPermissions();
 
-      await request(`/admin/roles/${id}`, {
-        method: 'PUT',
-        body: data,
-      });
+      await put(`/admin/roles/${id}`, data);
 
       if (role.code !== 'strapi-super-admin') {
-        await request(`/admin/roles/${id}/permissions`, {
-          method: 'PUT',
-          body: {
-            permissions: permissionsToSend,
-          },
+        await put(`/admin/roles/${id}/permissions`, {
+          permissions: permissionsToSend,
         });
 
         if (didUpdateConditions) {
@@ -104,7 +100,7 @@ const EditPage = () => {
           <form onSubmit={handleSubmit}>
             <HeaderLayout
               primaryAction={
-                <Stack horizontal spacing={2}>
+                <Flex gap={2}>
                   <Button
                     disabled={role.code === 'strapi-super-admin'}
                     onClick={handleSubmit}
@@ -116,7 +112,7 @@ const EditPage = () => {
                       defaultMessage: 'Save',
                     })}
                   </Button>
-                </Stack>
+                </Flex>
               }
               title={formatMessage({
                 id: 'Settings.roles.edit.title',
@@ -136,7 +132,7 @@ const EditPage = () => {
               }
             />
             <ContentLayout>
-              <Stack spacing={6}>
+              <Flex direction="column" alignItems="stretch" gap={6}>
                 <RoleForm
                   isLoading={isRoleLoading}
                   disabled={isFormDisabled}
@@ -160,7 +156,7 @@ const EditPage = () => {
                     <LoadingIndicatorPage />
                   </Box>
                 )}
-              </Stack>
+              </Flex>
             </ContentLayout>
           </form>
         )}

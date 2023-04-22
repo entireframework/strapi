@@ -17,8 +17,8 @@ import {
   SubNavSections,
   SubNavLink,
 } from '@strapi/design-system/v2';
+import { useFilter, useCollator } from '@strapi/helper-plugin';
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import getTrad from '../../../utils/getTrad';
 import { makeSelectModelLinks } from '../selectors';
 import { useConfigurations } from '../../../../hooks';
@@ -28,12 +28,20 @@ const matchByTitle = (links, search) =>
 
 const LeftMenu = () => {
   const [search, setSearch] = useState('');
-  const { formatMessage } = useIntl();
+  const { formatMessage, locale } = useIntl();
   const modelLinksSelector = useMemo(makeSelectModelLinks, []);
-  const { collectionTypeLinks, singleTypeLinks } = useSelector(
-    (state) => modelLinksSelector(state),
-    shallowEqual
-  );
+  const { collectionTypeLinks, singleTypeLinks } = useSelector(modelLinksSelector, shallowEqual);
+
+  const { startsWith } = useFilter(locale, {
+    sensitivity: 'base',
+  });
+
+  /**
+   * @type {Intl.Collator}
+   */
+  const formatter = useCollator(locale, {
+    sensitivity: 'base',
+  });
 
   const toIntl = (links) =>
     links.map((link) => {

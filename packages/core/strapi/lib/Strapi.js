@@ -17,7 +17,6 @@ const { createServer } = require('./services/server');
 const createWebhookRunner = require('./services/webhook-runner');
 const { webhookModel, createWebhookStore } = require('./services/webhook-store');
 const { createCoreStore, coreStoreModel } = require('./services/core-store');
-const { eeStoreModel } = require('../ee/ee-store');
 const createEntityService = require('./services/entity-service');
 const createCronService = require('./services/cron');
 const entityValidator = require('./services/entity-validator');
@@ -44,6 +43,7 @@ const apisRegistry = require('./core/registries/apis');
 const bootstrap = require('./core/bootstrap');
 const loaders = require('./core/loaders');
 const { destroyOnSignal } = require('./utils/signals');
+const getNumberOfDynamicZones = require('./services/utils/dynamic-zones');
 const sanitizersRegistry = require('./core/registries/sanitizers');
 const convertCustomFieldType = require('./utils/convert-custom-field-type');
 
@@ -117,7 +117,6 @@ class Strapi {
     this.cron = createCronService();
     this.telemetry = createTelemetry(this);
     this.requestContext = requestContext;
-
     this.customFields = createCustomFields(this);
 
     createUpdateNotifier(this).notify();
@@ -227,7 +226,6 @@ class Strapi {
 
   async destroy() {
     await this.server.destroy();
-
     await this.runLifecyclesFunctions(LIFECYCLES.DESTROY);
 
     this.eventHub.destroy();
@@ -252,6 +250,9 @@ class Strapi {
       groupProperties: {
         database: strapi.config.get('database.connection.client'),
         plugins: Object.keys(strapi.plugins),
+        numberOfAllContentTypes: _.size(this.contentTypes), // TODO: V5: This event should be renamed numberOfContentTypes in V5 as the name is already taken to describe the number of content types using i18n.
+        numberOfComponents: _.size(this.components),
+        numberOfDynamicZones: getNumberOfDynamicZones(),
         // TODO: to add back
         // providers: this.config.installedProviders,
       },
@@ -409,7 +410,6 @@ class Strapi {
     const contentTypes = [
       coreStoreModel,
       webhookModel,
-      eeStoreModel,
       ...Object.values(strapi.contentTypes),
       ...Object.values(strapi.components),
     ];
@@ -472,7 +472,7 @@ class Strapi {
     await this.startWebhooks();
 
     await this.server.initMiddlewares();
-    await this.server.initRouting();
+    this.server.initRouting();
 
     await this.contentAPI.permissions.registerActions();
 
@@ -540,16 +540,16 @@ class Strapi {
     // plugins
     await this.container.get('modules')[lifecycleName]();
 
-    // user
-    const userLifecycleFunction = this.app && this.app[lifecycleName];
-    if (isFunction(userLifecycleFunction)) {
-      await userLifecycleFunction({ strapi: this });
-    }
-
     // admin
     const adminLifecycleFunction = this.admin && this.admin[lifecycleName];
     if (isFunction(adminLifecycleFunction)) {
       await adminLifecycleFunction({ strapi: this });
+    }
+
+    // user
+    const userLifecycleFunction = this.app && this.app[lifecycleName];
+    if (isFunction(userLifecycleFunction)) {
+      await userLifecycleFunction({ strapi: this });
     }
   }
 

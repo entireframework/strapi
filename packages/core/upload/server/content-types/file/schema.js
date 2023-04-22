@@ -104,6 +104,7 @@ module.exports = {
       min: 1,
       required: true,
       private: true,
+      searchable: false,
     },
   },
   // experimental feature:

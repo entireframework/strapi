@@ -7,7 +7,7 @@ import { useIntl } from 'react-intl';
 
 import { NotAllowedInput } from '@strapi/helper-plugin';
 import { Trash } from '@strapi/icons';
-import { Box, IconButton, Flex, Stack } from '@strapi/design-system';
+import { Box, IconButton, Flex } from '@strapi/design-system';
 
 import connect from './utils/connect';
 import select from './utils/select';
@@ -94,7 +94,7 @@ const FieldComponent = ({
           />
         )}
       </Flex>
-      <Stack spacing={1}>
+      <Flex direction="column" alignItems="stretch" gap={1}>
         {!isRepeatable && !isInitialized && (
           <ComponentInitializer
             isReadOnly={isReadOnly}
@@ -120,7 +120,7 @@ const FieldComponent = ({
             name={name}
           />
         )}
-      </Stack>
+      </Flex>
     </Box>
   );
 };

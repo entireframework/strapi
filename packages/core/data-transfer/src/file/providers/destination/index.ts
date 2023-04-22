@@ -12,11 +12,11 @@ import type {
   IDestinationProvider,
   IDestinationProviderTransferResults,
   IMetadata,
-  MaybePromise,
   ProviderType,
   Stream,
 } from '../../../../types';
 import { createFilePathFactory, createTarEntryStream } from './utils';
+import { ProviderTransferError } from '../../../errors/providers';
 
 export interface ILocalFileDestinationProviderOptions {
   encryption: {
@@ -101,6 +101,15 @@ class LocalFileDestinationProvider implements IDestinationProvider {
     this.#archive.stream = tar.pack();
 
     const outStream = createWriteStream(this.#archivePath);
+
+    outStream.on('error', (err: NodeJS.ErrnoException) => {
+      if (err.code === 'ENOSPC') {
+        throw new ProviderTransferError(
+          "Your server doesn't have space to proceed with the import."
+        );
+      }
+      throw err;
+    });
 
     const archiveTransforms: Stream[] = [];
 
@@ -240,7 +249,8 @@ class LocalFileDestinationProvider implements IDestinationProvider {
     return new Writable({
       objectMode: true,
       write(data: IAsset, _encoding, callback) {
-        const entryPath = path.join('assets', 'uploads', data.filename);
+        // always write tar files with posix paths so we have a standard format for paths regardless of system
+        const entryPath = path.posix.join('assets', 'uploads', data.filename);
 
         const entry = archiveStream.entry({
           name: entryPath,
