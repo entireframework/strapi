@@ -459,7 +459,8 @@ exports[`Marketplace page - layout renders the online layout 1`] = `
   color: #666687;
 }
 
-.c52[aria-disabled='true'] svg > g,.c52[aria-disabled='true'] svg path {
+.c52[aria-disabled='true'] svg > g,
+.c52[aria-disabled='true'] svg path {
   fill: #666687;
 }
 
@@ -472,7 +473,8 @@ exports[`Marketplace page - layout renders the online layout 1`] = `
   color: #666687;
 }
 
-.c52[aria-disabled='true']:active svg > g,.c52[aria-disabled='true']:active svg path {
+.c52[aria-disabled='true']:active svg > g,
+.c52[aria-disabled='true']:active svg path {
   fill: #666687;
 }
 
@@ -508,7 +510,8 @@ exports[`Marketplace page - layout renders the online layout 1`] = `
   color: #666687;
 }
 
-.c76[aria-disabled='true'] svg > g,.c76[aria-disabled='true'] svg path {
+.c76[aria-disabled='true'] svg > g,
+.c76[aria-disabled='true'] svg path {
   fill: #666687;
 }
 
@@ -521,7 +524,8 @@ exports[`Marketplace page - layout renders the online layout 1`] = `
   color: #666687;
 }
 
-.c76[aria-disabled='true']:active svg > g,.c76[aria-disabled='true']:active svg path {
+.c76[aria-disabled='true']:active svg > g,
+.c76[aria-disabled='true']:active svg path {
   fill: #666687;
 }
 
@@ -1041,7 +1045,8 @@ exports[`Marketplace page - layout renders the online layout 1`] = `
   color: #666687;
 }
 
-.c14[aria-disabled='true'] svg > g,.c14[aria-disabled='true'] svg path {
+.c14[aria-disabled='true'] svg > g,
+.c14[aria-disabled='true'] svg path {
   fill: #666687;
 }
 
@@ -1054,7 +1059,8 @@ exports[`Marketplace page - layout renders the online layout 1`] = `
   color: #666687;
 }
 
-.c14[aria-disabled='true']:active svg > g,.c14[aria-disabled='true']:active svg path {
+.c14[aria-disabled='true']:active svg > g,
+.c14[aria-disabled='true']:active svg path {
   fill: #666687;
 }
 

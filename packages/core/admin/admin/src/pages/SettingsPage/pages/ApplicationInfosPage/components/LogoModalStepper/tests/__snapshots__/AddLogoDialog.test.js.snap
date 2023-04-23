@@ -260,7 +260,8 @@ exports[`ApplicationInfosPage | AddLogoDialog shoud render from computer tab and
   color: #666687;
 }
 
-.c22[aria-disabled='true'] svg > g,.c22[aria-disabled='true'] svg path {
+.c22[aria-disabled='true'] svg > g,
+.c22[aria-disabled='true'] svg path {
   fill: #666687;
 }
 
@@ -273,7 +274,8 @@ exports[`ApplicationInfosPage | AddLogoDialog shoud render from computer tab and
   color: #666687;
 }
 
-.c22[aria-disabled='true']:active svg > g,.c22[aria-disabled='true']:active svg path {
+.c22[aria-disabled='true']:active svg > g,
+.c22[aria-disabled='true']:active svg path {
   fill: #666687;
 }
 
@@ -307,7 +309,8 @@ exports[`ApplicationInfosPage | AddLogoDialog shoud render from computer tab and
   color: #666687;
 }
 
-.c31[aria-disabled='true'] svg > g,.c31[aria-disabled='true'] svg path {
+.c31[aria-disabled='true'] svg > g,
+.c31[aria-disabled='true'] svg path {
   fill: #666687;
 }
 
@@ -320,7 +323,8 @@ exports[`ApplicationInfosPage | AddLogoDialog shoud render from computer tab and
   color: #666687;
 }
 
-.c31[aria-disabled='true']:active svg > g,.c31[aria-disabled='true']:active svg path {
+.c31[aria-disabled='true']:active svg > g,
+.c31[aria-disabled='true']:active svg path {
   fill: #666687;
 }
 
@@ -779,7 +783,8 @@ exports[`ApplicationInfosPage | AddLogoDialog shoud render from url tab and matc
   color: #666687;
 }
 
-.c26[aria-disabled='true'] svg > g,.c26[aria-disabled='true'] svg path {
+.c26[aria-disabled='true'] svg > g,
+.c26[aria-disabled='true'] svg path {
   fill: #666687;
 }
 
@@ -792,7 +797,8 @@ exports[`ApplicationInfosPage | AddLogoDialog shoud render from url tab and matc
   color: #666687;
 }
 
-.c26[aria-disabled='true']:active svg > g,.c26[aria-disabled='true']:active svg path {
+.c26[aria-disabled='true']:active svg > g,
+.c26[aria-disabled='true']:active svg path {
   fill: #666687;
 }
 
@@ -826,7 +832,8 @@ exports[`ApplicationInfosPage | AddLogoDialog shoud render from url tab and matc
   color: #666687;
 }
 
-.c24[aria-disabled='true'] svg > g,.c24[aria-disabled='true'] svg path {
+.c24[aria-disabled='true'] svg > g,
+.c24[aria-disabled='true'] svg path {
   fill: #666687;
 }
 
@@ -839,7 +846,8 @@ exports[`ApplicationInfosPage | AddLogoDialog shoud render from url tab and matc
   color: #666687;
 }
 
-.c24[aria-disabled='true']:active svg > g,.c24[aria-disabled='true']:active svg path {
+.c24[aria-disabled='true']:active svg > g,
+.c24[aria-disabled='true']:active svg path {
   fill: #666687;
 }
 

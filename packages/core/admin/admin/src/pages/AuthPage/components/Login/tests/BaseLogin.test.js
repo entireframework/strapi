@@ -374,7 +374,8 @@ describe('ADMIN | PAGES | AUTH | BaseLogin', () => {
         color: #666687;
       }
 
-      .c35[aria-disabled='true'] svg > g,.c35[aria-disabled='true'] svg path {
+      .c35[aria-disabled='true'] svg > g,
+      .c35[aria-disabled='true'] svg path {
         fill: #666687;
       }
 
@@ -387,7 +388,8 @@ describe('ADMIN | PAGES | AUTH | BaseLogin', () => {
         color: #666687;
       }
 
-      .c35[aria-disabled='true']:active svg > g,.c35[aria-disabled='true']:active svg path {
+      .c35[aria-disabled='true']:active svg > g,
+      .c35[aria-disabled='true']:active svg path {
         fill: #666687;
       }
 

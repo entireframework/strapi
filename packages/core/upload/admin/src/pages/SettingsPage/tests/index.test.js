@@ -107,6 +107,15 @@ describe('Upload | SettingsPage', () => {
         border-radius: 4px;
       }
 
+      .c41 {
+        padding-right: 12px;
+        padding-left: 8px;
+      }
+
+      .c43 {
+        color: #8e8ea9;
+      }
+
       .c2 {
         -webkit-align-items: center;
         -webkit-box-align: center;
@@ -273,12 +282,16 @@ describe('Upload | SettingsPage', () => {
         color: #666687;
       }
 
-      .c39 {
+      .c46 {
         font-size: 0.75rem;
         line-height: 1.33;
         font-weight: 600;
         color: #b72b1a;
         text-transform: uppercase;
+      }
+
+      .c44 path {
+        fill: #8e8ea9;
       }
 
       .c9 {
@@ -355,7 +368,8 @@ describe('Upload | SettingsPage', () => {
         color: #666687;
       }
 
-      .c10[aria-disabled='true'] svg > g,.c10[aria-disabled='true'] svg path {
+      .c10[aria-disabled='true'] svg > g,
+      .c10[aria-disabled='true'] svg path {
         fill: #666687;
       }
 
@@ -368,7 +382,8 @@ describe('Upload | SettingsPage', () => {
         color: #666687;
       }
 
-      .c10[aria-disabled='true']:active svg > g,.c10[aria-disabled='true']:active svg path {
+      .c10[aria-disabled='true']:active svg > g,
+      .c10[aria-disabled='true']:active svg path {
         fill: #666687;
       }
 
@@ -398,6 +413,67 @@ describe('Upload | SettingsPage', () => {
         align-items: center;
       }
 
+      .c40 {
+        border: none;
+        border-radius: 4px;
+        padding-bottom: 0.65625rem;
+        padding-left: 16px;
+        padding-right: 0;
+        padding-top: 0.65625rem;
+        color: #32324d;
+        font-weight: 400;
+        font-size: 0.875rem;
+        display: block;
+        width: 100%;
+        background: inherit;
+      }
+
+      .c40::-webkit-input-placeholder {
+        color: #8e8ea9;
+        opacity: 1;
+      }
+
+      .c40::-moz-placeholder {
+        color: #8e8ea9;
+        opacity: 1;
+      }
+
+      .c40:-ms-input-placeholder {
+        color: #8e8ea9;
+        opacity: 1;
+      }
+
+      .c40::placeholder {
+        color: #8e8ea9;
+        opacity: 1;
+      }
+
+      .c40[aria-disabled='true'] {
+        color: inherit;
+      }
+
+      .c40:focus {
+        outline: none;
+        box-shadow: none;
+      }
+
+      .c39 {
+        border: 1px solid #dcdce4;
+        border-radius: 4px;
+        background: #ffffff;
+        outline: none;
+        box-shadow: 0;
+        -webkit-transition-property: border-color,box-shadow,fill;
+        transition-property: border-color,box-shadow,fill;
+        -webkit-transition-duration: 0.2s;
+        transition-duration: 0.2s;
+      }
+
+      .c39:focus-within {
+        border: 1px solid #4945ff;
+        box-shadow: #4945ff 0px 0px 0px 2px;
+      }
+
       .c21 {
         display: grid;
         grid-template-columns: repeat(12,1fr);
@@ -420,6 +496,49 @@ describe('Upload | SettingsPage', () => {
 
       .c0:focus-visible {
         outline: none;
+      }
+
+      .c42 {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        height: 1rem;
+        -webkit-align-items: flex-end;
+        -webkit-box-align: flex-end;
+        -ms-flex-align: flex-end;
+        align-items: flex-end;
+        -webkit-transform: translateY(-2px);
+        -ms-transform: translateY(-2px);
+        transform: translateY(-2px);
+      }
+
+      .c42 svg {
+        display: block;
+        height: 0.25rem;
+        -webkit-transform: rotateX(180deg);
+        -ms-transform: rotateX(180deg);
+        transform: rotateX(180deg);
+      }
+
+      .c45 {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        height: 1rem;
+        -webkit-align-items: flex-start;
+        -webkit-box-align: flex-start;
+        -ms-flex-align: flex-start;
+        align-items: flex-start;
+        -webkit-transform: translateY(2px);
+        -ms-transform: translateY(2px);
+        transform: translateY(2px);
+      }
+
+      .c45 svg {
+        display: block;
+        height: 0.25rem;
       }
 
       .c27 {
@@ -684,22 +803,20 @@ describe('Upload | SettingsPage', () => {
                             <div
                               class=""
                             >
-                              <div>
+                              <div
+                                class=""
+                              >
                                 <div
-                                  class="c1 c17 c25"
+                                  class="c24"
                                 >
                                   <label
-                                    class="c5 c11"
+                                    class="c5 c25 c26"
                                     for="3"
                                   >
-                                    <div
-                                      class="c1 c4"
-                                    >
-                                      Responsive friendly quality
-                                    </div>
+                                    Responsive friendly quality
                                   </label>
                                   <div
-                                    class="c1 c3 c38"
+                                    class="c2 c39"
                                   >
                                     <input
                                       aria-describedby="3-hint"
@@ -707,7 +824,7 @@ describe('Upload | SettingsPage', () => {
                                       aria-invalid="false"
                                       aria-label="responsiveQuality"
                                       aria-required="false"
-                                      class="c39"
+                                      class="c40"
                                       data-testid="responsiveQuality"
                                       id="3"
                                       name="responsiveQuality"
@@ -715,26 +832,26 @@ describe('Upload | SettingsPage', () => {
                                       value=""
                                     />
                                     <div
-                                      class="c1 c40"
+                                      class="c41"
                                     >
                                       <button
                                         aria-hidden="true"
-                                        class="c41"
+                                        class="c42"
                                         data-testid="ArrowUp"
                                         tabindex="-1"
                                         type="button"
                                       >
                                         <svg
-                                          class="c1 c42 c43"
+                                          class="c43 c44"
                                           fill="none"
-                                          height="1em"
+                                          height="1rem"
                                           viewBox="0 0 14 8"
-                                          width="1em"
+                                          width="1rem"
                                           xmlns="http://www.w3.org/2000/svg"
                                         >
                                           <path
                                             clip-rule="evenodd"
-                                            d="M14 .889a.86.86 0 01-.26.625L7.615 7.736A.834.834 0 017 8a.834.834 0 01-.615-.264L.26 1.514A.861.861 0 010 .889c0-.24.087-.45.26-.625A.834.834 0 01.875 0h12.25c.237 0 .442.088.615.264a.86.86 0 01.26.625z"
+                                            d="M14 .889a.86.86 0 0 1-.26.625L7.615 7.736A.834.834 0 0 1 7 8a.834.834 0 0 1-.615-.264L.26 1.514A.861.861 0 0 1 0 .889c0-.24.087-.45.26-.625A.834.834 0 0 1 .875 0h12.25c.237 0 .442.088.615.264a.86.86 0 0 1 .26.625Z"
                                             fill="#32324D"
                                             fill-rule="evenodd"
                                           />
@@ -742,22 +859,22 @@ describe('Upload | SettingsPage', () => {
                                       </button>
                                       <button
                                         aria-hidden="true"
-                                        class="c44"
+                                        class="c45"
                                         data-testid="ArrowDown"
                                         tabindex="-1"
                                         type="button"
                                       >
                                         <svg
-                                          class="c1 c42 c43"
+                                          class="c43 c44"
                                           fill="none"
-                                          height="1em"
+                                          height="1rem"
                                           viewBox="0 0 14 8"
-                                          width="1em"
+                                          width="1rem"
                                           xmlns="http://www.w3.org/2000/svg"
                                         >
                                           <path
                                             clip-rule="evenodd"
-                                            d="M14 .889a.86.86 0 01-.26.625L7.615 7.736A.834.834 0 017 8a.834.834 0 01-.615-.264L.26 1.514A.861.861 0 010 .889c0-.24.087-.45.26-.625A.834.834 0 01.875 0h12.25c.237 0 .442.088.615.264a.86.86 0 01.26.625z"
+                                            d="M14 .889a.86.86 0 0 1-.26.625L7.615 7.736A.834.834 0 0 1 7 8a.834.834 0 0 1-.615-.264L.26 1.514A.861.861 0 0 1 0 .889c0-.24.087-.45.26-.625A.834.834 0 0 1 .875 0h12.25c.237 0 .442.088.615.264a.86.86 0 0 1 .26.625Z"
                                             fill="#32324D"
                                             fill-rule="evenodd"
                                           />
@@ -766,7 +883,7 @@ describe('Upload | SettingsPage', () => {
                                     </div>
                                   </div>
                                   <p
-                                    class="c5 c37"
+                                    class="c5 c38"
                                     id="3-hint"
                                   >
                                     Responsive friendly quality
@@ -776,10 +893,10 @@ describe('Upload | SettingsPage', () => {
                             </div>
                           </div>
                           <div
-                            class="c23"
+                            class="c22"
                           >
                             <div
-                              class="c1 "
+                              class=""
                             >
                               <div
                                 class="c23"
@@ -792,7 +909,7 @@ describe('Upload | SettingsPage', () => {
                                   >
                                     <label
                                       class="c5 c25 c26"
-                                      for="3"
+                                      for="5"
                                     >
                                       Size optimization
                                     </label>
@@ -814,7 +931,7 @@ describe('Upload | SettingsPage', () => {
                                         class="c31 c32 c35"
                                       >
                                         <span
-                                          class="c5 c39"
+                                          class="c5 c46"
                                         >
                                           Off
                                         </span>
@@ -844,7 +961,7 @@ describe('Upload | SettingsPage', () => {
                                   </label>
                                   <p
                                     class="c5 c38"
-                                    id="3-hint"
+                                    id="5-hint"
                                   >
                                     Enabling this option will reduce the image size and slightly reduce its quality.
                                   </p>
@@ -869,7 +986,7 @@ describe('Upload | SettingsPage', () => {
                                   >
                                     <label
                                       class="c5 c25 c26"
-                                      for="5"
+                                      for="7"
                                     >
                                       Auto orientation
                                     </label>
@@ -922,7 +1039,7 @@ describe('Upload | SettingsPage', () => {
                                   </label>
                                   <p
                                     class="c5 c38"
-                                    id="5-hint"
+                                    id="7-hint"
                                   >
                                     Enabling this option will automatically rotate the image according to EXIF orientation tag.
                                   </p>

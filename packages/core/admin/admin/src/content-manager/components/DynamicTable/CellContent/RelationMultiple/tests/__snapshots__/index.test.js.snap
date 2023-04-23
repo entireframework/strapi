@@ -180,7 +180,8 @@ exports[`DynamicTable / Cellcontent / RelationMultiple renders and matches the s
   color: #666687;
 }
 
-.c3[aria-disabled='true'] svg > g,.c3[aria-disabled='true'] svg path {
+.c3[aria-disabled='true'] svg > g,
+.c3[aria-disabled='true'] svg path {
   fill: #666687;
 }
 
@@ -193,7 +194,8 @@ exports[`DynamicTable / Cellcontent / RelationMultiple renders and matches the s
   color: #666687;
 }
 
-.c3[aria-disabled='true']:active svg > g,.c3[aria-disabled='true']:active svg path {
+.c3[aria-disabled='true']:active svg > g,
+.c3[aria-disabled='true']:active svg path {
   fill: #666687;
 }
 

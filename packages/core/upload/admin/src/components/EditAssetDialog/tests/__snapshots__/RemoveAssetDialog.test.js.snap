@@ -187,7 +187,8 @@ exports[`RemoveAssetDialog snapshots the component 1`] = `
   color: #666687;
 }
 
-.c20[aria-disabled='true'] svg > g,.c20[aria-disabled='true'] svg path {
+.c20[aria-disabled='true'] svg > g,
+.c20[aria-disabled='true'] svg path {
   fill: #666687;
 }
 
@@ -200,7 +201,8 @@ exports[`RemoveAssetDialog snapshots the component 1`] = `
   color: #666687;
 }
 
-.c20[aria-disabled='true']:active svg > g,.c20[aria-disabled='true']:active svg path {
+.c20[aria-disabled='true']:active svg > g,
+.c20[aria-disabled='true']:active svg path {
   fill: #666687;
 }
 
@@ -236,7 +238,8 @@ exports[`RemoveAssetDialog snapshots the component 1`] = `
   color: #666687;
 }
 
-.c22[aria-disabled='true'] svg > g,.c22[aria-disabled='true'] svg path {
+.c22[aria-disabled='true'] svg > g,
+.c22[aria-disabled='true'] svg path {
   fill: #666687;
 }
 
@@ -249,7 +252,8 @@ exports[`RemoveAssetDialog snapshots the component 1`] = `
   color: #666687;
 }
 
-.c22[aria-disabled='true']:active svg > g,.c22[aria-disabled='true']:active svg path {
+.c22[aria-disabled='true']:active svg > g,
+.c22[aria-disabled='true']:active svg path {
   fill: #666687;
 }
 

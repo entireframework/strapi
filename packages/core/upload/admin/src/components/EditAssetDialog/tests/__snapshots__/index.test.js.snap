@@ -330,7 +330,8 @@ exports[`<EditAssetDialog /> renders and matches the snapshot 1`] = `
   color: #666687;
 }
 
-.c44[aria-disabled='true'] svg > g,.c44[aria-disabled='true'] svg path {
+.c44[aria-disabled='true'] svg > g,
+.c44[aria-disabled='true'] svg path {
   fill: #666687;
 }
 
@@ -343,7 +344,8 @@ exports[`<EditAssetDialog /> renders and matches the snapshot 1`] = `
   color: #666687;
 }
 
-.c44[aria-disabled='true']:active svg > g,.c44[aria-disabled='true']:active svg path {
+.c44[aria-disabled='true']:active svg > g,
+.c44[aria-disabled='true']:active svg path {
   fill: #666687;
 }
 
@@ -379,7 +381,8 @@ exports[`<EditAssetDialog /> renders and matches the snapshot 1`] = `
   color: #666687;
 }
 
-.c46[aria-disabled='true'] svg > g,.c46[aria-disabled='true'] svg path {
+.c46[aria-disabled='true'] svg > g,
+.c46[aria-disabled='true'] svg path {
   fill: #666687;
 }
 
@@ -392,7 +395,8 @@ exports[`<EditAssetDialog /> renders and matches the snapshot 1`] = `
   color: #666687;
 }
 
-.c46[aria-disabled='true']:active svg > g,.c46[aria-disabled='true']:active svg path {
+.c46[aria-disabled='true']:active svg > g,
+.c46[aria-disabled='true']:active svg path {
   fill: #666687;
 }
 
@@ -436,7 +440,8 @@ exports[`<EditAssetDialog /> renders and matches the snapshot 1`] = `
   color: #666687;
 }
 
-.c47[aria-disabled='true'] svg > g,.c47[aria-disabled='true'] svg path {
+.c47[aria-disabled='true'] svg > g,
+.c47[aria-disabled='true'] svg path {
   fill: #666687;
 }
 
@@ -449,7 +454,8 @@ exports[`<EditAssetDialog /> renders and matches the snapshot 1`] = `
   color: #666687;
 }
 
-.c47[aria-disabled='true']:active svg > g,.c47[aria-disabled='true']:active svg path {
+.c47[aria-disabled='true']:active svg > g,
+.c47[aria-disabled='true']:active svg path {
   fill: #666687;
 }
 
@@ -1266,11 +1272,11 @@ exports[`<EditAssetDialog /> renders and matches the snapshot 1`] = `
                   </button>
                   <button
                     aria-disabled="false"
-                    class="c12 c43"
+                    class="c42 c43 c12 c46"
                     type="button"
                   >
                     <span
-                      class="c10 c33"
+                      class="c9 c45"
                     >
                       Reupload media to CDN
                     </span>

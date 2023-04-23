@@ -297,7 +297,8 @@ describe('Email | Pages | Settings', () => {
         color: #666687;
       }
 
-      .c36[aria-disabled='true'] svg > g,.c36[aria-disabled='true'] svg path {
+      .c36[aria-disabled='true'] svg > g,
+      .c36[aria-disabled='true'] svg path {
         fill: #666687;
       }
 
@@ -310,7 +311,8 @@ describe('Email | Pages | Settings', () => {
         color: #666687;
       }
 
-      .c36[aria-disabled='true']:active svg > g,.c36[aria-disabled='true']:active svg path {
+      .c36[aria-disabled='true']:active svg > g,
+      .c36[aria-disabled='true']:active svg path {
         fill: #666687;
       }
 

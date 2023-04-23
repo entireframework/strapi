@@ -404,7 +404,8 @@ exports[`ADMIN | CM | LV | Configure the view renders and matches the snapshot 1
   color: #666687;
 }
 
-.c18[aria-disabled='true'] svg > g,.c18[aria-disabled='true'] svg path {
+.c18[aria-disabled='true'] svg > g,
+.c18[aria-disabled='true'] svg path {
   fill: #666687;
 }
 
@@ -417,7 +418,8 @@ exports[`ADMIN | CM | LV | Configure the view renders and matches the snapshot 1
   color: #666687;
 }
 
-.c18[aria-disabled='true']:active svg > g,.c18[aria-disabled='true']:active svg path {
+.c18[aria-disabled='true']:active svg > g,
+.c18[aria-disabled='true']:active svg path {
   fill: #666687;
 }
 
@@ -2107,7 +2109,8 @@ exports[`ADMIN | CM | LV | Configure the view should add field 1`] = `
   color: #666687;
 }
 
-.c18[aria-disabled='true'] svg > g,.c18[aria-disabled='true'] svg path {
+.c18[aria-disabled='true'] svg > g,
+.c18[aria-disabled='true'] svg path {
   fill: #666687;
 }
 
@@ -2120,7 +2123,8 @@ exports[`ADMIN | CM | LV | Configure the view should add field 1`] = `
   color: #666687;
 }
 
-.c18[aria-disabled='true']:active svg > g,.c18[aria-disabled='true']:active svg path {
+.c18[aria-disabled='true']:active svg > g,
+.c18[aria-disabled='true']:active svg path {
   fill: #666687;
 }
 

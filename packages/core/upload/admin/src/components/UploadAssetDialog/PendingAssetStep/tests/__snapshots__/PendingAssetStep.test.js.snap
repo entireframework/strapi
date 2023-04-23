@@ -412,7 +412,8 @@ exports[`PendingAssetStep snapshots the component with valid cards 1`] = `
   color: #666687;
 }
 
-.c18[aria-disabled='true'] svg > g,.c18[aria-disabled='true'] svg path {
+.c18[aria-disabled='true'] svg > g,
+.c18[aria-disabled='true'] svg path {
   fill: #666687;
 }
 
@@ -425,7 +426,8 @@ exports[`PendingAssetStep snapshots the component with valid cards 1`] = `
   color: #666687;
 }
 
-.c18[aria-disabled='true']:active svg > g,.c18[aria-disabled='true']:active svg path {
+.c18[aria-disabled='true']:active svg > g,
+.c18[aria-disabled='true']:active svg path {
   fill: #666687;
 }
 
@@ -459,7 +461,8 @@ exports[`PendingAssetStep snapshots the component with valid cards 1`] = `
   color: #666687;
 }
 
-.c57[aria-disabled='true'] svg > g,.c57[aria-disabled='true'] svg path {
+.c57[aria-disabled='true'] svg > g,
+.c57[aria-disabled='true'] svg path {
   fill: #666687;
 }
 
@@ -472,7 +475,8 @@ exports[`PendingAssetStep snapshots the component with valid cards 1`] = `
   color: #666687;
 }
 
-.c57[aria-disabled='true']:active svg > g,.c57[aria-disabled='true']:active svg path {
+.c57[aria-disabled='true']:active svg > g,
+.c57[aria-disabled='true']:active svg path {
   fill: #666687;
 }
 
