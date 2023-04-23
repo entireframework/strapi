@@ -125,9 +125,29 @@ module.exports = ({ strapi }) => ({
     return this.mapEntitiesResponse(entities, uid);
   },
 
-  async findOneWithCreatorRolesAndCount(id, uid) {
+  async findOneWithCreatorRolesAndCount(id, uid, populate) {
     const counterPopulate = getDeepPopulate(uid, { countMany: true, countOne: true });
-    const params = { populate: addCreatedByRolesPopulate(counterPopulate) };
+    const createdRolesPopulate = addCreatedByRolesPopulate(counterPopulate);
+    populate.forEach((p) => {
+      p.split('.').reduce(
+        (acc, key) => {
+          if (acc === true || !key) {
+            return acc;
+          }
+          if (acc.populate && acc.populate[key] && acc.populate[key].count !== true) {
+            return acc.populate[key];
+          }
+
+          if (!acc.populate) {
+            acc.populate = {};
+          }
+          acc.populate[key] = true;
+          return acc.populate[key];
+        },
+        { populate: createdRolesPopulate }
+      );
+    });
+    const params = { populate: createdRolesPopulate };
 
     return strapi.entityService
       .findOne(uid, id, params)

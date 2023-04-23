@@ -38,6 +38,7 @@ module.exports = {
   async findOne(ctx) {
     const { userAbility } = ctx.state;
     const { model, id } = ctx.params;
+    const { query = {} } = ctx.request;
 
     const entityManager = getService('entity-manager');
     const permissionChecker = getService('permission-checker').create({ userAbility, model });
@@ -46,7 +47,12 @@ module.exports = {
       return ctx.forbidden();
     }
 
-    const entity = await entityManager.findOneWithCreatorRolesAndCount(id, model);
+    const permissionQuery = await permissionChecker.sanitizedQuery.read(query);
+    const entity = await entityManager.findOneWithCreatorRolesAndCount(
+      id,
+      model,
+      permissionQuery.populate
+    );
 
     if (!entity) {
       return ctx.notFound();

@@ -7,6 +7,8 @@ const aliasExactMatch = [
   '@strapi/design-system',
   '@strapi/helper-plugin',
   '@strapi/icons',
+  '@fortawesome/fontawesome-svg-core',
+  '@fortawesome/free-solid-svg-icons',
   'date-fns',
   'formik',
   'history',
