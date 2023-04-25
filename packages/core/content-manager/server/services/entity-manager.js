@@ -128,31 +128,33 @@ module.exports = ({ strapi }) => ({
   async findOneWithCreatorRolesAndCount(id, uid, populate) {
     const counterPopulate = getDeepPopulate(uid, { countMany: true, countOne: true });
     const createdRolesPopulate = addCreatedByRolesPopulate(counterPopulate);
-    populate.forEach((p) => {
-      const pp = p.split('.');
-      pp.reduce(
-        (acc, key, index) => {
-          if (acc.on) {
-            delete acc.on;
-          }
-          if (!key) {
-            return acc;
-          }
-          if (acc.populate && acc.populate[key] && acc.populate[key].count !== true) {
-            if (acc.populate[key] !== true || index === pp.length - 1) {
-              return acc.populate[key];
+    if (populate) {
+      populate.forEach((p) => {
+        const pp = p.split('.');
+        pp.reduce(
+          (acc, key, index) => {
+            if (acc.on) {
+              delete acc.on;
             }
-          }
+            if (!key) {
+              return acc;
+            }
+            if (acc.populate && acc.populate[key] && acc.populate[key].count !== true) {
+              if (acc.populate[key] !== true || index === pp.length - 1) {
+                return acc.populate[key];
+              }
+            }
 
-          if (!acc.populate) {
-            acc.populate = {};
-          }
-          acc.populate[key] = index === pp.length - 1 ? true : { populate: {} };
-          return acc.populate[key];
-        },
-        { populate: createdRolesPopulate }
-      );
-    });
+            if (!acc.populate) {
+              acc.populate = {};
+            }
+            acc.populate[key] = index === pp.length - 1 ? true : { populate: {} };
+            return acc.populate[key];
+          },
+          { populate: createdRolesPopulate }
+        );
+      });
+    }
     const params = { populate: createdRolesPopulate };
 
     return strapi.entityService
