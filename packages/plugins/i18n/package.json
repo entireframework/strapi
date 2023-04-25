@@ -1,6 +1,6 @@
 {
   "name": "@strapi/plugin-i18n",
-  "version": "4.9.3-alpha.1",
+  "version": "4.9.3-alpha.4",
   "description": "This plugin enables to create, to read and to update content in different languages, both from the Admin Panel and from the API",
   "repository": {
     "type": "git",
@@ -27,7 +27,7 @@
   },
   "dependencies": {
     "@strapi/design-system": "1.6.6",
-    "@strapi/helper-plugin": "^4.9.3-alpha.1",
+    "@strapi/helper-plugin": "^4.9.3-alpha.4",
     "@strapi/icons": "1.6.6",
     "@strapi/utils": "^4.9.3-alpha.1",
     "formik": "2.2.9",
