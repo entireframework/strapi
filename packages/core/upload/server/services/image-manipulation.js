@@ -49,7 +49,7 @@ const getVideoMetadata = (file) => {
         }
 
         if (metadata && metadata.streams) {
-          const stream = metadata.streams.find((s) => s.width && s.height);
+          const stream = metadata.streams.find((s) => s.width && s.height) || metadata.streams[0];
           console.log('stream', stream);
 
           if (stream) {
