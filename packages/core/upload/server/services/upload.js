@@ -245,11 +245,11 @@ module.exports = ({ strapi }) => ({
   async uploadFileAndPersist(fileData, { user } = {}) {
     const config = strapi.config.get('plugin.upload');
 
-    const { isImage, isVideo } = getService('image-manipulation');
+    const { isImage, isVideo, isAudio } = getService('image-manipulation');
 
     await getService('provider').checkFileSize(fileData);
 
-    if ((await isImage(fileData)) || (await isVideo(fileData))) {
+    if ((await isImage(fileData)) || (await isVideo(fileData)) || (await isAudio(fileData))) {
       await this.uploadImage(fileData);
     } else {
       await getService('provider').upload(fileData);
@@ -285,7 +285,7 @@ module.exports = ({ strapi }) => ({
   async replace(id, { data, file }, { user } = {}) {
     const config = strapi.config.get('plugin.upload');
 
-    const { isImage, isVideo } = getService('image-manipulation');
+    const { isImage, isVideo, isAudio } = getService('image-manipulation');
 
     const dbFile = await this.findOne(id);
     if (!dbFile) {
@@ -323,7 +323,7 @@ module.exports = ({ strapi }) => ({
       // clear old formats
       _.set(fileData, 'formats', {});
 
-      if ((await isImage(fileData)) || (await isVideo(fileData))) {
+      if ((await isImage(fileData)) || (await isVideo(fileData)) || (await isAudio(fileData))) {
         await this.uploadImage(fileData);
       } else {
         await getService('provider').upload(fileData);

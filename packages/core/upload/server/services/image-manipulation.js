@@ -20,6 +20,7 @@ const FORMATS_TO_PROCESS = ['jpeg', 'png', 'webp', 'tiff', 'svg', 'gif', 'avif']
 const FORMATS_TO_OPTIMIZE = ['jpeg', 'png', 'webp', 'tiff', 'avif', 'gif'];
 const VIDEO_FORMATS_TO_PROCESS = ['mp4', '3gp', 'mov', 'avi', 'm4v'];
 const VIDEO_FORMATS_TO_OPTIMIZE = ['mp4', '3gp', 'mov', 'avi', 'm4v'];
+const AUDIO_FORMATS_TO_PROCESS = ['mp3', 'wav', 'm4a', 'flac', 'aac', 'wma'];
 
 const convertVideoOptionsWebp = {
   streamEncoding: true,
@@ -434,6 +435,11 @@ const isVideo = async (file) => {
   return format && VIDEO_FORMATS_TO_PROCESS.includes(format);
 };
 
+const isAudio = async (file) => {
+  const format = await getFormat(file);
+  return format && AUDIO_FORMATS_TO_PROCESS.includes(format);
+};
+
 const generatePoster = async (file) => {
   if (!(await isVideo(file))) {
     return;
@@ -580,6 +586,7 @@ module.exports = () => ({
   isResizableImage,
   isImage,
   isVideo,
+  isAudio,
   getDimensions,
   generateResponsiveFormats,
   generateThumbnails,
