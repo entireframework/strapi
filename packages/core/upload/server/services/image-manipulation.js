@@ -52,36 +52,42 @@ const getVideoMetadata = (file) => {
           const stream = metadata.streams.find((s) => s.width && s.height);
           console.log('stream', stream);
 
-          let width = metadata.width || stream.width;
-          let height = metadata.height || stream.height;
+          if (stream) {
+            let width = metadata.width || stream.width;
+            let height = metadata.height || stream.height;
 
-          try {
-            if (stream.display_aspect_ratio) {
-              const wh = stream.display_aspect_ratio.split(':');
+            try {
+              if (stream.display_aspect_ratio) {
+                const wh = stream.display_aspect_ratio.split(':');
 
-              if (wh.length === 2) {
-                const newHeight = Math.floor((width / parseInt(wh[0], 10)) * parseInt(wh[1], 10));
-                if (!Number.isNaN(newHeight)) {
-                  height = newHeight;
+                if (wh.length === 2) {
+                  const newHeight = Math.floor((width / parseInt(wh[0], 10)) * parseInt(wh[1], 10));
+                  if (!Number.isNaN(newHeight)) {
+                    height = newHeight;
+                  }
                 }
               }
+
+              if (stream.rotation && stream.rotation === '-90') {
+                const newHeight = width;
+                width = height;
+                height = newHeight;
+              }
+            } catch (e) {
+              console.log(e);
             }
 
-            if (stream.rotation && stream.rotation === '-90') {
-              const newHeight = width;
-              width = height;
-              height = newHeight;
-            }
-          } catch (e) {
-            console.log(e);
+            resolve({
+              ...metadata.format,
+              ...stream,
+              width,
+              height,
+            });
+          } else {
+            resolve({
+              ...metadata.format,
+            });
           }
-
-          resolve({
-            ...metadata.format,
-            ...stream,
-            width,
-            height,
-          });
         } else {
           reject();
         }
