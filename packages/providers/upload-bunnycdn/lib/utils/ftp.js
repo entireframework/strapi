@@ -7,7 +7,7 @@ const connectTimeout = 60 * 1000; // 1 min
 const uploadTimeout = 5 * 60 * 1000; // 5 min
 
 const ftpQueue = queue({
-  concurrency: 1,
+  concurrency: 10,
   autostart: true,
   timeout: null,
   results: [],

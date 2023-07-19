@@ -17,7 +17,7 @@ import {
   SubNavSections,
   SubNavLink,
 } from '@strapi/design-system/v2';
-import { useFilter, useCollator } from '@strapi/helper-plugin';
+import { useFilter } from '@strapi/helper-plugin';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import getTrad from '../../../utils/getTrad';
@@ -40,9 +40,9 @@ const LeftMenu = () => {
   /**
    * @type {Intl.Collator}
    */
-  const formatter = useCollator(locale, {
-    sensitivity: 'base',
-  });
+  // const formatter = useCollator(locale, {
+  //   sensitivity: 'base',
+  // });
 
   const toIntl = (links) =>
     links.map((link) => {
@@ -130,7 +130,7 @@ const LeftMenu = () => {
           /**
            * Sort correctly using the language
            */
-          .sort((a, b) => formatter.compare(a.title, b.title))
+          // .sort((a, b) => formatter.compare(a.title, b.title))
           /**
            * Apply the formated strings to the links from react-intl
            */
@@ -147,7 +147,7 @@ const LeftMenu = () => {
       search,
       intlSingleTypeLinks,
       startsWith,
-      formatter,
+      // formatter,
       formatMessage,
     ]
   );
