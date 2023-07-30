@@ -20,7 +20,15 @@ const getMainField = (currentLayout, schema) => {
     );
   }
 
-  const attributeType = get(schema, ['attributes', schema._mainField, 'type'], null);
+  const attributeType = get(
+    schema,
+    ['attributes', schema._mainField, 'type'],
+    get(
+      schema,
+      ['metadatas', 'coverField', 'schema', 'type'],
+      get(schema, ['metadatas', 'mainField', 'schema', 'type'], null)
+    )
+  );
 
   let attributeRelation;
 
@@ -45,11 +53,10 @@ const getMainField = (currentLayout, schema) => {
   } else if (attributeType === 'relation') {
     attributeRelation = `0.${getMainField(
       currentLayout,
-      get(schema, ['layouts', 'edit', 0, 0], {}),
-      ''
+      get(schema, ['layouts', 'edit', 0, 0], {})
     )}`;
   } else if (attributeType === 'media') {
-    attributeRelation = '';
+    attributeRelation = `url`;
   }
 
   return [schema._mainField, ...(attributeRelation ? [attributeRelation] : [])].join('.');

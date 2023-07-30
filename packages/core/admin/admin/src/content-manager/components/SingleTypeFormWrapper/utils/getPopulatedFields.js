@@ -48,11 +48,13 @@ const getPopulatedFields = (currentLayout, schema) => {
     } else if (attributeType === 'relation') {
       attributeRelation = getPopulatedFields(
         currentLayout,
-        get(schema, ['layouts', 'edit', 0, 0], {}),
-        ''
+        get(schema, ['layouts', 'edit', 0, 0], {})
       ).concat(['']);
     } else if (attributeType === 'media') {
-      attributeRelation = [''];
+      attributeRelation = getPopulatedFields(
+        currentLayout,
+        get(schema, ['layouts', 'edit', 0, 0], {})
+      ).concat(['']);
     }
 
     return attributeRelation.reduce((acc2, relation) => {

@@ -2145,7 +2145,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@entireframework/provider-upload-bunnycdn@^4.9.3-alpha.1, @entireframework/provider-upload-bunnycdn@workspace:packages/providers/upload-bunnycdn":
+"@entireframework/provider-upload-bunnycdn@^4.9.3-alpha.9, @entireframework/provider-upload-bunnycdn@workspace:packages/providers/upload-bunnycdn":
   version: 0.0.0-use.local
   resolution: "@entireframework/provider-upload-bunnycdn@workspace:packages/providers/upload-bunnycdn"
   dependencies:
@@ -2160,7 +2160,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@entireframework/provider-upload-cdn@workspace:packages/providers/upload-cdn"
   dependencies:
-    "@entireframework/provider-upload-bunnycdn": ^4.9.3-alpha.1
+    "@entireframework/provider-upload-bunnycdn": ^4.9.3-alpha.9
     "@strapi/provider-upload-local": ^4.9.3-alpha.1
   languageName: unknown
   linkType: soft
@@ -6258,7 +6258,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@strapi/admin@^4.9.3-alpha.8, @strapi/admin@workspace:packages/core/admin":
+"@strapi/admin@^4.9.3-alpha.10, @strapi/admin@workspace:packages/core/admin":
   version: 0.0.0-use.local
   resolution: "@strapi/admin@workspace:packages/core/admin"
   dependencies:
@@ -6276,7 +6276,7 @@ __metadata:
     "@fortawesome/react-fontawesome": ^0.2.0
     "@pmmmwh/react-refresh-webpack-plugin": 0.5.10
     "@strapi/babel-plugin-switch-ee-ce": ^4.9.3-alpha.1
-    "@strapi/data-transfer": ^4.9.3-alpha.8
+    "@strapi/data-transfer": ^4.9.3-alpha.10
     "@strapi/design-system": 1.6.6
     "@strapi/helper-plugin": ^4.9.3-alpha.4
     "@strapi/icons": 1.6.6
@@ -6400,12 +6400,12 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@strapi/data-transfer@^4.9.3-alpha.8, @strapi/data-transfer@workspace:packages/core/data-transfer":
+"@strapi/data-transfer@^4.9.3-alpha.10, @strapi/data-transfer@workspace:packages/core/data-transfer":
   version: 0.0.0-use.local
   resolution: "@strapi/data-transfer@workspace:packages/core/data-transfer"
   dependencies:
     "@strapi/logger": ^4.9.3-alpha.1
-    "@strapi/strapi": ^4.9.3-alpha.8
+    "@strapi/strapi": ^4.9.3-alpha.10
     "@tsconfig/node16": 1.0.3
     "@types/fs-extra": 9.0.13
     "@types/jest": 29.2.0
@@ -6653,17 +6653,17 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@strapi/plugin-content-type-builder@^4.9.3-alpha.8, @strapi/plugin-content-type-builder@workspace:packages/core/content-type-builder":
+"@strapi/plugin-content-type-builder@^4.9.3-alpha.10, @strapi/plugin-content-type-builder@workspace:packages/core/content-type-builder":
   version: 0.0.0-use.local
   resolution: "@strapi/plugin-content-type-builder@workspace:packages/core/content-type-builder"
   dependencies:
     "@sindresorhus/slugify": 1.1.0
-    "@strapi/admin": ^4.9.3-alpha.8
+    "@strapi/admin": ^4.9.3-alpha.10
     "@strapi/design-system": 1.6.6
     "@strapi/generators": ^4.9.3-alpha.1
     "@strapi/helper-plugin": ^4.9.3-alpha.4
     "@strapi/icons": 1.6.6
-    "@strapi/strapi": ^4.9.3-alpha.8
+    "@strapi/strapi": ^4.9.3-alpha.10
     "@strapi/utils": ^4.9.3-alpha.1
     "@testing-library/react": 12.1.4
     "@testing-library/react-hooks": 8.0.1
@@ -7051,21 +7051,21 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@strapi/strapi@^4.9.3-alpha.8, @strapi/strapi@workspace:packages/core/strapi":
+"@strapi/strapi@^4.9.3-alpha.10, @strapi/strapi@workspace:packages/core/strapi":
   version: 0.0.0-use.local
   resolution: "@strapi/strapi@workspace:packages/core/strapi"
   dependencies:
     "@koa/cors": 3.4.3
     "@koa/router": 10.1.1
-    "@strapi/admin": ^4.9.3-alpha.8
-    "@strapi/data-transfer": ^4.9.3-alpha.8
+    "@strapi/admin": ^4.9.3-alpha.10
+    "@strapi/data-transfer": ^4.9.3-alpha.10
     "@strapi/database": ^4.9.3-alpha.1
     "@strapi/generate-new": ^4.9.3-alpha.1
     "@strapi/generators": ^4.9.3-alpha.1
     "@strapi/logger": ^4.9.3-alpha.1
     "@strapi/permissions": ^4.9.3-alpha.1
     "@strapi/plugin-content-manager": ^4.9.3-alpha.5
-    "@strapi/plugin-content-type-builder": ^4.9.3-alpha.8
+    "@strapi/plugin-content-type-builder": ^4.9.3-alpha.10
     "@strapi/plugin-email": ^4.9.3-alpha.4
     "@strapi/plugin-upload": ^4.9.3-alpha.8
     "@strapi/typescript-utils": ^4.9.3-alpha.1
@@ -16599,7 +16599,7 @@ __metadata:
     "@strapi/provider-email-mailgun": ^4.9.3-alpha.1
     "@strapi/provider-upload-aws-s3": ^4.9.3-alpha.1
     "@strapi/provider-upload-cloudinary": ^4.9.3-alpha.1
-    "@strapi/strapi": ^4.9.3-alpha.8
+    "@strapi/strapi": ^4.9.3-alpha.10
     "@vscode/sqlite3": 5.1.2
     better-sqlite3: 8.0.1
     lodash: 4.17.21
@@ -20378,7 +20378,7 @@ __metadata:
   dependencies:
     "@strapi/plugin-i18n": ^4.9.3-alpha.4
     "@strapi/plugin-users-permissions": ^4.9.3-alpha.4
-    "@strapi/strapi": ^4.9.3-alpha.8
+    "@strapi/strapi": ^4.9.3-alpha.10
     better-sqlite3: 8.0.1
   languageName: unknown
   linkType: soft
@@ -20390,7 +20390,7 @@ __metadata:
     "@strapi/provider-email-mailgun": ^4.9.3-alpha.1
     "@strapi/provider-upload-aws-s3": ^4.9.3-alpha.1
     "@strapi/provider-upload-cloudinary": ^4.9.3-alpha.1
-    "@strapi/strapi": ^4.9.3-alpha.8
+    "@strapi/strapi": ^4.9.3-alpha.10
     lodash: 4.17.21
     mysql: 2.18.1
     passport-google-oauth2: 0.2.0
