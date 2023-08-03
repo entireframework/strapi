@@ -119,7 +119,7 @@ document.createRange = () => {
   range.getClientRects = jest.fn(() => ({
     item: () => null,
     length: 0,
-  }));
+  })) as any;
 
   return range;
 };

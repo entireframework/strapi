@@ -125,6 +125,7 @@ module.exports = ({ strapi }) => ({
       {
         ...metas,
         tmpWorkingDirectory: file.tmpWorkingDirectory,
+        path: file.path,
       }
     );
     currentFile.getStream = () => fs.createReadStream(file.path);
@@ -187,24 +188,26 @@ module.exports = ({ strapi }) => ({
    * @param {*} fileData
    */
   async uploadImage(fileData) {
-    const { getDimensions, generateThumbnail, generateResponsiveFormats, isResizableImage } =
-      getService('image-manipulation');
+    const {
+      getDimensions,
+      generateThumbnails,
+      generateResponsiveFormats,
+      isOptimizableImage,
+      isOptimizableVideo,
+    } = getService('image-manipulation');
 
     // Store width and height of the original image
-    const { width, height } = await getDimensions(fileData);
+    const { width, height, duration } = await getDimensions(fileData);
 
     // Make sure this is assigned before calling any upload
     // That way it can mutate the width and height
     _.assign(fileData, {
       width,
       height,
+      duration,
     });
 
-    // For performance reasons, all uploads are wrapped in a single Promise.all
-    const uploadThumbnail = async (thumbnailFile) => {
-      await getService('provider').upload(thumbnailFile);
-      _.set(fileData, 'formats.thumbnail', thumbnailFile);
-    };
+    const isVideoFile = await isOptimizableVideo(fileData);
 
     // Generate thumbnail and responsive formats
     const uploadResponsiveFormat = async (format) => {
@@ -219,13 +222,10 @@ module.exports = ({ strapi }) => ({
     uploadPromises.push(getService('provider').upload(fileData));
 
     // Generate & Upload thumbnail and responsive formats
-    if (await isResizableImage(fileData)) {
-      const thumbnailFile = await generateThumbnail(fileData);
-      if (thumbnailFile) {
-        uploadPromises.push(uploadThumbnail(thumbnailFile));
-      }
-
-      const formats = await generateResponsiveFormats(fileData);
+    if ((await isOptimizableImage(fileData)) || isVideoFile) {
+      const formats = (await generateThumbnails(fileData)).concat(
+        await generateResponsiveFormats(fileData)
+      );
       if (Array.isArray(formats) && formats.length > 0) {
         for (const format of formats) {
           // eslint-disable-next-line no-continue
@@ -244,11 +244,12 @@ module.exports = ({ strapi }) => ({
    */
   async uploadFileAndPersist(fileData, { user } = {}) {
     const config = strapi.config.get('plugin.upload');
-    const { isImage } = getService('image-manipulation');
+
+    const { isImage, isVideo, isAudio } = getService('image-manipulation');
 
     await getService('provider').checkFileSize(fileData);
 
-    if (await isImage(fileData)) {
+    if ((await isImage(fileData)) || (await isVideo(fileData)) || (await isAudio(fileData))) {
       await this.uploadImage(fileData);
     } else {
       await getService('provider').upload(fileData);
@@ -284,7 +285,7 @@ module.exports = ({ strapi }) => ({
   async replace(id, { data, file }, { user } = {}) {
     const config = strapi.config.get('plugin.upload');
 
-    const { isImage } = getService('image-manipulation');
+    const { isImage, isVideo, isAudio } = getService('image-manipulation');
 
     const dbFile = await this.findOne(id);
     if (!dbFile) {
@@ -322,7 +323,7 @@ module.exports = ({ strapi }) => ({
       // clear old formats
       _.set(fileData, 'formats', {});
 
-      if (await isImage(fileData)) {
+      if ((await isImage(fileData)) || (await isVideo(fileData)) || (await isAudio(fileData))) {
         await this.uploadImage(fileData);
       } else {
         await getService('provider').upload(fileData);

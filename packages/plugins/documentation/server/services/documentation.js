@@ -241,6 +241,18 @@ module.exports = ({ strapi }) => {
       );
       // Write the documentation to the file system
       await fs.ensureFile(fullDocJsonPath);
+      try {
+        const old = await fs.readJSON(fullDocJsonPath);
+        const regex = /"x-generation-date":"\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}Z"/gm;
+        if (
+          JSON.stringify(old).replace(regex, '') ===
+          JSON.stringify(finalDocumentation).replace(regex, '')
+        ) {
+          return;
+        }
+      } catch (e) {
+        console.log(e);
+      }
       await fs.writeJson(fullDocJsonPath, finalDocumentation, { spaces: 2 });
     },
   };

@@ -13,6 +13,7 @@ describe('ConfigurationsProvider', () => {
         menuLogo="strapi.jpg"
         showReleaseNotification={false}
         showTutorials={false}
+        leftMenu={{}}
       >
         <div>Test</div>
       </ConfigurationsProvider>
@@ -48,6 +49,7 @@ describe('ConfigurationsProvider', () => {
         menuLogo="strapi-menu.jpg"
         showReleaseNotification={false}
         showTutorials={false}
+        leftMenu={{}}
       >
         <Test />
       </ConfigurationsProvider>
@@ -78,6 +80,7 @@ describe('ConfigurationsProvider', () => {
         menuLogo="strapi-menu.jpg"
         showReleaseNotification={false}
         showTutorials={false}
+        leftMenu={{}}
       >
         <Test />
       </ConfigurationsProvider>

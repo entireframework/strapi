@@ -18,6 +18,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
 import { useFindRedirectionLink } from '../../hooks';
+import { buildValidGetParams } from '../../pages/ListView/utils';
 import {
   getData,
   getDataSucceeded,
@@ -28,7 +29,12 @@ import {
   submitSucceeded,
 } from '../../sharedReducers/crudReducer/actions';
 import selectCrudReducer from '../../sharedReducers/crudReducer/selectors';
-import { createDefaultForm, getTrad, removePasswordFieldsFromData } from '../../utils';
+import {
+  createDefaultForm,
+  getPopulatedFields,
+  getTrad,
+  removePasswordFieldsFromData,
+} from '../../utils';
 
 // This container is used to handle the CRUD
 const CollectionTypeFormWrapper = ({ allLayoutData, children, slug, id, origin }) => {
@@ -38,6 +44,10 @@ const CollectionTypeFormWrapper = ({ allLayoutData, children, slug, id, origin }
   const { trackUsage } = useTracking();
   const { push, replace } = useHistory();
   const [{ query, rawQuery }] = useQueryParams();
+  const searchToSend = buildValidGetParams({
+    ...query,
+    populate: getPopulatedFields(allLayoutData, allLayoutData.contentType),
+  });
   const dispatch = useDispatch();
   const { componentsDataStructure, contentTypeDataStructure, data, isLoading, status } =
     useSelector(selectCrudReducer);
@@ -55,7 +65,9 @@ const CollectionTypeFormWrapper = ({ allLayoutData, children, slug, id, origin }
   const isCreatingEntry = id === null;
 
   const requestURL =
-    isCreatingEntry && !origin ? null : `/content-manager/collection-types/${slug}/${origin || id}`;
+    isCreatingEntry && !origin
+      ? null
+      : `/content-manager/collection-types/${slug}/${origin || id}${searchToSend}`;
 
   const cleanReceivedData = useCallback((data) => {
     const cleaned = removePasswordFieldsFromData(
@@ -294,7 +306,7 @@ const CollectionTypeFormWrapper = ({ allLayoutData, children, slug, id, origin }
   const onPublish = useCallback(async () => {
     try {
       trackUsageRef.current('willPublishEntry');
-      const endPoint = `/content-manager/collection-types/${slug}/${id}/actions/publish`;
+      const endPoint = `/content-manager/collection-types/${slug}/${id}/actions/publish${searchToSend}`;
 
       dispatch(setStatus('publish-pending'));
 
@@ -317,7 +329,16 @@ const CollectionTypeFormWrapper = ({ allLayoutData, children, slug, id, origin }
 
       return Promise.reject(err);
     }
-  }, [cleanReceivedData, displayErrors, id, slug, dispatch, toggleNotification, post]);
+  }, [
+    cleanReceivedData,
+    displayErrors,
+    id,
+    slug,
+    dispatch,
+    toggleNotification,
+    post,
+    searchToSend,
+  ]);
 
   const onPut = useCallback(
     async (body, trackerProperty) => {
@@ -357,7 +378,7 @@ const CollectionTypeFormWrapper = ({ allLayoutData, children, slug, id, origin }
   );
 
   const onUnpublish = useCallback(async () => {
-    const endPoint = `/content-manager/collection-types/${slug}/${id}/actions/unpublish`;
+    const endPoint = `/content-manager/collection-types/${slug}/${id}/actions/unpublish${searchToSend}`;
 
     dispatch(setStatus('unpublish-pending'));
 
@@ -382,7 +403,16 @@ const CollectionTypeFormWrapper = ({ allLayoutData, children, slug, id, origin }
 
       return Promise.reject(err);
     }
-  }, [cleanReceivedData, displayErrors, id, slug, dispatch, toggleNotification, post]);
+  }, [
+    cleanReceivedData,
+    displayErrors,
+    id,
+    slug,
+    dispatch,
+    toggleNotification,
+    post,
+    searchToSend,
+  ]);
 
   return children({
     componentsDataStructure,

@@ -1,6 +1,7 @@
 import React, { memo, useMemo } from 'react';
 
 import { GenericInput, NotAllowedInput, useLibrary } from '@strapi/helper-plugin';
+import { upperFirst } from 'lodash/fp';
 import get from 'lodash/get';
 import isEqual from 'lodash/isEqual';
 import omit from 'lodash/omit';
@@ -32,6 +33,7 @@ function Inputs({
   value,
   size,
   customFieldInputs,
+  modifiedData,
 }) {
   const { fields } = useLibrary();
   const { formatMessage } = useIntl();
@@ -156,7 +158,16 @@ function Inputs({
     return (
       <NotAllowedInput
         description={description ? { id: description, defaultMessage: description } : null}
-        intlLabel={{ id: label, defaultMessage: label }}
+        intlLabel={{
+          id: label,
+          defaultMessage:
+            label && keys && label === keys.split('.').slice(-1)[0]
+              ? label
+                  .split(/[\s_-]+/)
+                  .map(upperFirst)
+                  .join(' ')
+              : label,
+        }}
         labelAction={labelAction}
         error={error && formatMessage(error)}
         name={keys}
@@ -180,8 +191,14 @@ function Inputs({
             : undefined
         }
         intlLabel={{
-          id: metadatas.label,
-          defaultMessage: metadatas.label,
+          id: label,
+          defaultMessage:
+            label && keys && label === keys.split('.').slice(-1)[0]
+              ? label
+                  .split(/[\s_-]+/)
+                  .map(upperFirst)
+                  .join(' ')
+              : label,
         }}
         labelAction={labelAction}
         isUserAllowedToEditField={isUserAllowedToEditField}
@@ -215,7 +232,16 @@ function Inputs({
     <GenericInput
       attribute={fieldSchema}
       autoComplete="new-password"
-      intlLabel={{ id: label, defaultMessage: label }}
+      intlLabel={{
+        id: label,
+        defaultMessage:
+          label && keys && label === keys.split('.').slice(-1)[0]
+            ? label
+                .split(/[\s_-]+/)
+                .map(upperFirst)
+                .join(' ')
+            : label,
+      }}
       // in case the default value of the boolean is null, attribute.default doesn't exist
       isNullable={inputType === 'bool' && [null, undefined].includes(fieldSchema.default)}
       description={description ? { id: description, defaultMessage: description } : null}
@@ -228,6 +254,7 @@ function Inputs({
       name={keys}
       onChange={onChange}
       options={options}
+      modifiedData={modifiedData}
       placeholder={placeholder ? { id: placeholder, defaultMessage: placeholder } : null}
       required={fieldSchema.required || false}
       step={getStep(type)}
@@ -247,6 +274,7 @@ Inputs.defaultProps = {
   value: null,
   queryInfos: {},
   customFieldInputs: {},
+  modifiedData: null,
 };
 
 Inputs.propTypes = {
@@ -269,6 +297,7 @@ Inputs.propTypes = {
     endPoint: PropTypes.string,
   }),
   customFieldInputs: PropTypes.object,
+  modifiedData: PropTypes.any,
 };
 
 const getStep = (type) => {

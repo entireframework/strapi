@@ -75,7 +75,7 @@ describe('Upload image', () => {
     mockUploadProvider(upload);
 
     await uploadService.uploadImage(fileData);
-    expect(upload).toHaveBeenCalledTimes(2);
+    expect(upload).toHaveBeenCalledTimes(3);
   });
 
   test('Upload with responsive formats', async () => {
@@ -84,7 +84,7 @@ describe('Upload image', () => {
     mockUploadProvider(upload, { responsiveDimensions: true });
 
     await uploadService.uploadImage(fileData);
-    // 1 for the original image, 1 for thumbnail, 2 for the responsive formats
-    expect(upload).toHaveBeenCalledTimes(4);
+    // 1 for the original image, 2 for thumbnail, 6 for the responsive formats
+    expect(upload).toHaveBeenCalledTimes(9);
   });
 });

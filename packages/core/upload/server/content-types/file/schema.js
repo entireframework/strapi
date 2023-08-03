@@ -41,9 +41,14 @@ module.exports = {
       type: 'integer',
       configurable: false,
     },
+    duration: {
+      type: 'decimal',
+      configurable: false,
+    },
     formats: {
       type: 'json',
       configurable: false,
+      private: true,
     },
     hash: {
       type: 'string',

@@ -51,6 +51,11 @@ const TableHead = ({
             let isSorted = sortBy === name;
             const isUp = sortOrder === 'ASC';
 
+            const intlLabel = formatMessage({
+              id: `global.table.header.${name}`,
+              defaultMessage: label,
+            });
+
             // relations always have to be sorted by their main field instead of only the
             // attribute name; sortBy e.g. looks like: &sortBy=attributeName[mainField]:ASC
             if (fieldSchema?.type === 'relation' && mainField) {
@@ -59,7 +64,7 @@ const TableHead = ({
 
             const sortLabel = formatMessage(
               { id: 'components.TableHeader.sort', defaultMessage: 'Sort on {label}' },
-              { label }
+              { label: intlLabel }
             );
 
             const handleClickSort = (shouldAllowClick = true) => {
@@ -92,15 +97,15 @@ const TableHead = ({
                   )
                 }
               >
-                <Tooltip label={isSortable ? sortLabel : label}>
+                <Tooltip label={isSortable ? sortLabel : intlLabel}>
                   <Typography
                     textColor="neutral600"
                     as={!isSorted && isSortable ? 'button' : 'span'}
-                    label={label}
+                    label={intlLabel}
                     onClick={() => handleClickSort(!isSorted)}
                     variant="sigma"
                   >
-                    {label}
+                    {intlLabel}
                   </Typography>
                 </Tooltip>
               </Th>

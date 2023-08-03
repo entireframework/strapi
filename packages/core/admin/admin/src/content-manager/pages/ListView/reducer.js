@@ -77,6 +77,17 @@ const listViewReducer = (state = initialState, action) =>
                 'attributes',
                 mainFieldName,
               ]);
+              const coverFieldName = get(
+                state,
+                ['components', componentName, 'settings', 'coverField'],
+                null
+              );
+              const coverFieldAttribute = get(state, [
+                'components',
+                componentName,
+                'attributes',
+                coverFieldName,
+              ]);
 
               draftState.displayedHeaders.push({
                 ...header,
@@ -85,6 +96,10 @@ const listViewReducer = (state = initialState, action) =>
                   mainField: {
                     ...mainFieldAttribute,
                     name: mainFieldName,
+                  },
+                  coverField: {
+                    ...coverFieldAttribute,
+                    name: coverFieldName,
                   },
                 },
               });

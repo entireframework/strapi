@@ -1,5 +1,6 @@
 import groupBy from 'lodash/groupBy';
 import sortBy from 'lodash/sortBy';
+import pluralize from 'pluralize';
 import { stringify } from 'qs';
 
 const generateLinks = (links, type, configurations = []) => {
@@ -34,7 +35,8 @@ const generateLinks = (links, type, configurations = []) => {
         permissions,
         search,
         kind: link.kind,
-        title: link.info.displayName,
+        title:
+          link.kind === 'collectionType' ? pluralize(link.info.displayName) : link.info.displayName,
         to: `/content-manager/${link.kind}/${link.uid}`,
         uid: link.uid,
         // Used for the list item key in the helper plugin

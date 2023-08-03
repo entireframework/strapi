@@ -48,6 +48,7 @@ const Providers = ({
   showTutorials,
   store,
   themes,
+  leftMenu,
 }) => {
   return (
     <LanguageProvider messages={messages} localeNames={localeNames}>
@@ -61,6 +62,7 @@ const Providers = ({
                   menuLogo={menuLogo}
                   showReleaseNotification={showReleaseNotification}
                   showTutorials={showTutorials}
+                  leftMenu={leftMenu}
                 >
                   <StrapiAppProvider
                     getPlugin={getPlugin}
@@ -151,6 +153,7 @@ Providers.propTypes = {
     }).isRequired,
     custom: PropTypes.object,
   }).isRequired,
+  leftMenu: PropTypes.object.isRequired,
 };
 
 export default Providers;
