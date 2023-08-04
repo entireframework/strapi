@@ -1,4 +1,4 @@
-import { memo, useCallback, useEffect, useRef } from 'react';
+import { memo, useCallback, useEffect, useRef, useMemo } from 'react';
 
 import {
   formatContentTypeData,
@@ -44,10 +44,14 @@ const CollectionTypeFormWrapper = ({ allLayoutData, children, slug, id, origin }
   const { trackUsage } = useTracking();
   const { push, replace } = useHistory();
   const [{ query, rawQuery }] = useQueryParams();
-  const searchToSend = buildValidGetParams({
-    ...query,
-    populate: getPopulatedFields(allLayoutData, allLayoutData.contentType),
-  });
+  const params = useMemo(
+    () =>
+      buildValidGetParams({
+        ...query,
+        populate: getPopulatedFields(allLayoutData, allLayoutData.contentType),
+      }),
+    [query, allLayoutData]
+  );
   const dispatch = useDispatch();
   const { componentsDataStructure, contentTypeDataStructure, data, isLoading, status } =
     useSelector(selectCrudReducer);
@@ -65,9 +69,7 @@ const CollectionTypeFormWrapper = ({ allLayoutData, children, slug, id, origin }
   const isCreatingEntry = id === null;
 
   const requestURL =
-    isCreatingEntry && !origin
-      ? null
-      : `/content-manager/collection-types/${slug}/${origin || id}${searchToSend}`;
+    isCreatingEntry && !origin ? null : `/content-manager/collection-types/${slug}/${origin || id}`;
 
   const cleanReceivedData = useCallback((data) => {
     const cleaned = removePasswordFieldsFromData(
@@ -128,7 +130,7 @@ const CollectionTypeFormWrapper = ({ allLayoutData, children, slug, id, origin }
       dispatch(getData());
 
       try {
-        const { data } = await fetchClient.get(requestURL, { cancelToken: source.token });
+        const { data } = await fetchClient.get(requestURL, { cancelToken: source.token, params });
 
         dispatch(getDataSucceeded(cleanReceivedData(data)));
       } catch (err) {
@@ -183,6 +185,7 @@ const CollectionTypeFormWrapper = ({ allLayoutData, children, slug, id, origin }
     rawQuery,
     redirectionLink,
     toggleNotification,
+    params,
   ]);
 
   const displayErrors = useCallback(
@@ -306,7 +309,7 @@ const CollectionTypeFormWrapper = ({ allLayoutData, children, slug, id, origin }
   const onPublish = useCallback(async () => {
     try {
       trackUsageRef.current('willPublishEntry');
-      const endPoint = `/content-manager/collection-types/${slug}/${id}/actions/publish${searchToSend}`;
+      const endPoint = `/content-manager/collection-types/${slug}/${id}/actions/publish`;
 
       dispatch(setStatus('publish-pending'));
 
@@ -329,16 +332,7 @@ const CollectionTypeFormWrapper = ({ allLayoutData, children, slug, id, origin }
 
       return Promise.reject(err);
     }
-  }, [
-    cleanReceivedData,
-    displayErrors,
-    id,
-    slug,
-    dispatch,
-    toggleNotification,
-    post,
-    searchToSend,
-  ]);
+  }, [cleanReceivedData, displayErrors, id, slug, dispatch, toggleNotification, post]);
 
   const onPut = useCallback(
     async (body, trackerProperty) => {
@@ -378,7 +372,7 @@ const CollectionTypeFormWrapper = ({ allLayoutData, children, slug, id, origin }
   );
 
   const onUnpublish = useCallback(async () => {
-    const endPoint = `/content-manager/collection-types/${slug}/${id}/actions/unpublish${searchToSend}`;
+    const endPoint = `/content-manager/collection-types/${slug}/${id}/actions/unpublish`;
 
     dispatch(setStatus('unpublish-pending'));
 
@@ -403,16 +397,7 @@ const CollectionTypeFormWrapper = ({ allLayoutData, children, slug, id, origin }
 
       return Promise.reject(err);
     }
-  }, [
-    cleanReceivedData,
-    displayErrors,
-    id,
-    slug,
-    dispatch,
-    toggleNotification,
-    post,
-    searchToSend,
-  ]);
+  }, [cleanReceivedData, displayErrors, id, slug, dispatch, toggleNotification, post]);
 
   return children({
     componentsDataStructure,
