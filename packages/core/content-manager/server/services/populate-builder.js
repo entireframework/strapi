@@ -15,7 +15,7 @@ const { getDeepPopulate, getQueryPopulate } = require('./utils/populate');
  */
 const populateBuilder = (uid) => {
   let getInitialPopulate = async () => {};
-  let applyAdditionalPopulate = async () => {};
+  let applyAdditionalPopulate = async (v) => (v);
   const deepPopulateOptions = {
     countMany: false,
     countOne: false,

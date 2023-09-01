@@ -73,7 +73,6 @@ module.exports = ({ strapi }) => ({
 
   async find(opts, uid) {
     const params = { ...opts, populate: getDeepPopulate(uid) };
-
     const entities = await strapi.entityService.findMany(uid, params);
     return this.mapEntitiesResponse(entities, uid);
   },

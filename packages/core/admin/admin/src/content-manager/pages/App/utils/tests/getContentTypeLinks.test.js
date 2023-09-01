@@ -49,7 +49,7 @@ describe('checkPermissions', () => {
       {
         apiID: 'address',
         info: {
-          displayName: 'Address',
+          displayName: 'Addresses',
         },
         isDisplayed: true,
         kind: 'collectionType',
@@ -58,7 +58,7 @@ describe('checkPermissions', () => {
       {
         apiID: 'article',
         info: {
-          displayName: 'Article',
+          displayName: 'Articles',
         },
         isDisplayed: true,
         kind: 'collectionType',
@@ -112,7 +112,7 @@ describe('checkPermissions', () => {
             },
           ],
           search: 'page=1&pageSize=10&sort=name:ASC',
-          title: 'Address',
+          title: 'Addresses',
           to: '/content-manager/collectionType/api::address.address',
           uid: 'api::address.address',
         },
@@ -131,7 +131,7 @@ describe('checkPermissions', () => {
             },
           ],
           search: null,
-          title: 'Article',
+          title: 'Articles',
           to: '/content-manager/collectionType/api::article.article',
           uid: 'api::article.article',
         },
