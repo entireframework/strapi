@@ -1,9 +1,6 @@
 {
-  "version": "4.12.2-alpha.1",
-  "packages": [
-    "packages/*",
-    "examples/*"
-  ],
+  "version": "4.13.1",
+  "packages": ["packages/*", "examples/*"],
   "npmClient": "yarn",
   "useWorkspaces": true,
   "useNx": true,

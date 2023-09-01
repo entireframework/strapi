@@ -261,7 +261,11 @@ const SelectedEntriesModalContent = ({
   const selectedEntriesWithErrorsCount = rowsToDisplay.filter(
     ({ id }) => selectedEntries.includes(id) && validationErrors[id]
   ).length;
-  const selectedEntriesWithNoErrorsCount = selectedEntries.length - selectedEntriesWithErrorsCount;
+  const selectedEntriesPublished = rowsToDisplay.filter(
+    ({ id, publishedAt }) => selectedEntries.includes(id) && publishedAt
+  ).length;
+  const selectedEntriesWithNoErrorsCount =
+    selectedEntries.length - selectedEntriesWithErrorsCount - selectedEntriesPublished;
 
   const bulkPublishMutation = useMutation(
     (data) =>
@@ -331,11 +335,12 @@ const SelectedEntriesModalContent = ({
       {
         id: getTrad('containers.ListPage.selectedEntriesModal.selectedCount'),
         defaultMessage:
-          '<b>{readyToPublishCount}</b> {readyToPublishCount, plural, =0 {entries} one {entry} other {entries}} ready to publish. <b>{withErrorsCount}</b> {withErrorsCount, plural, =0 {entries} one {entry} other {entries}} waiting for action.',
+          '<b>{alreadyPublishedCount}</b> {alreadyPublishedCount, plural, =0 {entries} one {entry} other {entries}} already published. <b>{readyToPublishCount}</b> {readyToPublishCount, plural, =0 {entries} one {entry} other {entries}} ready to publish. <b>{withErrorsCount}</b> {withErrorsCount, plural, =0 {entries} one {entry} other {entries}} waiting for action.',
       },
       {
         readyToPublishCount: selectedEntriesWithNoErrorsCount,
         withErrorsCount: selectedEntriesWithErrorsCount,
+        alreadyPublishedCount: selectedEntriesPublished,
         b: BoldChunk,
       }
     );
@@ -465,7 +470,11 @@ const SelectedEntriesModal = ({ onToggle }) => {
       });
 
       if (data.results) {
-        const schema = createYupSchema(contentType, { components }, { isDraft: false });
+        const schema = createYupSchema(
+          contentType,
+          { components },
+          { isDraft: false, isJSONTestDisabled: true }
+        );
         const validationErrors = {};
         const rows = data.results.map((entry) => {
           try {
