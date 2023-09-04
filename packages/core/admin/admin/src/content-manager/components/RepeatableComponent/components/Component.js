@@ -100,7 +100,19 @@ const DraggedItem = ({
   const displayedValue = toString(
     get(modifiedData, [...componentFieldName.split('.'), ...mainField.split('.')], '')
   );
-  const displayedValueIsMedia = mainField.endsWith('url');
+  const displayedValueIsMedia =
+    mainField.endsWith('url') &&
+    toString(
+      get(
+        modifiedData,
+        [
+          ...componentFieldName.split('.'),
+          ...mainField.split('.').slice(0, -1),
+          'provider_metadata',
+        ],
+        ''
+      )
+    ).length > 0;
   const accordionRef = useRef(null);
   const { formatMessage } = useIntl();
 
