@@ -229,7 +229,6 @@ const DraggedItem = ({
 
                           return (
                             <GridItem col={(size * 12) / maxSize} s={12} xs={12} key={name}>
-                              {size}
                               <FieldComponent
                                 componentUid={componentUid}
                                 intlLabel={{
@@ -249,7 +248,6 @@ const DraggedItem = ({
 
                         return (
                           <GridItem key={keys} col={(size * 12) / maxSize} s={12} xs={12}>
-                            {size}
                             <Inputs
                               componentUid={componentUid}
                               fieldSchema={fieldSchema}
