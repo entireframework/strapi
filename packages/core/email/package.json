@@ -1,6 +1,6 @@
 {
   "name": "@strapi/plugin-email",
-  "version": "4.13.2-alpha.1",
+  "version": "4.13.2-alpha.4",
   "description": "Easily configure your Strapi application to send emails.",
   "repository": {
     "type": "git",
@@ -38,7 +38,7 @@
     "yup": "0.32.9"
   },
   "devDependencies": {
-    "@strapi/helper-plugin": "^4.13.2-alpha.1",
+    "@strapi/helper-plugin": "^4.13.2-alpha.4",
     "@testing-library/react": "14.0.0",
     "msw": "1.2.1",
     "react": "^18.2.0",
