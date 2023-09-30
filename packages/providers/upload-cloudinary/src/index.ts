@@ -6,6 +6,7 @@ import * as utils from '@strapi/utils';
 interface File {
   name: string;
   alternativeText?: string;
+  posterTime?: number;
   caption?: string;
   width?: number;
   height?: number;

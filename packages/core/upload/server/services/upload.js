@@ -82,6 +82,7 @@ module.exports = ({ strapi }) => ({
     const entity = {
       name: usedName,
       alternativeText: fileInfo.alternativeText,
+      posterTime: fileInfo.posterTime,
       caption: fileInfo.caption,
       folder: fileInfo.folder,
       folderPath: await fileService.getFolderPath(fileInfo.folder),
@@ -261,7 +262,7 @@ module.exports = ({ strapi }) => ({
     return this.add(fileData, { user });
   },
 
-  async updateFileInfo(id, { name, alternativeText, caption, folder }, { user } = {}) {
+  async updateFileInfo(id, { name, alternativeText, posterTime, caption, folder }, { user } = {}) {
     const dbFile = await this.findOne(id);
 
     if (!dbFile) {
@@ -274,6 +275,7 @@ module.exports = ({ strapi }) => ({
     const newInfos = {
       name: newName,
       alternativeText: _.isNil(alternativeText) ? dbFile.alternativeText : alternativeText,
+      posterTime: _.isNil(posterTime) ? dbFile.posterTime : posterTime,
       caption: _.isNil(caption) ? dbFile.caption : caption,
       folder: _.isUndefined(folder) ? dbFile.folder : folder,
       folderPath: _.isUndefined(folder) ? dbFile.path : await fileService.getFolderPath(folder),

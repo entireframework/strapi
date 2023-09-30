@@ -440,6 +440,26 @@ const isAudio = async (file) => {
   return format && AUDIO_FORMATS_TO_PROCESS.includes(format);
 };
 
+function formatSeconds(seconds) {
+  // Get the whole seconds part and the milliseconds part separately
+  const wholeSeconds = Math.floor(seconds);
+  const milliseconds = Math.round((seconds - wholeSeconds) * 1000);
+
+  // Calculate hours, minutes, and seconds
+  const hours = Math.floor(wholeSeconds / 3600);
+  const minutes = Math.floor((wholeSeconds % 3600) / 60);
+  const remainingSeconds = wholeSeconds % 60;
+
+  // Format the string with leading zeros
+  const hoursString = String(hours).padStart(2, '0');
+  const minutesString = String(minutes).padStart(2, '0');
+  const secondsString = String(remainingSeconds).padStart(2, '0');
+  const millisecondsString = String(milliseconds).padStart(3, '0');
+
+  // Concatenate and return the final string
+  return `${hoursString}:${minutesString}:${secondsString}.${millisecondsString}`;
+}
+
 const generatePoster = async (file) => {
   if (!(await isVideo(file))) {
     return;
@@ -450,7 +470,7 @@ const generatePoster = async (file) => {
 
   const convertOptions = {
     streamEncoding: true,
-    args: ['-ss', '00:00:00.000', '-vframes', '1', '-f', 'image2'],
+    args: ['-ss', formatSeconds(file.posterTime || 0), '-vframes', '1', '-f', 'image2'],
     ext: '.png',
     name: 'png',
   };

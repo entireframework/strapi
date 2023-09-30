@@ -29,6 +29,10 @@ module.exports = {
       type: 'string',
       configurable: false,
     },
+    posterTime: {
+      type: 'decimal',
+      configurable: false,
+    },
     caption: {
       type: 'string',
       configurable: false,

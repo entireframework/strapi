@@ -71,6 +71,7 @@ export const AssetDefinition = PropTypes.shape({
   url: PropTypes.string,
   updatedAt: PropTypes.string,
   alternativeText: PropTypes.string,
+  posterTime: PropTypes.number,
   caption: PropTypes.string,
   folder: PropTypes.shape(FolderDefinition),
   formats: PropTypes.shape({

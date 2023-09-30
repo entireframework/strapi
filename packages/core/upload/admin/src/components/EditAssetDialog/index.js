@@ -16,6 +16,7 @@ import {
   ModalBody,
   ModalFooter,
   ModalLayout,
+  NumberInput,
   TextInput,
   VisuallyHidden,
 } from '@strapi/design-system';
@@ -48,6 +49,7 @@ const LoadingBody = styled(Flex)`
 const fileInfoSchema = yup.object({
   name: yup.string().required(),
   alternativeText: yup.string(),
+  posterTime: yup.number(),
   caption: yup.string(),
   folder: yup.number(),
 });
@@ -134,6 +136,7 @@ export const EditAssetDialog = ({
   const initialFormData = !folderStructureIsLoading && {
     name: asset.name,
     alternativeText: asset.alternativeText ?? undefined,
+    posterTime: asset.posterTime ?? undefined,
     caption: asset.caption ?? undefined,
     parent: {
       value: activeFolderId ?? undefined,
@@ -257,6 +260,26 @@ export const EditAssetDialog = ({
                       value={values.name}
                       error={errors.name}
                       onChange={handleChange}
+                      disabled={formDisabled}
+                    />
+
+                    <NumberInput
+                      value={values.posterTime}
+                      error={errors.posterTime}
+                      hint={formatMessage({
+                        id: getTrad('settings.form.posterTime.description'),
+                        defaultMessage: 'Poster image time in seconds.',
+                      })}
+                      label={formatMessage({
+                        id: getTrad('settings.form.posterTime.label'),
+                        defaultMessage: 'Poster image time',
+                      })}
+                      name="posterTime"
+                      onValueChange={(value) => {
+                        handleChange({
+                          target: { name: 'posterTime', value },
+                        });
+                      }}
                       disabled={formDisabled}
                     />
 
