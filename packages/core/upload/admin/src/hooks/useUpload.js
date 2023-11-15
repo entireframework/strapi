@@ -11,7 +11,7 @@ import { getTrad } from '../utils';
 const endpoint = `/${pluginId}`;
 
 const uploadAsset = (asset, folderId, cancelToken, onProgress, post) => {
-  const { rawFile, caption, name, alternativeText } = asset;
+  const { rawFile, caption, name, alternativeText, posterTimer } = asset;
   const formData = new FormData();
 
   formData.append('files', rawFile);
@@ -22,6 +22,7 @@ const uploadAsset = (asset, folderId, cancelToken, onProgress, post) => {
       name,
       caption,
       alternativeText,
+      posterTimer,
       folder: folderId,
     })
   );

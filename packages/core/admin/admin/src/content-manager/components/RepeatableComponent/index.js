@@ -1,7 +1,7 @@
 /* eslint-disable import/no-cycle */
 import React, { memo, useEffect, useMemo, useState } from 'react';
 
-import { Box, Flex, TextButton, VisuallyHidden } from '@strapi/design-system';
+import { Box, Flex, TextButton, VisuallyHidden, Grid } from '@strapi/design-system';
 import { useCMEditViewDataManager, useNotification, useQuery } from '@strapi/helper-plugin';
 import { Plus } from '@strapi/icons';
 import get from 'lodash/get';
@@ -16,6 +16,7 @@ import ComponentInitializer from '../ComponentInitializer';
 import * as Accordion from './components/Accordion';
 import Component from './components/Component';
 import getComponentErrorKeys from './utils/getComponentErrorKeys';
+import getMainField from './utils/getMainField';
 
 const TextButtonCustom = styled(TextButton)`
   height: 100%;
@@ -44,7 +45,8 @@ const RepeatableComponent = ({
   const { formatMessage } = useIntl();
   const [collapseToOpen, setCollapseToOpen] = useState('');
   const [liveText, setLiveText] = useState('');
-  const { getComponentLayout, components } = useContentTypeLayout();
+  const { getComponentLayout, ...currentLayout } = useContentTypeLayout();
+  const { components } = currentLayout;
   const componentLayoutData = useMemo(
     () => getComponentLayout(componentUid),
     [componentUid, getComponentLayout]
@@ -130,7 +132,9 @@ const RepeatableComponent = ({
     });
   };
 
-  const mainField = get(componentLayoutData, ['settings', 'mainField'], 'id');
+  const mainField =
+    getMainField(currentLayout, componentLayoutData) ||
+    get(componentLayoutData, ['settings', 'mainField'], 'id');
 
   const handleToggle = (key) => () => {
     if (collapseToOpen === key) {
@@ -226,24 +230,26 @@ const RepeatableComponent = ({
       <VisuallyHidden aria-live="assertive">{liveText}</VisuallyHidden>
       <Accordion.Group error={errorMessage} ariaDescribedBy={ariaDescriptionId}>
         <Accordion.Content aria-describedby={ariaDescriptionId}>
-          {componentValue.map(({ __temp_key__: key }, index) => (
-            <Component
-              componentFieldName={`${name}.${index}`}
-              componentUid={componentUid}
-              fields={componentLayoutData.layouts.edit}
-              key={key}
-              index={index}
-              isOpen={collapseToOpen === key}
-              isReadOnly={isReadOnly}
-              mainField={mainField}
-              moveComponentField={handleMoveComponentField}
-              onClickToggle={handleToggle(key)}
-              toggleCollapses={toggleCollapses}
-              onCancel={handleCancel}
-              onDropItem={handleDropItem}
-              onGrabItem={handleGrabItem}
-            />
-          ))}
+          <Grid>
+            {componentValue.map(({ __temp_key__: key }, index) => (
+              <Component
+                componentFieldName={`${name}.${index}`}
+                componentUid={componentUid}
+                fields={componentLayoutData.layouts.edit}
+                key={key}
+                index={index}
+                isOpen={collapseToOpen === key}
+                isReadOnly={isReadOnly}
+                mainField={mainField}
+                moveComponentField={handleMoveComponentField}
+                onClickToggle={handleToggle(key)}
+                toggleCollapses={toggleCollapses}
+                onCancel={handleCancel}
+                onDropItem={handleDropItem}
+                onGrabItem={handleGrabItem}
+              />
+            ))}
+          </Grid>
         </Accordion.Content>
         <Accordion.Footer>
           <Flex justifyContent="center" height="48px" background="neutral0">

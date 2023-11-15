@@ -7,6 +7,7 @@ const { getService } = require('../../../utils');
 const fileInfoSchema = yup.object({
   name: yup.string().nullable(),
   alternativeText: yup.string().nullable(),
+  posterTime: yup.number().nullable(),
   caption: yup.string().nullable(),
   folder: yup
     .strapiID()

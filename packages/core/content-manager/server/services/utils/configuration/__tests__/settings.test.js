@@ -21,6 +21,7 @@ describe('Configuration settings service', () => {
       expect(settings).toMatchInlineSnapshot(`
         {
           "bulkable": true,
+          "coverField": "id",
           "defaultSortBy": "id",
           "defaultSortOrder": "ASC",
           "filterable": true,

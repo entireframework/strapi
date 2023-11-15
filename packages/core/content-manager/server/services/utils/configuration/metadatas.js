@@ -45,6 +45,7 @@ function createDefaultMetadata(schema, name) {
 
     if (targetSchema) {
       edit.mainField = getDefaultMainField(targetSchema);
+      edit.coverField = getDefaultMainField(targetSchema);
     }
   }
 
@@ -57,6 +58,7 @@ function createDefaultMetadata(schema, name) {
       'visible',
       'editable',
       'mainField',
+      'coverField',
     ])
   );
 
@@ -109,7 +111,7 @@ async function syncMetadatas(configuration, schema) {
 
     // remove mainField if the attribute is not a relation anymore
     if (!isRelation(attr)) {
-      _.set(updatedMeta, 'edit', _.omit(edit, ['mainField']));
+      _.set(updatedMeta, 'edit', _.omit(edit, ['mainField', 'coverField']));
       _.set(acc, [key], updatedMeta);
       return acc;
     }

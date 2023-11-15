@@ -33,6 +33,7 @@ function useSelect(keys) {
     readableFields,
     shouldNotRunValidations,
     value,
+    modifiedData,
   };
 }
 

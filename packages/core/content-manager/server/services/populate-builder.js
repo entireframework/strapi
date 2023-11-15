@@ -15,6 +15,7 @@ const { getDeepPopulate, getQueryPopulate } = require('./utils/populate');
  */
 const populateBuilder = (uid) => {
   let getInitialPopulate = async () => {};
+  let applyAdditionalPopulate = async (v) => (v);
   const deepPopulateOptions = {
     countMany: false,
     countOne: false,
@@ -29,6 +30,38 @@ const populateBuilder = (uid) => {
      */
     populateFromQuery(query) {
       getInitialPopulate = async () => getQueryPopulate(uid, query);
+      applyAdditionalPopulate = async (initialPopulate) => {
+        if (query?.populate?.forEach) {
+          query.populate.forEach((p) => {
+            const pp = p.split('.');
+            pp.reduce(
+              (acc, key, index) => {
+                if (acc.on) {
+                  delete acc.on;
+                }
+                if (!key) {
+                  return acc;
+                }
+                if (acc.populate && acc.populate[key] && acc.populate[key].count !== true) {
+                  if (acc.populate[key] !== true || index === pp.length - 1) {
+                    return acc.populate[key];
+                  }
+                }
+
+                if (!acc.populate) {
+                  acc.populate = {};
+                }
+                acc.populate[key] = index === pp.length - 1 ? true : { populate: {} };
+                return acc.populate[key];
+              },
+              { populate: initialPopulate }
+            );
+          });
+        }
+
+        return initialPopulate;
+      };
+
       return builder;
     },
     /**
@@ -81,7 +114,9 @@ const populateBuilder = (uid) => {
         return initialPopulate;
       }
 
-      return getDeepPopulate(uid, { ...deepPopulateOptions, initialPopulate });
+      return applyAdditionalPopulate(
+        getDeepPopulate(uid, { ...deepPopulateOptions, initialPopulate })
+      );
     },
   };
 

@@ -504,6 +504,9 @@ describe('Content Manager | hooks | useFetchContentTypeLayout | utils ', () => {
           name: 'component',
           key: '__component_key__',
           metadatas: {
+            coverField: {
+              name: undefined,
+            },
             mainField: {
               name: 'name',
             },

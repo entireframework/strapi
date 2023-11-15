@@ -27,7 +27,12 @@ import {
   submitSucceeded,
 } from '../../sharedReducers/crudReducer/actions';
 import selectCrudReducer from '../../sharedReducers/crudReducer/selectors';
-import { createDefaultForm, getTrad, removePasswordFieldsFromData } from '../../utils';
+import {
+  createDefaultForm,
+  getTrad,
+  removePasswordFieldsFromData,
+  getPopulatedFields,
+} from '../../utils';
 
 // This container is used to handle the CRUD
 const SingleTypeFormWrapper = ({ allLayoutData, children, slug }) => {
@@ -38,7 +43,14 @@ const SingleTypeFormWrapper = ({ allLayoutData, children, slug }) => {
   const trackUsageRef = useRef(trackUsage);
   const [isCreatingEntry, setIsCreatingEntry] = useState(true);
   const [{ query, rawQuery }] = useQueryParams();
-  const params = useMemo(() => buildValidGetParams(query), [query]);
+  const params = useMemo(
+    () =>
+      buildValidGetParams({
+        ...query,
+        populate: getPopulatedFields(allLayoutData, allLayoutData.contentType),
+      }),
+    [query, allLayoutData]
+  );
   const toggleNotification = useNotification();
   const dispatch = useDispatch();
   const { formatAPIError } = useAPIErrorHandler(getTrad);

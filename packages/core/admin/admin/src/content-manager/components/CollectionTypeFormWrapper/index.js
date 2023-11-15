@@ -1,4 +1,4 @@
-import { memo, useCallback, useEffect, useRef } from 'react';
+import { memo, useCallback, useEffect, useRef, useMemo } from 'react';
 
 import {
   formatContentTypeData,
@@ -18,6 +18,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
 import { useFindRedirectionLink } from '../../hooks';
+import { buildValidGetParams } from '../../pages/ListView/utils';
 import {
   getData,
   getDataSucceeded,
@@ -28,7 +29,12 @@ import {
   submitSucceeded,
 } from '../../sharedReducers/crudReducer/actions';
 import selectCrudReducer from '../../sharedReducers/crudReducer/selectors';
-import { createDefaultForm, getTrad, removePasswordFieldsFromData } from '../../utils';
+import {
+  createDefaultForm,
+  getPopulatedFields,
+  getTrad,
+  removePasswordFieldsFromData,
+} from '../../utils';
 
 // This container is used to handle the CRUD
 const CollectionTypeFormWrapper = ({ allLayoutData, children, slug, id, origin }) => {
@@ -38,6 +44,14 @@ const CollectionTypeFormWrapper = ({ allLayoutData, children, slug, id, origin }
   const { trackUsage } = useTracking();
   const { push, replace } = useHistory();
   const [{ query, rawQuery }] = useQueryParams();
+  const params = useMemo(
+    () =>
+      buildValidGetParams({
+        ...query,
+        populate: getPopulatedFields(allLayoutData, allLayoutData.contentType),
+      }),
+    [query, allLayoutData]
+  );
   const dispatch = useDispatch();
   const { componentsDataStructure, contentTypeDataStructure, data, isLoading, status } =
     useSelector(selectCrudReducer);
@@ -116,7 +130,7 @@ const CollectionTypeFormWrapper = ({ allLayoutData, children, slug, id, origin }
       dispatch(getData());
 
       try {
-        const { data } = await fetchClient.get(requestURL, { cancelToken: source.token });
+        const { data } = await fetchClient.get(requestURL, { cancelToken: source.token, params });
 
         dispatch(getDataSucceeded(cleanReceivedData(data)));
       } catch (err) {
@@ -171,6 +185,7 @@ const CollectionTypeFormWrapper = ({ allLayoutData, children, slug, id, origin }
     rawQuery,
     redirectionLink,
     toggleNotification,
+    params,
   ]);
 
   const displayErrors = useCallback(

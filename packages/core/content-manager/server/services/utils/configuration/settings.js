@@ -3,7 +3,7 @@
 const { isEmpty, pick, pipe, propOr, isEqual } = require('lodash/fp');
 const { traverse } = require('@strapi/utils');
 const qs = require('qs');
-const { isSortable, getDefaultMainField, getSortableAttributes } = require('./attributes');
+const { getDefaultMainField, getSortableAttributes } = require('./attributes');
 
 /** General settings */
 const DEFAULT_SETTINGS = {
@@ -19,6 +19,7 @@ const settingsFields = [
   'bulkable',
   'pageSize',
   'mainField',
+  'coverField',
   'defaultSortBy',
   'defaultSortOrder',
 ];
@@ -54,6 +55,7 @@ module.exports = {
     return {
       ...DEFAULT_SETTINGS,
       mainField: defaultField,
+      coverField: defaultField,
       defaultSortBy: defaultField,
       defaultSortOrder: 'ASC',
       ...getModelSettings(schema),
@@ -65,11 +67,16 @@ module.exports = {
 
     const defaultField = getDefaultMainField(schema);
 
-    const { mainField = defaultField, defaultSortBy = defaultField } = configuration.settings || {};
+    const {
+      mainField = defaultField,
+      coverField = defaultField,
+      defaultSortBy = defaultField,
+    } = configuration.settings || {};
 
     return {
       ...configuration.settings,
-      mainField: isSortable(schema, mainField) ? mainField : defaultField,
+      mainField,
+      coverField,
       defaultSortBy: (await isValidDefaultSort(schema, defaultSortBy))
         ? defaultSortBy
         : defaultField,

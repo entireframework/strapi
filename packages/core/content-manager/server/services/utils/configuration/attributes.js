@@ -11,7 +11,7 @@ const { PUBLISHED_AT_ATTRIBUTE, CREATED_BY_ATTRIBUTE, UPDATED_BY_ATTRIBUTE } =
 const NON_SORTABLES = ['component', 'json', 'media', 'richtext', 'dynamiczone', 'blocks'];
 const SORTABLE_RELATIONS = ['oneToOne', 'manyToOne'];
 
-const NON_LISTABLES = ['json', 'password', 'richtext', 'dynamiczone', 'blocks'];
+const NON_LISTABLES = ['json', 'password', 'dynamiczone', 'blocks'];
 const LISTABLE_RELATIONS = ['oneToOne', 'oneToMany', 'manyToOne', 'manyToMany'];
 
 // hidden fields are fields that are configured to be hidden from list, and edit views

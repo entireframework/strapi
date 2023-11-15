@@ -132,6 +132,7 @@ export interface IConfiguration<T = unknown> {
 interface IFile {
   name: string;
   alternativeText?: string;
+  posterTime?: string;
   caption?: string;
   width?: number;
   height?: number;

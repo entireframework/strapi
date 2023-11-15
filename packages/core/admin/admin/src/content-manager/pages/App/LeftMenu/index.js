@@ -6,6 +6,7 @@
 
 import React, { useMemo, useState } from 'react';
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   SubNav,
   SubNavHeader,
@@ -13,13 +14,18 @@ import {
   SubNavSection,
   SubNavSections,
 } from '@strapi/design-system/v2';
-import { useCollator, useFilter } from '@strapi/helper-plugin';
+import { useFilter } from '@strapi/helper-plugin';
+import toLower from 'lodash/toLower';
 import { useIntl } from 'react-intl';
 import { shallowEqual, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 
+import { useConfigurations } from '../../../../hooks';
 import getTrad from '../../../utils/getTrad';
 import { makeSelectModelLinks } from '../selectors';
+
+const matchByTitle = (links, search) =>
+  links.filter((item) => toLower(item.title).includes(toLower(search)));
 
 const LeftMenu = () => {
   const [search, setSearch] = useState('');
@@ -34,13 +40,68 @@ const LeftMenu = () => {
   /**
    * @type {Intl.Collator}
    */
-  const formatter = useCollator(locale, {
-    sensitivity: 'base',
+  // const formatter = useCollator(locale, {
+  //   sensitivity: 'base',
+  // });
+
+  const toIntl = (links) =>
+    links.map((link) => {
+      return {
+        ...link,
+        title: formatMessage({ id: link.title, defaultMessage: link.title }),
+      };
+    });
+
+  const { leftMenu } = useConfigurations();
+  const intlCollectionTypeLinks = toIntl(
+    collectionTypeLinks.filter(
+      (l) =>
+        !Object.keys(leftMenu || {})
+          .reduce((acc, l) => acc.concat(leftMenu[l].items), [])
+          .find((ll) => ll.uid === l.uid)
+    )
+  );
+  const intlSingleTypeLinks = toIntl(
+    singleTypeLinks.filter(
+      (l) =>
+        !Object.keys(leftMenu || {})
+          .reduce((acc, l) => acc.concat(leftMenu[l].items), [])
+          .find((ll) => ll.uid === l.uid)
+    )
+  );
+
+  Object.keys(leftMenu || {}).forEach((key) => {
+    leftMenu[key].items = toIntl(
+      leftMenu[key].items
+        .filter(
+          (l) =>
+            collectionTypeLinks.find((ll) => ll.uid === l.uid) ||
+            singleTypeLinks.find((ll) => ll.uid === l.uid)
+        )
+        .map((l) => {
+          return {
+            ...(collectionTypeLinks.find((ll) => ll.uid === l.uid) ||
+              singleTypeLinks.find((ll) => ll.uid === l.uid)),
+            ...l,
+          };
+        })
+    );
   });
 
   const menu = useMemo(
     () =>
       [
+        ...Object.keys(leftMenu || {}).map((key) => {
+          return {
+            id: key,
+            title: {
+              id: getTrad(`components.LeftMenu.${key}`),
+              defaultMessage: leftMenu[key].defaultMessage,
+            },
+            searchable: true,
+            links: matchByTitle(leftMenu[key].items, search),
+          };
+        }),
         {
           id: 'collectionTypes',
           title: {
@@ -48,7 +109,7 @@ const LeftMenu = () => {
             defaultMessage: 'Collection Types',
           },
           searchable: true,
-          links: collectionTypeLinks,
+          links: matchByTitle(intlCollectionTypeLinks, search),
         },
         {
           id: 'singleTypes',
@@ -57,7 +118,7 @@ const LeftMenu = () => {
             defaultMessage: 'Single Types',
           },
           searchable: true,
-          links: singleTypeLinks,
+          links: matchByTitle(intlSingleTypeLinks, search),
         },
       ].map((section) => ({
         ...section,
@@ -69,7 +130,7 @@ const LeftMenu = () => {
           /**
            * Sort correctly using the language
            */
-          .sort((a, b) => formatter.compare(a.title, b.title))
+          // .sort((a, b) => formatter.compare(a.title, b.title))
           /**
            * Apply the formated strings to the links from react-intl
            */
@@ -80,7 +141,15 @@ const LeftMenu = () => {
             };
           }),
       })),
-    [collectionTypeLinks, search, singleTypeLinks, startsWith, formatMessage, formatter]
+    [
+      leftMenu,
+      intlCollectionTypeLinks,
+      search,
+      intlSingleTypeLinks,
+      startsWith,
+      // formatter,
+      formatMessage,
+    ]
   );
 
   const handleClear = () => {
@@ -126,7 +195,12 @@ const LeftMenu = () => {
                 const search = link.search ? `?${link.search}` : '';
 
                 return (
-                  <SubNavLink as={NavLink} key={link.uid} to={`${link.to}${search}`}>
+                  <SubNavLink
+                    as={NavLink}
+                    key={link.uid}
+                    to={`${link.to}${search}`}
+                    icon={link.icon && <FontAwesomeIcon icon={link.icon} size="sm" />}
+                  >
                     {link.title}
                   </SubNavLink>
                 );

@@ -73,6 +73,11 @@ const App = () => {
   const { startSection } = useGuidedTour();
   const startSectionRef = useRef(startSection);
   const permissions = useSelector(selectAdminPermissions);
+  const { leftMenu } = useConfigurations();
+  const leftMenuAuthorizedModels = Object.keys(leftMenu || {})
+    .reduce((acc, l) => acc.concat(leftMenu[l].items), [])
+    .map((v) => authorisedModels.find((vv) => v.uid === vv.uid))
+    .filter((v) => v);
 
   useEffect(() => {
     if (startSectionRef.current) {
@@ -111,11 +116,13 @@ const App = () => {
     return <Redirect to="/content-manager/no-content-types" />;
   }
 
-  if (!contentTypeMatch && authorisedModels.length > 0) {
+  if (!contentTypeMatch && (leftMenuAuthorizedModels.length > 0 || authorisedModels.length > 0)) {
     return (
       <Redirect
-        to={`${authorisedModels[0].to}${
-          authorisedModels[0].search ? `?${authorisedModels[0].search}` : ''
+        to={`${(leftMenuAuthorizedModels[0] || authorisedModels[0]).to}${
+          (leftMenuAuthorizedModels[0] || authorisedModels[0]).search
+            ? `?${(leftMenuAuthorizedModels[0] || authorisedModels[0]).search}`
+            : ''
         }`}
       />
     );

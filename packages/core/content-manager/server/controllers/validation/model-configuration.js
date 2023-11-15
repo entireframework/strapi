@@ -33,6 +33,7 @@ const createSettingsSchema = (schema) => {
       searchable: yup.boolean().required(),
       // should be reset when the type changes
       mainField: yup.string().oneOf(validAttributes.concat('id')).default('id'),
+      coverField: yup.string().oneOf(validAttributes.concat('id')).default('id'),
       // should be reset when the type changes
       defaultSortBy: yup
         .string()
@@ -78,6 +79,7 @@ const createMetadasSchema = (schema) => {
 
                 return yup.string().oneOf(validAttributes.concat('id')).default('id');
               }),
+              coverField: yup.string(),
             })
             .noUnknown()
             .required(),

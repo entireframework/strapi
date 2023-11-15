@@ -244,12 +244,16 @@ const reducer = (state, action) =>
 
             return value.type === 'relation' && !isCreatorField;
           },
-          (_, { path }) => {
+          (value, { path }) => {
             if (state.modifiedData?.id === data.id && get(state.modifiedData, path)) {
               return get(state.modifiedData, path);
             }
 
-            return [];
+            if (value == null) {
+              return [];
+            }
+
+            return Array.isArray(value) ? value : [value];
           }
         );
 

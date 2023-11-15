@@ -113,6 +113,10 @@
                       "alternativeText": {
                         "type": "string"
                       },
+                      "posterTime": {
+                        "type": "number",
+                        "format": "double"
+                      },
                       "caption": {
                         "type": "string"
                       }
@@ -224,6 +228,10 @@
           },
           "alternativeText": {
             "type": "string"
+          },
+          "posterTime": {
+            "type": "number",
+            "format": "double"
           },
           "caption": {
             "type": "string"
