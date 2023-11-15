@@ -14,6 +14,7 @@ import { useSelector } from 'react-redux';
 import { Redirect, Route, Switch, useLocation, useRouteMatch } from 'react-router-dom';
 
 import { DragLayer } from '../../../components/DragLayer';
+import { useConfiguration } from '../../../contexts/configuration';
 import { selectAdminPermissions } from '../../../selectors';
 import ModelsContext from '../../contexts/ModelsContext';
 import getTrad from '../../utils/getTrad';
@@ -29,6 +30,7 @@ import { ComponentDragPreview } from './components/ComponentDragPreview';
 import { RelationDragPreview } from './components/RelationDragPreview';
 import LeftMenu from './LeftMenu';
 import useContentManagerInitData from './useContentManagerInitData';
+
 
 function renderDraglayerItem({ type, item }) {
   if ([ItemTypes.EDIT_FIELD, ItemTypes.FIELD].includes(type)) {
@@ -73,7 +75,7 @@ const App = () => {
   const { startSection } = useGuidedTour();
   const startSectionRef = useRef(startSection);
   const permissions = useSelector(selectAdminPermissions);
-  const { leftMenu } = useConfigurations();
+  const { leftMenu } = useConfiguration();
   const leftMenuAuthorizedModels = Object.keys(leftMenu || {})
     .reduce((acc, l) => acc.concat(leftMenu[l].items), [])
     .map((v) => authorisedModels.find((vv) => v.uid === vv.uid))
