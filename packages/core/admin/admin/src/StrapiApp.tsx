@@ -73,6 +73,7 @@ class StrapiApp {
   configurations: {
     authLogo: string;
     head: { favicon: string };
+    leftMenu: object;
     locales: string[];
     menuLogo: string;
     notifications: { releases: boolean };
@@ -84,6 +85,7 @@ class StrapiApp {
   customConfigurations: {
     auth?: { logo: string };
     head?: { favicon: string };
+    leftMenu?: object;
     locales?: string[];
     menu?: { logo: string };
     notifications?: { releases: boolean };

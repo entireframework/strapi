@@ -5,6 +5,7 @@ import { ConfigurationContextProvider, ConfigurationContextValue } from '../cont
 interface ConfigurationProviderProps {
   children: React.ReactNode;
   authLogo: string;
+  leftMenu: object;
   menuLogo: string;
   showReleaseNotification?: boolean;
   showTutorials?: boolean;

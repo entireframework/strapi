@@ -20,7 +20,7 @@ import { useIntl } from 'react-intl';
 import { shallowEqual, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 
-import { useConfigurations } from '../../../../hooks';
+import { useConfiguration } from '../../../../contexts/configuration';
 import getTrad from '../../../utils/getTrad';
 import { makeSelectModelLinks } from '../selectors';
 
@@ -52,7 +52,7 @@ const LeftMenu = () => {
       };
     });
 
-  const { leftMenu } = useConfigurations();
+  const { leftMenu } = useConfiguration();
   const intlCollectionTypeLinks = toIntl(
     collectionTypeLinks.filter(
       (l) =>

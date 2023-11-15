@@ -37,7 +37,7 @@ interface ProvidersProps
     Pick<LanguageProviderProps, 'messages' | 'localeNames'>,
     Pick<
       ConfigurationProviderProps,
-      'authLogo' | 'menuLogo' | 'showReleaseNotification' | 'showTutorials'
+      'authLogo' | 'menuLogo' | 'showReleaseNotification' | 'showTutorials' | 'leftMenu'
     >,
     Pick<AdminContextValue, 'getAdminInjectedComponents'>,
     Pick<CustomFieldsProviderProps, 'customFields'>,
@@ -64,6 +64,7 @@ const Providers = ({
   fields,
   getAdminInjectedComponents,
   getPlugin,
+  leftMenu,
   localeNames,
   menu,
   menuLogo,
@@ -87,6 +88,7 @@ const Providers = ({
               <AdminContextProvider getAdminInjectedComponents={getAdminInjectedComponents}>
                 <ConfigurationProvider
                   authLogo={authLogo}
+                  leftMenu={leftMenu}
                   menuLogo={menuLogo}
                   showReleaseNotification={showReleaseNotification}
                   showTutorials={showTutorials}
