@@ -8678,7 +8678,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@strapi/admin@npm:^4.15.5-alpha.0, @strapi/admin@workspace:packages/core/admin":
+"@strapi/admin@npm:^4.15.5-alpha.1, @strapi/admin@workspace:packages/core/admin":
   version: 0.0.0-use.local
   resolution: "@strapi/admin@workspace:packages/core/admin"
   dependencies:
@@ -8700,7 +8700,7 @@ __metadata:
     "@strapi/pack-up": "npm:^4.15.5-alpha.0"
     "@strapi/permissions": "npm:^4.15.5-alpha.0"
     "@strapi/provider-audit-logs-local": "npm:^4.15.5-alpha.0"
-    "@strapi/strapi": "npm:^4.15.5-alpha.0"
+    "@strapi/strapi": "npm:^4.15.5-alpha.1"
     "@strapi/types": "npm:^4.15.5-alpha.0"
     "@strapi/typescript-utils": "npm:^4.15.5-alpha.0"
     "@strapi/utils": "npm:^4.15.5-alpha.0"
@@ -9960,13 +9960,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@strapi/strapi@npm:^4.15.5-alpha.0, @strapi/strapi@workspace:packages/core/strapi":
+"@strapi/strapi@npm:^4.15.5-alpha.0, @strapi/strapi@npm:^4.15.5-alpha.1, @strapi/strapi@workspace:packages/core/strapi":
   version: 0.0.0-use.local
   resolution: "@strapi/strapi@workspace:packages/core/strapi"
   dependencies:
     "@koa/cors": "npm:3.4.3"
     "@koa/router": "npm:10.1.1"
-    "@strapi/admin": "npm:^4.15.5-alpha.0"
+    "@strapi/admin": "npm:^4.15.5-alpha.1"
     "@strapi/data-transfer": "npm:^4.15.5-alpha.0"
     "@strapi/database": "npm:^4.15.5-alpha.0"
     "@strapi/generate-new": "npm:^4.15.5-alpha.0"
