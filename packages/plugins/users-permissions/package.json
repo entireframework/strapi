@@ -1,6 +1,6 @@
 {
   "name": "@strapi/plugin-users-permissions",
-  "version": "4.15.5-alpha.0",
+  "version": "4.15.5-alpha.2",
   "description": "Protect your API with a full-authentication process based on JWT",
   "repository": {
     "type": "git",
@@ -70,7 +70,7 @@
   },
   "devDependencies": {
     "@strapi/pack-up": "^4.15.5-alpha.0",
-    "@strapi/strapi": "^4.15.5-alpha.0",
+    "@strapi/strapi": "^4.15.5-alpha.2",
     "@testing-library/dom": "9.2.0",
     "@testing-library/react": "14.0.0",
     "@testing-library/user-event": "14.4.3",

@@ -1,6 +1,6 @@
 {
   "name": "@strapi/plugin-content-type-builder",
-  "version": "4.15.5-alpha.0",
+  "version": "4.15.5-alpha.2",
   "description": "Strapi plugin to create content type",
   "repository": {
     "type": "git",
@@ -66,7 +66,7 @@
   },
   "devDependencies": {
     "@strapi/pack-up": "^4.15.5-alpha.0",
-    "@strapi/strapi": "^4.15.5-alpha.0",
+    "@strapi/strapi": "^4.15.5-alpha.2",
     "@testing-library/react": "14.0.0",
     "history": "^4.9.0",
     "react": "^18.2.0",

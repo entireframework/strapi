@@ -1,6 +1,6 @@
 {
   "name": "@strapi/plugin-cloud",
-  "version": "4.15.5-alpha.0",
+  "version": "4.15.5-alpha.2",
   "description": "Instructions to deploy your local project to Strapi Cloud",
   "license": "MIT",
   "author": {
@@ -43,7 +43,7 @@
     "react-intl": "6.4.1"
   },
   "devDependencies": {
-    "@strapi/strapi": "^4.15.5-alpha.0",
+    "@strapi/strapi": "^4.15.5-alpha.2",
     "@types/react": "18.2.7",
     "@types/react-dom": "18.2.12",
     "@types/react-router-dom": "^5.3.3",

@@ -8678,7 +8678,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@strapi/admin@npm:^4.15.5-alpha.1, @strapi/admin@workspace:packages/core/admin":
+"@strapi/admin@npm:^4.15.5-alpha.2, @strapi/admin@workspace:packages/core/admin":
   version: 0.0.0-use.local
   resolution: "@strapi/admin@workspace:packages/core/admin"
   dependencies:
@@ -8693,14 +8693,14 @@ __metadata:
     "@radix-ui/react-toolbar": "npm:1.0.4"
     "@reduxjs/toolkit": "npm:1.9.7"
     "@strapi/admin-test-utils": "npm:^4.15.5-alpha.0"
-    "@strapi/data-transfer": "npm:^4.15.5-alpha.0"
+    "@strapi/data-transfer": "npm:^4.15.5-alpha.2"
     "@strapi/design-system": "npm:1.13.1"
     "@strapi/helper-plugin": "npm:^4.15.5-alpha.0"
     "@strapi/icons": "npm:1.13.0"
     "@strapi/pack-up": "npm:^4.15.5-alpha.0"
     "@strapi/permissions": "npm:^4.15.5-alpha.0"
     "@strapi/provider-audit-logs-local": "npm:^4.15.5-alpha.0"
-    "@strapi/strapi": "npm:^4.15.5-alpha.1"
+    "@strapi/strapi": "npm:^4.15.5-alpha.2"
     "@strapi/types": "npm:^4.15.5-alpha.0"
     "@strapi/typescript-utils": "npm:^4.15.5-alpha.0"
     "@strapi/utils": "npm:^4.15.5-alpha.0"
@@ -8840,7 +8840,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@strapi/data-transfer@npm:^4.15.5-alpha.0, @strapi/data-transfer@workspace:packages/core/data-transfer":
+"@strapi/data-transfer@npm:^4.15.5-alpha.2, @strapi/data-transfer@workspace:packages/core/data-transfer":
   version: 0.0.0-use.local
   resolution: "@strapi/data-transfer@workspace:packages/core/data-transfer"
   dependencies:
@@ -9274,7 +9274,7 @@ __metadata:
     "@strapi/design-system": "npm:1.13.1"
     "@strapi/helper-plugin": "npm:^4.15.5-alpha.0"
     "@strapi/icons": "npm:1.13.0"
-    "@strapi/strapi": "npm:^4.15.5-alpha.0"
+    "@strapi/strapi": "npm:^4.15.5-alpha.2"
     "@types/react": "npm:18.2.7"
     "@types/react-dom": "npm:18.2.12"
     "@types/react-router-dom": "npm:^5.3.3"
@@ -9296,14 +9296,14 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@strapi/plugin-color-picker@npm:^4.15.5-alpha.0, @strapi/plugin-color-picker@workspace:packages/plugins/color-picker":
+"@strapi/plugin-color-picker@npm:^4.15.5-alpha.2, @strapi/plugin-color-picker@workspace:packages/plugins/color-picker":
   version: 0.0.0-use.local
   resolution: "@strapi/plugin-color-picker@workspace:packages/plugins/color-picker"
   dependencies:
     "@strapi/design-system": "npm:1.13.1"
     "@strapi/helper-plugin": "npm:^4.15.5-alpha.0"
     "@strapi/icons": "npm:1.13.0"
-    "@strapi/strapi": "npm:^4.15.5-alpha.0"
+    "@strapi/strapi": "npm:^4.15.5-alpha.2"
     "@testing-library/react": "npm:14.0.0"
     "@testing-library/user-event": "npm:14.4.3"
     "@types/styled-components": "npm:5.1.26"
@@ -9377,7 +9377,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@strapi/plugin-content-type-builder@npm:^4.15.5-alpha.0, @strapi/plugin-content-type-builder@workspace:packages/core/content-type-builder":
+"@strapi/plugin-content-type-builder@npm:^4.15.5-alpha.2, @strapi/plugin-content-type-builder@workspace:packages/core/content-type-builder":
   version: 0.0.0-use.local
   resolution: "@strapi/plugin-content-type-builder@workspace:packages/core/content-type-builder"
   dependencies:
@@ -9387,7 +9387,7 @@ __metadata:
     "@strapi/helper-plugin": "npm:^4.15.5-alpha.0"
     "@strapi/icons": "npm:1.13.0"
     "@strapi/pack-up": "npm:^4.15.5-alpha.0"
-    "@strapi/strapi": "npm:^4.15.5-alpha.0"
+    "@strapi/strapi": "npm:^4.15.5-alpha.2"
     "@strapi/utils": "npm:^4.15.5-alpha.0"
     "@testing-library/react": "npm:14.0.0"
     fs-extra: "npm:10.0.0"
@@ -9414,7 +9414,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@strapi/plugin-documentation@npm:^4.15.5-alpha.0, @strapi/plugin-documentation@workspace:packages/plugins/documentation":
+"@strapi/plugin-documentation@npm:^4.15.5-alpha.2, @strapi/plugin-documentation@workspace:packages/plugins/documentation":
   version: 0.0.0-use.local
   resolution: "@strapi/plugin-documentation@workspace:packages/plugins/documentation"
   dependencies:
@@ -9423,7 +9423,7 @@ __metadata:
     "@strapi/helper-plugin": "npm:^4.15.5-alpha.0"
     "@strapi/icons": "npm:1.13.0"
     "@strapi/pack-up": "npm:^4.15.5-alpha.0"
-    "@strapi/strapi": "npm:^4.15.5-alpha.0"
+    "@strapi/strapi": "npm:^4.15.5-alpha.2"
     "@strapi/utils": "npm:^4.15.5-alpha.0"
     "@testing-library/react": "npm:14.0.0"
     "@testing-library/user-event": "npm:14.4.3"
@@ -9513,7 +9513,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@strapi/plugin-graphql@npm:^4.15.5-alpha.0, @strapi/plugin-graphql@workspace:packages/plugins/graphql":
+"@strapi/plugin-graphql@npm:^4.15.5-alpha.2, @strapi/plugin-graphql@workspace:packages/plugins/graphql":
   version: 0.0.0-use.local
   resolution: "@strapi/plugin-graphql@workspace:packages/plugins/graphql"
   dependencies:
@@ -9522,7 +9522,7 @@ __metadata:
     "@strapi/design-system": "npm:1.13.1"
     "@strapi/helper-plugin": "npm:^4.15.5-alpha.0"
     "@strapi/icons": "npm:1.13.0"
-    "@strapi/strapi": "npm:^4.15.5-alpha.0"
+    "@strapi/strapi": "npm:^4.15.5-alpha.2"
     "@strapi/types": "npm:^4.15.5-alpha.0"
     "@strapi/utils": "npm:^4.15.5-alpha.0"
     "@types/graphql-depth-limit": "npm:1.1.5"
@@ -9556,7 +9556,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@strapi/plugin-i18n@npm:^4.15.5-alpha.0, @strapi/plugin-i18n@workspace:packages/plugins/i18n":
+"@strapi/plugin-i18n@npm:^4.15.5-alpha.2, @strapi/plugin-i18n@workspace:packages/plugins/i18n":
   version: 0.0.0-use.local
   resolution: "@strapi/plugin-i18n@workspace:packages/plugins/i18n"
   dependencies:
@@ -9565,7 +9565,7 @@ __metadata:
     "@strapi/helper-plugin": "npm:^4.15.5-alpha.0"
     "@strapi/icons": "npm:1.13.0"
     "@strapi/pack-up": "npm:^4.15.5-alpha.0"
-    "@strapi/strapi": "npm:^4.15.5-alpha.0"
+    "@strapi/strapi": "npm:^4.15.5-alpha.2"
     "@strapi/utils": "npm:^4.15.5-alpha.0"
     "@testing-library/react": "npm:14.0.0"
     formik: "npm:2.4.0"
@@ -9591,7 +9591,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@strapi/plugin-sentry@npm:^4.15.5-alpha.0, @strapi/plugin-sentry@workspace:packages/plugins/sentry":
+"@strapi/plugin-sentry@npm:^4.15.5-alpha.2, @strapi/plugin-sentry@workspace:packages/plugins/sentry":
   version: 0.0.0-use.local
   resolution: "@strapi/plugin-sentry@workspace:packages/plugins/sentry"
   dependencies:
@@ -9600,7 +9600,7 @@ __metadata:
     "@strapi/helper-plugin": "npm:^4.15.5-alpha.0"
     "@strapi/icons": "npm:1.13.0"
     "@strapi/pack-up": "npm:^4.15.5-alpha.0"
-    "@strapi/strapi": "npm:^4.15.5-alpha.0"
+    "@strapi/strapi": "npm:^4.15.5-alpha.2"
     react: "npm:^18.2.0"
     react-dom: "npm:^18.2.0"
     react-router-dom: "npm:5.3.4"
@@ -9654,7 +9654,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@strapi/plugin-upload@npm:^4.15.5-alpha.0, @strapi/plugin-upload@workspace:packages/core/upload":
+"@strapi/plugin-upload@npm:^4.15.5-alpha.2, @strapi/plugin-upload@workspace:packages/core/upload":
   version: 0.0.0-use.local
   resolution: "@strapi/plugin-upload@workspace:packages/core/upload"
   dependencies:
@@ -9664,7 +9664,7 @@ __metadata:
     "@strapi/icons": "npm:1.13.0"
     "@strapi/pack-up": "npm:^4.15.5-alpha.0"
     "@strapi/provider-upload-local": "npm:^4.15.5-alpha.0"
-    "@strapi/strapi": "npm:^4.15.5-alpha.0"
+    "@strapi/strapi": "npm:^4.15.5-alpha.2"
     "@strapi/utils": "npm:^4.15.5-alpha.0"
     "@testing-library/dom": "npm:9.2.0"
     "@testing-library/react": "npm:14.0.0"
@@ -9706,7 +9706,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@strapi/plugin-users-permissions@npm:^4.15.5-alpha.0, @strapi/plugin-users-permissions@workspace:packages/plugins/users-permissions":
+"@strapi/plugin-users-permissions@npm:^4.15.5-alpha.2, @strapi/plugin-users-permissions@workspace:packages/plugins/users-permissions":
   version: 0.0.0-use.local
   resolution: "@strapi/plugin-users-permissions@workspace:packages/plugins/users-permissions"
   dependencies:
@@ -9714,7 +9714,7 @@ __metadata:
     "@strapi/helper-plugin": "npm:^4.15.5-alpha.0"
     "@strapi/icons": "npm:1.13.0"
     "@strapi/pack-up": "npm:^4.15.5-alpha.0"
-    "@strapi/strapi": "npm:^4.15.5-alpha.0"
+    "@strapi/strapi": "npm:^4.15.5-alpha.2"
     "@strapi/utils": "npm:^4.15.5-alpha.0"
     "@testing-library/dom": "npm:9.2.0"
     "@testing-library/react": "npm:14.0.0"
@@ -9960,14 +9960,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@strapi/strapi@npm:^4.15.5-alpha.0, @strapi/strapi@npm:^4.15.5-alpha.1, @strapi/strapi@workspace:packages/core/strapi":
+"@strapi/strapi@npm:^4.15.5-alpha.2, @strapi/strapi@workspace:packages/core/strapi":
   version: 0.0.0-use.local
   resolution: "@strapi/strapi@workspace:packages/core/strapi"
   dependencies:
     "@koa/cors": "npm:3.4.3"
     "@koa/router": "npm:10.1.1"
-    "@strapi/admin": "npm:^4.15.5-alpha.1"
-    "@strapi/data-transfer": "npm:^4.15.5-alpha.0"
+    "@strapi/admin": "npm:^4.15.5-alpha.2"
+    "@strapi/data-transfer": "npm:^4.15.5-alpha.2"
     "@strapi/database": "npm:^4.15.5-alpha.0"
     "@strapi/generate-new": "npm:^4.15.5-alpha.0"
     "@strapi/generators": "npm:^4.15.5-alpha.0"
@@ -9975,9 +9975,9 @@ __metadata:
     "@strapi/pack-up": "workspace:*"
     "@strapi/permissions": "npm:^4.15.5-alpha.0"
     "@strapi/plugin-content-manager": "npm:^4.15.5-alpha.0"
-    "@strapi/plugin-content-type-builder": "npm:^4.15.5-alpha.0"
+    "@strapi/plugin-content-type-builder": "npm:^4.15.5-alpha.2"
     "@strapi/plugin-email": "npm:^4.15.5-alpha.0"
-    "@strapi/plugin-upload": "npm:^4.15.5-alpha.0"
+    "@strapi/plugin-upload": "npm:^4.15.5-alpha.2"
     "@strapi/ts-zen": "npm:^0.2.0"
     "@strapi/types": "npm:^4.15.5-alpha.0"
     "@strapi/typescript-utils": "npm:^4.15.5-alpha.0"
@@ -19802,16 +19802,16 @@ __metadata:
   resolution: "getstarted@workspace:examples/getstarted"
   dependencies:
     "@strapi/icons": "npm:1.11.0"
-    "@strapi/plugin-color-picker": "npm:^4.15.5-alpha.0"
-    "@strapi/plugin-documentation": "npm:^4.15.5-alpha.0"
-    "@strapi/plugin-graphql": "npm:^4.15.5-alpha.0"
-    "@strapi/plugin-i18n": "npm:^4.15.5-alpha.0"
-    "@strapi/plugin-sentry": "npm:^4.15.5-alpha.0"
-    "@strapi/plugin-users-permissions": "npm:^4.15.5-alpha.0"
+    "@strapi/plugin-color-picker": "npm:^4.15.5-alpha.2"
+    "@strapi/plugin-documentation": "npm:^4.15.5-alpha.2"
+    "@strapi/plugin-graphql": "npm:^4.15.5-alpha.2"
+    "@strapi/plugin-i18n": "npm:^4.15.5-alpha.2"
+    "@strapi/plugin-sentry": "npm:^4.15.5-alpha.2"
+    "@strapi/plugin-users-permissions": "npm:^4.15.5-alpha.2"
     "@strapi/provider-email-mailgun": "npm:^4.15.5-alpha.0"
     "@strapi/provider-upload-aws-s3": "npm:^4.15.5-alpha.0"
     "@strapi/provider-upload-cloudinary": "npm:^4.15.5-alpha.0"
-    "@strapi/strapi": "npm:^4.15.5-alpha.0"
+    "@strapi/strapi": "npm:^4.15.5-alpha.2"
     better-sqlite3: "npm:8.6.0"
     lodash: "npm:4.17.21"
     mysql: "npm:2.18.1"
@@ -23320,9 +23320,9 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "kitchensink-ts@workspace:examples/kitchensink-ts"
   dependencies:
-    "@strapi/plugin-i18n": "npm:^4.15.5-alpha.0"
-    "@strapi/plugin-users-permissions": "npm:^4.15.5-alpha.0"
-    "@strapi/strapi": "npm:^4.15.5-alpha.0"
+    "@strapi/plugin-i18n": "npm:^4.15.5-alpha.2"
+    "@strapi/plugin-users-permissions": "npm:^4.15.5-alpha.2"
+    "@strapi/strapi": "npm:^4.15.5-alpha.2"
     better-sqlite3: "npm:8.6.0"
     react: "npm:^18.2.0"
     react-dom: "npm:^18.2.0"
@@ -23338,7 +23338,7 @@ __metadata:
     "@strapi/provider-email-mailgun": "npm:^4.15.5-alpha.0"
     "@strapi/provider-upload-aws-s3": "npm:^4.15.5-alpha.0"
     "@strapi/provider-upload-cloudinary": "npm:^4.15.5-alpha.0"
-    "@strapi/strapi": "npm:^4.15.5-alpha.0"
+    "@strapi/strapi": "npm:^4.15.5-alpha.2"
     lodash: "npm:4.17.21"
     mysql: "npm:2.18.1"
     mysql2: "npm:3.6.0"
