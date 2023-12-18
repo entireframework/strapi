@@ -17,6 +17,7 @@ const ConfigurationProvider = ({
   children,
   authLogo: defaultAuthLogo,
   menuLogo: defaultMenuLogo,
+  leftMenu,
   showReleaseNotification = false,
   showTutorials = false,
 }: ConfigurationProviderProps) => {
@@ -43,6 +44,7 @@ const ConfigurationProvider = ({
       updateProjectSettings={updateProjectSettings}
       showReleaseNotification={showReleaseNotification}
       showTutorials={showTutorials}
+      leftMenu={leftMenu}
       logos={{
         menu: { custom: menuLogo, default: defaultMenuLogo },
         auth: { custom: authLogo, default: defaultAuthLogo },

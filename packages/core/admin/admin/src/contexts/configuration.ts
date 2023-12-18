@@ -5,6 +5,7 @@ export interface ConfigurationContextValue {
     auth: { custom?: string | null; default: string };
     menu: { custom?: string | null; default: string };
   };
+  leftMenu?: object;
   showTutorials: boolean;
   showReleaseNotification: boolean;
   updateProjectSettings: (settings: { authLogo?: string; menuLogo?: string }) => void;
