@@ -40,7 +40,7 @@ export const DynamicComponent = ({
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const { formatMessage } = useIntl();
-  const { getComponentLayout } = useContentTypeLayout();
+  const { getComponentLayout, ...currentLayout } = useContentTypeLayout();
   const { modifiedData } = useCMEditViewDataManager();
   const { icon, friendlyName, mainValue, mainValueIsMedia } = useMemo(() => {
     const componentLayoutData = getComponentLayout(componentUid);
