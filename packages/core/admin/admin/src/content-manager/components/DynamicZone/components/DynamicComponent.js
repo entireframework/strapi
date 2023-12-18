@@ -17,6 +17,7 @@ import PropTypes from 'prop-types';
 import { getEmptyImage } from 'react-dnd-html5-backend';
 import { useIntl } from 'react-intl';
 import styled from 'styled-components';
+import toString from 'lodash/toString';
 
 import { useContentTypeLayout, useDragAndDrop } from '../../../hooks';
 import { composeRefs, getTrad, ItemTypes } from '../../../utils';
@@ -52,7 +53,7 @@ export const DynamicComponent = ({
     const mainFieldKey = getMainField(currentLayout, componentLayoutData) ||
     get(componentLayoutData, ['settings', 'mainField'], 'id');
 
-    const displayedValue = toString(
+    const displayedValue = mainFieldKey.endsWith('id') ? '' : toString(
       get(modifiedData, [name, index, ...mainFieldKey.split('.')], '')
     );
     const displayedValueIsMedia =
