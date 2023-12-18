@@ -22,6 +22,7 @@ import { useContentTypeLayout, useDragAndDrop } from '../../../hooks';
 import { composeRefs, getTrad, ItemTypes } from '../../../utils';
 import { ComponentIcon } from '../../ComponentIcon';
 import FieldComponent from '../../FieldComponent';
+import getMainField from '../../RepeatableComponent/utils/getMainField';
 
 export const DynamicComponent = ({
   componentUid,
@@ -41,22 +42,37 @@ export const DynamicComponent = ({
   const { formatMessage } = useIntl();
   const { getComponentLayout } = useContentTypeLayout();
   const { modifiedData } = useCMEditViewDataManager();
-  const { icon, friendlyName, mainValue } = useMemo(() => {
+  const { icon, friendlyName, mainValue, mainValueIsMedia } = useMemo(() => {
     const componentLayoutData = getComponentLayout(componentUid);
 
     const {
       info: { icon, displayName },
     } = componentLayoutData;
 
-    const mainFieldKey = get(componentLayoutData, ['settings', 'mainField'], 'id');
+    const mainFieldKey = getMainField(currentLayout, componentLayoutData) ||
+    get(componentLayoutData, ['settings', 'mainField'], 'id');
 
-    const mainField = get(modifiedData, [name, index, mainFieldKey]) ?? '';
+    const displayedValue = toString(
+      get(modifiedData, [name, index, ...mainFieldKey.split('.')], '')
+    );
+    const displayedValueIsMedia =
+      displayedValue.endsWith('url') &&
+      toString(
+        get(
+          modifiedData,
+          [
+            name,
+            index,
+            ...mainFieldKey.split('.').slice(0, -1),
+            'provider_metadata',
+          ],
+          ''
+        )
+      ).length > 0;
 
-    const displayedValue = mainFieldKey === 'id' ? '' : String(mainField).trim();
+    const mainValue = displayedValue.length > 0 && !displayedValueIsMedia ? ` - ${displayedValue}` : displayedValue;
 
-    const mainValue = displayedValue.length > 0 ? ` - ${displayedValue}` : displayedValue;
-
-    return { friendlyName: displayName, icon, mainValue };
+    return { friendlyName: displayName, icon, mainValue, mainValueIsMedia: displayedValueIsMedia };
   }, [componentUid, getComponentLayout, modifiedData, name, index]);
 
   const fieldsErrors = Object.keys(formErrors).filter((errorKey) => {
@@ -87,7 +103,11 @@ export const DynamicComponent = ({
       type: `${ItemTypes.DYNAMIC_ZONE}_${name}`,
       index,
       item: {
-        displayedValue: `${friendlyName}${mainValue}`,
+        displayedValue: mainValueIsMedia && mainValue ? (
+          <Img src={prefixFileUrlWithBackendUrl(mainValue)} aria-hidden alt="" />
+        ) : (
+          `${friendlyName}${mainValue}`
+        ),
         icon,
       },
       onMoveItem: onMoveComponent,
@@ -208,7 +228,11 @@ export const DynamicComponent = ({
             <AccordionToggle
               startIcon={<ComponentIcon icon={icon} showBackground={false} size="S" />}
               action={accordionActions}
-              title={`${friendlyName}${mainValue}`}
+              title={mainValueIsMedia && mainValue ? (
+                <Img src={prefixFileUrlWithBackendUrl(mainValue)} aria-hidden alt="" />
+              ) : (
+                `${friendlyName}${mainValue}`
+              )}
               togglePosition="left"
             />
             <AccordionContent>
