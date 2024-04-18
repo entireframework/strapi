@@ -133,6 +133,7 @@ interface IFile {
   id: number;
   name: string;
   alternativeText?: string;
+  posterTime?: string;
   caption?: string;
   width?: number;
   height?: number;

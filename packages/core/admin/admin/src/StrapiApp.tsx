@@ -74,6 +74,7 @@ class StrapiApp {
   configurations: {
     authLogo: string;
     head: { favicon: string };
+    leftMenu: object;
     locales: string[];
     menuLogo: string;
     notifications: { releases: boolean };
@@ -85,6 +86,7 @@ class StrapiApp {
   customConfigurations: {
     auth?: { logo: string };
     head?: { favicon: string };
+    leftMenu?: object;
     locales?: string[];
     menu?: { logo: string };
     notifications?: { releases: boolean };
@@ -118,6 +120,7 @@ class StrapiApp {
       head: { favicon: '' },
       locales: ['en'],
       menuLogo: Logo,
+      leftMenu: {},
       notifications: { releases: true },
       themes: { light: lightTheme, dark: darkTheme },
       translations: {},
@@ -301,6 +304,10 @@ class StrapiApp {
         'en',
         ...(this.customConfigurations.locales?.filter((loc) => loc !== 'en') || []),
       ];
+    }
+
+    if (this.customConfigurations?.leftMenu) {
+      this.configurations.leftMenu = this.customConfigurations.leftMenu;
     }
 
     if (this.customConfigurations?.auth?.logo) {
@@ -596,6 +603,7 @@ class StrapiApp {
             authLogo={this.configurations.authLogo}
             menuLogo={this.configurations.menuLogo}
             showTutorials={this.configurations.tutorials}
+            leftMenu={this.configurations.leftMenu}
             showReleaseNotification={this.configurations.notifications.releases}
           />
         </Providers>

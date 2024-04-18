@@ -84,6 +84,7 @@ module.exports = ({ strapi }) => {
       definition(t) {
         t.string('name');
         t.string('alternativeText');
+        t.float('posterTime');
         t.string('caption');
       },
     });

@@ -14,6 +14,7 @@ export const useAssets = jest.fn().mockReturnValue({
         id: 77,
         name: '3874873.jpg',
         alternativeText: null,
+        posterTime: null,
         caption: null,
         width: 400,
         height: 400,

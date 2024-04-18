@@ -12,6 +12,9 @@ const getInputProps = (fieldName) => {
     case 'mainField':
       type = 'select';
       break;
+    case 'coverField':
+      type = 'select';
+      break;
     case 'editable':
       type = 'bool';
       break;

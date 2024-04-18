@@ -8,6 +8,16 @@ import { DefaultTheme, createGlobalStyle } from 'styled-components';
 import { useTypedSelector } from '../core/store/hooks';
 import { setAvailableThemes } from '../reducer';
 
+const loadCss = async () => {
+  await import(/* webpackChunkName: "fontawesome-css" */ 'font-awesome/css/font-awesome.min.css');
+  await import(
+    /* webpackChunkName: "fontawesome-css-all" */ '@fortawesome/fontawesome-free/css/all.css'
+  );
+  await import(/* webpackChunkName: "fontawesome-js" */ '@fortawesome/fontawesome-free/js/all.min');
+};
+
+loadCss();
+
 interface ThemeProps {
   children: React.ReactNode;
   themes: {

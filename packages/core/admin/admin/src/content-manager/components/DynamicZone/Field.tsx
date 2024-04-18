@@ -2,6 +2,7 @@ import * as React from 'react';
 
 import { Box, Flex, VisuallyHidden } from '@strapi/design-system';
 import { NotAllowedInput, useCMEditViewDataManager, useNotification } from '@strapi/helper-plugin';
+import { upperFirst } from 'lodash/fp';
 import PropTypes from 'prop-types';
 import { useIntl } from 'react-intl';
 
@@ -220,7 +221,19 @@ const DynamicZone = ({ name, labelAction, fieldSchema, metadatas }: DynamicZoneP
         id: getTranslation('components.DynamicZone.add-component'),
         defaultMessage: 'Add a component to {componentName}',
       },
-      { componentName: metadatas.label || name }
+      {
+        componentName:
+          formatMessage({
+            id: metadatas.label,
+            defaultMessage:
+              metadatas.label && name && metadatas.label === name.split('.').slice(-1)[0]
+                ? metadatas.label
+                    .split(/[\s_-]+/)
+                    .map(upperFirst)
+                    .join(' ')
+                : metadatas.label,
+          }) || name,
+      }
     );
   };
 
@@ -228,7 +241,16 @@ const DynamicZone = ({ name, labelAction, fieldSchema, metadatas }: DynamicZoneP
     return (
       <NotAllowedInput
         description={intlDescription}
-        intlLabel={{ id: metadatas.label, defaultMessage: metadatas.label }}
+        intlLabel={{
+          id: metadatas.label,
+          defaultMessage:
+            metadatas.label && name && metadatas.label === name.split('.').slice(-1)[0]
+              ? metadatas.label
+                  .split(/[\s_-]+/)
+                  .map(upperFirst)
+                  .join(' ')
+              : metadatas.label,
+        }}
         labelAction={labelAction}
         name={name}
       />
@@ -243,7 +265,14 @@ const DynamicZone = ({ name, labelAction, fieldSchema, metadatas }: DynamicZoneP
         <Box>
           <DynamicZoneLabel
             intlDescription={intlDescription}
-            label={metadatas.label}
+            label={
+              metadatas.label && name && metadatas.label === name.split('.').slice(-1)[0]
+                ? metadatas.label
+                    .split(/[\s_-]+/)
+                    .map(upperFirst)
+                    .join(' ')
+                : metadatas.label
+            }
             labelAction={labelAction}
             name={name}
             numberOfComponents={dynamicDisplayedComponentsLength}

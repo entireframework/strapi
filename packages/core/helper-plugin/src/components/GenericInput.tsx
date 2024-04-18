@@ -59,6 +59,7 @@ export interface GenericInputProps<TAttribute extends Attribute.Any = Attribute.
   intlLabel: TranslationMessage;
   labelAction?: React.ReactNode;
   name: string;
+  modifiedData?: object;
   onChange: (
     payload: {
       target: {
@@ -90,6 +91,7 @@ const GenericInput = ({
   name,
   onChange,
   options = [],
+  modifiedData,
   placeholder,
   required,
   step,
@@ -190,6 +192,7 @@ const GenericInput = ({
         name={name}
         onChange={onChange}
         options={options}
+        modifiedData={modifiedData}
         required={required}
         placeholder={placeholder}
         type={type}

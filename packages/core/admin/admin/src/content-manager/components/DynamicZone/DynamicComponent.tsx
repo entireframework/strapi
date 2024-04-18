@@ -10,9 +10,10 @@ import {
   VisuallyHidden,
 } from '@strapi/design-system';
 import { Menu, MenuItem } from '@strapi/design-system/v2';
-import { useCMEditViewDataManager } from '@strapi/helper-plugin';
+import { prefixFileUrlWithBackendUrl, useCMEditViewDataManager } from '@strapi/helper-plugin';
 import { Drag, More, Trash } from '@strapi/icons';
 import get from 'lodash/get';
+import toString from 'lodash/toString';
 import { getEmptyImage } from 'react-dnd-html5-backend';
 import { useIntl } from 'react-intl';
 import styled from 'styled-components';
@@ -20,6 +21,7 @@ import styled from 'styled-components';
 import { useContentTypeLayout } from '../../hooks/useContentTypeLayout';
 import { type UseDragAndDropOptions, useDragAndDrop } from '../../hooks/useDragAndDrop';
 import { ItemTypes } from '../../utils/dragAndDrop';
+import { getMainField } from '../../utils/mainField';
 import { composeRefs } from '../../utils/refs';
 import { getTranslation } from '../../utils/translations';
 import { ComponentIcon } from '../ComponentIcon';
@@ -54,26 +56,38 @@ const DynamicComponent = ({
   dynamicComponentsByCategory = {},
   onAddComponent,
 }: DynamicComponentProps) => {
-  const [isOpen, setIsOpen] = React.useState(true);
+  const [isOpen, setIsOpen] = React.useState(false);
   const { formatMessage } = useIntl();
-  const { getComponentLayout } = useContentTypeLayout();
+  const { getComponentLayout, ...currentLayout } = useContentTypeLayout();
   const { modifiedData } = useCMEditViewDataManager();
-  const { icon, friendlyName, mainValue } = React.useMemo(() => {
+  const { icon, friendlyName, mainValue, mainValueIsMedia } = React.useMemo(() => {
     const componentLayoutData = getComponentLayout(componentUid);
 
     const {
       info: { icon, displayName },
     } = componentLayoutData;
 
-    const mainFieldKey = get(componentLayoutData, ['settings', 'mainField'], 'id');
+    const mainFieldKey =
+      getMainField(currentLayout, componentLayoutData) ||
+      get(componentLayoutData, ['settings', 'mainField'], 'id');
 
-    const mainField = get(modifiedData, [name, index, mainFieldKey]) ?? '';
+    const displayedValue = mainFieldKey.endsWith('id')
+      ? ''
+      : toString(get(modifiedData, [name, index, ...mainFieldKey.split('.')], ''));
+    const displayedValueIsMedia =
+      displayedValue.endsWith('url') &&
+      toString(
+        get(
+          modifiedData,
+          [name, index, ...mainFieldKey.split('.').slice(0, -1), 'provider_metadata'],
+          ''
+        )
+      ).length > 0;
 
-    const displayedValue = mainFieldKey === 'id' ? '' : String(mainField).trim();
+    const mainValue =
+      displayedValue.length > 0 && !displayedValueIsMedia ? ` - ${displayedValue}` : displayedValue;
 
-    const mainValue = displayedValue.length > 0 ? ` - ${displayedValue}` : displayedValue;
-
-    return { friendlyName: displayName, icon, mainValue };
+    return { friendlyName: displayName, icon, mainValue, mainValueIsMedia: displayedValueIsMedia };
   }, [componentUid, getComponentLayout, modifiedData, name, index]);
 
   const fieldsErrors = Object.keys(formErrors).filter((errorKey) => {
@@ -105,7 +119,12 @@ const DynamicComponent = ({
       index,
       item: {
         index,
-        displayedValue: `${friendlyName}${mainValue}`,
+        displayedValue:
+          mainValueIsMedia && mainValue ? (
+            <img src={prefixFileUrlWithBackendUrl(mainValue)} aria-hidden alt="" />
+          ) : (
+            `${friendlyName}${mainValue}`
+          ),
         icon,
       },
       onMoveItem: onMoveComponent,
@@ -228,7 +247,13 @@ const DynamicComponent = ({
               // @ts-expect-error – Issue in DS where AccordionToggle props don't extend TextButton
               startIcon={<ComponentIcon icon={icon} showBackground={false} size="S" />}
               action={accordionActions}
-              title={`${friendlyName}${mainValue}`}
+              title={
+                mainValueIsMedia && mainValue
+                  ? ((
+                      <img src={prefixFileUrlWithBackendUrl(mainValue)} aria-hidden alt="" />
+                    ) as any)
+                  : `${friendlyName}${mainValue}`
+              }
               togglePosition="left"
             />
             <AccordionContent>

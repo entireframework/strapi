@@ -21,6 +21,7 @@ const editAssetRequest = (asset, file, cancelToken, onProgress, post) => {
     'fileInfo',
     JSON.stringify({
       alternativeText: asset.alternativeText,
+      posterTime: asset.posterTime,
       caption: asset.caption,
       folder: asset.folder,
       name: asset.name,

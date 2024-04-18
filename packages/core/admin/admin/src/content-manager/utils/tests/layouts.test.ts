@@ -317,6 +317,9 @@ describe('layouts', () => {
             label: 'categories',
           },
           list: {
+            coverField: {
+              name: undefined,
+            },
             mainField: {
               name: 'name',
               schema: {

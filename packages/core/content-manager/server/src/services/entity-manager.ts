@@ -112,7 +112,7 @@ const entityManager: EntityManager = ({ strapi }) => ({
     opts: Parameters<typeof strapi.entityService.findMany>[1],
     uid: Common.UID.ContentType
   ) {
-    const params = { ...opts, populate: getDeepPopulate(uid) } as typeof opts;
+    const params = { ...opts, populate: opts?.populate || getDeepPopulate(uid) };
     const entities = await strapi.entityService.findMany(uid, params);
     return this.mapEntitiesResponse(entities, uid);
   },

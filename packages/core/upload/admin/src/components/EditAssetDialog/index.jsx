@@ -16,6 +16,7 @@ import {
   ModalBody,
   ModalFooter,
   ModalLayout,
+  NumberInput,
   TextInput,
   VisuallyHidden,
 } from '@strapi/design-system';
@@ -30,6 +31,7 @@ import * as yup from 'yup';
 import { AssetDefinition } from '../../constants';
 import { useEditAsset } from '../../hooks/useEditAsset';
 import { useFolderStructure } from '../../hooks/useFolderStructure';
+import { useReuploadAsset } from '../../hooks/useReuploadAsset';
 import { findRecursiveFolderByValue, getTrad } from '../../utils';
 import formatBytes from '../../utils/formatBytes';
 import { ContextInfo } from '../ContextInfo';
@@ -47,6 +49,7 @@ const LoadingBody = styled(Flex)`
 const fileInfoSchema = yup.object({
   name: yup.string().required(),
   alternativeText: yup.string(),
+  posterTime: yup.number(),
   caption: yup.string(),
   folder: yup.number(),
 });
@@ -65,6 +68,7 @@ export const EditAssetDialog = ({
   const [isCropping, setIsCropping] = useState(false);
   const [replacementFile, setReplacementFile] = useState();
   const { editAsset, isLoading } = useEditAsset();
+  const { reuploadAsset, isLoading: isReuploading } = useReuploadAsset();
 
   const { data: folderStructure, isLoading: folderStructureIsLoading } = useFolderStructure({
     enabled: true,
@@ -93,6 +97,10 @@ export const EditAssetDialog = ({
 
       onClose(editedAsset);
     }
+  };
+
+  const handleReupload = () => {
+    return reuploadAsset(asset);
   };
 
   const handleStartCropping = () => {
@@ -128,6 +136,7 @@ export const EditAssetDialog = ({
   const initialFormData = !folderStructureIsLoading && {
     name: asset.name,
     alternativeText: asset.alternativeText ?? undefined,
+    posterTime: asset.posterTime ?? undefined,
     caption: asset.caption ?? undefined,
     parent: {
       value: activeFolderId ?? undefined,
@@ -254,6 +263,26 @@ export const EditAssetDialog = ({
                       disabled={formDisabled}
                     />
 
+                    <NumberInput
+                      value={values.posterTime}
+                      error={errors.posterTime}
+                      hint={formatMessage({
+                        id: getTrad('settings.form.posterTime.description'),
+                        defaultMessage: 'Poster image time in seconds.',
+                      })}
+                      label={formatMessage({
+                        id: getTrad('settings.form.posterTime.label'),
+                        defaultMessage: 'Poster image time',
+                      })}
+                      name="posterTime"
+                      onValueChange={(value) => {
+                        handleChange({
+                          target: { name: 'posterTime', value },
+                        });
+                      }}
+                      disabled={formDisabled}
+                    />
+
                     <TextInput
                       label={formatMessage({
                         id: getTrad('form.input.label.file-alt'),
@@ -330,6 +359,7 @@ export const EditAssetDialog = ({
               <>
                 <ReplaceMediaButton
                   onSelectMedia={setReplacementFile}
+                  onReuploadMedia={handleReupload}
                   acceptedMime={asset.mime}
                   disabled={formDisabled}
                   trackedLocation={trackedLocation}
@@ -337,7 +367,7 @@ export const EditAssetDialog = ({
 
                 <Button
                   onClick={() => submitButtonRef.current.click()}
-                  loading={isLoading}
+                  loading={isLoading || isReuploading}
                   disabled={formDisabled}
                 >
                   {formatMessage({ id: 'global.finish', defaultMessage: 'Finish' })}

@@ -19,6 +19,7 @@ import { extractCredentials, isUrlFromBucket } from './utils';
 export interface File {
   name: string;
   alternativeText?: string;
+  posterTime?: number;
   caption?: string;
   width?: number;
   height?: number;
