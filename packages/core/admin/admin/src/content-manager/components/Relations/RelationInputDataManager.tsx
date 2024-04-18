@@ -448,14 +448,15 @@ const RelationInputDataManager = ({
           'isLoading',
           'isSuccess'
         ),
-        data: pick({ ...relations, data: relationsFromModifiedData }, 'data').data.map((data) =>
-          data.mainField
-            ? data
-            : normalizeRelation(data, {
-                mainFieldName: mainField.name,
-                shouldAddLink: shouldDisplayRelationLink,
-                targetModel,
-              })
+        data: pick({ ...relations, data: relationsFromModifiedData }, 'data').data.map(
+          (data: Contracts.Relations.RelationResult) =>
+            data.mainField
+              ? data
+              : normalizeRelation(data, {
+                  mainFieldName: mainField.name,
+                  shouldAddLink: shouldDisplayRelationLink,
+                  targetModel,
+                })
         ),
       }}
       required={required}

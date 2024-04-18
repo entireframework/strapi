@@ -40,12 +40,13 @@ const AuthenticatedApp = React.lazy(() =>
   import('./components/AuthenticatedApp').then((mod) => ({ default: mod.AuthenticatedApp }))
 );
 
-interface AppProps extends Omit<ConfigurationProviderProps, 'children' | 'authLogo' | 'menuLogo'> {
+interface AppProps extends Omit<ConfigurationProviderProps, 'children' | 'authLogo' | 'menuLogo' | 'leftMenu'> {
   authLogo: string;
   menuLogo: string;
+  leftMenu: any;
 }
 
-export const App = ({ authLogo, menuLogo, showReleaseNotification, showTutorials }: AppProps) => {
+export const App = ({ authLogo, menuLogo, showReleaseNotification, showTutorials, leftMenu }: AppProps) => {
   // @ts-expect-error – we need to type the useEnterprise hook better, in this circumstance we know it'll either be the CE data or a merge of the two.
   const adminPermissions: Partial<PermissionMap> = useEnterprise(
     ADMIN_PERMISSIONS_CE,
@@ -161,6 +162,7 @@ export const App = ({ authLogo, menuLogo, showReleaseNotification, showTutorials
         }}
         showReleaseNotification={showReleaseNotification}
         showTutorials={showTutorials}
+        leftMenu={leftMenu}
       >
         <TrackingProvider value={trackingInfo}>
           <Switch>

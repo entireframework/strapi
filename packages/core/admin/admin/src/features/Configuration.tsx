@@ -35,6 +35,7 @@ interface ConfigurationContextValue {
     auth: ConfigurationLogo;
     menu: ConfigurationLogo;
   };
+  leftMenu: any;
   showTutorials: boolean;
   showReleaseNotification: boolean;
   updateProjectSettings: (body: UpdateProjectSettingsBody) => Promise<void>;
@@ -57,6 +58,7 @@ interface ConfigurationProviderProps extends Required<Logos> {
   children: React.ReactNode;
   showReleaseNotification?: boolean;
   showTutorials?: boolean;
+  leftMenu?: any;
 }
 
 interface Logos {
@@ -68,6 +70,7 @@ const ConfigurationProvider = ({
   children,
   authLogo: defaultAuthLogo,
   menuLogo: defaultMenuLogo,
+  leftMenu = {},
   showReleaseNotification = false,
   showTutorials = false,
 }: ConfigurationProviderProps) => {
@@ -136,6 +139,7 @@ const ConfigurationProvider = ({
     <ConfigurationContextProvider
       showReleaseNotification={showReleaseNotification}
       showTutorials={showTutorials}
+      leftMenu={leftMenu}
       logos={{
         menu: {
           custom: isSuccess ? data?.menuLogo : defaultMenuLogo.custom,

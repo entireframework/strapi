@@ -73,7 +73,7 @@ const LeftMenu = ({ generalSectionLinks, pluginsSectionLinks }: LeftMenuProps) =
 
   const initials = userDisplayName
     .split(' ')
-    .map((name) => name.substring(0, 1))
+    .map((name: string) => name.substring(0, 1))
     .join('')
     .substring(0, 2);
 
@@ -237,7 +237,7 @@ const LeftMenu = ({ generalSectionLinks, pluginsSectionLinks }: LeftMenuProps) =
           </LinkUserWrapper>
         )}
 
-        <NavCondense onClick={() => setCondensed((s) => !s)}>
+        <NavCondense onClick={() => setCondensed((s: any) => !s)}>
           {condensed
             ? formatMessage({
                 id: 'app.components.LeftMenu.expand',

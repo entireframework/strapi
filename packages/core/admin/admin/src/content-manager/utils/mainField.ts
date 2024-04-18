@@ -1,6 +1,6 @@
 import get from 'lodash/get';
 
-const getMainField = (currentLayout, schema) => {
+const getMainField = (currentLayout: any, schema: any): any => {
   if (!schema._mainField) {
     schema = {
       ...schema,
@@ -62,4 +62,4 @@ const getMainField = (currentLayout, schema) => {
   return [schema._mainField, ...(attributeRelation ? [attributeRelation] : [])].join('.');
 };
 
-export default getMainField;
+export { getMainField };
