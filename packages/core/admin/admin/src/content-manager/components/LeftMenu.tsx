@@ -90,7 +90,7 @@ const LeftMenu = () => {
           return {
             id: key,
             title: formatMessage({
-              id: `components.LeftMenu.${key}`,
+              id: getTranslation(`components.LeftMenu.${key}`),
               defaultMessage: leftMenu[key].defaultMessage,
             }),
             searchable: true,

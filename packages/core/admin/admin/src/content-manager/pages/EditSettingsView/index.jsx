@@ -347,11 +347,11 @@ const EditSettingsView = ({ mainLayout, components, isContentTypeView, slug, upd
                   <GridItem col={6} s={12}>
                     <Select
                       label={formatMessage({
-                        id: getTrad('containers.SettingPage.editSettings.entry.cover'),
+                        id: getTranslation('containers.SettingPage.editSettings.entry.cover'),
                         defaultMessage: 'Entry cover',
                       })}
                       hint={formatMessage({
-                        id: getTrad('containers.SettingPage.editSettings.entry.cover.description'),
+                        id: getTranslation('containers.SettingPage.editSettings.entry.cover.description'),
                         defaultMessage: 'Set the cover field of your entry',
                       })}
                       onChange={(value) => {
