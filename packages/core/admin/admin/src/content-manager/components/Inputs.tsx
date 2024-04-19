@@ -6,6 +6,7 @@ import {
   useCMEditViewDataManager,
   useLibrary,
 } from '@strapi/helper-plugin';
+import { upperFirst } from 'lodash/fp';
 import get from 'lodash/get';
 import omit from 'lodash/omit';
 import take from 'lodash/take';
@@ -221,7 +222,16 @@ const Inputs = ({
     return (
       <NotAllowedInput
         description={description ? { id: description, defaultMessage: description } : undefined}
-        intlLabel={{ id: label, defaultMessage: label }}
+        intlLabel={{
+          id: label,
+          defaultMessage:
+            label && keys && label === keys.split('.').slice(-1)[0]
+              ? label
+                  .split(/[\s_-]+/)
+                  .map(upperFirst)
+                  .join(' ')
+              : label,
+        }}
         labelAction={labelAction}
         error={error ? formatMessage(error) : undefined}
         name={keys}
@@ -245,8 +255,14 @@ const Inputs = ({
             : undefined
         }
         intlLabel={{
-          id: metadatas.label,
-          defaultMessage: metadatas.label,
+          id: label,
+          defaultMessage:
+            label && keys && label === keys.split('.').slice(-1)[0]
+              ? label
+                  .split(/[\s_-]+/)
+                  .map(upperFirst)
+                  .join(' ')
+              : label,
         }}
         labelAction={labelAction}
         isUserAllowedToEditField={isUserAllowedToEditField}
@@ -280,7 +296,16 @@ const Inputs = ({
     <GenericInput
       attribute={fieldSchema}
       autoComplete="new-password"
-      intlLabel={{ id: label, defaultMessage: label }}
+      intlLabel={{
+        id: label,
+        defaultMessage:
+          label && keys && label === keys.split('.').slice(-1)[0]
+            ? label
+                .split(/[\s_-]+/)
+                .map(upperFirst)
+                .join(' ')
+            : label,
+      }}
       // in case the default value of the boolean is null, attribute.default doesn't exist
       isNullable={
         inputType === 'bool' &&
