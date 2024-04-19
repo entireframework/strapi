@@ -3646,13 +3646,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@fortawesome/fontawesome-common-types@npm:6.3.0":
-  version: 6.3.0
-  resolution: "@fortawesome/fontawesome-common-types@npm:6.3.0"
-  checksum: dc8998733ad8f0ed30c4894a4ead32ae17004a50db4d1e5d0afb3e91dd84f405863ae528c04cf3bbad212653aa5dfe77f2da58a44dbbb04f6350082e82045326
-  languageName: node
-  linkType: hard
-
 "@fortawesome/fontawesome-common-types@npm:6.5.2":
   version: 6.5.2
   resolution: "@fortawesome/fontawesome-common-types@npm:6.5.2"
@@ -3660,23 +3653,23 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@fortawesome/fontawesome-free@npm:^6.3.0":
+"@fortawesome/fontawesome-free@npm:^6.5.2":
   version: 6.5.2
   resolution: "@fortawesome/fontawesome-free@npm:6.5.2"
   checksum: 8eb70fa76263a79f43d95c7b8d2a839c04cd96ec17ca0f14d7b6ec659ce25abd89e47b436616b5fd9e1aec74f2f4e9c02c6be7549d37b5cb9ceb5f15c8834cbf
   languageName: node
   linkType: hard
 
-"@fortawesome/fontawesome-svg-core@npm:6.3.0":
-  version: 6.3.0
-  resolution: "@fortawesome/fontawesome-svg-core@npm:6.3.0"
+"@fortawesome/fontawesome-svg-core@npm:^6.5.2":
+  version: 6.5.2
+  resolution: "@fortawesome/fontawesome-svg-core@npm:6.5.2"
   dependencies:
-    "@fortawesome/fontawesome-common-types": "npm:6.3.0"
-  checksum: c5726269d7f83e7a2b348e8d384b9c7b693767ca5aa446cfbe5d048b8cfc76faac746bd4d4905b2bdf37bf9069eeca332dbe789e0b3899ca8b642a94454c8bca
+    "@fortawesome/fontawesome-common-types": "npm:6.5.2"
+  checksum: 03cc6d9662f2014e2fbbf47e9678a6a21108edeb78ff551207eeb12404daa8bfa5c6dd30a474d3fca897e856ff4b45d35261bb445fc30994c46d91783722684d
   languageName: node
   linkType: hard
 
-"@fortawesome/free-brands-svg-icons@npm:^6.3.0":
+"@fortawesome/free-brands-svg-icons@npm:^6.5.2":
   version: 6.5.2
   resolution: "@fortawesome/free-brands-svg-icons@npm:6.5.2"
   dependencies:
@@ -3685,7 +3678,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@fortawesome/free-solid-svg-icons@npm:^6.3.0":
+"@fortawesome/free-solid-svg-icons@npm:^6.5.2":
   version: 6.5.2
   resolution: "@fortawesome/free-solid-svg-icons@npm:6.5.2"
   dependencies:
@@ -7890,10 +7883,10 @@ __metadata:
   resolution: "@strapi/admin@workspace:packages/core/admin"
   dependencies:
     "@casl/ability": "npm:6.5.0"
-    "@fortawesome/fontawesome-free": "npm:^6.3.0"
-    "@fortawesome/fontawesome-svg-core": "npm:6.3.0"
-    "@fortawesome/free-brands-svg-icons": "npm:^6.3.0"
-    "@fortawesome/free-solid-svg-icons": "npm:^6.3.0"
+    "@fortawesome/fontawesome-free": "npm:^6.5.2"
+    "@fortawesome/fontawesome-svg-core": "npm:^6.5.2"
+    "@fortawesome/free-brands-svg-icons": "npm:^6.5.2"
+    "@fortawesome/free-solid-svg-icons": "npm:^6.5.2"
     "@fortawesome/react-fontawesome": "npm:^0.2.0"
     "@pmmmwh/react-refresh-webpack-plugin": "npm:0.5.11"
     "@radix-ui/react-context": "npm:1.0.1"
