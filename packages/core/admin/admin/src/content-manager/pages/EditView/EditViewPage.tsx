@@ -14,6 +14,7 @@ import {
 } from '@strapi/helper-plugin';
 import { Layer, Pencil } from '@strapi/icons';
 import { Attribute } from '@strapi/types';
+import { upperFirst } from 'lodash/fp';
 import { useIntl } from 'react-intl';
 import { RouteComponentProps, useLocation } from 'react-router-dom';
 
@@ -240,8 +241,24 @@ const EditViewPage = ({
                                               isRepeatable={repeatable}
                                               intlLabel={{
                                                 id: metadatas.label,
-                                                defaultMessage: metadatas.label,
+                                                defaultMessage:
+                                                  metadatas.label &&
+                                                  name &&
+                                                  metadatas.label === name.split('.').slice(-1)[0]
+                                                    ? metadatas.label
+                                                        .split(/[\s_-]+/)
+                                                        .map(upperFirst)
+                                                        .join(' ')
+                                                    : metadatas.label,
                                               }}
+                                              intlDescription={
+                                                metadatas.description
+                                                  ? {
+                                                      id: metadatas.description,
+                                                      defaultMessage: metadatas.description,
+                                                    }
+                                                  : undefined
+                                              }
                                               max={max}
                                               min={min}
                                               name={name}

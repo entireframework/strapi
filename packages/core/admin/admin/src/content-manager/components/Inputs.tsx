@@ -324,6 +324,7 @@ const Inputs = ({
       // @ts-expect-error – TODO: fix this later...
       onChange={onChange}
       options={options}
+      modifiedData={modifiedData}
       placeholder={placeholder ? { id: placeholder, defaultMessage: placeholder } : undefined}
       required={fieldSchema.required || false}
       step={getStep(type)}

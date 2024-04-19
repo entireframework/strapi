@@ -22,6 +22,7 @@ import { RepeatableComponent } from './RepeatableComponent';
 interface FieldComponentProps {
   componentUid: string;
   intlLabel?: TranslationMessage;
+  intlDescription?: TranslationMessage;
   isFromDynamicZone?: boolean;
   isRepeatable?: boolean;
   isNested?: boolean;
@@ -35,6 +36,7 @@ interface FieldComponentProps {
 const FieldComponent = ({
   componentUid,
   intlLabel,
+  intlDescription,
   isFromDynamicZone,
   isRepeatable,
   isNested,
@@ -55,6 +57,7 @@ const FieldComponent = ({
     updateActionAllowedFields,
   } = useCMEditViewDataManager();
   const { contentType } = useContentTypeLayout();
+  const description = intlDescription?.id ? formatMessage(intlDescription) : undefined;
 
   // This is used for the readonly mode when updating an entry
   const allDynamicZoneFields = React.useMemo(() => {
@@ -172,6 +175,13 @@ const FieldComponent = ({
               {required && <Typography textColor="danger600">*</Typography>}
             </Typography>
             {labelAction && <LabelAction paddingLeft={1}>{labelAction}</LabelAction>}
+            {description && (
+              <Box marginTop={1} marginBottom={1}>
+                <Typography variant="pi" textColor="neutral600">
+                  {description}
+                </Typography>
+              </Box>
+            )}
           </Flex>
         )}
 

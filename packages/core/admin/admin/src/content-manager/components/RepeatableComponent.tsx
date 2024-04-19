@@ -427,6 +427,14 @@ interface ComponentProps
   moveComponentField: (newIndex: number, currentIndex: number) => void;
 }
 
+const Img = styled.img`
+  height: 36px;
+  padding-top: 4px;
+  margin: -5px 0;
+  width: 100%;
+  object-fit: contain;
+`;
+
 const Component = ({
   componentFieldName,
   componentUid,
@@ -480,7 +488,7 @@ const Component = ({
         index,
         displayedValue:
           displayedValueIsMedia && displayedValue ? (
-            <img src={prefixFileUrlWithBackendUrl(displayedValue)} aria-hidden alt="" />
+            <Img src={prefixFileUrlWithBackendUrl(displayedValue)} aria-hidden alt="" />
           ) : (
             displayedValue
           ),
@@ -554,7 +562,7 @@ const Component = ({
             title={
               displayedValueIsMedia && displayedValue
                 ? ((
-                    <img src={prefixFileUrlWithBackendUrl(displayedValue)} aria-hidden alt="" />
+                    <Img src={prefixFileUrlWithBackendUrl(displayedValue)} aria-hidden alt="" />
                   ) as any)
                 : displayedValue
             }
