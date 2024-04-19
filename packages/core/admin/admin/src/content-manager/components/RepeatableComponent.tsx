@@ -16,6 +16,7 @@ import {
 } from '@strapi/design-system';
 import {
   TranslationMessage,
+  prefixFileUrlWithBackendUrl,
   useCMEditViewDataManager,
   useNotification,
   useQuery,
@@ -32,6 +33,7 @@ import { useDragAndDrop, type UseDragAndDropOptions } from '../hooks/useDragAndD
 import { useLazyComponents } from '../hooks/useLazyComponents';
 import { ItemTypes } from '../utils/dragAndDrop';
 import { getMaxTempKey } from '../utils/fields';
+import { getMainField } from '../utils/mainField';
 import { composeRefs } from '../utils/refs';
 import { getTranslation } from '../utils/translations';
 
@@ -70,7 +72,8 @@ const RepeatableComponent = ({
   const { formatMessage } = useIntl();
   const [collapseToOpen, setCollapseToOpen] = React.useState<number | null>(null);
   const [liveText, setLiveText] = React.useState('');
-  const { getComponentLayout, components } = useContentTypeLayout();
+  const { getComponentLayout, ...currentLayout } = useContentTypeLayout();
+  const { components } = currentLayout;
   const componentLayoutData = getComponentLayout(componentUid);
 
   const search = useQuery();
@@ -160,7 +163,8 @@ const RepeatableComponent = ({
   };
 
   const mainField =
-    'settings' in componentLayoutData ? componentLayoutData.settings.mainField ?? 'id' : 'id';
+    getMainField(currentLayout, componentLayoutData) ||
+    get(componentLayoutData, ['settings', 'mainField'], 'id');
 
   const handleToggle = (key: number) => () => {
     if (collapseToOpen === key) {
@@ -442,8 +446,21 @@ const Component = ({
   const { modifiedData, removeRepeatableField, triggerFormValidation } = useCMEditViewDataManager();
 
   const displayedValue = toString(
-    get(modifiedData, [...componentFieldName.split('.'), mainField], '')
+    get(modifiedData, [...componentFieldName.split('.'), ...mainField.split('.')], '')
   );
+  const displayedValueIsMedia =
+    mainField.endsWith('url') &&
+    toString(
+      get(
+        modifiedData,
+        [
+          ...componentFieldName.split('.'),
+          ...mainField.split('.').slice(0, -1),
+          'provider_metadata',
+        ],
+        ''
+      )
+    ).length > 0;
   const accordionRef = React.useRef<HTMLButtonElement>(null!);
   const { formatMessage } = useIntl();
 
@@ -461,7 +478,12 @@ const Component = ({
       index,
       item: {
         index,
-        displayedValue,
+        displayedValue:
+          displayedValueIsMedia && displayedValue ? (
+            <img src={prefixFileUrlWithBackendUrl(displayedValue)} aria-hidden alt="" />
+          ) : (
+            displayedValue
+          ),
       },
       onStart() {
         // Close all collapses
@@ -529,7 +551,13 @@ const Component = ({
                 </ActionsFlex>
               )
             }
-            title={displayedValue}
+            title={
+              displayedValueIsMedia && displayedValue
+                ? ((
+                    <img src={prefixFileUrlWithBackendUrl(displayedValue)} aria-hidden alt="" />
+                  ) as any)
+                : displayedValue
+            }
             togglePosition="left"
           />
           <DSAccordionContent>
