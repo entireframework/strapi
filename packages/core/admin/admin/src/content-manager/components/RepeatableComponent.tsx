@@ -255,24 +255,26 @@ const RepeatableComponent = ({
       <VisuallyHidden aria-live="assertive">{liveText}</VisuallyHidden>
       <AccordionGroup error={errorMessage}>
         <AccordionContent aria-describedby={ariaDescriptionId}>
-          {componentValue.map(({ __temp_key__: key }, index) => (
-            <Component
-              componentFieldName={`${name}.${index}`}
-              componentUid={componentUid}
-              fields={componentLayoutData.layouts.edit}
-              key={key}
-              index={index}
-              isOpen={collapseToOpen === key}
-              isReadOnly={isReadOnly}
-              mainField={mainField}
-              moveComponentField={handleMoveComponentField}
-              onClickToggle={handleToggle(key)}
-              toggleCollapses={toggleCollapses}
-              onCancel={handleCancel}
-              onDropItem={handleDropItem}
-              onGrabItem={handleGrabItem}
-            />
-          ))}
+          <Grid>
+            {componentValue.map(({ __temp_key__: key }, index) => (
+              <Component
+                componentFieldName={`${name}.${index}`}
+                componentUid={componentUid}
+                fields={componentLayoutData.layouts.edit}
+                key={key}
+                index={index}
+                isOpen={collapseToOpen === key}
+                isReadOnly={isReadOnly}
+                mainField={mainField}
+                moveComponentField={handleMoveComponentField}
+                onClickToggle={handleToggle(key)}
+                toggleCollapses={toggleCollapses}
+                onCancel={handleCancel}
+                onDropItem={handleDropItem}
+                onGrabItem={handleGrabItem}
+              />
+            ))}
+          </Grid>
         </AccordionContent>
         <AccordionFooter>
           <Flex justifyContent="center" height="48px" background="neutral0">
@@ -513,120 +515,130 @@ const Component = ({
 
   const composedAccordionRefs = composeRefs<HTMLButtonElement>(accordionRef, dragRef);
   const composedBoxRefs = composeRefs(boxRef, dropRef);
+  const maxSize = fields.reduce(
+    (acc, fieldRow) =>
+      Math.max(
+        acc,
+        fieldRow.reduce((acc, { size }) => acc + size, 0)
+      ),
+    0
+  );
 
   const { lazyComponentStore } = useLazyComponents();
 
   return (
-    <Box ref={(ref) => composedBoxRefs(ref!)}>
-      {isDragging ? (
-        <Preview />
-      ) : (
-        <Accordion expanded={isOpen} onToggle={onClickToggle} id={componentFieldName} size="S">
-          <AccordionToggle
-            action={
-              isReadOnly ? null : (
-                <ActionsFlex gap={0} expanded={isOpen}>
-                  <CustomIconButton
-                    expanded={isOpen}
-                    noBorder
-                    onClick={() => {
-                      removeRepeatableField?.(componentFieldName);
-                      toggleCollapses();
-                    }}
-                    label={formatMessage({
-                      id: getTranslation('containers.Edit.delete'),
-                      defaultMessage: 'Delete',
-                    })}
-                    icon={<Trash />}
-                  />
-                  <IconButton
-                    className="drag-handle"
-                    ref={composedAccordionRefs}
-                    forwardedAs="div"
-                    role="button"
-                    noBorder
-                    tabIndex={0}
-                    onClick={(e) => e.stopPropagation()}
-                    data-handler-id={handlerId}
-                    label={formatMessage({
-                      id: getTranslation('components.DragHandle-label'),
-                      defaultMessage: 'Drag',
-                    })}
-                    onKeyDown={handleKeyDown}
-                  >
-                    <Drag />
-                  </IconButton>
-                </ActionsFlex>
-              )
-            }
-            title={
-              displayedValueIsMedia && displayedValue
-                ? ((
-                    <Img src={prefixFileUrlWithBackendUrl(displayedValue)} aria-hidden alt="" />
-                  ) as any)
-                : displayedValue
-            }
-            togglePosition="left"
-          />
-          <DSAccordionContent>
-            <Flex
-              direction="column"
-              alignItems="stretch"
-              background="neutral100"
-              padding={6}
-              gap={6}
-            >
-              {fields.map((fieldRow, key) => {
-                return (
-                  <Grid gap={4} key={key}>
-                    {fieldRow.map(({ name, fieldSchema, metadatas, queryInfos, size }) => {
-                      const isComponent = fieldSchema.type === 'component';
-                      const keys = `${componentFieldName}.${name}`;
+    <GridItem col={maxSize} s={12} xs={12}>
+      <Box ref={(ref) => composedBoxRefs(ref!)}>
+        {isDragging ? (
+          <Preview />
+        ) : (
+          <Accordion expanded={isOpen} onToggle={onClickToggle} id={componentFieldName} size="S">
+            <AccordionToggle
+              action={
+                isReadOnly ? null : (
+                  <ActionsFlex gap={0} expanded={isOpen}>
+                    <CustomIconButton
+                      expanded={isOpen}
+                      noBorder
+                      onClick={() => {
+                        removeRepeatableField?.(componentFieldName);
+                        toggleCollapses();
+                      }}
+                      label={formatMessage({
+                        id: getTranslation('containers.Edit.delete'),
+                        defaultMessage: 'Delete',
+                      })}
+                      icon={<Trash />}
+                    />
+                    <IconButton
+                      className="drag-handle"
+                      ref={composedAccordionRefs}
+                      forwardedAs="div"
+                      role="button"
+                      noBorder
+                      tabIndex={0}
+                      onClick={(e) => e.stopPropagation()}
+                      data-handler-id={handlerId}
+                      label={formatMessage({
+                        id: getTranslation('components.DragHandle-label'),
+                        defaultMessage: 'Drag',
+                      })}
+                      onKeyDown={handleKeyDown}
+                    >
+                      <Drag />
+                    </IconButton>
+                  </ActionsFlex>
+                )
+              }
+              title={
+                displayedValueIsMedia && displayedValue
+                  ? ((
+                      <Img src={prefixFileUrlWithBackendUrl(displayedValue)} aria-hidden alt="" />
+                    ) as any)
+                  : displayedValue
+              }
+              togglePosition="left"
+            />
+            <DSAccordionContent>
+              <Flex
+                direction="column"
+                alignItems="stretch"
+                background="neutral100"
+                padding={6}
+                gap={6}
+              >
+                {fields.map((fieldRow, key) => {
+                  return (
+                    <Grid gap={4} key={key}>
+                      {fieldRow.map(({ name, fieldSchema, metadatas, queryInfos, size }) => {
+                        const isComponent = fieldSchema.type === 'component';
+                        const keys = `${componentFieldName}.${name}`;
 
-                      if (isComponent) {
-                        const componentUid = fieldSchema.component;
+                        if (isComponent) {
+                          const componentUid = fieldSchema.component;
+
+                          return (
+                            <GridItem col={(size * 12) / maxSize} s={12} xs={12} key={name}>
+                              <FieldComponent
+                                componentUid={componentUid}
+                                intlLabel={{
+                                  id: metadatas.label,
+                                  defaultMessage: metadatas.label,
+                                }}
+                                isRepeatable={fieldSchema.repeatable}
+                                isNested
+                                name={keys}
+                                max={fieldSchema.max}
+                                min={fieldSchema.min}
+                                required={fieldSchema.required}
+                              />
+                            </GridItem>
+                          );
+                        }
 
                         return (
-                          <GridItem col={size} s={12} xs={12} key={name}>
-                            <FieldComponent
+                          <GridItem key={keys} col={(size * 12) / maxSize} s={12} xs={12}>
+                            <Inputs
                               componentUid={componentUid}
-                              intlLabel={{
-                                id: metadatas.label,
-                                defaultMessage: metadatas.label,
-                              }}
-                              isRepeatable={fieldSchema.repeatable}
-                              isNested
-                              name={keys}
-                              max={fieldSchema.max}
-                              min={fieldSchema.min}
-                              required={fieldSchema.required}
+                              fieldSchema={fieldSchema}
+                              keys={keys}
+                              metadatas={metadatas}
+                              queryInfos={queryInfos}
+                              size={size}
+                              customFieldInputs={lazyComponentStore}
                             />
                           </GridItem>
                         );
-                      }
-
-                      return (
-                        <GridItem key={keys} col={size} s={12} xs={12}>
-                          <Inputs
-                            componentUid={componentUid}
-                            fieldSchema={fieldSchema}
-                            keys={keys}
-                            metadatas={metadatas}
-                            queryInfos={queryInfos}
-                            size={size}
-                            customFieldInputs={lazyComponentStore}
-                          />
-                        </GridItem>
-                      );
-                    })}
-                  </Grid>
-                );
-              })}
-            </Flex>
-          </DSAccordionContent>
-        </Accordion>
-      )}
-    </Box>
+                      })}
+                    </Grid>
+                  );
+                })}
+              </Flex>
+            </DSAccordionContent>
+          </Accordion>
+        )}
+      </Box>
+    </GridItem>
   );
 };
 
