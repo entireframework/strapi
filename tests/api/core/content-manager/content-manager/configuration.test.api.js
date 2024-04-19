@@ -86,7 +86,7 @@ describe('Content Manager - Configuration', () => {
         },
       ],
     ]);
-    expect(body.data.contentType.layouts.list).toStrictEqual(['id', 'title', 'date', 'author']);
+    expect(body.data.contentType.layouts.list).toStrictEqual(['id', 'title', 'date', 'content']);
   });
 
   test('Update list and edit layout (with relation)', async () => {
