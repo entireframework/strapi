@@ -89,10 +89,10 @@ const LeftMenu = () => {
         ...Object.keys(leftMenu || {}).map((key) => {
           return {
             id: key,
-            title: {
+            title: formatMessage({
               id: `components.LeftMenu.${key}`,
               defaultMessage: leftMenu[key].defaultMessage,
-            },
+            }),
             searchable: true,
             links: matchByTitle(leftMenu[key].items, search),
           };
@@ -178,7 +178,7 @@ const LeftMenu = () => {
           return (
             <SubNavSection
               key={section.id}
-              label={section.title as any}
+              label={section.title}
               badgeLabel={section.links.length.toString()}
             >
               {section.links.map((link: any) => {
