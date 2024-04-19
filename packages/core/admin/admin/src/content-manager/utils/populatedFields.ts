@@ -1,6 +1,6 @@
 import get from 'lodash/get';
 
-const getPopulatedFields = (currentLayout, schema) => {
+const getPopulatedFields = (currentLayout: any, schema: any): any => {
   if (!schema.attributes) {
     schema = {
       ...schema,
@@ -21,7 +21,7 @@ const getPopulatedFields = (currentLayout, schema) => {
     };
   }
 
-  return Object.keys(schema.attributes).reduce((acc, attribute) => {
+  return Object.keys(schema.attributes).reduce((acc: any, attribute: any) => {
     const attributeType = schema.attributes[attribute].component
       ? 'component'
       : schema.attributes[attribute].type;
@@ -39,7 +39,7 @@ const getPopulatedFields = (currentLayout, schema) => {
       ).concat(['']);
     } else if (attributeType === 'dynamiczone') {
       attributeRelation = get(schema, ['attributes', attribute, 'components'], null)
-        .reduce((acc3, component) => {
+        .reduce((acc3: any, component: any) => {
           return acc3.concat(
             getPopulatedFields(currentLayout, get(currentLayout, ['components', component], {}))
           );
@@ -57,10 +57,10 @@ const getPopulatedFields = (currentLayout, schema) => {
       ).concat(['']);
     }
 
-    return attributeRelation.reduce((acc2, relation) => {
+    return attributeRelation.reduce((acc2: any, relation: any) => {
       return acc2.concat([[attribute, ...(relation ? [relation] : [])].join('.')]);
     }, acc);
   }, []);
 };
 
-export default getPopulatedFields;
+export { getPopulatedFields };

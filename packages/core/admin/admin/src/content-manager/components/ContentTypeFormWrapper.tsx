@@ -29,6 +29,7 @@ import {
 } from '../sharedReducers/crud/actions';
 import { buildValidGetParams } from '../utils/api';
 import { createDefaultDataStructure, removePasswordFieldsFromData } from '../utils/data';
+import { getPopulatedFields } from '../utils/populatedFields';
 import { getTranslation } from '../utils/translations';
 
 import type { EditViewPageParams } from '../pages/EditView/EditViewPage';
@@ -167,7 +168,14 @@ const ContentTypeFormWrapper = ({
     };
   }, [dispatch]);
 
-  const validParams = React.useMemo(() => buildValidGetParams(query), [query]);
+  const validParams = React.useMemo(
+    () =>
+      buildValidGetParams({
+        ...query,
+        populate: getPopulatedFields(allLayoutData, allLayoutData.contentType),
+      }),
+    [query, allLayoutData]
+  );
 
   React.useEffect(() => {
     const CancelToken = axios.CancelToken;
