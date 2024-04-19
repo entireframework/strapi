@@ -7885,7 +7885,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@strapi/admin@npm:^4.23.1-alpha.0, @strapi/admin@workspace:packages/core/admin":
+"@strapi/admin@npm:^4.23.1-alpha.1, @strapi/admin@workspace:packages/core/admin":
   version: 0.0.0-use.local
   resolution: "@strapi/admin@workspace:packages/core/admin"
   dependencies:
@@ -7908,7 +7908,7 @@ __metadata:
     "@strapi/permissions": "npm:^4.23.1-alpha.0"
     "@strapi/plugin-content-manager": "npm:^4.23.1-alpha.0"
     "@strapi/provider-audit-logs-local": "npm:^4.23.1-alpha.0"
-    "@strapi/strapi": "npm:^4.23.1-alpha.0"
+    "@strapi/strapi": "npm:^4.23.1-alpha.1"
     "@strapi/types": "npm:^4.23.1-alpha.0"
     "@strapi/typescript-utils": "npm:^4.23.1-alpha.0"
     "@strapi/utils": "npm:^4.23.1-alpha.0"
@@ -8036,18 +8036,18 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@strapi/content-releases@npm:^4.23.1-alpha.0, @strapi/content-releases@workspace:packages/core/content-releases":
+"@strapi/content-releases@npm:^4.23.1-alpha.1, @strapi/content-releases@workspace:packages/core/content-releases":
   version: 0.0.0-use.local
   resolution: "@strapi/content-releases@workspace:packages/core/content-releases"
   dependencies:
     "@reduxjs/toolkit": "npm:1.9.7"
-    "@strapi/admin": "npm:^4.23.1-alpha.0"
+    "@strapi/admin": "npm:^4.23.1-alpha.1"
     "@strapi/admin-test-utils": "npm:^4.23.1-alpha.0"
     "@strapi/design-system": "npm:1.16.0"
     "@strapi/helper-plugin": "npm:^4.23.1-alpha.0"
     "@strapi/icons": "npm:1.16.0"
     "@strapi/pack-up": "workspace:*"
-    "@strapi/strapi": "npm:^4.23.1-alpha.0"
+    "@strapi/strapi": "npm:^4.23.1-alpha.1"
     "@strapi/types": "workspace:*"
     "@strapi/utils": "npm:^4.23.1-alpha.0"
     "@testing-library/react": "npm:14.0.0"
@@ -8870,14 +8870,14 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@strapi/strapi@npm:^4.23.1-alpha.0, @strapi/strapi@workspace:packages/core/strapi":
+"@strapi/strapi@npm:^4.23.1-alpha.0, @strapi/strapi@npm:^4.23.1-alpha.1, @strapi/strapi@workspace:packages/core/strapi":
   version: 0.0.0-use.local
   resolution: "@strapi/strapi@workspace:packages/core/strapi"
   dependencies:
     "@koa/cors": "npm:3.4.3"
     "@koa/router": "npm:10.1.1"
-    "@strapi/admin": "npm:^4.23.1-alpha.0"
-    "@strapi/content-releases": "npm:^4.23.1-alpha.0"
+    "@strapi/admin": "npm:^4.23.1-alpha.1"
+    "@strapi/content-releases": "npm:^4.23.1-alpha.1"
     "@strapi/data-transfer": "npm:^4.23.1-alpha.0"
     "@strapi/database": "npm:^4.23.1-alpha.0"
     "@strapi/generate-new": "npm:^4.23.1-alpha.0"
