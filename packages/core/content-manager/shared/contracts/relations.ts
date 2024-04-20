@@ -5,7 +5,7 @@ type PaginationQuery = EntityService.Params.Pagination.PageNotation;
 
 export interface RelationResult {
   id: Entity.ID;
-  mainField: string | null;
+  mainField?: string;
   publishedAt: string | null;
 }
 

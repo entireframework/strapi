@@ -35,7 +35,7 @@ interface ConfigurationContextValue {
     auth: ConfigurationLogo;
     menu: ConfigurationLogo;
   };
-  leftMenu: any;
+  leftMenu?: any;
   showTutorials: boolean;
   showReleaseNotification: boolean;
   updateProjectSettings: (body: UpdateProjectSettingsBody) => Promise<void>;

@@ -337,6 +337,9 @@ describe('layouts', () => {
             label: 'categories',
           },
           list: {
+            coverField: {
+              name: undefined,
+            },
             label: 'categories',
           },
         },
