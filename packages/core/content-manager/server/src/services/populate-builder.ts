@@ -16,7 +16,7 @@ const populateBuilder = (uid: Common.UID.Schema) => {
   let getInitialPopulate = async (): Promise<undefined | Populate> => {
     return undefined;
   };
-  let applyAdditionalPopulate = async (v) => (v);
+  let applyAdditionalPopulate = async (v: any) => v;
   const deepPopulateOptions = {
     countMany: false,
     countOne: false,
@@ -28,14 +28,14 @@ const populateBuilder = (uid: Common.UID.Schema) => {
      * Populates all attribute fields present in a query.
      * @param query - Strapi query object
      */
-    populateFromQuery(query: object) {
+    populateFromQuery(query: any) {
       getInitialPopulate = async () => getQueryPopulate(uid, query);
       applyAdditionalPopulate = async (initialPopulate) => {
         if (query?.populate?.forEach) {
-          query.populate.forEach((p) => {
+          query.populate.forEach((p: any) => {
             const pp = p.split('.');
             pp.reduce(
-              (acc, key, index) => {
+              (acc: any, key: string, index: number) => {
                 if (acc.on) {
                   delete acc.on;
                 }

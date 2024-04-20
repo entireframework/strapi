@@ -180,7 +180,7 @@ exports[`GenericInput json renders and matches the snapshot 1`] = `
               data-language="json"
               role="textbox"
               spellcheck="false"
-              style="tab-size: 4;"
+              style="tab-size: 4"
               translate="no"
             >
               <div

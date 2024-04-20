@@ -43,7 +43,7 @@ describe('Settings', () => {
           autoOrientation: false,
           sizeOptimization: true,
           responsiveDimensions: true,
-          responsiveQuality: 90
+          responsiveQuality: 90,
         },
       });
     });
@@ -57,7 +57,7 @@ describe('Settings', () => {
         body: {
           sizeOptimization: true,
           responsiveDimensions: true,
-          responsiveQuality: 90
+          responsiveQuality: 90,
         },
       });
 
@@ -66,7 +66,7 @@ describe('Settings', () => {
         data: {
           sizeOptimization: true,
           responsiveDimensions: true,
-          responsiveQuality: 90
+          responsiveQuality: 90,
         },
       });
 
@@ -77,7 +77,7 @@ describe('Settings', () => {
         data: {
           sizeOptimization: true,
           responsiveDimensions: true,
-          responsiveQuality: 90
+          responsiveQuality: 90,
         },
       });
     });

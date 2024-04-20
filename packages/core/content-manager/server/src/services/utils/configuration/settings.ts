@@ -49,6 +49,7 @@ const createDefaultSettings = async (schema: any) => {
   return {
     ...DEFAULT_SETTINGS,
     mainField: defaultField,
+    coverField: defaultField,
     defaultSortBy: defaultField,
     defaultSortOrder: 'ASC',
     ...getModelSettings(schema),
