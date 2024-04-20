@@ -12,7 +12,7 @@ module.exports = {
     attributes: {
       name: { type: 'string', configurable: false, required: true },
       alternativeText: { type: 'string', configurable: false },
-      posterTime: { type: 'number', configurable: false },
+      posterTime: { type: 'decimal', configurable: false },
       caption: { type: 'string', configurable: false },
       width: { type: 'integer', configurable: false },
       height: { type: 'integer', configurable: false },
