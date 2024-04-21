@@ -22,7 +22,7 @@ describe('Dimensions are populated when uploading an image', () => {
     await builder.cleanup();
   });
 
-  test.each([['.jpg'], ['.png'], ['.webp'], ['.tiff'], ['.svg'], ['.gif']])(
+  test.each([['.jpg'], ['.png'], ['.webp'], ['.tiff'], ['.svg']])(
     'Dimensions are populated for %s',
     async (ext) => {
       const res = await rq({

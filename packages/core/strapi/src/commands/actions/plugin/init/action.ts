@@ -17,7 +17,7 @@ import { notifyExperimentalCommand } from '../../../utils/helpers';
 import { CLIContext } from '../../../types';
 import { gitIgnoreFile } from './files/gitIgnore';
 
-interface ActionOptions extends Pick<InitOptions, 'silent' | 'debug'> {}
+type ActionOptions = Pick<InitOptions, 'silent' | 'debug'>;
 
 export default async (
   packagePath: string,
