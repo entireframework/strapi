@@ -90,11 +90,11 @@ describe('DynamicComponent', () => {
   it('should hide the field component when you close the accordion', async () => {
     const { getByText, queryByText, user, getByRole } = render();
 
-    expect(getByText("I'm a field component")).toBeInTheDocument();
+    expect(queryByText("I'm a field component")).not.toBeInTheDocument();
 
     await user.click(getByRole('button', { name: 'component1' }));
 
-    expect(queryByText("I'm a field component")).not.toBeInTheDocument();
+    expect(getByText("I'm a field component")).toBeInTheDocument();
   });
 
   describe('Keyboard drag and drop', () => {

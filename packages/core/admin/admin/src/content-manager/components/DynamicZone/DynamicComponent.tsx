@@ -88,7 +88,7 @@ const DynamicComponent = ({
       displayedValue.length > 0 && !displayedValueIsMedia ? ` - ${displayedValue}` : displayedValue;
 
     return { friendlyName: displayName, icon, mainValue, mainValueIsMedia: displayedValueIsMedia };
-  }, [componentUid, getComponentLayout, modifiedData, name, index]);
+  }, [componentUid, getComponentLayout, modifiedData, name, index, currentLayout]);
 
   const fieldsErrors = Object.keys(formErrors).filter((errorKey) => {
     const errorKeysArray = errorKey.split('.');

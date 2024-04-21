@@ -8,3 +8,7 @@ declare module '*.svg' {
   const value: any;
   export default value;
 }
+
+declare module 'font-awesome/css/font-awesome.min.css';
+declare module '@fortawesome/fontawesome-free/css/all.css';
+declare module '@fortawesome/fontawesome-free/js/all.min';

@@ -223,16 +223,18 @@ const DynamicZone = ({ name, labelAction, fieldSchema, metadatas }: DynamicZoneP
       },
       {
         componentName:
-          formatMessage({
-            id: metadatas.label,
-            defaultMessage:
-              metadatas.label && name && metadatas.label === name.split('.').slice(-1)[0]
-                ? metadatas.label
-                    .split(/[\s_-]+/)
-                    .map(upperFirst)
-                    .join(' ')
-                : metadatas.label,
-          }) || name,
+          (metadatas.label
+            ? formatMessage({
+                id: metadatas.label,
+                defaultMessage:
+                  metadatas.label && name && metadatas.label === name.split('.').slice(-1)[0]
+                    ? metadatas.label
+                        .split(/[\s_-]+/)
+                        .map(upperFirst)
+                        .join(' ')
+                    : metadatas.label,
+              })
+            : undefined) || name,
       }
     );
   };

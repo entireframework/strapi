@@ -114,7 +114,7 @@ describe('Upload', () => {
               url: expect.any(String),
               path: expect.any(String),
             },
-            'original': {
+            original: {
               name: 'original_thumbnail_target.png',
               hash: expect.any(String),
               ext: '.png',
