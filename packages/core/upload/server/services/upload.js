@@ -162,7 +162,6 @@ module.exports = ({ strapi }) => ({
       {
         ...metas,
         tmpWorkingDirectory: file.tmpWorkingDirectory,
-        path: file.path,
       }
     );
 
