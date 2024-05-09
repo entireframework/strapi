@@ -100,7 +100,7 @@ describe('Upload', () => {
               width: expect.any(Number),
               height: expect.any(Number),
               url: expect.any(String),
-              path: expect.any(String),
+              path: null,
             },
             'thumbnail-webp': {
               name: 'thumbnail-webp_thumbnail_target.png',
@@ -112,7 +112,7 @@ describe('Upload', () => {
               width: expect.any(Number),
               height: expect.any(Number),
               url: expect.any(String),
-              path: expect.any(String),
+              path: null,
             },
             original: {
               name: 'original_thumbnail_target.png',
@@ -124,7 +124,7 @@ describe('Upload', () => {
               width: expect.any(Number),
               height: expect.any(Number),
               url: expect.any(String),
-              path: expect.any(String),
+              path: null,
             },
             'original-webp': {
               name: 'original-webp_thumbnail_target.png',
@@ -136,7 +136,7 @@ describe('Upload', () => {
               width: expect.any(Number),
               height: expect.any(Number),
               url: expect.any(String),
-              path: expect.any(String),
+              path: null,
             },
           },
         })
