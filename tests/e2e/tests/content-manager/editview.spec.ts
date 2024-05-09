@@ -58,7 +58,7 @@ test.describe('Edit View', () => {
         .nth(1)
         .fill('I miss the denver broncos, now I can only watch it on the evening.');
 
-      await page.getByRole('combobox', { name: 'authors' }).click();
+      await page.getByRole('combobox', { name: 'Authors' }).click();
 
       await page.getByRole('option', { name: 'Ted Lasso' }).click();
 
@@ -152,7 +152,7 @@ test.describe('Edit View', () => {
 
       await expect(page.getByRole('button', { name: 'Unpublish' })).not.toBeDisabled();
 
-      await page.getByRole('combobox', { name: 'admin_user' }).click();
+      await page.getByRole('combobox', { name: 'Admin User' }).click();
       await page.getByRole('option').nth(0).click();
 
       await expect(page.getByRole('button', { name: 'Unpublish' })).toBeDisabled();
