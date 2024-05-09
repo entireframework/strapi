@@ -192,11 +192,13 @@ const resizeFileTo = async (file, options, { name, hash, format }) => {
       newFilePath
     );
   } else {
-    newInfo = await sharp(file.filepath).resize(options)
-    .toFormat(format || currentFormat || 'jpeg', {
-      progressive: true,
-      quality: responsiveQuality,
-    }).toFile(newFilePath);
+    newInfo = await sharp(file.filepath)
+      .resize(options)
+      .toFormat(format || currentFormat || 'jpeg', {
+        progressive: true,
+        quality: responsiveQuality,
+      })
+      .toFile(newFilePath);
   }
 
   const { width, height, size } = newInfo;
@@ -532,18 +534,29 @@ const generatePoster = async (file) => {
   }
 
   return new Promise((resolve, reject) => {
-    console.log('generatePoster started', file.filepath, `${file.width}x${file.height}`, newFilePath);
-    convertVideo(file.filepath, `${file.width}x${file.height}`, newFilePath, convertOptions, (err) => {
-      console.log('generatePoster finished');
+    console.log(
+      'generatePoster started',
+      file.filepath,
+      `${file.width}x${file.height}`,
+      newFilePath
+    );
+    convertVideo(
+      file.filepath,
+      `${file.width}x${file.height}`,
+      newFilePath,
+      convertOptions,
+      (err) => {
+        console.log('generatePoster finished');
 
-      if (err) {
-        console.log('generatePoster error', err);
+        if (err) {
+          console.log('generatePoster error', err);
 
-        reject();
-      } else {
-        resolve();
+          reject();
+        } else {
+          resolve();
+        }
       }
-    });
+    );
   })
     .then(async () => {
       fs.writeFileSync(
