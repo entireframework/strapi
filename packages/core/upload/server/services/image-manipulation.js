@@ -11,7 +11,7 @@ const queue = require('queue');
 const gifResize = require('@gumlet/gif-resize');
 
 const {
-  file: { bytesToKbytes, writableDiscardStream },
+  file: { bytesToKbytes },
 } = require('@strapi/utils');
 const { getService } = require('../utils');
 
@@ -42,7 +42,7 @@ const writeStreamToFile = (stream, path) =>
 const getVideoMetadata = (file) => {
   return new Promise((resolve, reject) => {
     try {
-      ffmpeg.ffprobe(file.path || file.getStream(), (err, metadata) => {
+      ffmpeg.ffprobe(file.filepath || file.getStream(), (err, metadata) => {
         console.log('ffprobe', metadata);
 
         if (err) {
@@ -100,11 +100,15 @@ const getVideoMetadata = (file) => {
 };
 
 const getImageMetadata = (file) => {
-  return new Promise((resolve, reject) => {
-    const pipeline = sharp();
-    pipeline.metadata().then(resolve).catch(reject);
-    file.getStream().pipe(pipeline);
-  });
+  if (!file.filepath) {
+    return new Promise((resolve, reject) => {
+      const pipeline = sharp();
+      pipeline.metadata().then(resolve).catch(reject);
+      file.getStream().pipe(pipeline);
+    });
+  }
+
+  return sharp(file.filepath).metadata();
 };
 
 const getMetadata = (file) => {
@@ -130,27 +134,30 @@ const resizeFileTo = async (file, options, { name, hash, format }) => {
   const { responsiveQuality = 90 } = await getService('upload').getSettings();
   const currentFormat = await getFormat(file);
 
-  const filePath = join(file.tmpWorkingDirectory, hash);
   const newFilePath = join(
     file.tmpWorkingDirectory,
     `output_${hash}${convertVideoOptionsWebp.ext}`
   );
-  if (currentFormat === 'gif') {
-    await writeStreamToFile(file.getStream(), filePath);
-  }
+
+  let newInfo;
 
   if (currentFormat === 'gif') {
+    if (!file.filepath) {
+      file.filepath = join(file.tmpWorkingDirectory, hash);
+      await writeStreamToFile(file.getStream(), file.filepath);
+    }
+
     if (format === 'webp') {
       await new Promise((resolve, reject) => {
         console.log(
           'resizeFileTo started',
-          filePath,
+          file.filepath,
           `${options.width}x${options.height}`,
           newFilePath
         );
 
         convertVideo(
-          filePath,
+          file.filepath,
           `${options.width}x${options.height}`,
           newFilePath,
           convertVideoOptionsWebp,
@@ -168,9 +175,11 @@ const resizeFileTo = async (file, options, { name, hash, format }) => {
         );
       });
     } else {
-      fs.writeFileSync(newFilePath, await gifResize(options)(fs.readFileSync(filePath)));
+      fs.writeFileSync(newFilePath, await gifResize(options)(fs.readFileSync(file.filepath)));
     }
-  } else {
+
+    newInfo = await sharp(newFilePath).metadata();
+  } else if (!file.filepath) {
     await writeStreamToFile(
       file.getStream().pipe(
         sharp()
@@ -182,18 +191,25 @@ const resizeFileTo = async (file, options, { name, hash, format }) => {
       ),
       newFilePath
     );
+  } else {
+    newInfo = await sharp(file.filepath).resize(options)
+    .toFormat(format || currentFormat || 'jpeg', {
+      progressive: true,
+      quality: responsiveQuality,
+    }).toFile(newFilePath);
   }
+
+  const { width, height, size } = newInfo;
 
   const newFile = {
     name,
     hash,
     ext: file.ext,
     mime: file.mime,
+    filepath: newFilePath,
     path: file.path || null,
     getStream: () => fs.createReadStream(newFilePath),
   };
-
-  const { width, height, size } = await getMetadata(newFile);
 
   Object.assign(newFile, { width, height, size: bytesToKbytes(size), sizeInBytes: size });
   return newFile;
@@ -254,12 +270,16 @@ const optimize = async (file) => {
     'upload'
   ).getSettings();
 
-  const newFile = { ...file };
-
-  const { width, height, size, format } = await getMetadata(newFile);
+  const { format, size } = await getMetadata(file);
 
   if ((sizeOptimization || autoOrientation) && format !== 'gif') {
-    const transformer = sharp();
+    let transformer;
+    if (!file.filepath) {
+      transformer = sharp();
+    } else {
+      transformer = sharp(file.filepath);
+    }
+
     // reduce image quality
     transformer[format]({ quality: sizeOptimization ? 80 : 100 });
     // rotate image based on EXIF data
@@ -268,24 +288,38 @@ const optimize = async (file) => {
     }
     const filePath = join(file.tmpWorkingDirectory, `optimized-${file.hash}`);
 
-    await writeStreamToFile(file.getStream().pipe(transformer), filePath);
+    let newInfo;
+    if (!file.filepath) {
+      transformer.on('info', (info) => {
+        newInfo = info;
+      });
+
+      await writeStreamToFile(file.getStream().pipe(transformer), filePath);
+    } else {
+      newInfo = await transformer.toFile(filePath);
+    }
+
+    const { width: newWidth, height: newHeight, size: newSize } = newInfo;
+
+    const newFile = { ...file };
 
     newFile.getStream = () => fs.createReadStream(filePath);
+    newFile.filepath = filePath;
+
+    if (newSize > size) {
+      // Ignore optimization if output is bigger than original
+      return file;
+    }
+
+    return Object.assign(newFile, {
+      width: newWidth,
+      height: newHeight,
+      size: bytesToKbytes(newSize),
+      sizeInBytes: newSize,
+    });
   }
 
-  const { width: newWidth, height: newHeight, size: newSize } = await getMetadata(newFile);
-
-  if (newSize > size) {
-    // Ignore optimization if output is bigger than original
-    return { ...file, width, height, size: bytesToKbytes(size), sizeInBytes: size };
-  }
-
-  return Object.assign(newFile, {
-    width: newWidth,
-    height: newHeight,
-    size: bytesToKbytes(newSize),
-    sizeInBytes: newSize,
-  });
+  return file;
 };
 
 const DEFAULT_BREAKPOINTS = {
@@ -384,16 +418,22 @@ const isSupportedImage = (...args) => {
 /**
  *  Applies a simple image transformation to see if the image is faulty/corrupted.
  */
-const isFaultyImage = (file) =>
-  new Promise((resolve) => {
-    file
-      .getStream()
-      .pipe(sharp().rotate())
-      .on('error', () => resolve(true))
-      .pipe(writableDiscardStream())
-      .on('error', () => resolve(true))
-      .on('close', () => resolve(false));
-  });
+const isFaultyImage = async (file) => {
+  if (!file.filepath) {
+    return new Promise((resolve, reject) => {
+      const pipeline = sharp();
+      pipeline.stats().then(resolve).catch(reject);
+      file.getStream().pipe(pipeline);
+    });
+  }
+
+  try {
+    await sharp(file.filepath).stats();
+    return false;
+  } catch (e) {
+    return true;
+  }
+};
 
 const getFormat = async (file) => {
   try {
@@ -466,8 +506,10 @@ const generatePoster = async (file) => {
     return;
   }
 
-  file.path = join(file.tmpWorkingDirectory, file.hash);
-  await writeStreamToFile(file.getStream(), file.path);
+  if (!file.filepath) {
+    file.filepath = join(file.tmpWorkingDirectory, file.hash);
+    await writeStreamToFile(file.getStream(), file.filepath);
+  }
 
   const convertOptions = {
     streamEncoding: true,
@@ -490,8 +532,8 @@ const generatePoster = async (file) => {
   }
 
   return new Promise((resolve, reject) => {
-    console.log('generatePoster started', file.path, `${file.width}x${file.height}`, newFilePath);
-    convertVideo(file.path, `${file.width}x${file.height}`, newFilePath, convertOptions, (err) => {
+    console.log('generatePoster started', file.filepath, `${file.width}x${file.height}`, newFilePath);
+    convertVideo(file.filepath, `${file.width}x${file.height}`, newFilePath, convertOptions, (err) => {
       console.log('generatePoster finished');
 
       if (err) {
@@ -520,7 +562,8 @@ const generatePoster = async (file) => {
         hash: file.hash,
         ext: newFileExt,
         mime: newFileMime,
-        path: newFilePath,
+        filepath: newFilePath,
+        path: file.path || null,
         tmpWorkingDirectory: file.tmpWorkingDirectory,
         getStream: () => fs.createReadStream(newFilePath),
       };
