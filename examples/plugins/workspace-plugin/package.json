@@ -1,6 +1,6 @@
 {
   "name": "strapi-plugin-workspace-plugin",
-  "version": "4.24.3-alpha.0",
+  "version": "4.24.3-alpha.1",
   "private": true,
   "description": "This is the description of my plugin.",
   "exports": {
