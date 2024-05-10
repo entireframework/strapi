@@ -231,13 +231,11 @@ const RelationInputDataManager = ({
     /**
      * Any relation being added to the store should be normalized so it has it's link.
      */
-    const normalizedRelation = relation.mainField
-      ? relation
-      : normalizeRelation(relation, {
-          mainFieldName: mainField.name,
-          shouldAddLink: shouldDisplayRelationLink,
-          targetModel,
-        });
+    const normalizedRelation = normalizeRelation(relation, {
+      mainFieldName: mainField.name,
+      shouldAddLink: shouldDisplayRelationLink,
+      targetModel,
+    });
 
     relationConnect?.({ name, value: normalizedRelation, toOneRelation });
   };
@@ -439,26 +437,14 @@ const RelationInputDataManager = ({
           defaultMessage: 'Published',
         }),
       }}
-      relations={{
-        ...pick(
-          { ...relations, data: relationsFromModifiedData },
-          'data',
-          'hasNextPage',
-          'isFetchingNextPage',
-          'isLoading',
-          'isSuccess'
-        ),
-        data: pick({ ...relations, data: relationsFromModifiedData }, 'data').data.map(
-          (data: Contracts.Relations.RelationResult) =>
-            data.mainField
-              ? data
-              : normalizeRelation(data, {
-                  mainFieldName: mainField.name,
-                  shouldAddLink: shouldDisplayRelationLink,
-                  targetModel,
-                })
-        ),
-      }}
+      relations={pick(
+        { ...relations, data: relationsFromModifiedData },
+        'data',
+        'hasNextPage',
+        'isFetchingNextPage',
+        'isLoading',
+        'isSuccess'
+      )}
       required={required}
       searchResults={normalizeSearchResults(search, {
         mainFieldName: mainField.name,

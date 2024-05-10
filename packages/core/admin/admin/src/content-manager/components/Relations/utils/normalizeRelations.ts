@@ -24,7 +24,7 @@ export const normalizeRelation = (
   const nextRelation: NormalizedRelation = {
     ...relation,
     // @ts-expect-error – TODO: fix why this want's it to be an attribute as opposed to a string.
-    mainField: relation[mainFieldName],
+    mainField: relation.mainField || relation[mainFieldName],
   };
 
   if (shouldAddLink) {
