@@ -437,14 +437,24 @@ const RelationInputDataManager = ({
           defaultMessage: 'Published',
         }),
       }}
-      relations={pick(
-        { ...relations, data: relationsFromModifiedData },
-        'data',
-        'hasNextPage',
-        'isFetchingNextPage',
-        'isLoading',
-        'isSuccess'
-      )}
+      relations={{
+        ...pick(
+          { ...relations, data: relationsFromModifiedData },
+          'data',
+          'hasNextPage',
+          'isFetchingNextPage',
+          'isLoading',
+          'isSuccess'
+        ),
+        data: pick({ ...relations, data: relationsFromModifiedData }, 'data').data.map(
+          (data: Contracts.Relations.RelationResult) =>
+            normalizeRelation(data, {
+              mainFieldName: mainField.name,
+              shouldAddLink: shouldDisplayRelationLink,
+              targetModel,
+            })
+        ),
+      }}
       required={required}
       searchResults={normalizeSearchResults(search, {
         mainFieldName: mainField.name,
